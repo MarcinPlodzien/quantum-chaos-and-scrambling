@@ -3,25 +3,25 @@ title: "4 · Quantum Dynamics & Chaos"
 ---
 
 Random matrices describe a chaotic spectrum at rest. This part puts the system
-**in motion** and asks how an initially local piece of information spreads — the
+**in motion** and asks how an initially local piece of information spreads, the
 process called **scrambling**.
 
 Two complementary diagnostics appear again and again:
 
 - **Out-of-time-ordered correlators (OTOCs).** The squared commutator
-  $C(t) = \langle |[W(t), V]|^2\rangle$ measures how a once-distant operator
-  $W(t)$ grows to overlap $V$. Its early-time growth defines a quantum Lyapunov
-  exponent, capped by the Maldacena–Shenker–Stanford bound $\lambda \le 2\pi k_B T/\hbar$.
+ $C(t) = \langle |[W(t), V]|^2\rangle$ measures how a once-distant operator
+ $W(t)$ grows to overlap $V$. Its early-time growth defines a quantum Lyapunov
+ exponent, capped by the Maldacena-Shenker-Stanford bound $\lambda \le 2\pi k_B T/\hbar$.
 - **The spectral form factor (SFF).** A Fourier transform of the spectrum whose
-  *dip–ramp–plateau* shape is the time-domain signature of level repulsion, with a
-  plateau pinned at the Hilbert-space dimension.
+ *dip-ramp-plateau* shape is the time-domain signature of level repulsion, with a
+ plateau pinned at the Hilbert-space dimension.
 
-A third, basis-independent view — **Krylov complexity** — recasts operator growth
+A third, basis-independent view, **Krylov complexity**, recasts operator growth
 as a particle hopping along a semi-infinite chain built by the Lanczos algorithm,
 turning "how chaotic" into "how fast does the wavepacket spread."
 
 ## Notebooks in this part
 
-- [The $C$–$F$ identity](../notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb) — linking the squared commutator to an OTOC fidelity.
-- [The spectral form factor](../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.ipynb) — dip, ramp, and the plateau at $K = D$.
-- [Krylov complexity](../notebooks/ch4/solution_ch4_krylov_complexity.ipynb) — operator growth as a tight-binding chain, with $\mathcal{C}_K(t) = \sinh^2(\alpha t)$.
+- [The $C$-$F$ identity](../notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb), linking the squared commutator to an OTOC fidelity.
+- [The spectral form factor](../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.ipynb), dip, ramp, and the plateau at $K = D$.
+- [Krylov complexity](../notebooks/ch4/solution_ch4_krylov_complexity.ipynb), operator growth as a tight-binding chain, with $\mathcal{C}_K(t) = \sinh^2(\alpha t)$.

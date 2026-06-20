@@ -8,38 +8,40 @@ toc: false
 ## Start here
 
 This is a **self-contained, runnable tutorial**. There is no prerequisite reading
-and nothing to buy: every idea is introduced briefly, then *demonstrated* in a
+and nothing to buy. Every idea is introduced briefly, then *demonstrated* in a
 short Python notebook you can open, run, and modify. If you can read `numpy`, you
 can follow along.
 :::
 
 ## The bigger picture
 
-One operation recurs across problems that otherwise have little in common —
-averaging over random quantum evolution:
+A recurring lesson in quantum many-body physics and quantum information is that the
+typical behaviour of a complex quantum system is sharply constrained, even when its
+microscopic details are not. Averages over the unitary group, known as the Haar measure,
+together with the concentration of measure that accompanies them, turn this observation
+into quantitative predictions. The same low-order Haar moments then reappear in settings
+that look, at first, unrelated.
 
-- **Thermalization.** A closed quantum system never forgets its initial state, yet
-  any small part of it looks thermal. Typicality — almost all states sharing the same
-  local properties — is the reason, and it is the basis of quantum statistical
-  mechanics.
-- **Black-hole information.** How information that falls into a black hole comes back
-  out in the radiation reduces, in the end, to the Page-curve calculation done here.
-  Scrambling is the link between quantum gravity and quantum information.
-- **Benchmarking real hardware.** Randomized benchmarking, cross-entropy benchmarking,
-  and classical shadows all rest on Haar randomness; they are how groups at Google and
-  IBM characterize their devices.
-- **Trainability of quantum models.** Barren plateaus, the reason many variational
-  quantum algorithms fail to train, come from the same concentration of measure — and
-  the same calculation tells you in advance which approaches can avoid them.
+The apparent thermality of a small subsystem follows from the entanglement of typical
+states. The recovery of information from an evaporating black hole is governed by the
+same Page-curve estimate of subsystem entropy. The protocols that certify quantum
+hardware, including randomized benchmarking, cross-entropy benchmarking and classical
+shadows, rest on second moments of the Haar measure. The trainability of variational
+quantum circuits, through the barren-plateau phenomenon, is fixed by the same
+concentration that renders typical states featureless.
 
-The toolkit behind all four is small — Haar averages and a little representation
-theory — and learning it once carries across every one of them.
+The resemblance is not superficial. In each of these cases the underlying object is the
+same low-order average over the unitary group, evaluated in a different physical context.
+The technical core is correspondingly compact, consisting of Haar averaging, the
+Weingarten calculus and a modest amount of representation theory. This tutorial develops
+it once and applies it across each setting, with every step carried out explicitly and
+checked numerically.
 
 ## What you'll learn
 
-A surprising amount of modern quantum theory rests on a single question: **what
-happens when you average over random quantum evolutions?** The answer ties
-together topics that look unrelated at first —
+A surprising amount of modern quantum theory comes down to one question. **What
+happens when you average over random quantum evolutions?** The answer ties together
+several topics that look unrelated at first.
 
 > spectral statistics of chaotic Hamiltonians · the entanglement of a typical
 > quantum state · how scrambled information hides and re-emerges · why some
@@ -49,16 +51,16 @@ This tutorial builds the toolkit once and then follows it across all of them.
 By the end you will be able to:
 
 - **average over random unitaries by hand** using the Weingarten calculus, and
-  predict second- and fourth-moment quantities (purity, frame potentials,
-  gradient variances);
-- **read the fingerprints of quantum chaos** in a spectrum — level repulsion,
-  the spectral form factor, the random-matrix universality classes;
+ predict second- and fourth-moment quantities (purity, frame potentials,
+ gradient variances);
+- **read the fingerprints of quantum chaos** in a spectrum, level repulsion,
+ the spectral form factor, the random-matrix universality classes;
 - **quantify scrambling** with out-of-time-ordered correlators, Krylov
-  complexity, and tripartite mutual information;
-- **use randomness as a tool** — classical shadows, randomized benchmarking, and
-  the Hayden–Preskill recovery protocol;
-- **explain barren plateaus** and the expressivity–trainability tension in
-  quantum machine learning, from first principles.
+ complexity, and tripartite mutual information;
+- **use randomness as a tool**, classical shadows, randomized benchmarking, and
+ the Hayden-Preskill recovery protocol;
+- **explain barren plateaus** and the expressivity-trainability tension in
+ quantum machine learning, from first principles.
 
 ## How the tutorial is organized
 
@@ -66,7 +68,7 @@ Seven short parts, each a *concept page* followed by *runnable notebooks*:
 
 | Part | You'll be able to… | Notebooks |
 |---|---|---|
-| [1 · Mathematical Foundations](chapters/01-foundations.qmd) | Speak the language: channels, Lie algebras, state geometry, measure theory | 14 |
+| [1 · Mathematical Foundations](chapters/01-foundations.qmd) | Speak the language of channels, Lie algebras, state geometry and measure theory | 14 |
 | [2 · Random Matrix Theory](chapters/02-random-matrix-theory.qmd) | Diagnose chaos from a spectrum | 3 |
 | [3 · Haar Measure & Weingarten Calculus](chapters/03-haar-weingarten.qmd) | Average over random unitaries and derive the Page formula | 7 |
 | [4 · Quantum Dynamics & Chaos](chapters/04-dynamics.qmd) | Measure scrambling in real time | 3 |
@@ -74,7 +76,7 @@ Seven short parts, each a *concept page* followed by *runnable notebooks*:
 | [6 · Applications of Scrambling](chapters/06-applications.qmd) | Turn randomness into protocols | 5 |
 | [7 · Quantum Machine Learning](chapters/07-qml.qmd) | Understand trainability through the same lens | 7 |
 
-You can read it front to back as a course, or jump to any notebook — each one
+You can read it front to back as a course, or jump to any notebook, each one
 stands on its own. A companion **[Exercises & Solutions PDF](exercises.qmd)**
 collects analytical problems, worked solutions, and flashcards for every part.
 
@@ -84,7 +86,7 @@ collects analytical problems, worked solutions, and flashcards for every part.
 git clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling
 cd quantum-chaos-and-scrambling
 pip install -r requirements.txt
-jupyter lab        # open any notebook under source_notebooks/
+jupyter lab # open any notebook under source_notebooks/
 ```
 
 Everything runs on a laptop with a standard scientific-Python stack
@@ -94,7 +96,7 @@ libraries.
 ## Who this is for
 
 Graduate students and researchers in quantum information, condensed matter, or
-quantum machine learning — and anyone comfortable with linear algebra and Python
+quantum machine learning, and anyone comfortable with linear algebra and Python
 who wants to *compute* with these ideas rather than only read about them. The
 mathematical prerequisites are light and built up as needed in Part 1.
 
@@ -103,7 +105,7 @@ mathematical prerequisites are light and built up as needed in Part 1.
 ::: {.callout-tip appearance="simple" icon=false}
 This tutorial is the open, hands-on companion to the monograph *Quantum Chaos and
 Information Scrambling: From Random Matrix Theory to Quantum Machine Learning*.
-It is designed to stand entirely on its own. Suggestions and fixes are welcome —
+It is designed to stand entirely on its own. Suggestions and fixes are welcome, 
 please [open an issue or pull request](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling).
 :::
 

@@ -2,202 +2,202 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/chapters/01-foundations.html</loc>
-    <lastmod>2026-06-20T20:05:01.681Z</lastmod>
+    <lastmod>2026-06-20T23:09:36.888Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/chapters/02-random-matrix-theory.html</loc>
-    <lastmod>2026-06-20T20:05:02.014Z</lastmod>
+    <lastmod>2026-06-20T23:09:37.270Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/chapters/03-haar-weingarten.html</loc>
-    <lastmod>2026-06-20T20:05:02.381Z</lastmod>
+    <lastmod>2026-06-20T23:09:37.660Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/chapters/04-dynamics.html</loc>
-    <lastmod>2026-06-20T20:05:02.716Z</lastmod>
+    <lastmod>2026-06-20T23:09:38.008Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/chapters/05-designs.html</loc>
-    <lastmod>2026-06-20T20:05:03.033Z</lastmod>
+    <lastmod>2026-06-20T23:09:38.355Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/chapters/06-applications.html</loc>
-    <lastmod>2026-06-20T20:05:03.372Z</lastmod>
+    <lastmod>2026-06-20T23:09:38.708Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/chapters/07-qml.html</loc>
-    <lastmod>2026-06-20T20:05:03.741Z</lastmod>
+    <lastmod>2026-06-20T23:09:39.074Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/exercises.html</loc>
-    <lastmod>2026-06-20T20:05:04.029Z</lastmod>
+    <lastmod>2026-06-20T23:09:39.391Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/index.html</loc>
-    <lastmod>2026-06-20T20:27:40.534Z</lastmod>
+    <lastmod>2026-06-20T23:09:39.881Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_borel_measurability.html</loc>
-    <lastmod>2026-06-20T20:05:04.896Z</lastmod>
+    <lastmod>2026-06-20T23:09:40.377Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_choi_amplitude_damping.html</loc>
-    <lastmod>2026-06-20T20:05:05.223Z</lastmod>
+    <lastmod>2026-06-20T23:09:40.742Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_depolarizing_channel.html</loc>
-    <lastmod>2026-06-20T20:05:05.543Z</lastmod>
+    <lastmod>2026-06-20T23:09:41.071Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html</loc>
-    <lastmod>2026-06-20T20:05:05.957Z</lastmod>
+    <lastmod>2026-06-20T23:09:41.532Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_dim_lie_algebra.html</loc>
-    <lastmod>2026-06-20T20:05:06.272Z</lastmod>
+    <lastmod>2026-06-20T23:09:41.894Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_dla_closure.html</loc>
-    <lastmod>2026-06-20T20:05:06.618Z</lastmod>
+    <lastmod>2026-06-20T23:09:42.258Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_entanglement_parametric.html</loc>
-    <lastmod>2026-06-20T20:05:06.954Z</lastmod>
+    <lastmod>2026-06-20T23:09:42.645Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_exp_surjectivity.html</loc>
-    <lastmod>2026-06-20T20:05:07.270Z</lastmod>
+    <lastmod>2026-06-20T23:09:42.996Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_fubini_study.html</loc>
-    <lastmod>2026-06-20T20:05:07.582Z</lastmod>
+    <lastmod>2026-06-20T23:09:43.323Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.html</loc>
-    <lastmod>2026-06-20T20:05:07.903Z</lastmod>
+    <lastmod>2026-06-20T23:09:43.659Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_measure_theory_basics.html</loc>
-    <lastmod>2026-06-20T20:05:08.370Z</lastmod>
+    <lastmod>2026-06-20T23:09:44.208Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_quantum_speed_limit.html</loc>
-    <lastmod>2026-06-20T20:05:08.684Z</lastmod>
+    <lastmod>2026-06-20T23:09:44.621Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_schur_weyl.html</loc>
-    <lastmod>2026-06-20T20:05:08.996Z</lastmod>
+    <lastmod>2026-06-20T23:09:44.992Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch1/solution_ch1_sectional_curvature.html</loc>
-    <lastmod>2026-06-20T20:05:09.328Z</lastmod>
+    <lastmod>2026-06-20T23:09:45.358Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch2/solution_ch2_cue_eigenphase.html</loc>
-    <lastmod>2026-06-20T20:05:09.662Z</lastmod>
+    <lastmod>2026-06-20T23:09:45.703Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch2/solution_ch2_goe_spacing.html</loc>
-    <lastmod>2026-06-20T20:05:09.973Z</lastmod>
+    <lastmod>2026-06-20T23:09:46.045Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch2/solution_ch2_semicircle_moments.html</loc>
-    <lastmod>2026-06-20T20:05:10.285Z</lastmod>
+    <lastmod>2026-06-20T23:09:46.395Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch3/solution_ch3_fourth_moment_trace.html</loc>
-    <lastmod>2026-06-20T20:05:10.626Z</lastmod>
+    <lastmod>2026-06-20T23:09:46.785Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch3/solution_ch3_haar_overlap.html</loc>
-    <lastmod>2026-06-20T20:05:10.939Z</lastmod>
+    <lastmod>2026-06-20T23:09:47.152Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch3/solution_ch3_page_formula.html</loc>
-    <lastmod>2026-06-20T20:05:11.260Z</lastmod>
+    <lastmod>2026-06-20T23:09:47.568Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch3/solution_ch3_purity_concentration.html</loc>
-    <lastmod>2026-06-20T20:05:11.597Z</lastmod>
+    <lastmod>2026-06-20T23:09:47.954Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch3/solution_ch3_swap_trick.html</loc>
-    <lastmod>2026-06-20T20:05:11.912Z</lastmod>
+    <lastmod>2026-06-20T23:09:48.336Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch3/solution_ch3_tensor_weingarten_calculus.html</loc>
-    <lastmod>2026-06-20T20:05:12.348Z</lastmod>
+    <lastmod>2026-06-20T23:09:48.822Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch3/solution_ch3_weingarten_first_moment.html</loc>
-    <lastmod>2026-06-20T20:05:12.662Z</lastmod>
+    <lastmod>2026-06-20T23:09:49.157Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch4/solution_ch4_commutator_fidelity_identity.html</loc>
-    <lastmod>2026-06-20T20:05:13.005Z</lastmod>
+    <lastmod>2026-06-20T23:09:49.567Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch4/solution_ch4_krylov_complexity.html</loc>
-    <lastmod>2026-06-20T20:05:13.344Z</lastmod>
+    <lastmod>2026-06-20T23:09:49.922Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch4/solution_ch4_spectral_form_factor_plateau.html</loc>
-    <lastmod>2026-06-20T20:05:13.687Z</lastmod>
+    <lastmod>2026-06-20T23:09:50.271Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch5/solution_ch5_clifford_otoc.html</loc>
-    <lastmod>2026-06-20T20:05:14.010Z</lastmod>
+    <lastmod>2026-06-20T23:09:50.629Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.html</loc>
-    <lastmod>2026-06-20T20:05:14.363Z</lastmod>
+    <lastmod>2026-06-20T23:09:51.006Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.html</loc>
-    <lastmod>2026-06-20T20:05:14.699Z</lastmod>
+    <lastmod>2026-06-20T23:09:51.382Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.html</loc>
-    <lastmod>2026-06-20T20:05:15.075Z</lastmod>
+    <lastmod>2026-06-20T23:09:51.818Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch6/solution_ch6_numerical_shadows.html</loc>
-    <lastmod>2026-06-20T20:05:15.431Z</lastmod>
+    <lastmod>2026-06-20T23:09:52.216Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch6/solution_ch6_shadow_channel.html</loc>
-    <lastmod>2026-06-20T20:05:15.756Z</lastmod>
+    <lastmod>2026-06-20T23:09:52.544Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch6/solution_ch6_tripartite_mutual_information.html</loc>
-    <lastmod>2026-06-20T20:05:16.102Z</lastmod>
+    <lastmod>2026-06-20T23:09:52.913Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch7/solution_ch7_barren_plateau.html</loc>
-    <lastmod>2026-06-20T20:05:16.431Z</lastmod>
+    <lastmod>2026-06-20T23:09:53.288Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.html</loc>
-    <lastmod>2026-06-20T20:05:16.816Z</lastmod>
+    <lastmod>2026-06-20T23:09:53.721Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch7/solution_ch7_born_machine.html</loc>
-    <lastmod>2026-06-20T20:05:17.159Z</lastmod>
+    <lastmod>2026-06-20T23:09:54.099Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch7/solution_ch7_local_vs_global_cost.html</loc>
-    <lastmod>2026-06-20T20:05:17.488Z</lastmod>
+    <lastmod>2026-06-20T23:09:54.459Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.html</loc>
-    <lastmod>2026-06-20T20:05:17.861Z</lastmod>
+    <lastmod>2026-06-20T23:09:54.848Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch7/solution_ch7_quantum_kernel_concentration.html</loc>
-    <lastmod>2026-06-20T20:05:18.241Z</lastmod>
+    <lastmod>2026-06-20T23:09:55.240Z</lastmod>
   </url>
   <url>
     <loc>https://marcinplodzien.github.io/quantum-chaos-and-scrambling/notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html</loc>
-    <lastmod>2026-06-20T20:05:18.579Z</lastmod>
+    <lastmod>2026-06-20T23:09:55.601Z</lastmod>
   </url>
 </urlset>
