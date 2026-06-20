@@ -11,7 +11,7 @@ chaos" can be measured.
 The key phenomenon is **level repulsion** — eigenvalues of a random matrix avoid
 each other, unlike the independent levels of an integrable system. How strongly
 they repel depends only on a time-reversal symmetry, giving the three
-Wigner–Dyson classes (orthogonal, unitary, symplectic). This chapter derives the
+Wigner–Dyson classes (orthogonal, unitary, symplectic). This part derives the
 repulsion directly from the eigenvalue measure and checks the universal spacing
 and moment statistics numerically.
 
@@ -19,7 +19,7 @@ What you'll take away: the **Wigner surmise**, the **semicircle law** and its
 combinatorics, and the gap-ratio statistic you'll reuse in Chapter 4 to detect
 chaos without unfolding a spectrum.
 
-## Notebooks in this chapter
+## Notebooks in this part
 
 - [Level repulsion in the GOE](../notebooks/ch2/solution_ch2_goe_spacing.ipynb) — deriving the Wigner surmise for nearest-neighbour spacings.
 - [Moments of the Wigner semicircle](../notebooks/ch2/solution_ch2_semicircle_moments.ipynb) — the Catalan-number combinatorics behind the density.

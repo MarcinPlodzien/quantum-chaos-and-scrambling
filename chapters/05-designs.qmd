@@ -13,14 +13,14 @@ the second (sometimes fourth) moment, so a 2- or 3-design is "random enough." Th
 sampleable, and classically simulable — yet that very simulability tells us it is
 *missing something*.
 
-That missing ingredient is **nonstabilizerness**, or "magic." This chapter makes
+That missing ingredient is **nonstabilizerness**, or "magic." This part makes
 the gap concrete: Clifford circuits can produce near-maximal entanglement, yet
 their out-of-time-ordered correlator only ever takes the values $0$ or $4$ —
 there is no smooth Lyapunov growth. The **stabilizer Rényi entropy** quantifies
 exactly how far a state sits from the stabilizer world, and it is zero precisely
 for the states Cliffords can reach.
 
-## Notebooks in this chapter
+## Notebooks in this part
 
 - [Clifford OTOCs](../notebooks/ch5/solution_ch5_clifford_otoc.ipynb) — why Clifford circuits scramble but have no Lyapunov exponent (the OTOC is $0$ or $4$).
 - [Stabilizer Rényi entropy](../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.ipynb) — measuring "magic," the resource beyond entanglement.

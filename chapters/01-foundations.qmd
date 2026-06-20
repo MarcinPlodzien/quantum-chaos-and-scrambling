@@ -20,7 +20,7 @@ Three threads run through the chapter:
   speed limit, and the measure-theoretic foundation of the Haar measure used in
   every later chapter.
 
-## Notebooks in this chapter
+## Notebooks in this part
 
 - [Bloch-sphere geodesics & the Fubini–Study metric](../notebooks/ch1/solution_ch1_fubini_study.ipynb) — the natural distance between pure states.
 - [Entanglement of a parametric two-qubit state](../notebooks/ch1/solution_ch1_entanglement_parametric.ipynb) — how entanglement tracks a tunable coupling.

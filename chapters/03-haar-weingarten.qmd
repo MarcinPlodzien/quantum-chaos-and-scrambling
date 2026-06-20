@@ -24,7 +24,7 @@ With this you can compute, by hand, things that look hard:
 
 These three facts power Chapters 5–7. Do this chapter carefully.
 
-## Notebooks in this chapter
+## Notebooks in this part
 
 - [The first Haar moment (twirling)](../notebooks/ch3/solution_ch3_weingarten_first_moment.ipynb) — averaging an operator to its trace times the identity.
 - [The SWAP trick](../notebooks/ch3/solution_ch3_swap_trick.ipynb) — turning purity into a two-copy expectation value.

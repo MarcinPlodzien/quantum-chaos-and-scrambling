@@ -26,7 +26,7 @@ The plateau wears several faces, all the same physics:
 The lesson is a balance: scrambling buys expressivity but costs trainability, and
 the useful regime is the structured, *incomplete* one in between.
 
-## Notebooks in this chapter
+## Notebooks in this part
 
 - [Barren plateaus](../notebooks/ch7/solution_ch7_barren_plateau.ipynb) — gradient variance vanishing exponentially with qubit number.
 - [Local vs global cost functions](../notebooks/ch7/solution_ch7_local_vs_global_cost.ipynb) — how observable locality rescues trainability.

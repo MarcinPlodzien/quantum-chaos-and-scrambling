@@ -2,7 +2,7 @@
 title: "4 · Quantum Dynamics & Chaos"
 ---
 
-Random matrices describe a chaotic spectrum at rest. This chapter puts the system
+Random matrices describe a chaotic spectrum at rest. This part puts the system
 **in motion** and asks how an initially local piece of information spreads — the
 process called **scrambling**.
 
@@ -20,7 +20,7 @@ A third, basis-independent view — **Krylov complexity** — recasts operator g
 as a particle hopping along a semi-infinite chain built by the Lanczos algorithm,
 turning "how chaotic" into "how fast does the wavepacket spread."
 
-## Notebooks in this chapter
+## Notebooks in this part
 
 - [The $C$–$F$ identity](../notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb) — linking the squared commutator to an OTOC fidelity.
 - [The spectral form factor](../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.ipynb) — dip, ramp, and the plateau at $K = D$.

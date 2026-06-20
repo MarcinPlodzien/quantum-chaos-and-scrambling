@@ -13,6 +13,34 @@ short Python notebook you can open, run, and modify. If you can read `numpy`, yo
 can follow along.
 :::
 
+## Why learn this
+
+The same simple move — averaging over random quantum evolution — has quietly become
+one of the most productive ideas in modern physics, and it turns up in places that
+look completely unrelated:
+
+- **Why isolated quantum systems thermalize.** A closed system never forgets its
+  initial state, yet any small part of it settles to something that looks thermal.
+  Typicality is the reason, and it underlies the modern understanding of quantum
+  statistical mechanics.
+- **The black-hole information problem.** How information that falls into a black
+  hole re-emerges in its radiation is, in the end, the same Page-curve calculation
+  you will do here. Scrambling is the concrete bridge between quantum gravity and
+  quantum information.
+- **Whether quantum computers do what they claim.** The benchmarks that certify real
+  hardware — randomized benchmarking, cross-entropy, classical shadows — all rest on
+  Haar randomness. This is not abstract: it is how groups at Google and IBM
+  characterize their chips.
+- **The limits of quantum machine learning.** The barren-plateau problem, which stops
+  many quantum models from training at all, is the same concentration of measure seen
+  from another angle. Understanding it tells you which quantum-ML ideas can work
+  before you write a line of code.
+
+Few subjects sit at the meeting point of high-energy theory, condensed matter, quantum
+information, and machine learning. This one does — and the core toolkit is small enough
+to learn in a few focused sittings, yet general enough to reuse for the rest of your
+research. Learning to compute a Haar average by hand is a genuinely transferable skill.
+
 ## What you'll learn
 
 A surprising amount of modern quantum theory rests on a single question: **what
@@ -40,9 +68,9 @@ By the end you will be able to:
 
 ## How the tutorial is organized
 
-Seven short chapters, each a *concept page* followed by *runnable notebooks*:
+Seven short parts, each a *concept page* followed by *runnable notebooks*:
 
-| Chapter | You'll be able to… | Notebooks |
+| Part | You'll be able to… | Notebooks |
 |---|---|---|
 | [1 · Mathematical Foundations](chapters/01-foundations.qmd) | Speak the language: channels, Lie algebras, state geometry, measure theory | 14 |
 | [2 · Random Matrix Theory](chapters/02-random-matrix-theory.qmd) | Diagnose chaos from a spectrum | 3 |
@@ -54,7 +82,7 @@ Seven short chapters, each a *concept page* followed by *runnable notebooks*:
 
 You can read it front to back as a course, or jump to any notebook — each one
 stands on its own. A companion **[Exercises & Solutions PDF](exercises.qmd)**
-collects analytical problems, worked solutions, and flashcards for every chapter.
+collects analytical problems, worked solutions, and flashcards for every part.
 
 ## Run it in two minutes
 
@@ -74,7 +102,7 @@ libraries.
 Graduate students and researchers in quantum information, condensed matter, or
 quantum machine learning — and anyone comfortable with linear algebra and Python
 who wants to *compute* with these ideas rather than only read about them. The
-mathematical prerequisites are light and built up as needed in Chapter 1.
+mathematical prerequisites are light and built up as needed in Part 1.
 
 ---
 

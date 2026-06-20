@@ -21,7 +21,7 @@ practical protocols — and one of the deepest thought experiments in physics.
   diagnostic, and the fragility of GHZ-state metrology shows the flip side: highly
   non-local information is powerful but delicate.
 
-## Notebooks in this chapter
+## Notebooks in this part
 
 - [The shadow channel](../notebooks/ch6/solution_ch6_shadow_channel.ipynb) — inverting the measurement channel, the heart of classical shadows.
 - [Classical shadows in action](../notebooks/ch6/solution_ch6_numerical_shadows.ipynb) — estimating observables from random measurements.
