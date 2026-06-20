@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Mathematical Foundations, numerical solution.">
+
+<title>Quantum Chaos &amp; Scrambling - 1.7, Entanglement of a Parametric Two-Qubit State</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" rel="next">
+<link href="../../notebooks/ch1/solution_ch1_choi_amplitude_damping.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Quantum Chaos &amp; Scrambling</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page">
+ <span class="menu-text">Start here</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorial" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorial</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorial">    
+        <li>
+    <a class="dropdown-item" href="../../chapters/01-foundations.html">
+ <span class="dropdown-text">1 · Mathematical Foundations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/02-random-matrix-theory.html">
+ <span class="dropdown-text">2 · Random Matrix Theory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/03-haar-weingarten.html">
+ <span class="dropdown-text">3 · Haar Measure &amp; Weingarten Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/04-dynamics.html">
+ <span class="dropdown-text">4 · Quantum Dynamics &amp; Chaos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/05-designs.html">
+ <span class="dropdown-text">5 · Designs &amp; Clifford Ensembles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/06-applications.html">
+ <span class="dropdown-text">6 · Applications of Scrambling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/07-qml.html">
+ <span class="dropdown-text">7 · Quantum Machine Learning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../exercises.html">
+ <span class="menu-text">Exercises (PDF)</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">1.7, Entanglement of a Parametric Two-Qubit State</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Start here</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/01-foundations.html" class="sidebar-item-text sidebar-link">1 · Mathematical Foundations</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.html" class="sidebar-item-text sidebar-link">1.1, Haar Invariance on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_schur_weyl.html" class="sidebar-item-text sidebar-link">1.10, Schur-Weyl Decomposition for</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_exp_surjectivity.html" class="sidebar-item-text sidebar-link">1.2, Surjectivity of the Exponential Map on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">1.3, Dimension of the Lie Algebras and</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">1.4, The Adjoint Representation and DLA Closure</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_depolarizing_channel.html" class="sidebar-item-text sidebar-link">1.5, The Depolarizing Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_choi_amplitude_damping.html" class="sidebar-item-text sidebar-link">1.6, Choi Matrix of the Amplitude-Damping Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_entanglement_parametric.html" class="sidebar-item-text sidebar-link active">1.7, Entanglement of a Parametric Two-Qubit State</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">1.7, Sectional Curvature of SU(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_fubini_study.html" class="sidebar-item-text sidebar-link">1.8, Bloch Sphere Geodesics and the Fubini-Study Metric</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_quantum_speed_limit.html" class="sidebar-item-text sidebar-link">1.9, Geodesic Length and the Quantum Speed Limit</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_borel_measurability.html" class="sidebar-item-text sidebar-link">1.X, Borel σ-Algebra and Measurability on U(D)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html" class="sidebar-item-text sidebar-link">1.X, Differential Geometry of Quantum State Space</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_measure_theory_basics.html" class="sidebar-item-text sidebar-link">1.X, Lebesgue Measure, Counting Measure, and σ-Additivity</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-random-matrix-theory.html" class="sidebar-item-text sidebar-link">2 · Random Matrix Theory</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_semicircle_moments.html" class="sidebar-item-text sidebar-link">2.1, Moments of the Wigner Semicircle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_goe_spacing.html" class="sidebar-item-text sidebar-link">2.2, The GOE and Linear Level Repulsion</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">2.3, Eigenphase Repulsion in the CUE</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-haar-weingarten.html" class="sidebar-item-text sidebar-link">3 · Haar Measure &amp; Weingarten Calculus</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_haar_overlap.html" class="sidebar-item-text sidebar-link">3.1, Overlap of Haar-Random States and Measure Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html" class="sidebar-item-text sidebar-link">3.2, Operator Averages Using the First Moment Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_fourth_moment_trace.html" class="sidebar-item-text sidebar-link">3.3, The Fourth Moment of the Trace</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_page_formula.html" class="sidebar-item-text sidebar-link">3.4, The Asymptotic Page Formula via Marchenko-Pastur</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_swap_trick.html" class="sidebar-item-text sidebar-link">3.5, The SWAP Trick in Action</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html" class="sidebar-item-text sidebar-link">3.6, Concentration of Purity (Lévy’s Lemma)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.html" class="sidebar-item-text sidebar-link">3.X, Tensor Network Weingarten Calculus</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/04-dynamics.html" class="sidebar-item-text sidebar-link">4 · Quantum Dynamics &amp; Chaos</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_commutator_fidelity_identity.html" class="sidebar-item-text sidebar-link">4.1, The C-F Identity (OTOC-Commutator Relation)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_krylov_complexity.html" class="sidebar-item-text sidebar-link">4.2, Krylov Complexity from the Geometric Distribution</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.html" class="sidebar-item-text sidebar-link">4.3, SFF Plateau Value for the GUE</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/05-designs.html" class="sidebar-item-text sidebar-link">5 · Designs &amp; Clifford Ensembles</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_clifford_otoc.html" class="sidebar-item-text sidebar-link">5.1, OTOCs and the Failure of Clifford Chaos</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.html" class="sidebar-item-text sidebar-link">5.2, Stabilizer Rényi Entropy of Haar-Random States</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/06-applications.html" class="sidebar-item-text sidebar-link">6 · Applications of Scrambling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.html" class="sidebar-item-text sidebar-link">6.1, Randomized Benchmarking via Clifford Twirling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_shadows.html" class="sidebar-item-text sidebar-link">6.2, Classical Shadows: Channel Inversion and Tomography</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html" class="sidebar-item-text sidebar-link">6.3, The Shadow Channel and Its Inverse</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.html" class="sidebar-item-text sidebar-link">6.4, Fragility of the GHZ Metrological Advantage</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_tripartite_mutual_information.html" class="sidebar-item-text sidebar-link">6.5, Tripartite Mutual Information and Scrambling</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/07-qml.html" class="sidebar-item-text sidebar-link">7 · Quantum Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau.html" class="sidebar-item-text sidebar-link">7.1, Barren Plateau Scaling from the Weingarten Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_local_vs_global_cost.html" class="sidebar-item-text sidebar-link">7.2, Local vs Global Cost Functions in Deep Circuits</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_born_machine.html" class="sidebar-item-text sidebar-link">7.3, Born Machine Expressivity and Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.html" class="sidebar-item-text sidebar-link">7.4, Quantum Extreme Learning Machines and the POVM Picture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">7.5, Injection Contractivity and Restarting Overhead in QRC</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_kernel_concentration.html" class="sidebar-item-text sidebar-link">7.6, Quantum Kernel Concentration and Expressibility</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.html" class="sidebar-item-text sidebar-link">7.7, Barren Plateaus through the Lens of Quantum Fisher Information</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises.html" class="sidebar-item-text sidebar-link">Exercises &amp; Solutions (PDF)</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exercise-1.7-entanglement-of-a-parametric-two-qubit-state" id="toc-exercise-1.7-entanglement-of-a-parametric-two-qubit-state" class="nav-link active" data-scroll-target="#exercise-1.7-entanglement-of-a-parametric-two-qubit-state">Exercise 1.7, Entanglement of a Parametric Two-Qubit State</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
+  <ul class="collapse">
+  <li><a href="#part-a-reduced-density-matrix" id="toc-part-a-reduced-density-matrix" class="nav-link" data-scroll-target="#part-a-reduced-density-matrix">Part (a): Reduced density matrix</a></li>
+  <li><a href="#part-b-purity-and-entropy" id="toc-part-b-purity-and-entropy" class="nav-link" data-scroll-target="#part-b-purity-and-entropy">Part (b): Purity and entropy</a></li>
+  <li><a href="#part-c-extremal-cases" id="toc-part-c-extremal-cases" class="nav-link" data-scroll-target="#part-c-extremal-cases">Part (c): Extremal cases</a></li>
+  </ul></li>
+  <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
+  <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
+  <li><a href="#entanglement-entropy-versus-the-mixing-angle" id="toc-entanglement-entropy-versus-the-mixing-angle" class="nav-link" data-scroll-target="#entanglement-entropy-versus-the-mixing-angle">Entanglement Entropy versus the Mixing Angle</a></li>
+  <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch1/solution_ch1_entanglement_parametric.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">1.7, Entanglement of a Parametric Two-Qubit State</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+<div>
+  <div class="description">
+    Mathematical Foundations, numerical solution.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="exercise-1.7-entanglement-of-a-parametric-two-qubit-state" class="level1">
+<h1>Exercise 1.7, Entanglement of a Parametric Two-Qubit State</h1>
+<strong>Chapter 1: Mathematical Foundations</strong> &nbsp;|&nbsp; <em>Section 1.5: Entanglement and the Partial Trace</em>
+<hr>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Entanglement is the part of the correlation between two subsystems that no classical state can reproduce. The reduced density matrix, obtained by tracing out one subsystem, encodes everything a local observer can access, and its spectrum fixes the entanglement entropy. A two-qubit state controlled by a single mixing angle <span class="math inline">\(\theta\)</span> keeps the reduced state and its entropy tractable in closed form. This exercise follows the entropy from a separable state to a maximally entangled one.</p>
+</section>
+<section id="exercise-statement" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<p>Consider the parametric two-qubit state:</p>
+<p><span class="math display">\[
+|\psi(\theta)\rangle = \cos\theta\,|00\rangle + \sin\theta\,|11\rangle.
+\]</span></p>
+<p><strong>(a)</strong> Compute the reduced density matrix <span class="math inline">\(\rho_A = \mathrm{Tr}_B(|\psi\rangle\langle\psi|)\)</span>.</p>
+<p><strong>(b)</strong> Compute the purity <span class="math inline">\(\gamma = \mathrm{Tr}(\rho_A^2)\)</span> and the von Neumann entropy <span class="math inline">\(S = -\mathrm{Tr}(\rho_A \ln \rho_A)\)</span> as functions of <span class="math inline">\(\theta\)</span>.</p>
+<p><strong>(c)</strong> Show the state is maximally entangled at <span class="math inline">\(\theta = \pi/4\)</span> and separable at <span class="math inline">\(\theta = 0, \pi/2\)</span>.</p>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<section id="part-a-reduced-density-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-reduced-density-matrix">Part (a): Reduced density matrix</h3>
+<p>The full density matrix is:</p>
+<p><span class="math display">\[
+|\psi\rangle\langle\psi| = \cos^2\!\theta\,|00\rangle\langle 00| + \sin^2\!\theta\,|11\rangle\langle 11| + \cos\theta\sin\theta\bigl(|00\rangle\langle 11| + |11\rangle\langle 00|\bigr).
+\]</span></p>
+<p>Tracing over subsystem <span class="math inline">\(B\)</span>: the partial trace acts on the second tensor factor. The diagonal terms survive since <span class="math inline">\(\langle 0|0\rangle = \langle 1|1\rangle = 1\)</span>. The off-diagonal terms vanish because <span class="math inline">\(\langle 0|1\rangle = 0\)</span>:</p>
+<p><span class="math display">\[
+\mathrm{Tr}_B(|00\rangle\langle 11|) = |0\rangle\langle 1| \cdot \underbrace{\langle 1|0\rangle}_{=\,0} = 0.
+\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+\boxed{\rho_A = \cos^2\!\theta\,|0\rangle\langle 0| + \sin^2\!\theta\,|1\rangle\langle 1| = \begin{pmatrix} \cos^2\!\theta &amp; 0 \\ 0 &amp; \sin^2\!\theta \end{pmatrix}.}
+\]</span></p>
+<p>The reduced state is <strong>diagonal</strong> in the computational basis, with eigenvalues <span class="math inline">\(\lambda_0 = \cos^2\!\theta\)</span> and <span class="math inline">\(\lambda_1 = \sin^2\!\theta\)</span>.</p>
+</section>
+<section id="part-b-purity-and-entropy" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-purity-and-entropy">Part (b): Purity and entropy</h3>
+<p><strong>Purity:</strong></p>
+<p><span class="math display">\[
+\gamma = \mathrm{Tr}(\rho_A^2) = \cos^4\!\theta + \sin^4\!\theta.
+\]</span></p>
+<p>Using the identity <span class="math inline">\(\cos^4\!\theta + \sin^4\!\theta = 1 - 2\cos^2\!\theta\sin^2\!\theta = 1 - \frac{1}{2}\sin^2\!(2\theta)\)</span>:</p>
+<p><span class="math display">\[
+\gamma = 1 - \frac{1}{2}\sin^2(2\theta).
+\]</span></p>
+<p><strong>Von Neumann entropy:</strong></p>
+<p><span class="math display">\[
+S = -\cos^2\!\theta\,\ln(\cos^2\!\theta) - \sin^2\!\theta\,\ln(\sin^2\!\theta).
+\]</span></p>
+<p>This is the binary entropy function <span class="math inline">\(h(\cos^2\!\theta)\)</span>.</p>
+</section>
+<section id="part-c-extremal-cases" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-extremal-cases">Part (c): Extremal cases</h3>
+<p><strong><span class="math inline">\(\theta = \pi/4\)</span> (maximally entangled):</strong> <span class="math inline">\(\cos^2(\pi/4) = \sin^2(\pi/4) = 1/2\)</span>.</p>
+<p><span class="math display">\[
+\rho_A = \frac{I}{2}, \qquad \gamma = \frac{1}{2}, \qquad S = \ln 2.
+\]</span></p>
+<p>The reduced state is maximally mixed, one bit of entanglement. The state is the Bell state <span class="math inline">\((|00\rangle + |11\rangle)/\sqrt{2}\)</span>.</p>
+<p><strong><span class="math inline">\(\theta = 0\)</span> or <span class="math inline">\(\pi/2\)</span> (separable):</strong> The state is <span class="math inline">\(|00\rangle\)</span> or <span class="math inline">\(|11\rangle\)</span>, a product state.</p>
+<p><span class="math display">\[
+\rho_A = |0\rangle\langle 0| \text{ or } |1\rangle\langle 1|, \qquad \gamma = 1, \qquad S = 0.
+\]</span></p>
+<p>Zero entanglement. The purity is maximal (<span class="math inline">\(\gamma = 1\)</span>), confirming the reduced state is pure, the hallmark of a product state.</p>
+<hr>
+</section>
+</section>
+<section id="symbolic-verification-sympy" class="level2">
+<h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:44.199372Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:44.199261Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:44.500276Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:44.499796Z&quot;}" data-execution_count="1">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> sp.Symbol(<span class="st">'theta'</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>lam0 <span class="op">=</span> sp.cos(t)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>lam1 <span class="op">=</span> sp.sin(t)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Purity</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> sp.trigsimp(lam0<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> lam1<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"γ = </span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Entropy</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> sp.simplify(<span class="op">-</span>lam0<span class="op">*</span>sp.log(lam0) <span class="op">-</span> lam1<span class="op">*</span>sp.log(lam1))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"S = </span><span class="sc">{</span>S<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># At theta = pi/4</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>gamma_max_ent <span class="op">=</span> gamma.subs(t, sp.pi<span class="op">/</span><span class="dv">4</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>S_max_ent <span class="op">=</span> S.subs(t, sp.pi<span class="op">/</span><span class="dv">4</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"θ=π/4: γ = </span><span class="sc">{</span>gamma_max_ent<span class="sc">}</span><span class="ss">, S = </span><span class="sc">{</span>sp<span class="sc">.</span>simplify(S_max_ent)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> gamma_max_ent <span class="op">==</span> sp.Rational(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> sp.simplify(S_max_ent <span class="op">-</span> sp.log(<span class="dv">2</span>)) <span class="op">==</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>γ = sin(theta)**4 + cos(theta)**4
+S = -log(sin(theta)**2)*sin(theta)**2 - log(cos(theta)**2)*cos(theta)**2
+θ=π/4: γ = 1/2, S = log(2)</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="numerical-verification" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:44.501677Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:44.501516Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:44.540693Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:44.540402Z&quot;}" data-execution_count="2">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>thetas <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">9</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'θ/π'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'γ'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'S'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'S/ln2'</span><span class="sc">:&gt;8s}</span><span class="ss">"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> theta <span class="kw">in</span> thetas:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    c2 <span class="op">=</span> np.cos(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    s2 <span class="op">=</span> np.sin(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    gamma <span class="op">=</span> c2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> s2<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    eigs <span class="op">=</span> np.array([c2, s2])</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    eigs_pos <span class="op">=</span> eigs[eigs <span class="op">&gt;</span> <span class="fl">1e-15</span>]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> <span class="op">-</span>np.<span class="bu">sum</span>(eigs_pos <span class="op">*</span> np.log(eigs_pos))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>theta<span class="op">/</span>np<span class="sc">.</span>pi<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>gamma<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>S<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>S<span class="op">/</span>np<span class="sc">.</span>log(<span class="dv">2</span>)<span class="sc">:8.4f}</span><span class="ss">"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Maximal entanglement at θ = π/4 (S = ln2). ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     θ/π         γ         S     S/ln2
+────────  ────────  ────────  ────────
+  0.0000    1.0000   -0.0000   -0.0000
+  0.0625    0.9268    0.1617    0.2333
+  0.1250    0.7500    0.4165    0.6009
+  0.1875    0.5732    0.6180    0.8916
+  0.2500    0.5000    0.6931    1.0000
+  0.3125    0.5732    0.6180    0.8916
+  0.3750    0.7500    0.4165    0.6009
+  0.4375    0.9268    0.1617    0.2333
+  0.5000    1.0000   -0.0000   -0.0000
+
+Maximal entanglement at θ = π/4 (S = ln2). ✓</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="entanglement-entropy-versus-the-mixing-angle" class="level2">
+<h2 class="anchored" data-anchor-id="entanglement-entropy-versus-the-mixing-angle">Entanglement Entropy versus the Mixing Angle</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:44.542296Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:44.542107Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:45.041816Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:45.041541Z&quot;}" data-execution_count="3">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">400</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> np.cos(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> np.sin(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Von Neumann entropy of the reduced state (natural log)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np.errstate(divide<span class="op">=</span><span class="st">'ignore'</span>, invalid<span class="op">=</span><span class="st">'ignore'</span>):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    terms <span class="op">=</span> <span class="op">-</span>np.where(c2 <span class="op">&gt;</span> <span class="dv">0</span>, c2<span class="op">*</span>np.log(c2), <span class="fl">0.0</span>) <span class="op">-</span> np.where(s2 <span class="op">&gt;</span> <span class="dv">0</span>, s2<span class="op">*</span>np.log(s2), <span class="fl">0.0</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> terms</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">4.5</span>))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, S, color<span class="op">=</span><span class="st">'C0'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="vs">r'$S(\theta) = -\cos^2\theta\,\ln\cos^2\theta - \sin^2\theta\,\ln\sin^2\theta$'</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>ax.axhline(np.log(<span class="dv">2</span>), color<span class="op">=</span><span class="st">'gray'</span>, ls<span class="op">=</span><span class="st">'--'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r'$S = \ln 2$'</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>ax.plot(np.pi<span class="op">/</span><span class="dv">4</span>, np.log(<span class="dv">2</span>), <span class="st">'o'</span>, color<span class="op">=</span><span class="st">'C3'</span>, ms<span class="op">=</span><span class="dv">8</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="vs">r'maximum at $\theta=\pi/4$'</span>, xy<span class="op">=</span>(np.pi<span class="op">/</span><span class="dv">4</span>, np.log(<span class="dv">2</span>)),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            xytext<span class="op">=</span>(np.pi<span class="op">/</span><span class="dv">4</span>, np.log(<span class="dv">2</span>)<span class="op">*</span><span class="fl">0.55</span>), ha<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'C3'</span>))</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'mixing angle $\theta$'</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'entanglement entropy $S$ (nats)'</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Entanglement entropy of the parametric two-qubit state'</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">8</span>, np.pi<span class="op">/</span><span class="dv">4</span>, <span class="dv">3</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">8</span>, np.pi<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="st">'0'</span>, <span class="vs">r'$\pi/8$'</span>, <span class="vs">r'$\pi/4$'</span>, <span class="vs">r'$3\pi/8$'</span>, <span class="vs">r'$\pi/2$'</span>])</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">0.02</span>, np.log(<span class="dv">2</span>)<span class="op">*</span><span class="fl">1.15</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower center'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="solution_ch1_entanglement_parametric_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>The entropy follows a binary entropy curve in the mixing angle, rising to its maximum <span class="math inline">\(S = \ln 2\)</span> at <span class="math inline">\(\theta = \pi/4\)</span> where the reduced state is maximally mixed. The endpoints <span class="math inline">\(\theta = 0, \pi/2\)</span> are product states with zero entanglement; the peak is the Bell state carrying one bit.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../notebooks/ch1/solution_ch1_choi_amplitude_damping.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1.6, Choi Matrix of the Amplitude-Damping Channel</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="pagination-link">
+        <span class="nav-page-text">1.7, Sectional Curvature of SU(2)</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2026 Marcin Płodzień · MIT License</div>   
+    <div class="nav-footer-right"><a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

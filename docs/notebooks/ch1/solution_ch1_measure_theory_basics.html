@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Mathematical Foundations, numerical solution.">
+
+<title>Quantum Chaos &amp; Scrambling - 1.X, Lebesgue Measure, Counting Measure, and σ-Additivity</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/02-random-matrix-theory.html" rel="next">
+<link href="../../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Quantum Chaos &amp; Scrambling</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page">
+ <span class="menu-text">Start here</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorial" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorial</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorial">    
+        <li>
+    <a class="dropdown-item" href="../../chapters/01-foundations.html">
+ <span class="dropdown-text">1 · Mathematical Foundations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/02-random-matrix-theory.html">
+ <span class="dropdown-text">2 · Random Matrix Theory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/03-haar-weingarten.html">
+ <span class="dropdown-text">3 · Haar Measure &amp; Weingarten Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/04-dynamics.html">
+ <span class="dropdown-text">4 · Quantum Dynamics &amp; Chaos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/05-designs.html">
+ <span class="dropdown-text">5 · Designs &amp; Clifford Ensembles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/06-applications.html">
+ <span class="dropdown-text">6 · Applications of Scrambling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/07-qml.html">
+ <span class="dropdown-text">7 · Quantum Machine Learning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../exercises.html">
+ <span class="menu-text">Exercises (PDF)</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">1.X, Lebesgue Measure, Counting Measure, and σ-Additivity</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Start here</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/01-foundations.html" class="sidebar-item-text sidebar-link">1 · Mathematical Foundations</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.html" class="sidebar-item-text sidebar-link">1.1, Haar Invariance on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_schur_weyl.html" class="sidebar-item-text sidebar-link">1.10, Schur-Weyl Decomposition for</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_exp_surjectivity.html" class="sidebar-item-text sidebar-link">1.2, Surjectivity of the Exponential Map on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">1.3, Dimension of the Lie Algebras and</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">1.4, The Adjoint Representation and DLA Closure</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_depolarizing_channel.html" class="sidebar-item-text sidebar-link">1.5, The Depolarizing Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_choi_amplitude_damping.html" class="sidebar-item-text sidebar-link">1.6, Choi Matrix of the Amplitude-Damping Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_entanglement_parametric.html" class="sidebar-item-text sidebar-link">1.7, Entanglement of a Parametric Two-Qubit State</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">1.7, Sectional Curvature of SU(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_fubini_study.html" class="sidebar-item-text sidebar-link">1.8, Bloch Sphere Geodesics and the Fubini-Study Metric</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_quantum_speed_limit.html" class="sidebar-item-text sidebar-link">1.9, Geodesic Length and the Quantum Speed Limit</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_borel_measurability.html" class="sidebar-item-text sidebar-link">1.X, Borel σ-Algebra and Measurability on U(D)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html" class="sidebar-item-text sidebar-link">1.X, Differential Geometry of Quantum State Space</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_measure_theory_basics.html" class="sidebar-item-text sidebar-link active">1.X, Lebesgue Measure, Counting Measure, and σ-Additivity</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-random-matrix-theory.html" class="sidebar-item-text sidebar-link">2 · Random Matrix Theory</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_semicircle_moments.html" class="sidebar-item-text sidebar-link">2.1, Moments of the Wigner Semicircle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_goe_spacing.html" class="sidebar-item-text sidebar-link">2.2, The GOE and Linear Level Repulsion</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">2.3, Eigenphase Repulsion in the CUE</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-haar-weingarten.html" class="sidebar-item-text sidebar-link">3 · Haar Measure &amp; Weingarten Calculus</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_haar_overlap.html" class="sidebar-item-text sidebar-link">3.1, Overlap of Haar-Random States and Measure Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html" class="sidebar-item-text sidebar-link">3.2, Operator Averages Using the First Moment Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_fourth_moment_trace.html" class="sidebar-item-text sidebar-link">3.3, The Fourth Moment of the Trace</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_page_formula.html" class="sidebar-item-text sidebar-link">3.4, The Asymptotic Page Formula via Marchenko-Pastur</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_swap_trick.html" class="sidebar-item-text sidebar-link">3.5, The SWAP Trick in Action</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html" class="sidebar-item-text sidebar-link">3.6, Concentration of Purity (Lévy’s Lemma)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.html" class="sidebar-item-text sidebar-link">3.X, Tensor Network Weingarten Calculus</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/04-dynamics.html" class="sidebar-item-text sidebar-link">4 · Quantum Dynamics &amp; Chaos</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_commutator_fidelity_identity.html" class="sidebar-item-text sidebar-link">4.1, The C-F Identity (OTOC-Commutator Relation)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_krylov_complexity.html" class="sidebar-item-text sidebar-link">4.2, Krylov Complexity from the Geometric Distribution</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.html" class="sidebar-item-text sidebar-link">4.3, SFF Plateau Value for the GUE</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/05-designs.html" class="sidebar-item-text sidebar-link">5 · Designs &amp; Clifford Ensembles</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_clifford_otoc.html" class="sidebar-item-text sidebar-link">5.1, OTOCs and the Failure of Clifford Chaos</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.html" class="sidebar-item-text sidebar-link">5.2, Stabilizer Rényi Entropy of Haar-Random States</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/06-applications.html" class="sidebar-item-text sidebar-link">6 · Applications of Scrambling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.html" class="sidebar-item-text sidebar-link">6.1, Randomized Benchmarking via Clifford Twirling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_shadows.html" class="sidebar-item-text sidebar-link">6.2, Classical Shadows: Channel Inversion and Tomography</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html" class="sidebar-item-text sidebar-link">6.3, The Shadow Channel and Its Inverse</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.html" class="sidebar-item-text sidebar-link">6.4, Fragility of the GHZ Metrological Advantage</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_tripartite_mutual_information.html" class="sidebar-item-text sidebar-link">6.5, Tripartite Mutual Information and Scrambling</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/07-qml.html" class="sidebar-item-text sidebar-link">7 · Quantum Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau.html" class="sidebar-item-text sidebar-link">7.1, Barren Plateau Scaling from the Weingarten Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_local_vs_global_cost.html" class="sidebar-item-text sidebar-link">7.2, Local vs Global Cost Functions in Deep Circuits</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_born_machine.html" class="sidebar-item-text sidebar-link">7.3, Born Machine Expressivity and Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.html" class="sidebar-item-text sidebar-link">7.4, Quantum Extreme Learning Machines and the POVM Picture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">7.5, Injection Contractivity and Restarting Overhead in QRC</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_kernel_concentration.html" class="sidebar-item-text sidebar-link">7.6, Quantum Kernel Concentration and Expressibility</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.html" class="sidebar-item-text sidebar-link">7.7, Barren Plateaus through the Lens of Quantum Fisher Information</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises.html" class="sidebar-item-text sidebar-link">Exercises &amp; Solutions (PDF)</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exercise-1.x-lebesgue-measure-counting-measure-and-σ-additivity" id="toc-exercise-1.x-lebesgue-measure-counting-measure-and-σ-additivity" class="nav-link active" data-scroll-target="#exercise-1.x-lebesgue-measure-counting-measure-and-σ-additivity">Exercise 1.X, Lebesgue Measure, Counting Measure, and σ-Additivity</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#physical-motivation" id="toc-physical-motivation" class="nav-link" data-scroll-target="#physical-motivation">1. Physical Motivation</a></li>
+  <li><a href="#mathematical-toolbox" id="toc-mathematical-toolbox" class="nav-link" data-scroll-target="#mathematical-toolbox">2. Mathematical Toolbox</a></li>
+  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">3. Exercise Statement</a></li>
+  <li><a href="#analytical-derivation" id="toc-analytical-derivation" class="nav-link" data-scroll-target="#analytical-derivation">4. Analytical Derivation</a>
+  <ul class="collapse">
+  <li><a href="#part-a-lambdamathbbq-cap-01-0" id="toc-part-a-lambdamathbbq-cap-01-0" class="nav-link" data-scroll-target="#part-a-lambdamathbbq-cap-01-0">Part (a): <span class="math inline">\(\lambda(\mathbb{Q} \cap [0,1]) = 0\)</span></a></li>
+  <li><a href="#part-b-counting-measure-on-mathcalp_1" id="toc-part-b-counting-measure-on-mathcalp_1" class="nav-link" data-scroll-target="#part-b-counting-measure-on-mathcalp_1">Part (b): Counting measure on <span class="math inline">\(\mathcal{P}_1\)</span></a></li>
+  <li><a href="#part-c-the-vitali-argument" id="toc-part-c-the-vitali-argument" class="nav-link" data-scroll-target="#part-c-the-vitali-argument">Part (c): The Vitali argument</a></li>
+  </ul></li>
+  <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">5. Symbolic Verification (SymPy)</a></li>
+  <li><a href="#numerical-verification-numpy" id="toc-numerical-verification-numpy" class="nav-link" data-scroll-target="#numerical-verification-numpy">6. Numerical Verification (NumPy)</a></li>
+  <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#summary-and-connection-to-the-haar-measure" id="toc-summary-and-connection-to-the-haar-measure" class="nav-link" data-scroll-target="#summary-and-connection-to-the-haar-measure">7. Summary and Connection to the Haar Measure</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch1/solution_ch1_measure_theory_basics.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">1.X, Lebesgue Measure, Counting Measure, and σ-Additivity</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+<div>
+  <div class="description">
+    Mathematical Foundations, numerical solution.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="exercise-1.x-lebesgue-measure-counting-measure-and-σ-additivity" class="level1">
+<h1>Exercise 1.X, Lebesgue Measure, Counting Measure, and σ-Additivity</h1>
+<strong>Chapter 1: Mathematical Foundations</strong> &nbsp;|&nbsp; <em>Section 1.13: Measures and Integration</em>
+<hr>
+<p>This exercise develops the foundational properties of two measures that serve as stepping stones toward the Haar measure on the unitary group: the <strong>Lebesgue measure</strong> on the real line and the <strong>counting measure</strong> on a finite group. The exercise culminates in the <strong>Vitali argument</strong>, a proof that no translation-invariant, σ-additive measure can be defined on <em>all</em> subsets of the continuum, motivating the need for σ-algebras.</p>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>A measure assigns a consistent size to subsets of a space, and a probability measure normalizes that total size to one. This exercise builds the two reference cases behind the Haar measure, the Lebesgue measure on the line and the counting measure on a finite group. The Vitali construction then shows why size cannot be assigned to every subset of a continuum, which is the reason σ-algebras are needed at all.</p>
+</section>
+<section id="physical-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="physical-motivation">1. Physical Motivation</h2>
+<p>In quantum information theory, we constantly need to “average over random unitaries”, for instance, to compute the Page entropy of a random state, to derive the concentration of measure that causes barren plateaus, or to prove that random circuits form unitary designs. All of these require integrating functions over the unitary group <span class="math inline">\(U(D)\)</span> with respect to its <strong>Haar measure</strong>.</p>
+<p>But what <em>is</em> a measure, exactly? And why can’t we simply assign a “size” to every subset of <span class="math inline">\(U(D)\)</span>, the way we assign probabilities to subsets of a finite set?</p>
+<p>This exercise addresses these questions through two concrete examples: - The <strong>Lebesgue measure</strong> on <span class="math inline">\(\mathbb{R}\)</span>, the prototypical “translation-invariant volume” that the Haar measure generalizes. - The <strong>counting measure</strong> on the Pauli group, the simplest Haar measure, on a finite group.</p>
+<p>The Vitali argument then shows <em>why</em> σ-algebras are necessary: the naive hope that every subset can be measured consistently is mathematically impossible on the continuum. This is the conceptual foundation that makes the Borel σ-algebra and the Haar measure well-defined.</p>
+</section>
+<section id="mathematical-toolbox" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-toolbox">2. Mathematical Toolbox</h2>
+Before diving into the exercise, we set up the vocabulary. Measure theory has three ingredients that build on each other.
+<hr>
+<p><strong>Tool 0, The cast of characters: <span class="math inline">\(\Omega\)</span>, <span class="math inline">\(\mathcal{F}\)</span>, <span class="math inline">\(\mu\)</span>.</strong></p>
+<ul>
+<li><p><span class="math inline">\(\Omega\)</span> is the <strong>sample space</strong>, the set of all possible outcomes. Think of it as the universe of objects we want to study. Examples: <span class="math inline">\(\Omega = \{1, 2, 3, 4, 5, 6\}\)</span> for a die roll, <span class="math inline">\(\Omega = \mathbb{R}\)</span> for a continuous variable, <span class="math inline">\(\Omega = U(D)\)</span> for a random unitary matrix.</p></li>
+<li><p><span class="math inline">\(\mathcal{F}\)</span> is a <strong>σ-algebra</strong> on <span class="math inline">\(\Omega\)</span>, a collection of subsets of <span class="math inline">\(\Omega\)</span> that we declare ‘measurable’. A subset <span class="math inline">\(A \subseteq \Omega\)</span> is called <strong>measurable</strong> if <span class="math inline">\(A \in \mathcal{F}\)</span>; this means that the measure function <span class="math inline">\(\mu\)</span> can be evaluated on <span class="math inline">\(A\)</span>, giving a well-defined size <span class="math inline">\(\mu(A) \geq 0\)</span>. A subset that is <em>not</em> in <span class="math inline">\(\mathcal{F}\)</span> is <strong>non-measurable</strong>: no consistent size can be assigned to it at all (not ‘unknown’ or ‘infinite’, but genuinely undefined). <span class="math inline">\(\mathcal{F}\)</span> must satisfy three axioms: (S1) <span class="math inline">\(\Omega \in \mathcal{F}\)</span>, (S2) if <span class="math inline">\(A \in \mathcal{F}\)</span> then <span class="math inline">\(\Omega \setminus A \in \mathcal{F}\)</span> (closed under complements), (S3) if <span class="math inline">\(A_1, A_2, \ldots \in \mathcal{F}\)</span> then <span class="math inline">\(\bigcup_k A_k \in \mathcal{F}\)</span> (closed under countable unions). The pair <span class="math inline">\((\Omega, \mathcal{F})\)</span> is called a <strong>measurable space</strong>, it tells us <em>what</em> we can measure, but not <em>how much</em>.</p></li>
+<li><p><span class="math inline">\(\mu: \mathcal{F} \to [0, \infty]\)</span> is a <strong>measure</strong>, the function that actually assigns a non-negative size (length, volume, probability) to each measurable set <span class="math inline">\(A \in \mathcal{F}\)</span>. The triple <span class="math inline">\((\Omega, \mathcal{F}, \mu)\)</span> is called a <strong>measure space</strong>. If <span class="math inline">\(\mu(\Omega) = 1\)</span>, then <span class="math inline">\(\mu\)</span> is a <strong>probability measure</strong> and <span class="math inline">\(\mu(A)\)</span> is the probability that a randomly chosen element of <span class="math inline">\(\Omega\)</span> falls in <span class="math inline">\(A\)</span>.</p></li>
+</ul>
+<p>For the Haar measure on the unitary group, the concrete instantiation is: <span class="math display">\[\Omega = U(D), \quad \mathcal{F} = \mathcal{B}(U(D)) \;\text{(Borel σ-algebra)}, \quad \mu = \mu_{\text{Haar}}.\]</span></p>
+<strong>Why not just use all subsets?</strong> For finite sets (like the Pauli group), we <em>can</em>, every subset is measurable under <span class="math inline">\(\mathcal{F} = 2^\Omega\)</span> (the power set). But for continuous sets like <span class="math inline">\(\mathbb{R}\)</span> or <span class="math inline">\(U(D)\)</span>, the power set is ‘too large’: the Vitali construction (Tool 4) shows that no consistent size assignment exists on <em>all</em> subsets. We must restrict to the Borel σ-algebra.
+<hr>
+<strong>Tool 1, What a measure must satisfy.</strong> A measure <span class="math inline">\(\mu\)</span> on <span class="math inline">\((\Omega, \mathcal{F})\)</span> must obey two rules: 1. <span class="math inline">\(\mu(\emptyset) = 0\)</span> (the empty set has zero size). 2. <strong>Countable additivity</strong> (σ-additivity): for pairwise disjoint measurable sets <span class="math inline">\(A_1, A_2, \ldots \in \mathcal{F}\)</span>: <span class="math display">\[\mu\!\left(\bigsqcup_{k=1}^\infty A_k\right) = \sum_{k=1}^\infty \mu(A_k).\]</span> This is the key property: the measure of a union of non-overlapping pieces equals the sum of the measures. It is the continuous generalization of the familiar rule <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span> for disjoint events.
+<hr>
+<strong>Tool 2, Lebesgue measure on <span class="math inline">\(\mathbb{R}\)</span>.</strong> The Lebesgue measure <span class="math inline">\(\lambda\)</span> is the unique (up to normalization) translation-invariant measure on the Borel σ-algebra <span class="math inline">\(\mathcal{B}(\mathbb{R})\)</span>. It assigns to every interval its length: <span class="math inline">\(\lambda([a,b]) = b - a\)</span>. Key consequence: single points have measure zero (<span class="math inline">\(\lambda(\{x\}) = 0\)</span>), and therefore any countable set has measure zero by σ-additivity.
+<hr>
+<strong>Tool 3, Counting measure on a finite group.</strong> For a finite group <span class="math inline">\(G = \{g_1, \ldots, g_n\}\)</span>, define <span class="math inline">\(\mu(A) = |A|/|G|\)</span>. This assigns equal weight <span class="math inline">\(1/|G|\)</span> to each element. It is invariant under left-multiplication (<span class="math inline">\(\mu(gA) = \mu(A)\)</span>) because <span class="math inline">\(g \cdot\)</span> is a bijection. This is the <strong>Haar measure on a finite group</strong>, the simplest example of what we will generalize to <span class="math inline">\(U(D)\)</span>.
+<hr>
+<p><strong>Tool 4, The Vitali construction (1905).</strong> Giuseppe Vitali was an Italian mathematician who proved a striking impossibility result: there is no way to assign a translation-invariant, σ-additive size to <em>every</em> subset of <span class="math inline">\([0,1)\)</span> while keeping <span class="math inline">\(\mu([0,1)) = 1\)</span>. The proof constructs a specific pathological set, the <strong>Vitali set</strong> <span class="math inline">\(V\)</span>, by choosing one representative from each equivalence class of the relation ‘<span class="math inline">\(x \sim y\)</span> if and only if <span class="math inline">\(x - y\)</span> is rational’ (an equivalence class of <span class="math inline">\(x\)</span> is just the set of all numbers in <span class="math inline">\([0,1)\)</span> that differ from <span class="math inline">\(x\)</span> by a rational number). This construction requires the <strong>axiom of choice</strong> (to simultaneously pick one element from each of the uncountably many equivalence classes). The resulting set <span class="math inline">\(V\)</span> cannot be assigned any consistent size: if <span class="math inline">\(\mu(V) = 0\)</span>, then the countable union of its translates covers all of <span class="math inline">\([0,1)\)</span> but has measure <span class="math inline">\(0 \neq 1\)</span>; if <span class="math inline">\(\mu(V) &gt; 0\)</span>, the same union has infinite measure <span class="math inline">\(\neq 1\)</span>.</p>
+The lesson: on continuous spaces, we <em>must</em> restrict to a σ-algebra of well-behaved (Borel) sets.
+<hr>
+<p><strong>Tool 5, Pauli group.</strong> The single-qubit Pauli group is <span class="math inline">\(\mathcal{P}_1 = \{\pm I, \pm iI, \pm X, \pm iX, \pm Y, \pm iY, \pm Z, \pm iZ\}\)</span> with <span class="math inline">\(|\mathcal{P}_1| = 16\)</span>. Being a finite group, it has no Vitali-type obstruction: every subset is measurable under the power-set σ-algebra <span class="math inline">\(\mathcal{F} = 2^{\mathcal{P}_1}\)</span>.</p>
+</section>
+<section id="exercise-statement" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-statement">3. Exercise Statement</h2>
+<p><strong>(a) Lebesgue measure of the rationals.</strong> Let <span class="math inline">\(A = \mathbb{Q} \cap [0,1]\)</span>. Using the countability of <span class="math inline">\(\mathbb{Q}\)</span>, write <span class="math inline">\(A = \{q_1, q_2, \ldots\}\)</span>. Show that <span class="math inline">\(\lambda(A) = 0\)</span> via σ-additivity, and conclude <span class="math inline">\(\lambda([0,1] \setminus \mathbb{Q}) = 1\)</span>.</p>
+<p><strong>(b) Counting measure on the Pauli group.</strong> Define <span class="math inline">\(\mu(A) = |A|/16\)</span> on <span class="math inline">\(\mathcal{P}_1\)</span>. Verify: - Finite additivity: <span class="math inline">\(\mu(A \sqcup B) = \mu(A) + \mu(B)\)</span>. - Left-invariance: <span class="math inline">\(\mu(gA) = \mu(A)\)</span> for all <span class="math inline">\(g \in \mathcal{P}_1\)</span> and <span class="math inline">\(A \subseteq \mathcal{P}_1\)</span>.</p>
+<p><strong>(c) The Vitali argument.</strong> Reproduce the proof that no translation-invariant, σ-additive measure on all subsets of <span class="math inline">\([0,1)\)</span> can have <span class="math inline">\(\mu([0,1)) = 1\)</span>. Identify where the axiom of choice is used.</p>
+</section>
+<section id="analytical-derivation" class="level2">
+<h2 class="anchored" data-anchor-id="analytical-derivation">4. Analytical Derivation</h2>
+<section id="part-a-lambdamathbbq-cap-01-0" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-lambdamathbbq-cap-01-0">Part (a): <span class="math inline">\(\lambda(\mathbb{Q} \cap [0,1]) = 0\)</span></h3>
+<p>Enumerate <span class="math inline">\(\mathbb{Q} \cap [0,1] = \{q_1, q_2, \ldots\}\)</span> (possible since <span class="math inline">\(\mathbb{Q}\)</span> is countable). Each singleton <span class="math inline">\(\{q_k\}\)</span> has Lebesgue measure zero because for any <span class="math inline">\(\varepsilon &gt; 0\)</span>: <span class="math display">\[
+\{q_k\} \subseteq (q_k - \varepsilon/2, q_k + \varepsilon/2), \quad \text{so} \quad \lambda(\{q_k\}) \leq \varepsilon.
+\]</span> Since <span class="math inline">\(\varepsilon\)</span> is arbitrary, <span class="math inline">\(\lambda(\{q_k\}) = 0\)</span> for each <span class="math inline">\(k\)</span>. By σ-additivity (the singletons are pairwise disjoint): <span class="math display">\[
+\lambda(\mathbb{Q} \cap [0,1]) = \sum_{k=1}^\infty \lambda(\{q_k\}) = \sum_{k=1}^\infty 0 = 0.
+\]</span> Since <span class="math inline">\([0,1] = (\mathbb{Q} \cap [0,1]) \sqcup ([0,1] \setminus \mathbb{Q})\)</span> and <span class="math inline">\(\lambda([0,1]) = 1\)</span>: <span class="math display">\[
+\lambda([0,1] \setminus \mathbb{Q}) = 1 - 0 = 1.
+\]</span></p>
+<p><strong>Physical insight:</strong> A dense subset (<span class="math inline">\(\mathbb{Q}\)</span> is dense in <span class="math inline">\(\mathbb{R}\)</span>) can have measure zero: denseness is a topological property, while measure is a metric/volumetric property. The two notions of “size” are independent.</p>
+</section>
+<section id="part-b-counting-measure-on-mathcalp_1" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-counting-measure-on-mathcalp_1">Part (b): Counting measure on <span class="math inline">\(\mathcal{P}_1\)</span></h3>
+<p>Here <span class="math inline">\(\Omega = \mathcal{P}_1\)</span> (the 16-element Pauli group), <span class="math inline">\(\mathcal{F} = 2^{\mathcal{P}_1}\)</span> (all subsets are measurable), and <span class="math inline">\(\mu(A) = |A|/16\)</span>.</p>
+<p><strong>Finite additivity:</strong> For disjoint <span class="math inline">\(A, B \subseteq \mathcal{P}_1\)</span>: <span class="math inline">\(|A \sqcup B| = |A| + |B|\)</span> (elementary set theory), so <span class="math inline">\(\mu(A \sqcup B) = (|A| + |B|)/16 = \mu(A) + \mu(B)\)</span>. For a finite set, finite additivity implies σ-additivity (only finitely many nonempty disjoint subsets can exist).</p>
+<p><strong>Left-invariance:</strong> For any fixed <span class="math inline">\(g \in \mathcal{P}_1\)</span>, the map <span class="math inline">\(L_g: h \mapsto gh\)</span> is a bijection on <span class="math inline">\(\mathcal{P}_1\)</span> (with inverse <span class="math inline">\(L_{g^{-1}}\)</span>). Therefore <span class="math inline">\(|gA| = |L_g(A)| = |A|\)</span>, and <span class="math inline">\(\mu(gA) = |A|/16 = \mu(A)\)</span>.</p>
+<p><strong>Physical insight:</strong> This is the Haar measure on <span class="math inline">\(\mathcal{P}_1\)</span>. When we write <span class="math inline">\(\mathbb{E}_{P \in \mathcal{P}}[f(P)] = \frac{1}{4^N}\sum_P f(P)\)</span> in the twirling formulas of Chapter 3, we are integrating against this counting measure.</p>
+</section>
+<section id="part-c-the-vitali-argument" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-the-vitali-argument">Part (c): The Vitali argument</h3>
+<p>Here <span class="math inline">\(\Omega = [0,1)\)</span> and we ask: can we define a measure <span class="math inline">\(\mu\)</span> on <span class="math inline">\(\mathcal{F} = 2^{[0,1)}\)</span> (the power set, i.e., <em>all</em> subsets) with translation invariance, σ-additivity, and <span class="math inline">\(\mu(\Omega) = 1\)</span>?</p>
+<p>Define an equivalence relation <span class="math inline">\(\sim\)</span> on <span class="math inline">\([0,1)\)</span>: we say <span class="math inline">\(x \sim y\)</span> if and only if the difference <span class="math inline">\(x - y\)</span> is a rational number (modulo 1). For example, <span class="math inline">\(0.3 \sim 0.8\)</span> because <span class="math inline">\(0.3 - 0.8 = -0.5 = -1/2 \in \mathbb{Q}\)</span>. The equivalence class of a number <span class="math inline">\(x\)</span> is the set of all numbers in <span class="math inline">\([0,1)\)</span> that differ from <span class="math inline">\(x\)</span> by a rational: <span class="math inline">\([x] = \{y \in [0,1) : y - x \in \mathbb{Q}\}\)</span>.</p>
+<p><strong>Step 1 (Axiom of Choice):</strong> Select exactly one representative from each equivalence class to form a set <span class="math inline">\(V \subset [0,1)\)</span>. This is where the axiom of choice is used, there are uncountably many equivalence classes and we must choose from all of them simultaneously.</p>
+<p><strong>Step 2:</strong> Consider the translates <span class="math inline">\(\{V + q \pmod{1} : q \in \mathbb{Q} \cap [0,1)\}\)</span>, where <span class="math inline">\(V + q = \{v + q \pmod{1} : v \in V\}\)</span>. These translates are: - <strong>Pairwise disjoint</strong>, if <span class="math inline">\(v_1 + q_1 \equiv v_2 + q_2 \pmod{1}\)</span> with <span class="math inline">\(v_1, v_2 \in V\)</span>, then <span class="math inline">\(v_1 - v_2\)</span> is rational, so <span class="math inline">\(v_1 \sim v_2\)</span>, meaning <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> are in the same equivalence class and hence <span class="math inline">\(v_1 = v_2\)</span> (since <span class="math inline">\(V\)</span> has only one representative per class), which forces <span class="math inline">\(q_1 = q_2\)</span>. - <strong>Cover all of <span class="math inline">\([0,1)\)</span></strong>, every <span class="math inline">\(x \in [0,1)\)</span> belongs to some equivalence class, so the representative <span class="math inline">\(v \in V\)</span> of that class satisfies <span class="math inline">\(x \equiv v + q \pmod{1}\)</span> for some rational <span class="math inline">\(q\)</span>.</p>
+<p><strong>Step 3:</strong> By σ-additivity and translation invariance: <span class="math display">\[1 = \mu([0,1)) = \sum_{q \in \mathbb{Q} \cap [0,1)} \mu(V+q) = \sum_{q} \mu(V).\]</span></p>
+<p><strong>Step 4 (Contradiction):</strong> The right-hand side is a countable sum of copies of the same number <span class="math inline">\(c = \mu(V) \geq 0\)</span>. Such a sum equals <span class="math inline">\(0\)</span> if <span class="math inline">\(c = 0\)</span>, and <span class="math inline">\(\infty\)</span> if <span class="math inline">\(c &gt; 0\)</span>. Neither equals <span class="math inline">\(1\)</span>. Contradiction. <span class="math inline">\(\square\)</span></p>
+<p><strong>Where the axiom of choice is used:</strong> In Step 1, to simultaneously select one element from each of the uncountably many equivalence classes.</p>
+<p><strong>Why it fails for finite/countable sets:</strong> For a finite group <span class="math inline">\(G\)</span> with <span class="math inline">\(|G| = n\)</span>, each element has weight <span class="math inline">\(c = 1/n &gt; 0\)</span>, and the sum of <span class="math inline">\(n\)</span> copies of <span class="math inline">\(c\)</span> is <span class="math inline">\(n \cdot (1/n) = 1\)</span>, a <em>finite</em> sum of equal terms can equal 1. The paradox requires a <em>countably infinite</em> sum.</p>
+<hr>
+</section>
+</section>
+<section id="symbolic-verification-sympy" class="level2">
+<h2 class="anchored" data-anchor-id="symbolic-verification-sympy">5. Symbolic Verification (SymPy)</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:57.649535Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:57.649352Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:57.802262Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:57.801868Z&quot;}" data-execution_count="1">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (a): Symbolic verification that λ({q}) = 0 ───────────────</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A singleton {q} is contained in (q-ε, q+ε) for any ε &gt; 0,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># so λ({q}) ≤ 2ε.  Taking ε → 0:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> sp.Symbol(<span class="st">'epsilon'</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>upper_bound <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> eps</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>limit_result <span class="op">=</span> sp.limit(upper_bound, eps, <span class="dv">0</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'lim_</span><span class="ch">{{</span><span class="ss">ε→0</span><span class="ch">}}</span><span class="ss"> 2ε = </span><span class="sc">{</span>limit_result<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> limit_result <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'λ(</span><span class="sc">{q}</span><span class="st">) ≤ lim 2ε = 0  ✓'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># σ-additivity: λ(Q ∩ [0,1]) = Σ_k λ({q_k}) = Σ_k 0</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> sp.Symbol(<span class="st">'N'</span>, integer<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>partial_sum <span class="op">=</span> sp.Sum(sp.Integer(<span class="dv">0</span>), (sp.Symbol(<span class="st">'k'</span>), <span class="dv">1</span>, N))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> partial_sum.doit()</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Σ_</span><span class="ch">{{</span><span class="ss">k=1</span><span class="ch">}}</span><span class="ss">^N 0 = </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> result <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'λ(Q ∩ [0,1]) = Σ_{k=1}^∞ 0 = 0  ✓'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'λ([0,1] </span><span class="ch">\\</span><span class="st"> Q) = 1 - 0 = 1  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>lim_{ε→0} 2ε = 0
+λ({q}) ≤ lim 2ε = 0  ✓
+
+Σ_{k=1}^N 0 = 0
+λ(Q ∩ [0,1]) = Σ_{k=1}^∞ 0 = 0  ✓
+λ([0,1] \ Q) = 1 - 0 = 1  ✓</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:57.822175Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:57.821882Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:57.827040Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:57.826816Z&quot;}" data-execution_count="2">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (c): Vitali argument - symbolic contradiction ────────────</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If μ(V) = c for some c ≥ 0, then Σ_{q ∈ Q} c must equal 1.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># But Σ_{k=1}^∞ c = c * ∞ for c &gt; 0, and 0 for c = 0.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> sp.Symbol(<span class="st">'c'</span>, nonnegative<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> sp.Symbol(<span class="st">'k'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Case 1: c = 0</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>case_zero <span class="op">=</span> sp.Sum(sp.Integer(<span class="dv">0</span>), (k, <span class="dv">1</span>, sp.oo)).doit()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Case c = 0:  Σ c = </span><span class="sc">{</span>case_zero<span class="sc">}</span><span class="ss">  ≠ 1  → contradiction'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Case 2: c &gt; 0 (concrete positive value)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>c_pos <span class="op">=</span> sp.Rational(<span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>case_positive <span class="op">=</span> sp.Sum(c_pos, (k, <span class="dv">1</span>, sp.oo)).doit()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Case c = 1/100:  Σ c = </span><span class="sc">{</span>case_positive<span class="sc">}</span><span class="ss">  ≠ 1  → contradiction'</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># General: for any c &gt; 0, N*c → ∞ as N → ∞</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> sp.Symbol(<span class="st">'N'</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>limit_Nc <span class="op">=</span> sp.limit(N <span class="op">*</span> c, N, sp.oo)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">For c &gt; 0:  lim_</span><span class="ch">{{</span><span class="ss">N→∞</span><span class="ch">}}</span><span class="ss"> N·c = </span><span class="sc">{</span>limit_Nc<span class="sc">}</span><span class="ss">  ✓'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'No c ≥ 0 satisfies Σ c = 1.  Vitali argument complete.  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Case c = 0:  Σ c = 0  ≠ 1  → contradiction
+Case c = 1/100:  Σ c = oo  ≠ 1  → contradiction
+
+For c &gt; 0:  lim_{N→∞} N·c = oo*sign(c)  ✓
+No c ≥ 0 satisfies Σ c = 1.  Vitali argument complete.  ✓</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="numerical-verification-numpy" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-verification-numpy">6. Numerical Verification (NumPy)</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:57.828228Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:57.828130Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:57.869001Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:57.868544Z&quot;}" data-execution_count="3">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (a): ε-covering demonstrates λ(Q ∩ [0,1]) = 0 ──────────</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fractions <span class="im">import</span> Fraction</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Enumerate rationals p/q in [0,1] for q ≤ 30</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>rationals <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">set</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    Fraction(p, q) <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">31</span>) <span class="cf">for</span> p <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, q<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>rationals_01 <span class="op">=</span> [<span class="bu">float</span>(r) <span class="cf">for</span> r <span class="kw">in</span> rationals <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> r <span class="op">&lt;=</span> <span class="dv">1</span>]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="bu">len</span>(rationals_01)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Enumerated </span><span class="sc">{</span>M<span class="sc">}</span><span class="ss"> rational numbers in [0,1]'</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Cover q_k with interval of length ε/2^k.  Total = Σ_k ε/2^k ≤ 2ε.</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'ε-covering: total length of intervals covering first M rationals'</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">55</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> eps <span class="kw">in</span> [<span class="fl">1.0</span>, <span class="fl">0.1</span>, <span class="fl">0.01</span>, <span class="fl">0.001</span>, <span class="fl">1e-6</span>]:</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    total_cover <span class="op">=</span> <span class="bu">sum</span>(eps <span class="op">/</span> <span class="dv">2</span><span class="op">**</span>k <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, M<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  ε = </span><span class="sc">{</span>eps<span class="sc">:.1e}</span><span class="ss">:  total cover = </span><span class="sc">{</span>total_cover<span class="sc">:.2e}</span><span class="ss">  (≤ 2ε = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>eps<span class="sc">:.2e}</span><span class="ss">)'</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'As ε → 0, the total cover → 0.'</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Therefore λ(Q ∩ [0,1]) = 0, and λ([0,1] </span><span class="ch">\\</span><span class="st"> Q) = 1.  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Enumerated 279 rational numbers in [0,1]
+
+ε-covering: total length of intervals covering first M rationals
+-------------------------------------------------------
+  ε = 1.0e+00:  total cover = 1.00e+00  (≤ 2ε = 2.00e+00)
+  ε = 1.0e-01:  total cover = 1.00e-01  (≤ 2ε = 2.00e-01)
+  ε = 1.0e-02:  total cover = 1.00e-02  (≤ 2ε = 2.00e-02)
+  ε = 1.0e-03:  total cover = 1.00e-03  (≤ 2ε = 2.00e-03)
+  ε = 1.0e-06:  total cover = 1.00e-06  (≤ 2ε = 2.00e-06)
+
+As ε → 0, the total cover → 0.
+Therefore λ(Q ∩ [0,1]) = 0, and λ([0,1] \ Q) = 1.  ✓</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:57.870479Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:57.870291Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:57.878736Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:57.878417Z&quot;}" data-execution_count="4">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (b): Counting measure on the 1-qubit Pauli group ────────</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Here Ω = P_1 (16 elements), F = 2^Ω (power set), μ(A) = |A|/16</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>I2 <span class="op">=</span> np.eye(<span class="dv">2</span>, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="op">-</span><span class="ot">1j</span>], [<span class="ot">1j</span>, <span class="dv">0</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>phases <span class="op">=</span> [<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="ot">1j</span>, <span class="op">-</span><span class="ot">1j</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>paulis_base <span class="op">=</span> [I2, X, Y, Z]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>labels_base <span class="op">=</span> [<span class="st">'I'</span>, <span class="st">'X'</span>, <span class="st">'Y'</span>, <span class="st">'Z'</span>]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the full Pauli group (our sample space Ω)</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>pauli_group <span class="op">=</span> []  <span class="co"># Ω</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>pauli_labels <span class="op">=</span> []</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ph_idx, ph <span class="kw">in</span> <span class="bu">enumerate</span>(phases):</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    ph_str <span class="op">=</span> [<span class="st">''</span>, <span class="st">'-'</span>, <span class="st">'i'</span>, <span class="st">'-i'</span>][ph_idx]</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> P, lbl <span class="kw">in</span> <span class="bu">zip</span>(paulis_base, labels_base):</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        pauli_group.append(ph <span class="op">*</span> P)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        pauli_labels.append(<span class="ss">f'</span><span class="sc">{</span>ph_str<span class="sc">}{</span>lbl<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(pauli_group) <span class="op">==</span> <span class="dv">16</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample space Ω = P₁: </span><span class="sc">{</span>pauli_labels<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'|Ω| = </span><span class="sc">{</span><span class="bu">len</span>(pauli_group)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'σ-algebra F = 2^Ω (power set, i.e., ALL subsets are measurable)'</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'|F| = 2^16 = </span><span class="sc">{</span><span class="dv">2</span><span class="op">**</span><span class="dv">16</span><span class="sc">:,}</span><span class="ss"> subsets'</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Counting measure μ: F → [0,1]</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mu(indices):</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Normalized counting measure: μ(A) = |A|/|Ω|."""</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(indices) <span class="op">/</span> <span class="dv">16</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Finite additivity: μ(A ⊔ B) = μ(A) + μ(B) ---</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>}      <span class="co"># {I, X, Y}</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> {<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>}   <span class="co"># some disjoint subset</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> A.isdisjoint(B), <span class="st">'A and B must be disjoint'</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>lhs <span class="op">=</span> mu(A <span class="op">|</span> B)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>rhs <span class="op">=</span> mu(A) <span class="op">+</span> mu(B)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Finite additivity test:'</span>)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  A = </span><span class="sc">{</span>[pauli_labels[i] <span class="cf">for</span> i <span class="kw">in</span> A]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  B = </span><span class="sc">{</span>[pauli_labels[i] <span class="cf">for</span> i <span class="kw">in</span> B]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  μ(A ⊔ B) = </span><span class="sc">{</span>lhs<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  μ(A) + μ(B) = </span><span class="sc">{</span>mu(A)<span class="sc">:.4f}</span><span class="ss"> + </span><span class="sc">{</span>mu(B)<span class="sc">:.4f}</span><span class="ss"> = </span><span class="sc">{</span>rhs<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">abs</span>(lhs <span class="op">-</span> rhs) <span class="op">&lt;</span> <span class="fl">1e-15</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Equal ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample space Ω = P₁: ['I', 'X', 'Y', 'Z', '-I', '-X', '-Y', '-Z', 'iI', 'iX', 'iY', 'iZ', '-iI', '-iX', '-iY', '-iZ']
+|Ω| = 16
+σ-algebra F = 2^Ω (power set, i.e., ALL subsets are measurable)
+|F| = 2^16 = 65,536 subsets
+
+Finite additivity test:
+  A = ['I', 'X', 'Y']
+  B = ['iI', '-X', '-Y', '-Z']
+  μ(A ⊔ B) = 0.4375
+  μ(A) + μ(B) = 0.1875 + 0.2500 = 0.4375
+  Equal ✓</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:57.880801Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:57.880235Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:57.938243Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:57.937915Z&quot;}" data-execution_count="5">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Left-invariance: μ(gA) = μ(A) for ALL g ∈ Ω = P₁ ---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mat_eq(M1, M2):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.allclose(M1, M2)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_index(M, group):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Find the index of matrix M in the group list."""</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, g <span class="kw">in</span> <span class="bu">enumerate</span>(group):</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mat_eq(M, g):</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">'Matrix not found in group'</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Test with several subsets of different sizes</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>test_subsets <span class="op">=</span> [</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    {<span class="dv">0</span>, <span class="dv">3</span>},           <span class="co"># {I, -I}</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>},     <span class="co"># {I, X, Y, Z}</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    {<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>},     <span class="co"># {-I, -X, -Y, -Z}</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>},  <span class="co"># half the group</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Left-invariance: μ(gA) = μ(A) for every g ∈ Ω'</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">55</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>all_passed <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> subset_idx, A_indices <span class="kw">in</span> <span class="bu">enumerate</span>(test_subsets):</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    A_mats <span class="op">=</span> [pauli_group[i] <span class="cf">for</span> i <span class="kw">in</span> A_indices]</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    mu_A <span class="op">=</span> mu(A_indices)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> g_idx <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">16</span>):</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> pauli_group[g_idx]</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        gA <span class="op">=</span> [g <span class="op">@</span> a <span class="cf">for</span> a <span class="kw">in</span> A_mats]</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        gA_indices <span class="op">=</span> {find_index(m, pauli_group) <span class="cf">for</span> m <span class="kw">in</span> gA}</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(gA_indices) <span class="op">!=</span> <span class="bu">len</span>(A_indices) <span class="kw">or</span> <span class="bu">abs</span>(mu(gA_indices) <span class="op">-</span> mu_A) <span class="op">&gt;</span> <span class="fl">1e-15</span>:</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'  FAIL: g=</span><span class="sc">{</span>pauli_labels[g_idx]<span class="sc">}</span><span class="ss">, |A|=</span><span class="sc">{</span><span class="bu">len</span>(A_indices)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>            all_passed <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  Subset </span><span class="sc">{</span>subset_idx<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss"> (|A|=</span><span class="sc">{</span><span class="bu">len</span>(A_indices)<span class="sc">}</span><span class="ss">): '</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'μ(gA) = μ(A) = </span><span class="sc">{</span>mu_A<span class="sc">:.4f}</span><span class="ss"> for all 16 elements of Ω  ✓'</span>)</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> all_passed</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Left-invariance verified for all test subsets.  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Left-invariance: μ(gA) = μ(A) for every g ∈ Ω
+-------------------------------------------------------
+  Subset 1 (|A|=2): μ(gA) = μ(A) = 0.1250 for all 16 elements of Ω  ✓
+  Subset 2 (|A|=4): μ(gA) = μ(A) = 0.2500 for all 16 elements of Ω  ✓
+  Subset 3 (|A|=4): μ(gA) = μ(A) = 0.2500 for all 16 elements of Ω  ✓
+  Subset 4 (|A|=8): μ(gA) = μ(A) = 0.5000 for all 16 elements of Ω  ✓
+
+Left-invariance verified for all test subsets.  ✓</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:57.940292Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:57.940120Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:57.946620Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:57.946194Z&quot;}" data-execution_count="6">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (c): Vitali argument - numerical illustration ────────────</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We cannot construct V computationally (it requires the axiom of</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># choice on uncountably many equivalence classes), but we can</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># demonstrate the logical structure of the contradiction.</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Vitali argument: numerical illustration of the contradiction'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Setup: Ω = [0,1), F = 2^Ω (ALL subsets), μ translation-invariant.'</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'If μ(V) = c for some c ≥ 0, then:'</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  1 = μ(Ω) = μ([0,1)) = Σ_{q ∈ Q ∩ [0,1)} μ(V+q) = Σ_q c'</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>n_rational_list <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>]</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Checking partial sums for various c:'</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="st">"c"</span><span class="sc">:&gt;12s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"N terms"</span><span class="sc">:&gt;10s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"Partial sum"</span><span class="sc">:&gt;15s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"= 1?"</span><span class="sc">:&gt;6s}</span><span class="ss">'</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> [<span class="fl">0.0</span>, <span class="fl">1e-4</span>, <span class="fl">1e-3</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>]:</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> N <span class="kw">in</span> n_rational_list:</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        partial <span class="op">=</span> c <span class="op">*</span> N</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        eq1 <span class="op">=</span> <span class="st">'→ 0'</span> <span class="cf">if</span> c <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> (<span class="st">'→ ∞'</span> <span class="cf">if</span> partial <span class="op">&gt;</span> <span class="dv">10</span> <span class="cf">else</span> <span class="ss">f'</span><span class="sc">{</span>partial<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>c<span class="sc">:12.1e}</span><span class="ss">  </span><span class="sc">{</span>N<span class="sc">:10d}</span><span class="ss">  </span><span class="sc">{</span>eq1<span class="sc">:&gt;15s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"✗"</span><span class="sc">:&gt;6s}</span><span class="ss">'</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Conclusion: no c ≥ 0 makes Σ_q c = 1.'</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'A measure space (Ω, 2^Ω, μ) with these axioms is impossible.'</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Resolution: replace F = 2^Ω with the Borel σ-algebra B(Ω),'</span>) </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'which excludes pathological non-measurable sets like V.  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Vitali argument: numerical illustration of the contradiction
+============================================================
+
+Setup: Ω = [0,1), F = 2^Ω (ALL subsets), μ translation-invariant.
+If μ(V) = c for some c ≥ 0, then:
+  1 = μ(Ω) = μ([0,1)) = Σ_{q ∈ Q ∩ [0,1)} μ(V+q) = Σ_q c
+
+Checking partial sums for various c:
+------------------------------------------------------------
+           c     N terms      Partial sum    = 1?
+------------------------------------------------------------
+     0.0e+00          10              → 0       ✗
+     0.0e+00         100              → 0       ✗
+     0.0e+00        1000              → 0       ✗
+     0.0e+00       10000              → 0       ✗
+
+     1.0e-04          10           0.0010       ✗
+     1.0e-04         100           0.0100       ✗
+     1.0e-04        1000           0.1000       ✗
+     1.0e-04       10000           1.0000       ✗
+
+     1.0e-03          10           0.0100       ✗
+     1.0e-03         100           0.1000       ✗
+     1.0e-03        1000           1.0000       ✗
+     1.0e-03       10000          10.0000       ✗
+
+     1.0e-02          10           0.1000       ✗
+     1.0e-02         100           1.0000       ✗
+     1.0e-02        1000          10.0000       ✗
+     1.0e-02       10000              → ∞       ✗
+
+     1.0e-01          10           1.0000       ✗
+     1.0e-01         100          10.0000       ✗
+     1.0e-01        1000              → ∞       ✗
+     1.0e-01       10000              → ∞       ✗
+
+Conclusion: no c ≥ 0 makes Σ_q c = 1.
+A measure space (Ω, 2^Ω, μ) with these axioms is impossible.
+Resolution: replace F = 2^Ω with the Borel σ-algebra B(Ω),
+which excludes pathological non-measurable sets like V.  ✓</code></pre>
+</div>
+</div>
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>Countable additivity forces <span class="math inline">\(\mathbb{Q}\cap[0,1]\)</span> to have Lebesgue measure zero even though it is dense, and it makes the counting measure on a finite group both additive and left-invariant. The Vitali set shows that no translation-invariant probability measure can act on all subsets of <span class="math inline">\([0,1)\)</span>, so the Haar measure on <span class="math inline">\(U(D)\)</span> must live on the Borel σ-algebra.</p>
+<hr>
+</section>
+<section id="summary-and-connection-to-the-haar-measure" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-connection-to-the-haar-measure">7. Summary and Connection to the Haar Measure</h2>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 32%">
+<col style="width: 35%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Lebesgue on <span class="math inline">\(\mathbb{R}\)</span></th>
+<th style="text-align: left;">Counting on <span class="math inline">\(\mathcal{P}_1\)</span></th>
+<th style="text-align: left;">Haar on <span class="math inline">\(U(D)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\Omega\)</span> (sample space)</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbb{R}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\{g_1, \ldots, g_{16}\}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(U(D)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mathcal{F}\)</span> (σ-algebra)</td>
+<td style="text-align: left;"><span class="math inline">\(\mathcal{B}(\mathbb{R})\)</span> (Borel)</td>
+<td style="text-align: left;"><span class="math inline">\(2^{\mathcal{P}_1}\)</span> (power set)</td>
+<td style="text-align: left;"><span class="math inline">\(\mathcal{B}(U(D))\)</span> (Borel)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span> (measure)</td>
+<td style="text-align: left;"><span class="math inline">\(\lambda\)</span> (length)</td>
+<td style="text-align: left;"><span class="math inline">\(|A|/16\)</span> (counting)</td>
+<td style="text-align: left;"><span class="math inline">\(\mu_{\text{Haar}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">What ‘measurable’ means</td>
+<td style="text-align: left;"><span class="math inline">\(A \in \mathcal{B}(\mathbb{R})\)</span></td>
+<td style="text-align: left;">Any <span class="math inline">\(A \subseteq \mathcal{P}_1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(A \in \mathcal{B}(U(D))\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Invariance</td>
+<td style="text-align: left;">Translation</td>
+<td style="text-align: left;">Left/right multiplication</td>
+<td style="text-align: left;">Left/right multiplication</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mu(\Omega)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\infty\)</span> (σ-finite)</td>
+<td style="text-align: left;"><span class="math inline">\(1\)</span> (probability)</td>
+<td style="text-align: left;"><span class="math inline">\(1\)</span> (probability)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Non-measurable sets?</td>
+<td style="text-align: left;">Yes (Vitali)</td>
+<td style="text-align: left;">No (finite → power set works)</td>
+<td style="text-align: left;">Yes (analogous to Vitali)</td>
+</tr>
+</tbody>
+</table>
+<p>The Haar measure on <span class="math inline">\(U(D)\)</span> is the direct generalization of both: it assigns a “volume” to Borel subsets of the unitary group in a way that is invariant under multiplication by any fixed unitary. The Lebesgue measure provides the translation-invariance intuition; the counting measure provides the group-invariance intuition. The Vitali argument shows why we must restrict to the Borel σ-algebra <span class="math inline">\(\mathcal{B}(U(D))\)</span> rather than attempting to measure all subsets of <span class="math inline">\(U(D)\)</span>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1.X, Differential Geometry of Quantum State Space</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/02-random-matrix-theory.html" class="pagination-link">
+        <span class="nav-page-text">2 · Random Matrix Theory</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2026 Marcin Płodzień · MIT License</div>   
+    <div class="nav-footer-right"><a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

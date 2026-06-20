@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Haar Measure &amp; Weingarten Calculus, numerical solution.">
+
+<title>Quantum Chaos &amp; Scrambling - 3.X, Tensor Network Weingarten Calculus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/04-dynamics.html" rel="next">
+<link href="../../notebooks/ch3/solution_ch3_purity_concentration.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Quantum Chaos &amp; Scrambling</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page">
+ <span class="menu-text">Start here</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorial" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorial</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorial">    
+        <li>
+    <a class="dropdown-item" href="../../chapters/01-foundations.html">
+ <span class="dropdown-text">1 · Mathematical Foundations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/02-random-matrix-theory.html">
+ <span class="dropdown-text">2 · Random Matrix Theory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/03-haar-weingarten.html">
+ <span class="dropdown-text">3 · Haar Measure &amp; Weingarten Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/04-dynamics.html">
+ <span class="dropdown-text">4 · Quantum Dynamics &amp; Chaos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/05-designs.html">
+ <span class="dropdown-text">5 · Designs &amp; Clifford Ensembles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/06-applications.html">
+ <span class="dropdown-text">6 · Applications of Scrambling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/07-qml.html">
+ <span class="dropdown-text">7 · Quantum Machine Learning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../exercises.html">
+ <span class="menu-text">Exercises (PDF)</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">3.X, Tensor Network Weingarten Calculus</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Start here</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/01-foundations.html" class="sidebar-item-text sidebar-link">1 · Mathematical Foundations</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.html" class="sidebar-item-text sidebar-link">1.1, Haar Invariance on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_schur_weyl.html" class="sidebar-item-text sidebar-link">1.10, Schur-Weyl Decomposition for</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_exp_surjectivity.html" class="sidebar-item-text sidebar-link">1.2, Surjectivity of the Exponential Map on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">1.3, Dimension of the Lie Algebras and</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">1.4, The Adjoint Representation and DLA Closure</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_depolarizing_channel.html" class="sidebar-item-text sidebar-link">1.5, The Depolarizing Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_choi_amplitude_damping.html" class="sidebar-item-text sidebar-link">1.6, Choi Matrix of the Amplitude-Damping Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_entanglement_parametric.html" class="sidebar-item-text sidebar-link">1.7, Entanglement of a Parametric Two-Qubit State</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">1.7, Sectional Curvature of SU(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_fubini_study.html" class="sidebar-item-text sidebar-link">1.8, Bloch Sphere Geodesics and the Fubini-Study Metric</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_quantum_speed_limit.html" class="sidebar-item-text sidebar-link">1.9, Geodesic Length and the Quantum Speed Limit</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_borel_measurability.html" class="sidebar-item-text sidebar-link">1.X, Borel σ-Algebra and Measurability on U(D)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html" class="sidebar-item-text sidebar-link">1.X, Differential Geometry of Quantum State Space</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_measure_theory_basics.html" class="sidebar-item-text sidebar-link">1.X, Lebesgue Measure, Counting Measure, and σ-Additivity</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-random-matrix-theory.html" class="sidebar-item-text sidebar-link">2 · Random Matrix Theory</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_semicircle_moments.html" class="sidebar-item-text sidebar-link">2.1, Moments of the Wigner Semicircle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_goe_spacing.html" class="sidebar-item-text sidebar-link">2.2, The GOE and Linear Level Repulsion</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">2.3, Eigenphase Repulsion in the CUE</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-haar-weingarten.html" class="sidebar-item-text sidebar-link">3 · Haar Measure &amp; Weingarten Calculus</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_haar_overlap.html" class="sidebar-item-text sidebar-link">3.1, Overlap of Haar-Random States and Measure Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html" class="sidebar-item-text sidebar-link">3.2, Operator Averages Using the First Moment Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_fourth_moment_trace.html" class="sidebar-item-text sidebar-link">3.3, The Fourth Moment of the Trace</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_page_formula.html" class="sidebar-item-text sidebar-link">3.4, The Asymptotic Page Formula via Marchenko-Pastur</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_swap_trick.html" class="sidebar-item-text sidebar-link">3.5, The SWAP Trick in Action</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html" class="sidebar-item-text sidebar-link">3.6, Concentration of Purity (Lévy’s Lemma)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.html" class="sidebar-item-text sidebar-link active">3.X, Tensor Network Weingarten Calculus</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/04-dynamics.html" class="sidebar-item-text sidebar-link">4 · Quantum Dynamics &amp; Chaos</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_commutator_fidelity_identity.html" class="sidebar-item-text sidebar-link">4.1, The C-F Identity (OTOC-Commutator Relation)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_krylov_complexity.html" class="sidebar-item-text sidebar-link">4.2, Krylov Complexity from the Geometric Distribution</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.html" class="sidebar-item-text sidebar-link">4.3, SFF Plateau Value for the GUE</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/05-designs.html" class="sidebar-item-text sidebar-link">5 · Designs &amp; Clifford Ensembles</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_clifford_otoc.html" class="sidebar-item-text sidebar-link">5.1, OTOCs and the Failure of Clifford Chaos</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.html" class="sidebar-item-text sidebar-link">5.2, Stabilizer Rényi Entropy of Haar-Random States</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/06-applications.html" class="sidebar-item-text sidebar-link">6 · Applications of Scrambling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.html" class="sidebar-item-text sidebar-link">6.1, Randomized Benchmarking via Clifford Twirling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_shadows.html" class="sidebar-item-text sidebar-link">6.2, Classical Shadows: Channel Inversion and Tomography</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html" class="sidebar-item-text sidebar-link">6.3, The Shadow Channel and Its Inverse</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.html" class="sidebar-item-text sidebar-link">6.4, Fragility of the GHZ Metrological Advantage</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_tripartite_mutual_information.html" class="sidebar-item-text sidebar-link">6.5, Tripartite Mutual Information and Scrambling</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/07-qml.html" class="sidebar-item-text sidebar-link">7 · Quantum Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau.html" class="sidebar-item-text sidebar-link">7.1, Barren Plateau Scaling from the Weingarten Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_local_vs_global_cost.html" class="sidebar-item-text sidebar-link">7.2, Local vs Global Cost Functions in Deep Circuits</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_born_machine.html" class="sidebar-item-text sidebar-link">7.3, Born Machine Expressivity and Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.html" class="sidebar-item-text sidebar-link">7.4, Quantum Extreme Learning Machines and the POVM Picture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">7.5, Injection Contractivity and Restarting Overhead in QRC</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_kernel_concentration.html" class="sidebar-item-text sidebar-link">7.6, Quantum Kernel Concentration and Expressibility</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.html" class="sidebar-item-text sidebar-link">7.7, Barren Plateaus through the Lens of Quantum Fisher Information</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises.html" class="sidebar-item-text sidebar-link">Exercises &amp; Solutions (PDF)</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exercise-3.x-tensor-network-weingarten-calculus" id="toc-exercise-3.x-tensor-network-weingarten-calculus" class="nav-link active" data-scroll-target="#exercise-3.x-tensor-network-weingarten-calculus">Exercise 3.X, Tensor Network Weingarten Calculus</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#physical-motivation" id="toc-physical-motivation" class="nav-link" data-scroll-target="#physical-motivation">1. Physical Motivation</a></li>
+  <li><a href="#mathematical-preliminaries-self-contained" id="toc-mathematical-preliminaries-self-contained" class="nav-link" data-scroll-target="#mathematical-preliminaries-self-contained">2. Mathematical Preliminaries (Self-Contained)</a>
+  <ul class="collapse">
+  <li><a href="#the-symmetric-group-s_k" id="toc-the-symmetric-group-s_k" class="nav-link" data-scroll-target="#the-symmetric-group-s_k">2.1 The symmetric group <span class="math inline">\(S_k\)</span></a></li>
+  <li><a href="#the-weingarten-function" id="toc-the-weingarten-function" class="nav-link" data-scroll-target="#the-weingarten-function">2.2 The Weingarten function</a></li>
+  <li><a href="#the-weingarten-formula" id="toc-the-weingarten-formula" class="nav-link" data-scroll-target="#the-weingarten-formula">2.3 The Weingarten formula</a></li>
+  <li><a href="#explicit-weingarten-values" id="toc-explicit-weingarten-values" class="nav-link" data-scroll-target="#explicit-weingarten-values">2.4 Explicit Weingarten values</a></li>
+  <li><a href="#tensor-network-rules" id="toc-tensor-network-rules" class="nav-link" data-scroll-target="#tensor-network-rules">2.5 Tensor network rules</a></li>
+  </ul></li>
+  <li><a href="#part-a-first-moment-mathbbemathrmtruaudagger-b" id="toc-part-a-first-moment-mathbbemathrmtruaudagger-b" class="nav-link" data-scroll-target="#part-a-first-moment-mathbbemathrmtruaudagger-b">3. Part (a): First Moment, <span class="math inline">\(\mathbb{E}[\mathrm{Tr}(UAU^\dagger B)]\)</span></a>
+  <ul class="collapse">
+  <li><a href="#analytical-derivation" id="toc-analytical-derivation" class="nav-link" data-scroll-target="#analytical-derivation">Analytical derivation</a></li>
+  </ul></li>
+  <li><a href="#part-b-second-moment-haar-averaged-purity" id="toc-part-b-second-moment-haar-averaged-purity" class="nav-link" data-scroll-target="#part-b-second-moment-haar-averaged-purity">4. Part (b): Second Moment, Haar-Averaged Purity</a>
+  <ul class="collapse">
+  <li><a href="#analytical-derivation-1" id="toc-analytical-derivation-1" class="nav-link" data-scroll-target="#analytical-derivation-1">Analytical derivation</a></li>
+  </ul></li>
+  <li><a href="#part-c-third-moment-mathbbemathrmtru6-via-full-s_3-calculus" id="toc-part-c-third-moment-mathbbemathrmtru6-via-full-s_3-calculus" class="nav-link" data-scroll-target="#part-c-third-moment-mathbbemathrmtru6-via-full-s_3-calculus">5. Part (c): Third Moment, <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}(U)|^6]\)</span> via Full <span class="math inline">\(S_3\)</span> Calculus</a>
+  <ul class="collapse">
+  <li><a href="#analytical-derivation-2" id="toc-analytical-derivation-2" class="nav-link" data-scroll-target="#analytical-derivation-2">Analytical derivation</a></li>
+  </ul></li>
+  <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation">6. Physical Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#why-does-mathbbemathrmtru2k-k" id="toc-why-does-mathbbemathrmtru2k-k" class="nav-link" data-scroll-target="#why-does-mathbbemathrmtru2k-k">Why does <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}(U)|^{2k}] = k!\)</span>?</a></li>
+  <li><a href="#the-topological-structure" id="toc-the-topological-structure" class="nav-link" data-scroll-target="#the-topological-structure">The topological structure</a></li>
+  </ul></li>
+  <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch3/solution_ch3_tensor_weingarten_calculus.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">3.X, Tensor Network Weingarten Calculus</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+<div>
+  <div class="description">
+    Haar Measure &amp; Weingarten Calculus, numerical solution.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="exercise-3.x-tensor-network-weingarten-calculus" class="level1">
+<h1>Exercise 3.X, Tensor Network Weingarten Calculus</h1>
+<strong>Chapter 3: Haar Ensembles</strong> &nbsp;|&nbsp; <em>Section 3.2: Diagrammatic Weingarten Calculus</em>
+<hr>
+<p>This notebook builds fluency with the tensor diagrammatic rules for computing Haar integrals over the unitary group. Every analytical step is derived symbolically in SymPy and independently verified by Monte Carlo sampling of Haar-random unitaries via NumPy/SciPy.</p>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>A Haar average over the unitary group is the integral of a polynomial in the entries <span class="math inline">\(U_{ij}\)</span> and their conjugates, and the Weingarten calculus evaluates it as a finite sum over pairs of permutations. The dimension factors come from counting closed loops in the associated tensor diagram, while the Weingarten function supplies the rational weights. This reduces an integral over a continuous group to a combinatorial bookkeeping problem, which is what makes the higher moments tractable. The notebook works the first three moments by hand and checks each against symbolic algebra and Monte Carlo sampling.</p>
+</section>
+<section id="physical-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="physical-motivation">1. Physical Motivation</h2>
+<p>Many quantities in quantum information, purities, frame potentials, OTOCs, channel fidelities, reduce to polynomial averages over Haar-random unitaries. The <strong>Weingarten calculus</strong> is a systematic tool for computing these averages. It is the unitary-group analogue of Wick’s theorem for Gaussian integrals: just as Gaussian expectations reduce to sums over pair contractions, Haar expectations reduce to sums over <strong>permutation pairings</strong>, weighted by the <strong>Weingarten function</strong>.</p>
+<p>The tensor network (Penrose) representation makes these sums geometrically transparent. The goal of this notebook is to master the three-step recipe: 1. <strong>Draw</strong> the unevaluated tensor network 2. <strong>Replace</strong> <span class="math inline">\(U/U^*\)</span> pairs with permutation pairings 3. <strong>Count</strong> closed loops (each loop = factor of <span class="math inline">\(D\)</span>)</p>
+</section>
+<section id="mathematical-preliminaries-self-contained" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-preliminaries-self-contained">2. Mathematical Preliminaries (Self-Contained)</h2>
+<section id="the-symmetric-group-s_k" class="level3">
+<h3 class="anchored" data-anchor-id="the-symmetric-group-s_k">2.1 The symmetric group <span class="math inline">\(S_k\)</span></h3>
+<p>The <strong>symmetric group</strong> <span class="math inline">\(S_k\)</span> is the group of all permutations of <span class="math inline">\(k\)</span> objects <span class="math inline">\(\{1, 2, \ldots, k\}\)</span>. It has <span class="math inline">\(k!\)</span> elements.</p>
+<ul>
+<li><strong><span class="math inline">\(S_1 = \{\mathrm{id}\}\)</span></strong>: one element (the identity).</li>
+<li><strong><span class="math inline">\(S_2 = \{\mathrm{id}, (12)\}\)</span></strong>: two elements, the identity and the swap of objects 1 and 2.</li>
+<li><strong><span class="math inline">\(S_3\)</span></strong>: six elements, <span class="math inline">\(\mathrm{id}\)</span>, three transpositions <span class="math inline">\((12), (13), (23)\)</span>, and two 3-cycles <span class="math inline">\((123), (132)\)</span>.</li>
+</ul>
+<p>A permutation <span class="math inline">\(\pi \in S_k\)</span> maps each index <span class="math inline">\(a \in \{1, \ldots, k\}\)</span> to <span class="math inline">\(\pi(a)\)</span>. The <strong>cycle structure</strong> of <span class="math inline">\(\pi\)</span> decomposes it into disjoint cycles. For example, <span class="math inline">\((123)\)</span> means <span class="math inline">\(1 \to 2 \to 3 \to 1\)</span>, a single cycle of length 3. The number of cycles determines how many independent index sums survive after applying Kronecker deltas.</p>
+</section>
+<section id="the-weingarten-function" class="level3">
+<h3 class="anchored" data-anchor-id="the-weingarten-function">2.2 The Weingarten function</h3>
+<p>The <strong>Weingarten function</strong> <span class="math inline">\(\mathrm{Wg}(\pi, D)\)</span> is a real-valued function on <span class="math inline">\(S_k\)</span> (depending on Hilbert space dimension <span class="math inline">\(D\)</span>) that serves as the weight for each permutation pairing in the Haar integral. It is defined implicitly as the inverse of the Gram matrix: <span class="math display">\[\sum_{\sigma \in S_k} \mathrm{Wg}(\sigma, D) \cdot D^{\#\mathrm{cycles}(\pi \sigma^{-1})} = \delta_{\pi, \mathrm{id}}.\]</span></p>
+<p>Key properties: - <span class="math inline">\(\mathrm{Wg}(\pi, D)\)</span> depends only on the <strong>cycle type</strong> (conjugacy class) of <span class="math inline">\(\pi\)</span> - The identity permutation has the <strong>largest</strong> weight, it is the “planar” (uncrossed) pairing - Non-identity permutations (“crossings”) are suppressed by powers of <span class="math inline">\(1/D\)</span></p>
+</section>
+<section id="the-weingarten-formula" class="level3">
+<h3 class="anchored" data-anchor-id="the-weingarten-formula">2.3 The Weingarten formula</h3>
+<p>The <span class="math inline">\(k\)</span>-th moment of the Haar measure over <span class="math inline">\(U(D)\)</span> is: <span class="math display">\[\boxed{\mathbb{E}_{\mathrm{Haar}}[U_{i_1 j_1} \cdots U_{i_k j_k} U^*_{\ell_1 m_1} \cdots U^*_{\ell_k m_k}] = \sum_{\pi,\sigma \in S_k} \mathrm{Wg}(\pi^{-1}\sigma, D) \prod_{a=1}^k \delta_{i_a \ell_{\pi(a)}} \delta_{j_a m_{\sigma(a)}}}\]</span></p>
+<p><strong>Interpretation:</strong> The permutation <span class="math inline">\(\pi\)</span> controls how the <em>output</em> (left) indices of <span class="math inline">\(U\)</span> are paired with those of <span class="math inline">\(U^*\)</span>. The permutation <span class="math inline">\(\sigma\)</span> does the same for <em>input</em> (right) indices. Each pairing is weighted by <span class="math inline">\(\mathrm{Wg}(\pi^{-1}\sigma, D)\)</span>.</p>
+</section>
+<section id="explicit-weingarten-values" class="level3">
+<h3 class="anchored" data-anchor-id="explicit-weingarten-values">2.4 Explicit Weingarten values</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(k\)</span></th>
+<th>Permutation <span class="math inline">\(\tau\)</span></th>
+<th>Cycle type</th>
+<th><span class="math inline">\(\mathrm{Wg}(\tau, D)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(\mathrm{id}\)</span></td>
+<td><span class="math inline">\((1)\)</span></td>
+<td><span class="math inline">\(1/D\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><span class="math inline">\(\mathrm{id}\)</span></td>
+<td><span class="math inline">\((1)(2)\)</span></td>
+<td><span class="math inline">\(1/(D^2-1)\)</span></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><span class="math inline">\((12)\)</span></td>
+<td><span class="math inline">\((12)\)</span></td>
+<td><span class="math inline">\(-1/[D(D^2-1)]\)</span></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td><span class="math inline">\(\mathrm{id}\)</span></td>
+<td><span class="math inline">\((1)(2)(3)\)</span></td>
+<td><span class="math inline">\((D^2-2)/[D(D^2-1)(D^2-4)]\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>any transposition</td>
+<td><span class="math inline">\((2,1)\)</span></td>
+<td><span class="math inline">\(-1/[(D^2-1)(D^2-4)]\)</span></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>any 3-cycle</td>
+<td><span class="math inline">\((3)\)</span></td>
+<td><span class="math inline">\(2/[D(D^2-1)(D^2-4)]\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tensor-network-rules" class="level3">
+<h3 class="anchored" data-anchor-id="tensor-network-rules">2.5 Tensor network rules</h3>
+<ul>
+<li><strong>Box</strong> = matrix/tensor; <strong>wire</strong> = index; <strong>connected wire</strong> = contracted (summed) index</li>
+<li><strong>Closed loop</strong> (wire with no open ends) = contributes a factor of <span class="math inline">\(D\)</span></li>
+<li><strong>Cup</strong> (semicircular arc connecting two wires) = Kronecker delta <span class="math inline">\(\delta_{ij}\)</span></li>
+</ul>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:33.461769Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:33.461588Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:33.949746Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:33.949424Z&quot;}" data-execution_count="1">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports used throughout</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Matrix, trace <span class="im">as</span> sp_trace, simplify, expand, Symbol</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> permutations</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict, Counter</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># === Utility functions for permutation algebra ===</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compose(p1, p2):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compose two permutations (as tuples): (p1 ∘ p2)(i) = p1(p2(i))."""</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">tuple</span>(p1[p2[i]] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(p1)))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inverse(p):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Inverse of a permutation (as tuple)."""</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="bu">len</span>(p)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(p): r[v] <span class="op">=</span> i</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">tuple</span>(r)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cycle_type(p):</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return the cycle type of permutation p as a sorted tuple."""</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    visited <span class="op">=</span> <span class="bu">set</span>()<span class="op">;</span> lengths <span class="op">=</span> []</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(p)):</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">not</span> <span class="kw">in</span> visited:</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            l <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">=</span> s</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> k <span class="kw">not</span> <span class="kw">in</span> visited:</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                visited.add(k)<span class="op">;</span> k <span class="op">=</span> p[k]<span class="op">;</span> l <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            lengths.append(l)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">tuple</span>(<span class="bu">sorted</span>(lengths, reverse<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> num_cycles(p):</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Count the number of cycles in permutation p."""</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    visited <span class="op">=</span> <span class="bu">set</span>()<span class="op">;</span> c <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(p)):</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">not</span> <span class="kw">in</span> visited:</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            c <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">=</span> s</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> k <span class="kw">not</span> <span class="kw">in</span> visited:</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                visited.add(k)<span class="op">;</span> k <span class="op">=</span> p[k]</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate S_2 and S_3</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== The symmetric group S_k ==='</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>S2 <span class="op">=</span> <span class="bu">list</span>(permutations(<span class="bu">range</span>(<span class="dv">2</span>)))</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'S_2 has </span><span class="sc">{</span><span class="bu">len</span>(S2)<span class="sc">}</span><span class="ss"> elements:'</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> S2:</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss"> - cycle type </span><span class="sc">{</span>cycle_type(p)<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>num_cycles(p)<span class="sc">}</span><span class="ss"> cycle(s)'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>S3 <span class="op">=</span> <span class="bu">list</span>(permutations(<span class="bu">range</span>(<span class="dv">3</span>)))</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'S_3 has </span><span class="sc">{</span><span class="bu">len</span>(S3)<span class="sc">}</span><span class="ss"> elements:'</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> S3:</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss"> - cycle type </span><span class="sc">{</span>cycle_type(p)<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>num_cycles(p)<span class="sc">}</span><span class="ss"> cycle(s)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== The symmetric group S_k ===
+
+S_2 has 2 elements:
+  (0, 1) - cycle type (1, 1), 2 cycle(s)
+  (1, 0) - cycle type (2,), 1 cycle(s)
+
+S_3 has 6 elements:
+  (0, 1, 2) - cycle type (1, 1, 1), 3 cycle(s)
+  (0, 2, 1) - cycle type (2, 1), 2 cycle(s)
+  (1, 0, 2) - cycle type (2, 1), 2 cycle(s)
+  (1, 2, 0) - cycle type (3,), 1 cycle(s)
+  (2, 0, 1) - cycle type (3,), 1 cycle(s)
+  (2, 1, 0) - cycle type (2, 1), 2 cycle(s)</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="part-a-first-moment-mathbbemathrmtruaudagger-b" class="level2">
+<h2 class="anchored" data-anchor-id="part-a-first-moment-mathbbemathrmtruaudagger-b">3. Part (a): First Moment, <span class="math inline">\(\mathbb{E}[\mathrm{Tr}(UAU^\dagger B)]\)</span></h2>
+<section id="analytical-derivation" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-derivation">Analytical derivation</h3>
+<p><strong>Goal:</strong> Compute <span class="math inline">\(\mathbb{E}_U[\mathrm{Tr}(\hat{U}\hat{A}\hat{U}^\dagger\hat{B})]\)</span> for fixed matrices <span class="math inline">\(\hat{A}, \hat{B}\)</span>.</p>
+<p><strong>Step 1, Index expansion:</strong> <span class="math display">\[\mathrm{Tr}(UAU^\dagger B) = \sum_{i,j,k,l} U_{ij}\, A_{jk}\, U^*_{lk}\, B_{li}\]</span></p>
+<p><strong>Step 2, Apply <span class="math inline">\(k=1\)</span> Weingarten (<span class="math inline">\(|S_1| = 1\)</span>, only <span class="math inline">\(\pi = \sigma = \mathrm{id}\)</span>):</strong> <span class="math display">\[\mathbb{E}[U_{ij}U^*_{lk}] = \frac{1}{D}\,\delta_{il}\,\delta_{jk}\]</span></p>
+<p><strong>Step 3, Contract deltas:</strong> - <span class="math inline">\(\delta_{jk}\)</span> closes a loop through <span class="math inline">\(\hat{A}\)</span>: <span class="math inline">\(\sum_j A_{jj} = \mathrm{Tr}(\hat{A})\)</span> - <span class="math inline">\(\delta_{il}\)</span> closes a loop through <span class="math inline">\(\hat{B}\)</span>: <span class="math inline">\(\sum_i B_{ii} = \mathrm{Tr}(\hat{B})\)</span></p>
+<p><strong>Result:</strong> <span class="math inline">\(\mathbb{E}[\mathrm{Tr}(UAU^\dagger B)] = \frac{\mathrm{Tr}(\hat{A})\,\mathrm{Tr}(\hat{B})}{D}\)</span></p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:33.951401Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:33.951190Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:34.075101Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:34.074618Z&quot;}" data-execution_count="2">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (a): SymPy symbolic verification ==='</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Build symbolic matrices (D=3 for concreteness)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>D_val <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Matrix([[symbols(<span class="ss">f'a</span><span class="sc">{</span>i<span class="sc">}{</span>j<span class="sc">}</span><span class="ss">'</span>) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(D_val)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(D_val)])</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> Matrix([[symbols(<span class="ss">f'b</span><span class="sc">{</span>i<span class="sc">}{</span>j<span class="sc">}</span><span class="ss">'</span>) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(D_val)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(D_val)])</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Apply Weingarten formula by brute-force index contraction</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 2: Applying E[U_</span><span class="sc">{ij}</span><span class="st">U*_</span><span class="sc">{lk}</span><span class="st">] = δ_</span><span class="sc">{il}</span><span class="st">δ_</span><span class="sc">{jk}</span><span class="st">/D index by index...'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>result_indices <span class="op">=</span> sp.Integer(<span class="dv">0</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(D_val):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(D_val):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(D_val):</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(D_val):</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> i <span class="op">==</span> l <span class="kw">and</span> j <span class="op">==</span> k:  <span class="co"># δ_{il} * δ_{jk}</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                    result_indices <span class="op">+=</span> A[j,k] <span class="op">*</span> B[l,i] <span class="op">/</span> D_val</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Compare with closed-form</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>result_formula <span class="op">=</span> sp_trace(A) <span class="op">*</span> sp_trace(B) <span class="op">/</span> D_val</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Index contraction: </span><span class="sc">{</span>simplify(result_indices)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Formula Tr(A)Tr(B)/D: </span><span class="sc">{</span>simplify(result_formula)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> expand(result_indices <span class="op">-</span> result_formula) <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  MATCH ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Part (a): SymPy symbolic verification ===
+
+Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
+  Index contraction: a00*b00/3 + a00*b11/3 + a00*b22/3 + a11*b00/3 + a11*b11/3 + a11*b22/3 + a22*b00/3 + a22*b11/3 + a22*b22/3
+  Formula Tr(A)Tr(B)/D: (a00 + a11 + a22)*(b00 + b11 + b22)/3
+  MATCH ✓</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:34.076618Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:34.076480Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:35.890244Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:35.889936Z&quot;}" data-execution_count="3">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (a): NumPy Monte Carlo cross-check ==='</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D_val <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>]:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Random complex matrices</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    A_n <span class="op">=</span> np.random.randn(D_val, D_val) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D_val, D_val)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    B_n <span class="op">=</span> np.random.randn(D_val, D_val) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D_val, D_val)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Monte Carlo: sample Haar-random U, compute Tr(UAU†B)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    mc_vals <span class="op">=</span> [np.trace(U <span class="op">@</span> A_n <span class="op">@</span> U.conj().T <span class="op">@</span> B_n) </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> U <span class="kw">in</span> [unitary_group.rvs(D_val) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15000</span>)]]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    mc_mean <span class="op">=</span> np.mean(mc_vals)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Analytical</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> np.trace(A_n) <span class="op">*</span> np.trace(B_n) <span class="op">/</span> D_val</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  D=</span><span class="sc">{</span>D_val<span class="sc">}</span><span class="ss">: MC = </span><span class="sc">{</span>mc_mean<span class="sc">:.4f}</span><span class="ss">, analytic = </span><span class="sc">{</span>exact<span class="sc">:.4f}</span><span class="ss">, '</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'|err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc_mean <span class="op">-</span> exact)<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_mean <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="fl">0.3</span> <span class="op">*</span> <span class="bu">max</span>(<span class="bu">abs</span>(exact), <span class="fl">1.0</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All first-moment checks PASS ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Part (a): NumPy Monte Carlo cross-check ===</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  D=2: MC = -0.8851-0.5541j, analytic = -0.8590-0.5729j, |err| = 0.0321</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  D=4: MC = -0.3010+0.1774j, analytic = -0.3099+0.1877j, |err| = 0.0136</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  D=8: MC = 0.2752-0.0297j, analytic = 0.2306+0.0000j, |err| = 0.0536
+  All first-moment checks PASS ✓</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="part-b-second-moment-haar-averaged-purity" class="level2">
+<h2 class="anchored" data-anchor-id="part-b-second-moment-haar-averaged-purity">4. Part (b): Second Moment, Haar-Averaged Purity</h2>
+<section id="analytical-derivation-1" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-derivation-1">Analytical derivation</h3>
+<p><strong>Goal:</strong> Derive <span class="math inline">\(\mathbb{E}[\mathrm{Tr}(\hat{\rho}_A^2)]\)</span> for a Haar-random pure state <span class="math inline">\(|\psi\rangle = U|0\rangle\)</span> on <span class="math inline">\(\mathcal{H}_A \otimes \mathcal{H}_B\)</span> with <span class="math inline">\(\dim\mathcal{H}_A = D_A\)</span>, <span class="math inline">\(\dim\mathcal{H}_B = D_B\)</span>, <span class="math inline">\(D = D_A D_B\)</span>.</p>
+<p><strong>Step 1, Setup:</strong> Using the SWAP trick, <span class="math inline">\(\mathrm{Tr}(\hat{\rho}_A^2) = \mathrm{Tr}(\mathbb{F}_A \cdot \hat{\rho}^{\otimes 2})\)</span>. This requires <span class="math inline">\(k=2\)</span> copies of <span class="math inline">\(U\)</span> and <span class="math inline">\(U^*\)</span>.</p>
+<p><strong>Step 2, Index structure:</strong> All input indices are fixed to the reference state <span class="math inline">\(|0\rangle\)</span>, meaning <span class="math inline">\(j_1 = j_2 = m_1 = m_2 = 0\)</span>. This makes <span class="math inline">\(\delta_{j_a, m_{\sigma(a)}} = \delta_{0,0} = 1\)</span> for <strong>every</strong> <span class="math inline">\(\sigma \in S_2\)</span>. Therefore the <span class="math inline">\(\sigma\)</span> sum is <strong>free</strong>: every permutation <span class="math inline">\(\sigma\)</span> contributes equally.</p>
+<p><strong>Step 3, Sigma sum:</strong> <span class="math display">\[\sum_{\sigma \in S_2} \mathrm{Wg}(\pi^{-1}\sigma, D) = \sum_{\tau \in S_2} \mathrm{Wg}(\tau, D) = \frac{1}{D^2-1} - \frac{1}{D(D^2-1)} = \frac{1}{D(D+1)}\]</span> This is the same for every <span class="math inline">\(\pi\)</span> (since we’re summing <span class="math inline">\(\tau = \pi^{-1}\sigma\)</span> over all of <span class="math inline">\(S_2\)</span>).</p>
+<p><strong>Step 4, Loop counting:</strong> The output wiring has SWAP on <span class="math inline">\(A\)</span> and identity on <span class="math inline">\(B\)</span>. The effective permutation for output pairing <span class="math inline">\(\pi\)</span> is:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\pi\)</span></th>
+<th>Eff. on <span class="math inline">\(A\)</span>: <span class="math inline">\(\pi \circ \mathrm{SWAP}\)</span></th>
+<th>Eff. on <span class="math inline">\(B\)</span>: <span class="math inline">\(\pi \circ \mathrm{id}\)</span></th>
+<th>Loop factor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathrm{id}\)</span></td>
+<td><span class="math inline">\((12)\)</span>: 1 cycle → <span class="math inline">\(D_A^1\)</span></td>
+<td><span class="math inline">\(\mathrm{id}\)</span>: 2 cycles → <span class="math inline">\(D_B^2\)</span></td>
+<td><span class="math inline">\(D_A D_B^2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\((12)\)</span></td>
+<td><span class="math inline">\(\mathrm{id}\)</span>: 2 cycles → <span class="math inline">\(D_A^2\)</span></td>
+<td><span class="math inline">\((12)\)</span>: 1 cycle → <span class="math inline">\(D_B^1\)</span></td>
+<td><span class="math inline">\(D_A^2 D_B\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 5, Assembly:</strong> <span class="math display">\[\mathbb{E}[\mathrm{Tr}(\hat{\rho}_A^2)] = \frac{1}{D(D+1)}(D_A D_B^2 + D_A^2 D_B) = \frac{D_A D_B(D_A + D_B)}{D_A D_B(D_A D_B + 1)} = \frac{D_A + D_B}{D_A D_B + 1}\]</span></p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:35.891797Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:35.891625Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:35.946617Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:35.946309Z&quot;}" data-execution_count="4">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): Step-by-step purity derivation ==='</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define permutation composition</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>perm_id <span class="op">=</span> {<span class="dv">0</span>:<span class="dv">0</span>, <span class="dv">1</span>:<span class="dv">1</span>}</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>perm_12 <span class="op">=</span> {<span class="dv">0</span>:<span class="dv">1</span>, <span class="dv">1</span>:<span class="dv">0</span>}</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compose_d(p1, p2): <span class="cf">return</span> {k: p1[p2[k]] <span class="cf">for</span> k <span class="kw">in</span> p2}</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ncyc_d(p):</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    visited, c <span class="op">=</span> <span class="bu">set</span>(), <span class="dv">0</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> p:</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">not</span> <span class="kw">in</span> visited:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            c <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">=</span> s</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> k <span class="kw">not</span> <span class="kw">in</span> visited: visited.add(k)<span class="op">;</span> k <span class="op">=</span> p[k]</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Show the sigma sum</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 2: Sigma sum (free because reference state fixes all inputs)'</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>D_sym <span class="op">=</span> Symbol(<span class="st">'D'</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>wg_sum <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(D_sym<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> (<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(D_sym<span class="op">*</span>(D_sym<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Wg(id) + Wg((12)) = </span><span class="sc">{</span>simplify(wg_sum)<span class="sc">}</span><span class="ss"> = 1/[D(D+1)]'</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> simplify(wg_sum <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>(D_sym<span class="op">*</span>(D_sym<span class="op">+</span><span class="dv">1</span>))) <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  Confirmed ✓'</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Loop counting table</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>ext_A <span class="op">=</span> perm_12  <span class="co"># SWAP</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>ext_B <span class="op">=</span> perm_id  <span class="co"># identity</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 3: Cycle counting table'</span>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'     π | Eff on A (π∘SWAP) | Eff on B (π∘id) | Loop factor'</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>total_loops <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, pi <span class="kw">in</span> [(<span class="st">'id'</span>, perm_id), (<span class="st">'(12)'</span>, perm_12)]:</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    eA <span class="op">=</span> compose_d(pi, ext_A)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    eB <span class="op">=</span> compose_d(pi, ext_B)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    cA, cB <span class="op">=</span> ncyc_d(eA), ncyc_d(eB)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>name<span class="sc">:&gt;6}</span><span class="ss"> | </span><span class="sc">{</span>cA<span class="sc">}</span><span class="ss"> cycle(s) → D_A^</span><span class="sc">{</span>cA<span class="sc">}</span><span class="ss">    | </span><span class="sc">{</span>cB<span class="sc">}</span><span class="ss"> cycle(s) → D_B^</span><span class="sc">{</span>cB<span class="sc">}</span><span class="ss">  | D_A^</span><span class="sc">{</span>cA<span class="sc">}</span><span class="ss">·D_B^</span><span class="sc">{</span>cB<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Numerical cross-check</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 4: Numerical verification'</span>)</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dA, dB <span class="kw">in</span> [(<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">4</span>), (<span class="dv">3</span>,<span class="dv">3</span>), (<span class="dv">4</span>,<span class="dv">4</span>), (<span class="dv">2</span>,<span class="dv">8</span>)]:</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> dA <span class="op">*</span> dB</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    wg_s <span class="op">=</span> <span class="fl">1.0</span><span class="op">/</span>(D<span class="op">*</span>(D<span class="op">+</span><span class="dv">1</span>))  <span class="co"># sum_tau Wg(tau)</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    loops <span class="op">=</span> dA<span class="op">*</span>dB<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> dA<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dB</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    purity <span class="op">=</span> wg_s <span class="op">*</span> loops</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> (dA<span class="op">+</span>dB) <span class="op">/</span> (dA<span class="op">*</span>dB <span class="op">+</span> <span class="fl">1.0</span>)</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  DA=</span><span class="sc">{</span>dA<span class="sc">}</span><span class="ss">,DB=</span><span class="sc">{</span>dB<span class="sc">}</span><span class="ss">: analytic = </span><span class="sc">{</span>purity<span class="sc">:.8f}</span><span class="ss">, formula = </span><span class="sc">{</span>exact<span class="sc">:.8f}</span><span class="ss">, '</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'match = </span><span class="sc">{</span><span class="bu">abs</span>(purity<span class="op">-</span>exact) <span class="op">&lt;</span> <span class="fl">1e-12</span><span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(purity <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="fl">1e-12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Part (b): Step-by-step purity derivation ===
+
+Step 2: Sigma sum (free because reference state fixes all inputs)
+  Wg(id) + Wg((12)) = 1/(D*(D + 1)) = 1/[D(D+1)]
+  Confirmed ✓
+
+Step 3: Cycle counting table
+     π | Eff on A (π∘SWAP) | Eff on B (π∘id) | Loop factor
+------------------------------------------------------------
+    id | 1 cycle(s) → D_A^1    | 2 cycle(s) → D_B^2  | D_A^1·D_B^2
+  (12) | 2 cycle(s) → D_A^2    | 1 cycle(s) → D_B^1  | D_A^2·D_B^1
+
+Step 4: Numerical verification
+  DA=2,DB=2: analytic = 0.80000000, formula = 0.80000000, match = True
+  DA=2,DB=4: analytic = 0.66666667, formula = 0.66666667, match = True
+  DA=3,DB=3: analytic = 0.60000000, formula = 0.60000000, match = True
+  DA=4,DB=4: analytic = 0.47058824, formula = 0.47058824, match = True
+  DA=2,DB=8: analytic = 0.58823529, formula = 0.58823529, match = True</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:35.948037Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:35.947721Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:37.406294Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:37.405982Z&quot;}" data-execution_count="5">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): NumPy Monte Carlo cross-check ==='</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dA, dB <span class="kw">in</span> [(<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">4</span>), (<span class="dv">3</span>,<span class="dv">3</span>)]:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> dA <span class="op">*</span> dB</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    purities <span class="op">=</span> []</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>):</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]  <span class="co"># Haar-random |ψ⟩ = U|0⟩</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        rho_A <span class="op">=</span> psi.reshape(dA, dB) <span class="op">@</span> psi.reshape(dA, dB).conj().T</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        purities.append(np.real(np.trace(rho_A <span class="op">@</span> rho_A)))</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    mc <span class="op">=</span> np.mean(purities)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    mc_err <span class="op">=</span> np.std(purities) <span class="op">/</span> np.sqrt(<span class="bu">len</span>(purities))</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> (dA <span class="op">+</span> dB) <span class="op">/</span> (dA<span class="op">*</span>dB <span class="op">+</span> <span class="fl">1.0</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  DA=</span><span class="sc">{</span>dA<span class="sc">}</span><span class="ss">,DB=</span><span class="sc">{</span>dB<span class="sc">}</span><span class="ss">: MC = </span><span class="sc">{</span>mc<span class="sc">:.4f}</span><span class="ss"> ± </span><span class="sc">{</span>mc_err<span class="sc">:.4f}</span><span class="ss">, '</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'analytic = </span><span class="sc">{</span>exact<span class="sc">:.4f}</span><span class="ss">, |err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc <span class="op">-</span> exact)<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="dv">3</span> <span class="op">*</span> mc_err <span class="op">+</span> <span class="fl">0.01</span>  <span class="co"># within ~3σ</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All purity checks PASS ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Part (b): NumPy Monte Carlo cross-check ===</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  DA=2,DB=2: MC = 0.8004 ± 0.0013, analytic = 0.8000, |err| = 0.0004</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  DA=2,DB=4: MC = 0.6664 ± 0.0010, analytic = 0.6667, |err| = 0.0003</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  DA=3,DB=3: MC = 0.6004 ± 0.0010, analytic = 0.6000, |err| = 0.0004
+  All purity checks PASS ✓</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="part-c-third-moment-mathbbemathrmtru6-via-full-s_3-calculus" class="level2">
+<h2 class="anchored" data-anchor-id="part-c-third-moment-mathbbemathrmtru6-via-full-s_3-calculus">5. Part (c): Third Moment, <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}(U)|^6]\)</span> via Full <span class="math inline">\(S_3\)</span> Calculus</h2>
+<section id="analytical-derivation-2" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-derivation-2">Analytical derivation</h3>
+<p><strong>Goal:</strong> Compute <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}(U)|^6]\)</span> for Haar-random <span class="math inline">\(U \in U(D)\)</span>.</p>
+<p><strong>Step 1, Index expansion:</strong> <span class="math inline">\(|\mathrm{Tr}(U)|^6 = \sum_{i_1,i_2,i_3,\ell_1,\ell_2,\ell_3} U_{i_1 i_1} U_{i_2 i_2} U_{i_3 i_3} U^*_{\ell_1 \ell_1} U^*_{\ell_2 \ell_2} U^*_{\ell_3 \ell_3}\)</span>.</p>
+<p>This sets <span class="math inline">\(j_a = i_a\)</span> and <span class="math inline">\(m_a = \ell_a\)</span> (the trace constraint: all indices are “diagonal”).</p>
+<p><strong>Step 2, Weingarten sum:</strong> For each <span class="math inline">\((\pi, \sigma) \in S_3 \times S_3\)</span>, the delta product <span class="math inline">\(\prod_a \delta_{i_a, \ell_{\pi(a)}} \delta_{i_a, \ell_{\sigma(a)}}\)</span> forces <span class="math inline">\(\ell_{\pi(a)} = \ell_{\sigma(a)}\)</span> for all <span class="math inline">\(a\)</span>. The number of free summation indices equals <span class="math inline">\(D^{\#\text{cycles}(\pi^{-1}\sigma)}\)</span>.</p>
+<p><strong>Step 3, Group by cycle type of <span class="math inline">\(\pi^{-1}\sigma\)</span>:</strong> Since <span class="math inline">\(\mathrm{Wg}\)</span> depends only on cycle type, we count how many of the <span class="math inline">\(36\)</span> pairs <span class="math inline">\((\pi, \sigma)\)</span> give each cycle type of <span class="math inline">\(\pi^{-1}\sigma\)</span>.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:37.407707Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:37.407543Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:37.411425Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:37.411164Z&quot;}" data-execution_count="6">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (c): Full S₃ Weingarten calculus ==='</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Enumerate S_3 and show cycle types</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>S3 <span class="op">=</span> <span class="bu">list</span>(permutations(<span class="bu">range</span>(<span class="dv">3</span>)))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Step 1: S₃ has </span><span class="sc">{</span><span class="bu">len</span>(S3)<span class="sc">}</span><span class="ss"> elements, giving </span><span class="sc">{</span><span class="bu">len</span>(S3)<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss"> pairs (π,σ)'</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ct_count <span class="op">=</span> Counter(cycle_type(p) <span class="cf">for</span> p <span class="kw">in</span> S3)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ct, n <span class="kw">in</span> <span class="bu">sorted</span>(ct_count.items()):</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  Cycle type </span><span class="sc">{</span>ct<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> permutations'</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Count (π,σ) pairs by cycle type of π^{-1}σ</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 2: Distribution of π⁻¹σ cycle types across all 36 pairs'</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>pair_types <span class="op">=</span> defaultdict(<span class="kw">lambda</span>: {<span class="st">'count'</span>: <span class="dv">0</span>, <span class="st">'ncyc'</span>: <span class="dv">0</span>})</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pi <span class="kw">in</span> S3:</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sig <span class="kw">in</span> S3:</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        prod <span class="op">=</span> compose(inverse(pi), sig)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        ct <span class="op">=</span> cycle_type(prod)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        pair_types[ct][<span class="st">'count'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        pair_types[ct][<span class="st">'ncyc'</span>] <span class="op">=</span> num_cycles(prod)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  cycle type | # pairs | # cycles | loop factor'</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ct <span class="kw">in</span> <span class="bu">sorted</span>(pair_types.keys()):</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> pair_types[ct]</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    cnt <span class="op">=</span> d[<span class="st">"count"</span>]</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    ncyc <span class="op">=</span> d[<span class="st">"ncyc"</span>]</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="bu">str</span>(ct)<span class="sc">:&gt;12}</span><span class="ss"> | </span><span class="sc">{</span>cnt<span class="sc">:7d}</span><span class="ss"> | </span><span class="sc">{</span>ncyc<span class="sc">:8d}</span><span class="ss"> | D^</span><span class="sc">{</span>ncyc<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Part (c): Full S₃ Weingarten calculus ===
+
+Step 1: S₃ has 6 elements, giving 36 pairs (π,σ)
+
+  Cycle type (1, 1, 1): 1 permutations
+  Cycle type (2, 1): 3 permutations
+  Cycle type (3,): 2 permutations
+
+Step 2: Distribution of π⁻¹σ cycle types across all 36 pairs
+  cycle type | # pairs | # cycles | loop factor
+--------------------------------------------------
+   (1, 1, 1) |       6 |        3 | D^3
+      (2, 1) |      18 |        2 | D^2
+        (3,) |      12 |        1 | D^1</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:37.412653Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:37.412463Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:37.416082Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:37.415852Z&quot;}" data-execution_count="7">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Compute E[|Tr(U)|^6] for several D</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 3: Explicit evaluation of the Weingarten sum'</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> wg3_values(D):</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return k=3 Weingarten function values by cycle type."""</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    dn <span class="op">=</span> D <span class="op">*</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>): (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">2</span>) <span class="op">/</span> dn,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">2</span>,<span class="dv">1</span>): <span class="op">-</span><span class="fl">1.0</span> <span class="op">/</span> ((D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span>)),</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">3</span>,): <span class="fl">2.0</span> <span class="op">/</span> dn</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'   D | '</span>, end<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ct <span class="kw">in</span> <span class="bu">sorted</span>(pair_types.keys()):</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> pair_types[ct][<span class="st">'count'</span>]</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> pair_types[ct][<span class="st">'ncyc'</span>]</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    ct_str <span class="op">=</span> <span class="bu">str</span>(ct)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> x Wg(</span><span class="sc">{</span>ct_str<span class="sc">}</span><span class="ss">) x D^</span><span class="sc">{</span>nc<span class="sc">}</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">' | '</span>)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total'</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">200</span>]:</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> wg3_values(D)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    terms <span class="op">=</span> []</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ct <span class="kw">in</span> <span class="bu">sorted</span>(pair_types.keys()):</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pair_types[ct][<span class="st">'count'</span>]</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>        nc <span class="op">=</span> pair_types[ct][<span class="st">'ncyc'</span>]</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>        contrib <span class="op">=</span> count <span class="op">*</span> W[ct] <span class="op">*</span> D<span class="op">**</span>nc</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>        terms.append(<span class="ss">f'</span><span class="sc">{</span>contrib<span class="sc">:+10.4f}</span><span class="ss">'</span>)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> contrib</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>D<span class="sc">:4d}</span><span class="ss"> | '</span> <span class="op">+</span> <span class="st">' | '</span>.join(terms) <span class="op">+</span> <span class="ss">f' | </span><span class="sc">{</span>total<span class="sc">:6.1f}</span><span class="ss">'</span>)</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Result: E[|Tr(U)|⁶] = 6 = 3! for all D ≥ 3'</span>)</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'This is the CUE moment theorem: E[|Tr(U)|^</span><span class="sc">{2k}</span><span class="st">] = k!'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Step 3: Explicit evaluation of the Weingarten sum
+
+   D | 6 x Wg((1, 1, 1)) x D^3 | 18 x Wg((2, 1)) x D^2 | 12 x Wg((3,)) x D^1 | Total
+--------------------------------------------------------------------------------
+   3 |    +9.4500 |    -4.0500 |    +0.6000 |    6.0
+   4 |    +7.4667 |    -1.6000 |    +0.1333 |    6.0
+   5 |    +6.8452 |    -0.8929 |    +0.0476 |    6.0
+  10 |    +6.1869 |    -0.1894 |    +0.0025 |    6.0
+  50 |    +6.0072 |    -0.0072 |    +0.0000 |    6.0
+ 200 |    +6.0005 |    -0.0005 |    +0.0000 |    6.0
+
+Result: E[|Tr(U)|⁶] = 6 = 3! for all D ≥ 3
+This is the CUE moment theorem: E[|Tr(U)|^{2k}] = k!</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:37.417265Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:37.417031Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:39.786766Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:39.786417Z&quot;}" data-execution_count="8">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: NumPy Monte Carlo cross-check</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 4: NumPy Monte Carlo cross-check'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>]:</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> [<span class="bu">abs</span>(np.trace(unitary_group.rvs(D)))<span class="op">**</span><span class="dv">6</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20000</span>)]</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    mc <span class="op">=</span> np.mean(vals)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    mc_err <span class="op">=</span> np.std(vals) <span class="op">/</span> np.sqrt(<span class="bu">len</span>(vals))</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  D=</span><span class="sc">{</span>D<span class="sc">:3d}</span><span class="ss">: MC = </span><span class="sc">{</span>mc<span class="sc">:.3f}</span><span class="ss"> ± </span><span class="sc">{</span>mc_err<span class="sc">:.3f}</span><span class="ss">, analytic = 6.000, '</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'|err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc <span class="op">-</span> <span class="dv">6</span>)<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc <span class="op">-</span> <span class="fl">6.0</span>) <span class="op">&lt;</span> <span class="dv">3</span><span class="op">*</span>mc_err <span class="op">+</span> <span class="fl">0.2</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All sixth-moment checks PASS ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Step 4: NumPy Monte Carlo cross-check</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  D=  3: MC = 6.155 ± 0.159, analytic = 6.000, |err| = 0.155</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  D=  5: MC = 6.331 ± 0.209, analytic = 6.000, |err| = 0.331</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  D= 10: MC = 6.089 ± 0.178, analytic = 6.000, |err| = 0.089
+  All sixth-moment checks PASS ✓</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="physical-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="physical-interpretation">6. Physical Interpretation</h2>
+<section id="why-does-mathbbemathrmtru2k-k" class="level3">
+<h3 class="anchored" data-anchor-id="why-does-mathbbemathrmtru2k-k">Why does <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}(U)|^{2k}] = k!\)</span>?</h3>
+<p>This result connects Haar-random unitaries to <strong>complex Gaussian random variables</strong>. For a single complex Gaussian <span class="math inline">\(z \sim \mathcal{N}_\mathbb{C}(0,1)\)</span>, the moments are <span class="math inline">\(\mathbb{E}[|z|^{2k}] = k!\)</span> (by Wick’s theorem). In the large-<span class="math inline">\(D\)</span> limit, <span class="math inline">\(\mathrm{Tr}(U)\)</span> for a Haar-random <span class="math inline">\(U \in U(D)\)</span> behaves like a standard complex Gaussian, this is a consequence of the central limit theorem applied to the <span class="math inline">\(D\)</span> eigenvalues <span class="math inline">\(e^{i\theta_j}\)</span> of <span class="math inline">\(U\)</span>.</p>
+<p>The remarkable fact is that the Weingarten calculus gives <span class="math inline">\(k!\)</span> <strong>exactly</strong> for all <span class="math inline">\(D \geq k\)</span>, not just asymptotically. This is because the Weingarten function is the exact inverse of the representation-theoretic Gram matrix, and the exact cancellations between planar and non-planar contributions produce dimension-independent trace moments.</p>
+</section>
+<section id="the-topological-structure" class="level3">
+<h3 class="anchored" data-anchor-id="the-topological-structure">The topological structure</h3>
+<ol type="1">
+<li><strong>Planar pairings</strong> (identity permutation, uncrossed wires) produce the most loops and dominate at large <span class="math inline">\(D\)</span></li>
+<li><strong>Non-planar pairings</strong> (crossings) produce fewer loops and are suppressed by <span class="math inline">\(1/D\)</span> per crossing</li>
+<li>The <span class="math inline">\(1/D\)</span> suppression hierarchy mirrors the <strong>genus expansion</strong> of matrix models, a deep connection between random matrix theory and two-dimensional quantum gravity</li>
+</ol>
+</section>
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>Each Haar average collapses to a weighted sum over permutations, with loop counting fixing the dimension factors and the Weingarten function fixing the weights, reproducing the closed forms through <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}\,U|^6] = 6\)</span>. Symbolic algebra and Monte Carlo sampling agree at every moment.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3.6, Concentration of Purity (Lévy’s Lemma)</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/04-dynamics.html" class="pagination-link">
+        <span class="nav-page-text">4 · Quantum Dynamics &amp; Chaos</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2026 Marcin Płodzień · MIT License</div>   
+    <div class="nav-footer-right"><a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
