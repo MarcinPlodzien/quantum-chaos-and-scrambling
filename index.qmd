@@ -13,33 +13,27 @@ short Python notebook you can open, run, and modify. If you can read `numpy`, yo
 can follow along.
 :::
 
-## Why learn this
+## The bigger picture
 
-The same simple move — averaging over random quantum evolution — has quietly become
-one of the most productive ideas in modern physics, and it turns up in places that
-look completely unrelated:
+One operation recurs across problems that otherwise have little in common —
+averaging over random quantum evolution:
 
-- **Why isolated quantum systems thermalize.** A closed system never forgets its
-  initial state, yet any small part of it settles to something that looks thermal.
-  Typicality is the reason, and it underlies the modern understanding of quantum
-  statistical mechanics.
-- **The black-hole information problem.** How information that falls into a black
-  hole re-emerges in its radiation is, in the end, the same Page-curve calculation
-  you will do here. Scrambling is the concrete bridge between quantum gravity and
-  quantum information.
-- **Whether quantum computers do what they claim.** The benchmarks that certify real
-  hardware — randomized benchmarking, cross-entropy, classical shadows — all rest on
-  Haar randomness. This is not abstract: it is how groups at Google and IBM
-  characterize their chips.
-- **The limits of quantum machine learning.** The barren-plateau problem, which stops
-  many quantum models from training at all, is the same concentration of measure seen
-  from another angle. Understanding it tells you which quantum-ML ideas can work
-  before you write a line of code.
+- **Thermalization.** A closed quantum system never forgets its initial state, yet
+  any small part of it looks thermal. Typicality — almost all states sharing the same
+  local properties — is the reason, and it is the basis of quantum statistical
+  mechanics.
+- **Black-hole information.** How information that falls into a black hole comes back
+  out in the radiation reduces, in the end, to the Page-curve calculation done here.
+  Scrambling is the link between quantum gravity and quantum information.
+- **Benchmarking real hardware.** Randomized benchmarking, cross-entropy benchmarking,
+  and classical shadows all rest on Haar randomness; they are how groups at Google and
+  IBM characterize their devices.
+- **Trainability of quantum models.** Barren plateaus, the reason many variational
+  quantum algorithms fail to train, come from the same concentration of measure — and
+  the same calculation tells you in advance which approaches can avoid them.
 
-Few subjects sit at the meeting point of high-energy theory, condensed matter, quantum
-information, and machine learning. This one does — and the core toolkit is small enough
-to learn in a few focused sittings, yet general enough to reuse for the rest of your
-research. Learning to compute a Haar average by hand is a genuinely transferable skill.
+The toolkit behind all four is small — Haar averages and a little representation
+theory — and learning it once carries across every one of them.
 
 ## What you'll learn
 

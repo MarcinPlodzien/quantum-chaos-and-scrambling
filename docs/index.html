@@ -124,7 +124,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -204,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">7 · Quantum Machine Learning</h1>
+      <h1 class="quarto-secondary-nav-title">From Haar Random States to Quantum Machine Learning</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -517,7 +516,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">7 · Quantum Machine Learning</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">From Haar Random States to Quantum Machine Learning</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 <p class="subtitle lead">A hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems</p>
 </div>
 
@@ -546,16 +545,16 @@ Start here
 <p>This is a <strong>self-contained, runnable tutorial</strong>. There is no prerequisite reading and nothing to buy: every idea is introduced briefly, then <em>demonstrated</em> in a short Python notebook you can open, run, and modify. If you can read <code>numpy</code>, you can follow along.</p>
 </div>
 </div>
-<section id="why-learn-this" class="level2">
-<h2 class="anchored" data-anchor-id="why-learn-this">Why learn this</h2>
-<p>The same simple move — averaging over random quantum evolution — has quietly become one of the most productive ideas in modern physics, and it turns up in places that look completely unrelated:</p>
+<section id="the-bigger-picture" class="level2">
+<h2 class="anchored" data-anchor-id="the-bigger-picture">The bigger picture</h2>
+<p>One operation recurs across problems that otherwise have little in common — averaging over random quantum evolution:</p>
 <ul>
-<li><strong>Why isolated quantum systems thermalize.</strong> A closed system never forgets its initial state, yet any small part of it settles to something that looks thermal. Typicality is the reason, and it underlies the modern understanding of quantum statistical mechanics.</li>
-<li><strong>The black-hole information problem.</strong> How information that falls into a black hole re-emerges in its radiation is, in the end, the same Page-curve calculation you will do here. Scrambling is the concrete bridge between quantum gravity and quantum information.</li>
-<li><strong>Whether quantum computers do what they claim.</strong> The benchmarks that certify real hardware — randomized benchmarking, cross-entropy, classical shadows — all rest on Haar randomness. This is not abstract: it is how groups at Google and IBM characterize their chips.</li>
-<li><strong>The limits of quantum machine learning.</strong> The barren-plateau problem, which stops many quantum models from training at all, is the same concentration of measure seen from another angle. Understanding it tells you which quantum-ML ideas can work before you write a line of code.</li>
+<li><strong>Thermalization.</strong> A closed quantum system never forgets its initial state, yet any small part of it looks thermal. Typicality — almost all states sharing the same local properties — is the reason, and it is the basis of quantum statistical mechanics.</li>
+<li><strong>Black-hole information.</strong> How information that falls into a black hole comes back out in the radiation reduces, in the end, to the Page-curve calculation done here. Scrambling is the link between quantum gravity and quantum information.</li>
+<li><strong>Benchmarking real hardware.</strong> Randomized benchmarking, cross-entropy benchmarking, and classical shadows all rest on Haar randomness; they are how groups at Google and IBM characterize their devices.</li>
+<li><strong>Trainability of quantum models.</strong> Barren plateaus, the reason many variational quantum algorithms fail to train, come from the same concentration of measure — and the same calculation tells you in advance which approaches can avoid them.</li>
 </ul>
-<p>Few subjects sit at the meeting point of high-energy theory, condensed matter, quantum information, and machine learning. This one does — and the core toolkit is small enough to learn in a few focused sittings, yet general enough to reuse for the rest of your research. Learning to compute a Haar average by hand is a genuinely transferable skill.</p>
+<p>The toolkit behind all four is small — Haar averages and a little representation theory — and learning it once carries across every one of them.</p>
 </section>
 <section id="what-youll-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-youll-learn">What you’ll learn</h2>
@@ -654,157 +653,6 @@ Start here
 
 <!-- -->
 
-<p>Before we can average over random quantum evolutions, we need a shared vocabulary: how to describe <strong>quantum channels</strong>, the <strong>Lie-algebraic</strong> structure that governs how operators grow, the <strong>geometry</strong> of the space of states, and just enough <strong>measure theory</strong> to make the phrase “a uniformly random unitary” mean something precise. None of this assumes prior exposure to Lie groups — the machinery is built up from commutators and the matrix exponential.</p>
-<p>Three threads run through the chapter:</p>
-<ul>
-<li><strong>States and channels.</strong> Density matrices, Kraus operators, and the Choi–Jamiołkowski isomorphism that turns a channel into a state.</li>
-<li><strong>Symmetry and operator growth.</strong> The Lie algebras <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span>, dynamical Lie algebras, and Schur–Weyl duality — the reason random-unitary averages collapse onto a handful of permutations.</li>
-<li><strong>Geometry and measure.</strong> The Fubini–Study metric, curvature and the quantum speed limit, and the measure-theoretic foundation of the Haar measure used in every later chapter.</li>
-</ul>
-</section>
-<section id="notebooks-in-this-part" class="level2">
-<h2 class="anchored" data-anchor-id="notebooks-in-this-part">Notebooks in this part</h2>
-<ul>
-<li><a href="../notebooks/ch1/solution_ch1_fubini_study.ipynb">Bloch-sphere geodesics &amp; the Fubini–Study metric</a> — the natural distance between pure states.</li>
-<li><a href="../notebooks/ch1/solution_ch1_entanglement_parametric.ipynb">Entanglement of a parametric two-qubit state</a> — how entanglement tracks a tunable coupling.</li>
-<li><a href="../notebooks/ch1/solution_ch1_depolarizing_channel.ipynb">The depolarizing channel</a> — Kraus operators, complete positivity, and entanglement fidelity.</li>
-<li><a href="../notebooks/ch1/solution_ch1_dla_closure.ipynb">Dynamical Lie algebra closure</a> — building an algebra by repeated commutators, and what makes a gate set universal.</li>
-<li><a href="../notebooks/ch1/solution_ch1_schur_weyl.ipynb">Schur–Weyl duality for <span class="math inline">\(k=2\)</span></a> — the symmetric/antisymmetric split and the SWAP operator.</li>
-<li><a href="../notebooks/ch1/solution_ch1_choi_amplitude_damping.ipynb">Choi matrix of amplitude damping</a> — channels as states via Choi–Jamiołkowski.</li>
-<li><a href="../notebooks/ch1/solution_ch1_dim_lie_algebra.ipynb">Dimension of <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span></a> — counting generators.</li>
-<li><a href="../notebooks/ch1/solution_ch1_exp_surjectivity.ipynb">Surjectivity of the exponential map</a> — why every unitary is an exponential.</li>
-<li><a href="../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.ipynb">Haar invariance on <span class="math inline">\(U(1)\)</span></a> — what “uniformly random unitary” means, in the simplest case.</li>
-<li><a href="../notebooks/ch1/solution_ch1_quantum_speed_limit.ipynb">Geodesic length &amp; the quantum speed limit</a> — how fast a state can change.</li>
-<li><a href="../notebooks/ch1/solution_ch1_sectional_curvature.ipynb">Sectional curvature of <span class="math inline">\(SU(2)\)</span></a> — why nearby evolutions reconverge.</li>
-<li><a href="../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.ipynb">Differential geometry of state space</a> — the quantum geometric tensor, Berry curvature, and the Fubini–Study metric together.</li>
-<li><a href="../notebooks/ch1/solution_ch1_measure_theory_basics.ipynb">Measure-theory basics</a> — Lebesgue vs counting measure and <span class="math inline">\(\sigma\)</span>-additivity.</li>
-<li><a href="../notebooks/ch1/solution_ch1_borel_measurability.ipynb">Borel <span class="math inline">\(\sigma\)</span>-algebras &amp; measurability on <span class="math inline">\(U(D)\)</span></a> — making “random” rigorous.</li>
-</ul>
-<div class="callout-tip callout callout-style-simple">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Where to start.</strong> If you only want the tools used later, do <em>Schur–Weyl duality</em>, <em>Haar invariance</em>, and <em>the depolarizing channel</em> first — everything in Chapter 3 builds directly on them.</p>
-</div>
-</div>
-</div>
-<p>A chaotic quantum system has no obvious small parameter, yet its <strong>spectrum</strong> is remarkably universal: the fine-grained statistics of its energy levels match those of a <em>random matrix</em> with the same symmetries. This is the Bohigas– Giannoni–Schmit observation, and it is the first concrete sense in which “quantum chaos” can be measured.</p>
-<p>The key phenomenon is <strong>level repulsion</strong> — eigenvalues of a random matrix avoid each other, unlike the independent levels of an integrable system. How strongly they repel depends only on a time-reversal symmetry, giving the three Wigner–Dyson classes (orthogonal, unitary, symplectic). This part derives the repulsion directly from the eigenvalue measure and checks the universal spacing and moment statistics numerically.</p>
-<p>What you’ll take away: the <strong>Wigner surmise</strong>, the <strong>semicircle law</strong> and its combinatorics, and the gap-ratio statistic you’ll reuse in Chapter 4 to detect chaos without unfolding a spectrum.</p>
-</section>
-<section id="notebooks-in-this-part-1" class="level2">
-<h2 class="anchored" data-anchor-id="notebooks-in-this-part-1">Notebooks in this part</h2>
-<ul>
-<li><a href="../notebooks/ch2/solution_ch2_goe_spacing.ipynb">Level repulsion in the GOE</a> — deriving the Wigner surmise for nearest-neighbour spacings.</li>
-<li><a href="../notebooks/ch2/solution_ch2_semicircle_moments.ipynb">Moments of the Wigner semicircle</a> — the Catalan-number combinatorics behind the density.</li>
-<li><a href="../notebooks/ch2/solution_ch2_cue_eigenphase.ipynb">Eigenphase repulsion in the CUE</a> — the same physics for unitaries on the circle.</li>
-</ul>
-<p>This is the technical heart of the tutorial. The <strong>Haar measure</strong> is the unique uniform distribution over the unitary group, and almost every quantitative result in later chapters is a <em>low moment</em> of it — an average of one or two copies of a random unitary acting on an operator.</p>
-<p>The <strong>Weingarten calculus</strong> is the machine that evaluates those averages. The idea is simple once you see it: averaging <span class="math inline">\(k\)</span> copies of <span class="math inline">\(U\)</span> projects onto the operators that commute with <span class="math inline">\(U^{\otimes k}\)</span>, and by Schur–Weyl duality those are exactly the <strong>permutations</strong> of the copies. An integral over a continuous group collapses to a finite sum over the symmetric group, weighted by Weingarten functions.</p>
-<p>With this you can compute, by hand, things that look hard:</p>
-<ul>
-<li>the <strong>first moment</strong> (twirling) — any operator averages to its trace times the identity;</li>
-<li>the <strong>second moment</strong> — purities, frame potentials, and the <strong>Page formula</strong> for the entanglement of a typical state;</li>
-<li><strong>concentration of measure</strong> — why those averages are not just typical but <em>overwhelmingly</em> so as the dimension grows.</li>
-</ul>
-<p>These three facts power Chapters 5–7. Do this chapter carefully.</p>
-</section>
-<section id="notebooks-in-this-part-2" class="level2">
-<h2 class="anchored" data-anchor-id="notebooks-in-this-part-2">Notebooks in this part</h2>
-<ul>
-<li><a href="../notebooks/ch3/solution_ch3_weingarten_first_moment.ipynb">The first Haar moment (twirling)</a> — averaging an operator to its trace times the identity.</li>
-<li><a href="../notebooks/ch3/solution_ch3_swap_trick.ipynb">The SWAP trick</a> — turning purity into a two-copy expectation value.</li>
-<li><a href="../notebooks/ch3/solution_ch3_haar_overlap.ipynb">Overlaps of random states</a> — the distribution of <span class="math inline">\(|\langle\psi|\phi\rangle|^2\)</span> and its moments.</li>
-<li><a href="../notebooks/ch3/solution_ch3_fourth_moment_trace.ipynb">Fourth moment of the trace</a> — a warm-up: <span class="math inline">\(\mathbb{E}|\mathrm{Tr}\,U|^4 = 2\)</span>.</li>
-<li><a href="../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.ipynb">Weingarten calculus as tensor networks</a> — diagrammatic contractions, including the third trace moment.</li>
-<li><a href="../notebooks/ch3/solution_ch3_page_formula.ipynb">The Page formula</a> — average entanglement of a random state, via Marchenko–Pastur.</li>
-<li><a href="../notebooks/ch3/solution_ch3_purity_concentration.ipynb">Concentration of purity</a> — why a random subsystem is almost exactly maximally mixed.</li>
-</ul>
-<div class="callout-important callout callout-style-simple">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>The single most reused result in this tutorial is the <strong>second-moment twirl</strong> <span class="math inline">\(\mathbb{E}_U[U^{\otimes 2}\,X\,U^{\dagger\otimes 2}] = c_{\mathbb{I}}\,\mathbb{I} + c_{\mathbb{F}}\,\mathbb{F}\)</span>. If you internalize one calculation, make it this one.</p>
-</div>
-</div>
-</div>
-<p>Random matrices describe a chaotic spectrum at rest. This part puts the system <strong>in motion</strong> and asks how an initially local piece of information spreads — the process called <strong>scrambling</strong>.</p>
-<p>Two complementary diagnostics appear again and again:</p>
-<ul>
-<li><strong>Out-of-time-ordered correlators (OTOCs).</strong> The squared commutator <span class="math inline">\(C(t) = \langle |[W(t), V]|^2\rangle\)</span> measures how a once-distant operator <span class="math inline">\(W(t)\)</span> grows to overlap <span class="math inline">\(V\)</span>. Its early-time growth defines a quantum Lyapunov exponent, capped by the Maldacena–Shenker–Stanford bound <span class="math inline">\(\lambda \le 2\pi k_B T/\hbar\)</span>.</li>
-<li><strong>The spectral form factor (SFF).</strong> A Fourier transform of the spectrum whose <em>dip–ramp–plateau</em> shape is the time-domain signature of level repulsion, with a plateau pinned at the Hilbert-space dimension.</li>
-</ul>
-<p>A third, basis-independent view — <strong>Krylov complexity</strong> — recasts operator growth as a particle hopping along a semi-infinite chain built by the Lanczos algorithm, turning “how chaotic” into “how fast does the wavepacket spread.”</p>
-</section>
-<section id="notebooks-in-this-part-3" class="level2">
-<h2 class="anchored" data-anchor-id="notebooks-in-this-part-3">Notebooks in this part</h2>
-<ul>
-<li><a href="../notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb">The <span class="math inline">\(C\)</span>–<span class="math inline">\(F\)</span> identity</a> — linking the squared commutator to an OTOC fidelity.</li>
-<li><a href="../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.ipynb">The spectral form factor</a> — dip, ramp, and the plateau at <span class="math inline">\(K = D\)</span>.</li>
-<li><a href="../notebooks/ch4/solution_ch4_krylov_complexity.ipynb">Krylov complexity</a> — operator growth as a tight-binding chain, with <span class="math inline">\(\mathcal{C}_K(t) = \sinh^2(\alpha t)\)</span>.</li>
-</ul>
-<p>Haar randomness is a beautiful benchmark and a practical impossibility: writing down a Haar-random unitary on <span class="math inline">\(N\)</span> qubits costs exponentially many parameters. The fix is to match the Haar measure only where it matters — on its <strong>low moments</strong>.</p>
-<p>A <strong>unitary <span class="math inline">\(t\)</span>-design</strong> is a finite ensemble whose averages agree with the Haar average up to the <span class="math inline">\(t\)</span>-th moment. Everything in Chapters 3 and 6 depends only on the second (sometimes fourth) moment, so a 2- or 3-design is “random enough.” The <strong>Clifford group</strong> is the workhorse: it is an exact 3-design, efficiently sampleable, and classically simulable — yet that very simulability tells us it is <em>missing something</em>.</p>
-<p>That missing ingredient is <strong>nonstabilizerness</strong>, or “magic.” This part makes the gap concrete: Clifford circuits can produce near-maximal entanglement, yet their out-of-time-ordered correlator only ever takes the values <span class="math inline">\(0\)</span> or <span class="math inline">\(4\)</span> — there is no smooth Lyapunov growth. The <strong>stabilizer Rényi entropy</strong> quantifies exactly how far a state sits from the stabilizer world, and it is zero precisely for the states Cliffords can reach.</p>
-</section>
-<section id="notebooks-in-this-part-4" class="level2">
-<h2 class="anchored" data-anchor-id="notebooks-in-this-part-4">Notebooks in this part</h2>
-<ul>
-<li><a href="../notebooks/ch5/solution_ch5_clifford_otoc.ipynb">Clifford OTOCs</a> — why Clifford circuits scramble but have no Lyapunov exponent (the OTOC is <span class="math inline">\(0\)</span> or <span class="math inline">\(4\)</span>).</li>
-<li><a href="../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.ipynb">Stabilizer Rényi entropy</a> — measuring “magic,” the resource beyond entanglement.</li>
-</ul>
-<p>So far randomness has been something to <em>characterize</em>. Here it becomes a <strong>tool</strong>. The same Haar second moment that gave the Page formula also underwrites a suite of practical protocols — and one of the deepest thought experiments in physics.</p>
-<ul>
-<li><strong>Classical shadows.</strong> Random measurements, followed by an analytic inversion of the measurement channel, let you predict many observables of an unknown state from surprisingly few copies. The cost is set by a “shadow norm” that scales as <span class="math inline">\(3^k\)</span> for <span class="math inline">\(k\)</span>-local observables.</li>
-<li><strong>Randomized benchmarking.</strong> Averaging over random Clifford sequences <em>twirls</em> complicated gate noise into a single depolarizing parameter, read off from an exponential decay — the standard way hardware fidelity is reported.</li>
-<li><strong>Hayden–Preskill.</strong> If a black hole is a fast scrambler, information thrown in re-emerges in its radiation almost immediately — provided you already hold its earlier radiation. The decoupling theorem makes this precise, and it is the same Page-curve mathematics in disguise.</li>
-<li><strong>Scrambling and metrology.</strong> Tripartite mutual information becomes a scrambling diagnostic, and the fragility of GHZ-state metrology shows the flip side: highly non-local information is powerful but delicate.</li>
-</ul>
-</section>
-<section id="notebooks-in-this-part-5" class="level2">
-<h2 class="anchored" data-anchor-id="notebooks-in-this-part-5">Notebooks in this part</h2>
-<ul>
-<li><a href="../notebooks/ch6/solution_ch6_shadow_channel.ipynb">The shadow channel</a> — inverting the measurement channel, the heart of classical shadows.</li>
-<li><a href="../notebooks/ch6/solution_ch6_numerical_shadows.ipynb">Classical shadows in action</a> — estimating observables from random measurements.</li>
-<li><a href="../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.ipynb">Randomized benchmarking</a> — extracting gate fidelity from an exponential decay.</li>
-<li><a href="../notebooks/ch6/solution_ch6_tripartite_mutual_information.ipynb">Tripartite mutual information</a> — a quantitative diagnostic of scrambling.</li>
-<li><a href="../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.ipynb">Fragility of GHZ metrology</a> — Heisenberg-scaling sensitivity destroyed by a single lost qubit.</li>
-</ul>
-<p>The tutorial closes where randomness becomes a <em>liability</em>. The expressivity that makes deep quantum circuits interesting is exactly what makes them hard to train — and the proof is the Haar second moment from Chapter 3.</p>
-<p>The central phenomenon is the <strong>barren plateau</strong>: for a circuit that is random enough to form a 2-design, the variance of any cost-function gradient vanishes <strong>exponentially</strong> in the number of qubits. The optimization landscape flattens, and gradient-based training stalls. The same calculation explains the cures — <strong>local</strong> cost functions, symmetry restrictions, shallow blocks — which keep the circuit <em>away</em> from full Haar randomness and restore a polynomial gradient.</p>
-<p>The plateau wears several faces, all the same physics:</p>
-<ul>
-<li><strong>quantum kernels</strong> whose entries concentrate exponentially, washing out the similarity structure a kernel method needs;</li>
-<li><strong>quantum Fisher information</strong> that flattens, the metrology-flavored view of the same variance collapse;</li>
-<li><strong>generative and reservoir models</strong> (Born machines, extreme learning machines, reservoir computing) where over-scrambling pushes outputs toward Porter–Thomas statistics and useful signal concentrates away.</li>
-</ul>
-<p>The lesson is a balance: scrambling buys expressivity but costs trainability, and the useful regime is the structured, <em>incomplete</em> one in between.</p>
-</section>
-<section id="notebooks-in-this-part-6" class="level2">
-<h2 class="anchored" data-anchor-id="notebooks-in-this-part-6">Notebooks in this part</h2>
-<ul>
-<li><a href="../notebooks/ch7/solution_ch7_barren_plateau.ipynb">Barren plateaus</a> — gradient variance vanishing exponentially with qubit number.</li>
-<li><a href="../notebooks/ch7/solution_ch7_local_vs_global_cost.ipynb">Local vs global cost functions</a> — how observable locality rescues trainability.</li>
-<li><a href="../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.ipynb">Barren plateaus via quantum Fisher information</a> — the metrology view of the same collapse.</li>
-<li><a href="../notebooks/ch7/solution_ch7_quantum_kernel_concentration.ipynb">Quantum kernel concentration</a> — why over-expressive kernels become uninformative.</li>
-<li><a href="../notebooks/ch7/solution_ch7_born_machine.ipynb">Born-machine expressivity</a> — concentration of a generative model’s output distribution.</li>
-<li><a href="../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.ipynb">QELM feature concentration</a> — feature collapse in quantum extreme learning machines.</li>
-<li><a href="../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.ipynb">Quantum reservoir computing</a> — injection contractivity and restarting overhead.</li>
-</ul>
-<div class="callout-note callout callout-style-simple">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Full circle.</strong> The exponential that obstructs training here is the same <span class="math inline">\(1/D\)</span> from the Page formula in Chapter 3 — typicality, viewed from the other side.</p>
-</div>
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -1131,116 +979,110 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>can follow along.</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why learn this</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## The bigger picture</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>The same simple move — averaging over random quantum evolution — has quietly become</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>one of the most productive ideas in modern physics, and it turns up in places that</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>look completely unrelated:</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Why isolated quantum systems thermalize.** A closed system never forgets its</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  initial state, yet any small part of it settles to something that looks thermal.</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  Typicality is the reason, and it underlies the modern understanding of quantum</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  statistical mechanics.</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The black-hole information problem.** How information that falls into a black</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  hole re-emerges in its radiation is, in the end, the same Page-curve calculation</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  you will do here. Scrambling is the concrete bridge between quantum gravity and</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  quantum information.</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Whether quantum computers do what they claim.** The benchmarks that certify real</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  hardware — randomized benchmarking, cross-entropy, classical shadows — all rest on</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  Haar randomness. This is not abstract: it is how groups at Google and IBM</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  characterize their chips.</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The limits of quantum machine learning.** The barren-plateau problem, which stops</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  many quantum models from training at all, is the same concentration of measure seen</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  from another angle. Understanding it tells you which quantum-ML ideas can work</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  before you write a line of code.</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>Few subjects sit at the meeting point of high-energy theory, condensed matter, quantum</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>information, and machine learning. This one does — and the core toolkit is small enough</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>to learn in a few focused sittings, yet general enough to reuse for the rest of your</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>research. Learning to compute a Haar average by hand is a genuinely transferable skill.</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>One operation recurs across problems that otherwise have little in common —</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>averaging over random quantum evolution:</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Thermalization.** A closed quantum system never forgets its initial state, yet</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  any small part of it looks thermal. Typicality — almost all states sharing the same</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  local properties — is the reason, and it is the basis of quantum statistical</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  mechanics.</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Black-hole information.** How information that falls into a black hole comes back</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  out in the radiation reduces, in the end, to the Page-curve calculation done here.</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  Scrambling is the link between quantum gravity and quantum information.</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Benchmarking real hardware.** Randomized benchmarking, cross-entropy benchmarking,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  and classical shadows all rest on Haar randomness; they are how groups at Google and</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  IBM characterize their devices.</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Trainability of quantum models.** Barren plateaus, the reason many variational</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  quantum algorithms fail to train, come from the same concentration of measure — and</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  the same calculation tells you in advance which approaches can avoid them.</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>The toolkit behind all four is small — Haar averages and a little representation</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>theory — and learning it once carries across every one of them.</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you'll learn</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>A surprising amount of modern quantum theory rests on a single question: **what</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>happens when you average over random quantum evolutions?** The answer ties</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>together topics that look unrelated at first —</span>
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you'll learn</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>A surprising amount of modern quantum theory rests on a single question: **what</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>happens when you average over random quantum evolutions?** The answer ties</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>together topics that look unrelated at first —</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; spectral statistics of chaotic Hamiltonians · the entanglement of a typical</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; quantum state · how scrambled information hides and re-emerges · why some</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; quantum machine-learning models refuse to train.</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>This tutorial builds the toolkit once and then follows it across all of them.</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>By the end you will be able to:</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**average over random unitaries by hand** using the Weingarten calculus, and</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  predict second- and fourth-moment quantities (purity, frame potentials,</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  gradient variances);</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**read the fingerprints of quantum chaos** in a spectrum — level repulsion,</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  the spectral form factor, the random-matrix universality classes;</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**quantify scrambling** with out-of-time-ordered correlators, Krylov</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  complexity, and tripartite mutual information;</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**use randomness as a tool** — classical shadows, randomized benchmarking, and</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  the Hayden–Preskill recovery protocol;</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**explain barren plateaus** and the expressivity–trainability tension in</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  quantum machine learning, from first principles.</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the tutorial is organized</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>Seven short parts, each a *concept page* followed by *runnable notebooks*:</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>| Part | You'll be able to… | Notebooks |</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>|---|---|---|</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">1 · Mathematical Foundations</span><span class="co">](chapters/01-foundations.qmd)</span> | Speak the language: channels, Lie algebras, state geometry, measure theory | 14 |</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">2 · Random Matrix Theory</span><span class="co">](chapters/02-random-matrix-theory.qmd)</span> | Diagnose chaos from a spectrum | 3 |</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">3 · Haar Measure &amp; Weingarten Calculus</span><span class="co">](chapters/03-haar-weingarten.qmd)</span> | Average over random unitaries and derive the Page formula | 7 |</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">4 · Quantum Dynamics &amp; Chaos</span><span class="co">](chapters/04-dynamics.qmd)</span> | Measure scrambling in real time | 3 |</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">5 · Designs &amp; Clifford Ensembles</span><span class="co">](chapters/05-designs.qmd)</span> | Replace Haar randomness with something efficient | 2 |</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">6 · Applications of Scrambling</span><span class="co">](chapters/06-applications.qmd)</span> | Turn randomness into protocols | 5 |</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">7 · Quantum Machine Learning</span><span class="co">](chapters/07-qml.qmd)</span> | Understand trainability through the same lens | 7 |</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; spectral statistics of chaotic Hamiltonians · the entanglement of a typical</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; quantum state · how scrambled information hides and re-emerges · why some</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; quantum machine-learning models refuse to train.</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>This tutorial builds the toolkit once and then follows it across all of them.</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>By the end you will be able to:</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**average over random unitaries by hand** using the Weingarten calculus, and</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  predict second- and fourth-moment quantities (purity, frame potentials,</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  gradient variances);</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**read the fingerprints of quantum chaos** in a spectrum — level repulsion,</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  the spectral form factor, the random-matrix universality classes;</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**quantify scrambling** with out-of-time-ordered correlators, Krylov</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  complexity, and tripartite mutual information;</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**use randomness as a tool** — classical shadows, randomized benchmarking, and</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  the Hayden–Preskill recovery protocol;</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**explain barren plateaus** and the expressivity–trainability tension in</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  quantum machine learning, from first principles.</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the tutorial is organized</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>Seven short parts, each a *concept page* followed by *runnable notebooks*:</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>| Part | You'll be able to… | Notebooks |</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>|---|---|---|</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">1 · Mathematical Foundations</span><span class="co">](chapters/01-foundations.qmd)</span> | Speak the language: channels, Lie algebras, state geometry, measure theory | 14 |</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">2 · Random Matrix Theory</span><span class="co">](chapters/02-random-matrix-theory.qmd)</span> | Diagnose chaos from a spectrum | 3 |</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">3 · Haar Measure &amp; Weingarten Calculus</span><span class="co">](chapters/03-haar-weingarten.qmd)</span> | Average over random unitaries and derive the Page formula | 7 |</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">4 · Quantum Dynamics &amp; Chaos</span><span class="co">](chapters/04-dynamics.qmd)</span> | Measure scrambling in real time | 3 |</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">5 · Designs &amp; Clifford Ensembles</span><span class="co">](chapters/05-designs.qmd)</span> | Replace Haar randomness with something efficient | 2 |</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">6 · Applications of Scrambling</span><span class="co">](chapters/06-applications.qmd)</span> | Turn randomness into protocols | 5 |</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">7 · Quantum Machine Learning</span><span class="co">](chapters/07-qml.qmd)</span> | Understand trainability through the same lens | 7 |</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>You can read it front to back as a course, or jump to any notebook — each one</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>stands on its own. A companion **[Exercises &amp; Solutions PDF](exercises.qmd)**</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>collects analytical problems, worked solutions, and flashcards for every part.</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Run it in two minutes</span></span>
 <span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>You can read it front to back as a course, or jump to any notebook — each one</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>stands on its own. A companion **[Exercises &amp; Solutions PDF](exercises.qmd)**</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>collects analytical problems, worked solutions, and flashcards for every part.</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## Run it in two minutes</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quantum-chaos-and-scrambling</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab        <span class="co"># open any notebook under source_notebooks/</span></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quantum-chaos-and-scrambling</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab        <span class="co"># open any notebook under source_notebooks/</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>Everything runs on a laptop with a standard scientific-Python stack</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>(<span class="in">`numpy`</span>, <span class="in">`scipy`</span>, <span class="in">`matplotlib`</span>). No quantum hardware, no GPUs, no special</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>libraries.</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Who this is for</span></span>
 <span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>Everything runs on a laptop with a standard scientific-Python stack</span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>(<span class="in">`numpy`</span>, <span class="in">`scipy`</span>, <span class="in">`matplotlib`</span>). No quantum hardware, no GPUs, no special</span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>libraries.</span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Who this is for</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>Graduate students and researchers in quantum information, condensed matter, or</span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>quantum machine learning — and anyone comfortable with linear algebra and Python</span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>who wants to *compute* with these ideas rather than only read about them. The</span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>mathematical prerequisites are light and built up as needed in Part 1.</span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="simple" icon=false}</span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>This tutorial is the open, hands-on companion to the monograph *Quantum Chaos and</span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>Information Scrambling: From Random Matrix Theory to Quantum Machine Learning*.</span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>It is designed to stand entirely on its own. Suggestions and fixes are welcome —</span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>please <span class="co">[</span><span class="ot">open an issue or pull request</span><span class="co">](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling)</span>.</span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the author</span></span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>**Marcin Płodzień**</span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Email</span><span class="co">](mailto:mplodzien@gmail.com)</span> ·</span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">ORCID</span><span class="co">](https://orcid.org/0000-0002-0835-1644)</span> ·</span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Google Scholar</span><span class="co">](https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en)</span> ·</span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://github.com/MarcinPlodzien)</span> ·</span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Scopus</span><span class="co">](https://www.scopus.com/authid/detail.uri?authorId=55031869100)</span> ·</span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Web of Science</span><span class="co">](https://www.webofscience.com/wos/author/record/K-7326-2017)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>Graduate students and researchers in quantum information, condensed matter, or</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>quantum machine learning — and anyone comfortable with linear algebra and Python</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>who wants to *compute* with these ideas rather than only read about them. The</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>mathematical prerequisites are light and built up as needed in Part 1.</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="simple" icon=false}</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>This tutorial is the open, hands-on companion to the monograph *Quantum Chaos and</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>Information Scrambling: From Random Matrix Theory to Quantum Machine Learning*.</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>It is designed to stand entirely on its own. Suggestions and fixes are welcome —</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>please <span class="co">[</span><span class="ot">open an issue or pull request</span><span class="co">](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling)</span>.</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the author</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>**Marcin Płodzień**</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Email</span><span class="co">](mailto:mplodzien@gmail.com)</span> ·</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">ORCID</span><span class="co">](https://orcid.org/0000-0002-0835-1644)</span> ·</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Google Scholar</span><span class="co">](https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en)</span> ·</span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://github.com/MarcinPlodzien)</span> ·</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Scopus</span><span class="co">](https://www.scopus.com/authid/detail.uri?authorId=55031869100)</span> ·</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Web of Science</span><span class="co">](https://www.webofscience.com/wos/author/record/K-7326-2017)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

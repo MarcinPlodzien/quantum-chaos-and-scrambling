@@ -107,44 +107,44 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "7 · Quantum Machine Learning",
+    "title": "From Haar Random States to Quantum Machine Learning",
     "section": "",
     "text": "Start here\n\n\n\nThis is a self-contained, runnable tutorial. There is no prerequisite reading and nothing to buy: every idea is introduced briefly, then demonstrated in a short Python notebook you can open, run, and modify. If you can read numpy, you can follow along."
   },
   {
     "objectID": "index.html#what-youll-learn",
     "href": "index.html#what-youll-learn",
-    "title": "7 · Quantum Machine Learning",
+    "title": "From Haar Random States to Quantum Machine Learning",
     "section": "What you’ll learn",
     "text": "What you’ll learn\nA surprising amount of modern quantum theory rests on a single question: what happens when you average over random quantum evolutions? The answer ties together topics that look unrelated at first —\n\nspectral statistics of chaotic Hamiltonians · the entanglement of a typical quantum state · how scrambled information hides and re-emerges · why some quantum machine-learning models refuse to train.\n\nThis tutorial builds the toolkit once and then follows it across all of them. By the end you will be able to:\n\naverage over random unitaries by hand using the Weingarten calculus, and predict second- and fourth-moment quantities (purity, frame potentials, gradient variances);\nread the fingerprints of quantum chaos in a spectrum — level repulsion, the spectral form factor, the random-matrix universality classes;\nquantify scrambling with out-of-time-ordered correlators, Krylov complexity, and tripartite mutual information;\nuse randomness as a tool — classical shadows, randomized benchmarking, and the Hayden–Preskill recovery protocol;\nexplain barren plateaus and the expressivity–trainability tension in quantum machine learning, from first principles."
   },
   {
     "objectID": "index.html#how-the-tutorial-is-organized",
     "href": "index.html#how-the-tutorial-is-organized",
-    "title": "7 · Quantum Machine Learning",
+    "title": "From Haar Random States to Quantum Machine Learning",
     "section": "How the tutorial is organized",
     "text": "How the tutorial is organized\nSeven short parts, each a concept page followed by runnable notebooks:\n\n\n\nPart\nYou’ll be able to…\nNotebooks\n\n\n\n\n1 · Mathematical Foundations\nSpeak the language: channels, Lie algebras, state geometry, measure theory\n14\n\n\n2 · Random Matrix Theory\nDiagnose chaos from a spectrum\n3\n\n\n3 · Haar Measure & Weingarten Calculus\nAverage over random unitaries and derive the Page formula\n7\n\n\n4 · Quantum Dynamics & Chaos\nMeasure scrambling in real time\n3\n\n\n5 · Designs & Clifford Ensembles\nReplace Haar randomness with something efficient\n2\n\n\n6 · Applications of Scrambling\nTurn randomness into protocols\n5\n\n\n7 · Quantum Machine Learning\nUnderstand trainability through the same lens\n7\n\n\n\nYou can read it front to back as a course, or jump to any notebook — each one stands on its own. A companion Exercises & Solutions PDF collects analytical problems, worked solutions, and flashcards for every part."
   },
   {
     "objectID": "index.html#run-it-in-two-minutes",
     "href": "index.html#run-it-in-two-minutes",
-    "title": "7 · Quantum Machine Learning",
+    "title": "From Haar Random States to Quantum Machine Learning",
     "section": "Run it in two minutes",
     "text": "Run it in two minutes\ngit clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling\ncd quantum-chaos-and-scrambling\npip install -r requirements.txt\njupyter lab        # open any notebook under source_notebooks/\nEverything runs on a laptop with a standard scientific-Python stack (numpy, scipy, matplotlib). No quantum hardware, no GPUs, no special libraries."
   },
   {
     "objectID": "index.html#who-this-is-for",
     "href": "index.html#who-this-is-for",
-    "title": "7 · Quantum Machine Learning",
+    "title": "From Haar Random States to Quantum Machine Learning",
     "section": "Who this is for",
     "text": "Who this is for\nGraduate students and researchers in quantum information, condensed matter, or quantum machine learning — and anyone comfortable with linear algebra and Python who wants to compute with these ideas rather than only read about them. The mathematical prerequisites are light and built up as needed in Part 1.\n\n\n\n\n\n\n\nThis tutorial is the open, hands-on companion to the monograph Quantum Chaos and Information Scrambling: From Random Matrix Theory to Quantum Machine Learning. It is designed to stand entirely on its own. Suggestions and fixes are welcome — please open an issue or pull request."
   },
   {
     "objectID": "index.html#about-the-author",
     "href": "index.html#about-the-author",
-    "title": "7 · Quantum Machine Learning",
+    "title": "From Haar Random States to Quantum Machine Learning",
     "section": "About the author",
-    "text": "About the author\nMarcin Płodzień\nEmail · ORCID · Google Scholar · GitHub · Scopus · Web of Science\n\n\n\n\nBefore we can average over random quantum evolutions, we need a shared vocabulary: how to describe quantum channels, the Lie-algebraic structure that governs how operators grow, the geometry of the space of states, and just enough measure theory to make the phrase “a uniformly random unitary” mean something precise. None of this assumes prior exposure to Lie groups — the machinery is built up from commutators and the matrix exponential.\nThree threads run through the chapter:\n\nStates and channels. Density matrices, Kraus operators, and the Choi–Jamiołkowski isomorphism that turns a channel into a state.\nSymmetry and operator growth. The Lie algebras \\(\\mathfrak{u}(D)\\) and \\(\\mathfrak{su}(D)\\), dynamical Lie algebras, and Schur–Weyl duality — the reason random-unitary averages collapse onto a handful of permutations.\nGeometry and measure. The Fubini–Study metric, curvature and the quantum speed limit, and the measure-theoretic foundation of the Haar measure used in every later chapter."
+    "text": "About the author\nMarcin Płodzień\nEmail · ORCID · Google Scholar · GitHub · Scopus · Web of Science"
   },
   {
     "objectID": "notebooks/ch1/solution_ch1_borel_measurability.html",
@@ -488,5 +488,12 @@
     "title": "7 · Quantum Machine Learning",
     "section": "Notebooks in this part",
     "text": "Notebooks in this part\n\nBarren plateaus — gradient variance vanishing exponentially with qubit number.\nLocal vs global cost functions — how observable locality rescues trainability.\nBarren plateaus via quantum Fisher information — the metrology view of the same collapse.\nQuantum kernel concentration — why over-expressive kernels become uninformative.\nBorn-machine expressivity — concentration of a generative model’s output distribution.\nQELM feature concentration — feature collapse in quantum extreme learning machines.\nQuantum reservoir computing — injection contractivity and restarting overhead.\n\n\n\n\n\n\n\nFull circle. The exponential that obstructs training here is the same \\(1/D\\) from the Page formula in Chapter 3 — typicality, viewed from the other side."
+  },
+  {
+    "objectID": "index.html#the-bigger-picture",
+    "href": "index.html#the-bigger-picture",
+    "title": "From Haar Random States to Quantum Machine Learning",
+    "section": "The bigger picture",
+    "text": "The bigger picture\nOne operation recurs across problems that otherwise have little in common — averaging over random quantum evolution:\n\nThermalization. A closed quantum system never forgets its initial state, yet any small part of it looks thermal. Typicality — almost all states sharing the same local properties — is the reason, and it is the basis of quantum statistical mechanics.\nBlack-hole information. How information that falls into a black hole comes back out in the radiation reduces, in the end, to the Page-curve calculation done here. Scrambling is the link between quantum gravity and quantum information.\nBenchmarking real hardware. Randomized benchmarking, cross-entropy benchmarking, and classical shadows all rest on Haar randomness; they are how groups at Google and IBM characterize their devices.\nTrainability of quantum models. Barren plateaus, the reason many variational quantum algorithms fail to train, come from the same concentration of measure — and the same calculation tells you in advance which approaches can avoid them.\n\nThe toolkit behind all four is small — Haar averages and a little representation theory — and learning it once carries across every one of them."
   }
 ]
