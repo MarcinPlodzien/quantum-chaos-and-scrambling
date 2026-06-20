@@ -1,0 +1,42 @@
+---
+title: "7 · Quantum Machine Learning"
+---
+
+The tutorial closes where randomness becomes a *liability*. The expressivity that
+makes deep quantum circuits interesting is exactly what makes them hard to train —
+and the proof is the Haar second moment from Chapter 3.
+
+The central phenomenon is the **barren plateau**: for a circuit that is random
+enough to form a 2-design, the variance of any cost-function gradient vanishes
+**exponentially** in the number of qubits. The optimization landscape flattens, and
+gradient-based training stalls. The same calculation explains the cures —
+**local** cost functions, symmetry restrictions, shallow blocks — which keep the
+circuit *away* from full Haar randomness and restore a polynomial gradient.
+
+The plateau wears several faces, all the same physics:
+
+- **quantum kernels** whose entries concentrate exponentially, washing out the
+  similarity structure a kernel method needs;
+- **quantum Fisher information** that flattens, the metrology-flavored view of the
+  same variance collapse;
+- **generative and reservoir models** (Born machines, extreme learning machines,
+  reservoir computing) where over-scrambling pushes outputs toward
+  Porter–Thomas statistics and useful signal concentrates away.
+
+The lesson is a balance: scrambling buys expressivity but costs trainability, and
+the useful regime is the structured, *incomplete* one in between.
+
+## Notebooks in this chapter
+
+- [Barren plateaus](../notebooks/ch7/solution_ch7_barren_plateau.ipynb) — gradient variance vanishing exponentially with qubit number.
+- [Local vs global cost functions](../notebooks/ch7/solution_ch7_local_vs_global_cost.ipynb) — how observable locality rescues trainability.
+- [Barren plateaus via quantum Fisher information](../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.ipynb) — the metrology view of the same collapse.
+- [Quantum kernel concentration](../notebooks/ch7/solution_ch7_quantum_kernel_concentration.ipynb) — why over-expressive kernels become uninformative.
+- [Born-machine expressivity](../notebooks/ch7/solution_ch7_born_machine.ipynb) — concentration of a generative model's output distribution.
+- [QELM feature concentration](../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.ipynb) — feature collapse in quantum extreme learning machines.
+- [Quantum reservoir computing](../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.ipynb) — injection contractivity and restarting overhead.
+
+::: {.callout-note appearance="simple"}
+**Full circle.** The exponential that obstructs training here is the same
+$1/D$ from the Page formula in Chapter 3 — typicality, viewed from the other side.
+:::

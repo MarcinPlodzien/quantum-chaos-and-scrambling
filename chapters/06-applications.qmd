@@ -1,0 +1,30 @@
+---
+title: "6 · Applications of Scrambling"
+---
+
+So far randomness has been something to *characterize*. Here it becomes a **tool**.
+The same Haar second moment that gave the Page formula also underwrites a suite of
+practical protocols — and one of the deepest thought experiments in physics.
+
+- **Classical shadows.** Random measurements, followed by an analytic inversion of
+  the measurement channel, let you predict many observables of an unknown state
+  from surprisingly few copies. The cost is set by a "shadow norm" that scales as
+  $3^k$ for $k$-local observables.
+- **Randomized benchmarking.** Averaging over random Clifford sequences *twirls*
+  complicated gate noise into a single depolarizing parameter, read off from an
+  exponential decay — the standard way hardware fidelity is reported.
+- **Hayden–Preskill.** If a black hole is a fast scrambler, information thrown in
+  re-emerges in its radiation almost immediately — provided you already hold its
+  earlier radiation. The decoupling theorem makes this precise, and it is the same
+  Page-curve mathematics in disguise.
+- **Scrambling and metrology.** Tripartite mutual information becomes a scrambling
+  diagnostic, and the fragility of GHZ-state metrology shows the flip side: highly
+  non-local information is powerful but delicate.
+
+## Notebooks in this chapter
+
+- [The shadow channel](../notebooks/ch6/solution_ch6_shadow_channel.ipynb) — inverting the measurement channel, the heart of classical shadows.
+- [Classical shadows in action](../notebooks/ch6/solution_ch6_numerical_shadows.ipynb) — estimating observables from random measurements.
+- [Randomized benchmarking](../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.ipynb) — extracting gate fidelity from an exponential decay.
+- [Tripartite mutual information](../notebooks/ch6/solution_ch6_tripartite_mutual_information.ipynb) — a quantitative diagnostic of scrambling.
+- [Fragility of GHZ metrology](../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.ipynb) — Heisenberg-scaling sensitivity destroyed by a single lost qubit.

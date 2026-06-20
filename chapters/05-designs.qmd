@@ -1,0 +1,26 @@
+---
+title: "5 · Designs & Clifford Ensembles"
+---
+
+Haar randomness is a beautiful benchmark and a practical impossibility: writing
+down a Haar-random unitary on $N$ qubits costs exponentially many parameters. The
+fix is to match the Haar measure only where it matters — on its **low moments**.
+
+A **unitary $t$-design** is a finite ensemble whose averages agree with the Haar
+average up to the $t$-th moment. Everything in Chapters 3 and 6 depends only on
+the second (sometimes fourth) moment, so a 2- or 3-design is "random enough." The
+**Clifford group** is the workhorse: it is an exact 3-design, efficiently
+sampleable, and classically simulable — yet that very simulability tells us it is
+*missing something*.
+
+That missing ingredient is **nonstabilizerness**, or "magic." This chapter makes
+the gap concrete: Clifford circuits can produce near-maximal entanglement, yet
+their out-of-time-ordered correlator only ever takes the values $0$ or $4$ —
+there is no smooth Lyapunov growth. The **stabilizer Rényi entropy** quantifies
+exactly how far a state sits from the stabilizer world, and it is zero precisely
+for the states Cliffords can reach.
+
+## Notebooks in this chapter
+
+- [Clifford OTOCs](../notebooks/ch5/solution_ch5_clifford_otoc.ipynb) — why Clifford circuits scramble but have no Lyapunov exponent (the OTOC is $0$ or $4$).
+- [Stabilizer Rényi entropy](../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.ipynb) — measuring "magic," the resource beyond entanglement.

@@ -1,0 +1,93 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "chapters/*.qmd"
+    - "notebooks/**/*.ipynb"
+
+execute:
+  enabled: false        # notebooks are pre-executed by build.sh
+  freeze: auto
+
+website:
+  title: "Quantum Chaos & Scrambling"
+  description: "A hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems."
+  site-url: "https://marcinplodzien.github.io/quantum-chaos-and-scrambling/"
+  repo-url: "https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"
+  repo-actions: [source, issue]
+  page-navigation: true
+  navbar:
+    background: primary
+    search: true
+    pinned: true
+    left:
+      - text: "Start here"
+        href: index.qmd
+      - text: "Tutorial"
+        menu:
+          - text: "1 · Mathematical Foundations"
+            href: chapters/01-foundations.qmd
+          - text: "2 · Random Matrix Theory"
+            href: chapters/02-random-matrix-theory.qmd
+          - text: "3 · Haar Measure & Weingarten Calculus"
+            href: chapters/03-haar-weingarten.qmd
+          - text: "4 · Quantum Dynamics & Chaos"
+            href: chapters/04-dynamics.qmd
+          - text: "5 · Designs & Clifford Ensembles"
+            href: chapters/05-designs.qmd
+          - text: "6 · Applications of Scrambling"
+            href: chapters/06-applications.qmd
+          - text: "7 · Quantum Machine Learning"
+            href: chapters/07-qml.qmd
+      - text: "Exercises (PDF)"
+        href: exercises.qmd
+    right:
+      - icon: github
+        href: "https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"
+        aria-label: GitHub
+  sidebar:
+    style: floating
+    search: true
+    collapse-level: 1
+    contents:
+      - text: "Start here"
+        href: index.qmd
+      - section: "1 · Mathematical Foundations"
+        href: chapters/01-foundations.qmd
+        contents: "notebooks/ch1/*.ipynb"
+      - section: "2 · Random Matrix Theory"
+        href: chapters/02-random-matrix-theory.qmd
+        contents: "notebooks/ch2/*.ipynb"
+      - section: "3 · Haar Measure & Weingarten Calculus"
+        href: chapters/03-haar-weingarten.qmd
+        contents: "notebooks/ch3/*.ipynb"
+      - section: "4 · Quantum Dynamics & Chaos"
+        href: chapters/04-dynamics.qmd
+        contents: "notebooks/ch4/*.ipynb"
+      - section: "5 · Designs & Clifford Ensembles"
+        href: chapters/05-designs.qmd
+        contents: "notebooks/ch5/*.ipynb"
+      - section: "6 · Applications of Scrambling"
+        href: chapters/06-applications.qmd
+        contents: "notebooks/ch6/*.ipynb"
+      - section: "7 · Quantum Machine Learning"
+        href: chapters/07-qml.qmd
+        contents: "notebooks/ch7/*.ipynb"
+      - text: "Exercises & Solutions (PDF)"
+        href: exercises.qmd
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    toc-depth: 3
+    code-fold: show
+    code-tools: true
+    code-copy: true
+    highlight-style: github
+    html-math-method: mathjax
+    grid:
+      sidebar-width: 340px

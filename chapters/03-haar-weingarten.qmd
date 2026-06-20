@@ -1,0 +1,41 @@
+---
+title: "3 · Haar Measure & Weingarten Calculus"
+---
+
+This is the technical heart of the tutorial. The **Haar measure** is the unique
+uniform distribution over the unitary group, and almost every quantitative result
+in later chapters is a *low moment* of it — an average of one or two copies of a
+random unitary acting on an operator.
+
+The **Weingarten calculus** is the machine that evaluates those averages. The idea
+is simple once you see it: averaging $k$ copies of $U$ projects onto the operators
+that commute with $U^{\otimes k}$, and by Schur–Weyl duality those are exactly the
+**permutations** of the copies. An integral over a continuous group collapses to a
+finite sum over the symmetric group, weighted by Weingarten functions.
+
+With this you can compute, by hand, things that look hard:
+
+- the **first moment** (twirling) — any operator averages to its trace times the
+  identity;
+- the **second moment** — purities, frame potentials, and the **Page formula**
+  for the entanglement of a typical state;
+- **concentration of measure** — why those averages are not just typical but
+  *overwhelmingly* so as the dimension grows.
+
+These three facts power Chapters 5–7. Do this chapter carefully.
+
+## Notebooks in this chapter
+
+- [The first Haar moment (twirling)](../notebooks/ch3/solution_ch3_weingarten_first_moment.ipynb) — averaging an operator to its trace times the identity.
+- [The SWAP trick](../notebooks/ch3/solution_ch3_swap_trick.ipynb) — turning purity into a two-copy expectation value.
+- [Overlaps of random states](../notebooks/ch3/solution_ch3_haar_overlap.ipynb) — the distribution of $|\langle\psi|\phi\rangle|^2$ and its moments.
+- [Fourth moment of the trace](../notebooks/ch3/solution_ch3_fourth_moment_trace.ipynb) — a warm-up: $\mathbb{E}|\mathrm{Tr}\,U|^4 = 2$.
+- [Weingarten calculus as tensor networks](../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.ipynb) — diagrammatic contractions, including the third trace moment.
+- [The Page formula](../notebooks/ch3/solution_ch3_page_formula.ipynb) — average entanglement of a random state, via Marchenko–Pastur.
+- [Concentration of purity](../notebooks/ch3/solution_ch3_purity_concentration.ipynb) — why a random subsystem is almost exactly maximally mixed.
+
+::: {.callout-important appearance="simple"}
+The single most reused result in this tutorial is the **second-moment twirl**
+$\mathbb{E}_U[U^{\otimes 2}\,X\,U^{\dagger\otimes 2}] = c_{\mathbb{I}}\,\mathbb{I} + c_{\mathbb{F}}\,\mathbb{F}$.
+If you internalize one calculation, make it this one.
+:::

@@ -1,0 +1,86 @@
+---
+title: "From Haar Random States to Quantum Machine Learning"
+subtitle: "A hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems"
+toc: false
+---
+
+::: {.callout-note appearance="simple" icon=false}
+## Start here
+
+This is a **self-contained, runnable tutorial**. There is no prerequisite reading
+and nothing to buy: every idea is introduced briefly, then *demonstrated* in a
+short Python notebook you can open, run, and modify. If you can read `numpy`, you
+can follow along.
+:::
+
+## What you'll learn
+
+A surprising amount of modern quantum theory rests on a single question: **what
+happens when you average over random quantum evolutions?** The answer ties
+together topics that look unrelated at first —
+
+> spectral statistics of chaotic Hamiltonians · the entanglement of a typical
+> quantum state · how scrambled information hides and re-emerges · why some
+> quantum machine-learning models refuse to train.
+
+This tutorial builds the toolkit once and then follows it across all of them.
+By the end you will be able to:
+
+- **average over random unitaries by hand** using the Weingarten calculus, and
+  predict second- and fourth-moment quantities (purity, frame potentials,
+  gradient variances);
+- **read the fingerprints of quantum chaos** in a spectrum — level repulsion,
+  the spectral form factor, the random-matrix universality classes;
+- **quantify scrambling** with out-of-time-ordered correlators, Krylov
+  complexity, and tripartite mutual information;
+- **use randomness as a tool** — classical shadows, randomized benchmarking, and
+  the Hayden–Preskill recovery protocol;
+- **explain barren plateaus** and the expressivity–trainability tension in
+  quantum machine learning, from first principles.
+
+## How the tutorial is organized
+
+Seven short chapters, each a *concept page* followed by *runnable notebooks*:
+
+| Chapter | You'll be able to… | Notebooks |
+|---|---|---|
+| [1 · Mathematical Foundations](chapters/01-foundations.qmd) | Speak the language: channels, Lie algebras, state geometry, measure theory | 14 |
+| [2 · Random Matrix Theory](chapters/02-random-matrix-theory.qmd) | Diagnose chaos from a spectrum | 3 |
+| [3 · Haar Measure & Weingarten Calculus](chapters/03-haar-weingarten.qmd) | Average over random unitaries and derive the Page formula | 7 |
+| [4 · Quantum Dynamics & Chaos](chapters/04-dynamics.qmd) | Measure scrambling in real time | 3 |
+| [5 · Designs & Clifford Ensembles](chapters/05-designs.qmd) | Replace Haar randomness with something efficient | 2 |
+| [6 · Applications of Scrambling](chapters/06-applications.qmd) | Turn randomness into protocols | 5 |
+| [7 · Quantum Machine Learning](chapters/07-qml.qmd) | Understand trainability through the same lens | 7 |
+
+You can read it front to back as a course, or jump to any notebook — each one
+stands on its own. A companion **[Exercises & Solutions PDF](exercises.qmd)**
+collects analytical problems, worked solutions, and flashcards for every chapter.
+
+## Run it in two minutes
+
+```bash
+git clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling
+cd quantum-chaos-and-scrambling
+pip install -r requirements.txt
+jupyter lab        # open any notebook under source_notebooks/
+```
+
+Everything runs on a laptop with a standard scientific-Python stack
+(`numpy`, `scipy`, `matplotlib`). No quantum hardware, no GPUs, no special
+libraries.
+
+## Who this is for
+
+Graduate students and researchers in quantum information, condensed matter, or
+quantum machine learning — and anyone comfortable with linear algebra and Python
+who wants to *compute* with these ideas rather than only read about them. The
+mathematical prerequisites are light and built up as needed in Chapter 1.
+
+---
+
+::: {.callout-tip appearance="simple" icon=false}
+This tutorial is the open, hands-on companion to the monograph *Quantum Chaos and
+Information Scrambling: From Random Matrix Theory to Quantum Machine Learning*.
+It is designed to stand entirely on its own. Suggestions and fixes are welcome —
+please [open an issue or pull request](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling).
+:::

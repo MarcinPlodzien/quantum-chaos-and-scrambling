@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this tutorial or its notebooks, please cite it as below."
+title: "From Haar Random States to Quantum Machine Learning: A Hands-On Numerical Tutorial"
+abstract: >-
+  A self-contained, runnable tutorial on randomness, scrambling, and learning in
+  quantum systems. It builds the Haar/Weingarten averaging toolkit and follows it
+  across random matrix theory, scrambling dynamics, unitary designs, classical
+  shadows, randomized benchmarking, the Hayden-Preskill protocol, and barren
+  plateaus in quantum machine learning, with 41 executable Jupyter notebooks and
+  a complete set of worked exercises.
+type: software
+authors:
+  - family-names: "Płodzień"
+    given-names: "Marcin"
+    email: mplodzien@gmail.com
+keywords:
+  - quantum chaos
+  - information scrambling
+  - Haar measure
+  - Weingarten calculus
+  - random matrix theory
+  - unitary designs
+  - classical shadows
+  - barren plateaus
+  - quantum machine learning
+version: "1.0.0"
+date-released: "2026-06-20"
+license: MIT
+url: "https://marcinplodzien.github.io/quantum-chaos-and-scrambling/"
+repository-code: "https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"
