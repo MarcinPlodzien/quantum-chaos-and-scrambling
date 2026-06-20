@@ -76,6 +76,16 @@ website:
         contents: "notebooks/ch7/*.ipynb"
       - text: "Exercises & Solutions (PDF)"
         href: exercises.qmd
+  page-footer:
+    border: true
+    left: "© 2026 Marcin Płodzień · MIT License"
+    right: >-
+      [Email](mailto:mplodzien@gmail.com) ·
+      [ORCID](https://orcid.org/0000-0002-0835-1644) ·
+      [Scholar](https://scholar.google.com/citations?user=eC9nCmgAAAAJ&hl=en) ·
+      [GitHub](https://github.com/MarcinPlodzien) ·
+      [Scopus](https://www.scopus.com/authid/detail.uri?authorId=55031869100) ·
+      [WoS](https://www.webofscience.com/wos/author/record/K-7326-2017)
 
 format:
   html:

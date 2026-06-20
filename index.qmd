@@ -84,3 +84,14 @@ Information Scrambling: From Random Matrix Theory to Quantum Machine Learning*.
 It is designed to stand entirely on its own. Suggestions and fixes are welcome —
 please [open an issue or pull request](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling).
 :::
+
+## About the author
+
+**Marcin Płodzień**
+
+[Email](mailto:mplodzien@gmail.com) ·
+[ORCID](https://orcid.org/0000-0002-0835-1644) ·
+[Google Scholar](https://scholar.google.com/citations?user=eC9nCmgAAAAJ&hl=en) ·
+[GitHub](https://github.com/MarcinPlodzien) ·
+[Scopus](https://www.scopus.com/authid/detail.uri?authorId=55031869100) ·
+[Web of Science](https://www.webofscience.com/wos/author/record/K-7326-2017)
