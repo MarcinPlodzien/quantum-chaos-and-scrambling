@@ -2,29 +2,29 @@
 title: "7 · Quantum Machine Learning"
 ---
 
-The tutorial closes where randomness becomes a *liability*. The expressivity that
-makes deep quantum circuits interesting is exactly what makes them hard to train, 
-and the proof is the Haar second moment from Chapter 3.
+A variational quantum circuit is trained by following the gradient of a cost
+function, which works only when that gradient is large enough to estimate from a
+realistic number of measurements. Once the circuit is expressive enough to form
+an approximate $2$-design over its parameters, the Haar second moment from
+Chapter 3 forces the variance of every gradient component to shrink
+exponentially in the qubit count. This is the barren plateau, where the landscape
+is flat to within sampling noise and gradient-based optimization has no direction
+to follow.
 
-The central phenomenon is the **barren plateau**: for a circuit that is random
-enough to form a 2-design, the variance of any cost-function gradient vanishes
-**exponentially** in the number of qubits. The optimization landscape flattens, and
-gradient-based training stalls. The same calculation explains the cures, 
-**local** cost functions, symmetry restrictions, shallow blocks, which keep the
-circuit *away* from full Haar randomness and restore a polynomial gradient.
+The same second-moment estimate identifies what restores a usable gradient.
+Local cost functions, restricted symmetry sectors, and shallow circuit blocks all
+keep the ensemble short of a full $2$-design and recover a variance that decays
+only polynomially. The plateau reappears under other names with one origin.
+Quantum kernel entries concentrate around a fixed value and lose the structure a
+kernel method relies on, the quantum Fisher information matrix flattens in the
+metrology reading of the same collapse, and generative and reservoir models, from
+Born machines to extreme learning machines and reservoir computers, push their
+output distributions toward Porter-Thomas statistics so that the informative
+signal concentrates away.
 
-The plateau wears several faces, all the same physics:
-
-- **quantum kernels** whose entries concentrate exponentially, washing out the
- similarity structure a kernel method needs;
-- **quantum Fisher information** that flattens, the metrology-flavored view of the
- same variance collapse;
-- **generative and reservoir models** (Born machines, extreme learning machines,
- reservoir computing) where over-scrambling pushes outputs toward
- Porter-Thomas statistics and useful signal concentrates away.
-
-The lesson is a balance. Scrambling buys expressivity but costs trainability, and
-the useful regime is the structured, *incomplete* one in between.
+The operative tension is that scrambling supplies expressivity while removing
+trainability, so the workable regime is a structured ensemble that stops short of
+Haar randomness.
 
 ## Notebooks in this part
 

@@ -541,13 +541,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Random matrices describe a chaotic spectrum at rest. This part puts the system <strong>in motion</strong> and asks how an initially local piece of information spreads, the process called <strong>scrambling</strong>.</p>
-<p>Two complementary diagnostics appear again and again:</p>
-<ul>
-<li><strong>Out-of-time-ordered correlators (OTOCs).</strong> The squared commutator <span class="math inline">\(C(t) = \langle |[W(t), V]|^2\rangle\)</span> measures how a once-distant operator <span class="math inline">\(W(t)\)</span> grows to overlap <span class="math inline">\(V\)</span>. Its early-time growth defines a quantum Lyapunov exponent, capped by the Maldacena-Shenker-Stanford bound <span class="math inline">\(\lambda \le 2\pi k_B T/\hbar\)</span>.</li>
-<li><strong>The spectral form factor (SFF).</strong> A Fourier transform of the spectrum whose <em>dip-ramp-plateau</em> shape is the time-domain signature of level repulsion, with a plateau pinned at the Hilbert-space dimension.</li>
-</ul>
-<p>A third, basis-independent view, <strong>Krylov complexity</strong>, recasts operator growth as a particle hopping along a semi-infinite chain built by the Lanczos algorithm, turning “how chaotic” into “how fast does the wavepacket spread.”</p>
+<p>Random matrix theory characterizes a chaotic spectrum but says nothing about how information moves in time. This part follows an operator that starts local and asks how it spreads across the system, the process called scrambling, and collects the diagnostics that detect it.</p>
+<p>The out-of-time-ordered correlator is the primary probe. The squared commutator <span class="math inline">\(C(t) = \langle |[W(t), V]|^2\rangle\)</span> measures the overlap that an initially distant operator <span class="math inline">\(W(t)\)</span> develops with a fixed local <span class="math inline">\(V\)</span>, and its early growth defines a quantum Lyapunov exponent bounded by the Maldacena-Shenker-Stanford inequality <span class="math inline">\(\lambda \le 2\pi k_B T/\hbar\)</span>. The spectral form factor reads the same chaos off the spectrum directly; its dip, ramp, and plateau encode level repulsion in the time domain, with the plateau height pinned at the Hilbert-space dimension. Krylov complexity recasts operator growth in a basis-independent form, mapping the Heisenberg evolution onto a single particle hopping on a semi-infinite chain whose hopping amplitudes are the Lanczos coefficients.</p>
+<p>It is worth keeping straight what each quantity sees. The squared commutator and the OTOC are tied by an exact identity at infinite temperature, so operator growth and a fidelity decay are two readings of one object, whereas the spectral form factor depends on the spectrum alone and is blind to the choice of operator.</p>
 <section id="notebooks-in-this-part" class="level2">
 <h2 class="anchored" data-anchor-id="notebooks-in-this-part">Notebooks in this part</h2>
 <ul>
@@ -877,29 +873,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "4 · Quantum Dynamics &amp; Chaos"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Random matrices describe a chaotic spectrum at rest. This part puts the system</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>**in motion** and asks how an initially local piece of information spreads, the</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>process called **scrambling**.</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Two complementary diagnostics appear again and again:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Out-of-time-ordered correlators (OTOCs).** The squared commutator</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a> $C(t) = \langle |<span class="co">[</span><span class="ot">W(t), V</span><span class="co">]</span>|^2\rangle$ measures how a once-distant operator</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a> $W(t)$ grows to overlap $V$. Its early-time growth defines a quantum Lyapunov</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a> exponent, capped by the Maldacena-Shenker-Stanford bound $\lambda \le 2\pi k_B T/\hbar$.</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The spectral form factor (SFF).** A Fourier transform of the spectrum whose</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a> *dip-ramp-plateau* shape is the time-domain signature of level repulsion, with a</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a> plateau pinned at the Hilbert-space dimension.</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>A third, basis-independent view, **Krylov complexity**, recasts operator growth</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>as a particle hopping along a semi-infinite chain built by the Lanczos algorithm,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>turning "how chaotic" into "how fast does the wavepacket spread."</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebooks in this part</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">The $C$-$F$ identity</span><span class="co">](../notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb)</span>, linking the squared commutator to an OTOC fidelity.</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">The spectral form factor</span><span class="co">](../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.ipynb)</span>, dip, ramp, and the plateau at $K = D$.</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Krylov complexity</span><span class="co">](../notebooks/ch4/solution_ch4_krylov_complexity.ipynb)</span>, operator growth as a tight-binding chain, with $\mathcal{C}_K(t) = \sinh^2(\alpha t)$.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Random matrix theory characterizes a chaotic spectrum but says nothing about how</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>information moves in time. This part follows an operator that starts local and</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>asks how it spreads across the system, the process called scrambling, and</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>collects the diagnostics that detect it.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>The out-of-time-ordered correlator is the primary probe. The squared commutator</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>$C(t) = \langle |<span class="co">[</span><span class="ot">W(t), V</span><span class="co">]</span>|^2\rangle$ measures the overlap that an initially</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>distant operator $W(t)$ develops with a fixed local $V$, and its early growth</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>defines a quantum Lyapunov exponent bounded by the Maldacena-Shenker-Stanford</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>inequality $\lambda \le 2\pi k_B T/\hbar$. The spectral form factor reads the same</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>chaos off the spectrum directly; its dip, ramp, and plateau encode level</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>repulsion in the time domain, with the plateau height pinned at the</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Hilbert-space dimension. Krylov complexity recasts operator growth in a</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>basis-independent form, mapping the Heisenberg evolution onto a single particle</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>hopping on a semi-infinite chain whose hopping amplitudes are the Lanczos</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>coefficients.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>It is worth keeping straight what each quantity sees. The squared commutator and</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>the OTOC are tied by an exact identity at infinite temperature, so operator</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>growth and a fidelity decay are two readings of one object, whereas the spectral</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>form factor depends on the spectrum alone and is blind to the choice of operator.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebooks in this part</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">The $C$-$F$ identity</span><span class="co">](../notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb)</span>, linking the squared commutator to an OTOC fidelity.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">The spectral form factor</span><span class="co">](../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.ipynb)</span>, dip, ramp, and the plateau at $K = D$.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Krylov complexity</span><span class="co">](../notebooks/ch4/solution_ch4_krylov_complexity.ipynb)</span>, operator growth as a tight-binding chain, with $\mathcal{C}_K(t) = \sinh^2(\alpha t)$.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

@@ -2,23 +2,27 @@
 title: "4 · Quantum Dynamics & Chaos"
 ---
 
-Random matrices describe a chaotic spectrum at rest. This part puts the system
-**in motion** and asks how an initially local piece of information spreads, the
-process called **scrambling**.
+Random matrix theory characterizes a chaotic spectrum but says nothing about how
+information moves in time. This part follows an operator that starts local and
+asks how it spreads across the system, the process called scrambling, and
+collects the diagnostics that detect it.
 
-Two complementary diagnostics appear again and again:
+The out-of-time-ordered correlator is the primary probe. The squared commutator
+$C(t) = \langle |[W(t), V]|^2\rangle$ measures the overlap that an initially
+distant operator $W(t)$ develops with a fixed local $V$, and its early growth
+defines a quantum Lyapunov exponent bounded by the Maldacena-Shenker-Stanford
+inequality $\lambda \le 2\pi k_B T/\hbar$. The spectral form factor reads the same
+chaos off the spectrum directly; its dip, ramp, and plateau encode level
+repulsion in the time domain, with the plateau height pinned at the
+Hilbert-space dimension. Krylov complexity recasts operator growth in a
+basis-independent form, mapping the Heisenberg evolution onto a single particle
+hopping on a semi-infinite chain whose hopping amplitudes are the Lanczos
+coefficients.
 
-- **Out-of-time-ordered correlators (OTOCs).** The squared commutator
- $C(t) = \langle |[W(t), V]|^2\rangle$ measures how a once-distant operator
- $W(t)$ grows to overlap $V$. Its early-time growth defines a quantum Lyapunov
- exponent, capped by the Maldacena-Shenker-Stanford bound $\lambda \le 2\pi k_B T/\hbar$.
-- **The spectral form factor (SFF).** A Fourier transform of the spectrum whose
- *dip-ramp-plateau* shape is the time-domain signature of level repulsion, with a
- plateau pinned at the Hilbert-space dimension.
-
-A third, basis-independent view, **Krylov complexity**, recasts operator growth
-as a particle hopping along a semi-infinite chain built by the Lanczos algorithm,
-turning "how chaotic" into "how fast does the wavepacket spread."
+It is worth keeping straight what each quantity sees. The squared commutator and
+the OTOC are tied by an exact identity at infinite temperature, so operator
+growth and a fidelity decay are two readings of one object, whereas the spectral
+form factor depends on the spectrum alone and is blind to the choice of operator.
 
 ## Notebooks in this part
 

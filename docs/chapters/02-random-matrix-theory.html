@@ -125,6 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -540,9 +541,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>A chaotic quantum system has no obvious small parameter, yet its <strong>spectrum</strong> is remarkably universal. The fine-grained statistics of its energy levels match those of a <em>random matrix</em> with the same symmetries. This is the Bohigas- Giannoni-Schmit observation, and it is the first concrete sense in which “quantum chaos” can be measured.</p>
-<p>The key phenomenon is <strong>level repulsion</strong>, eigenvalues of a random matrix avoid each other, unlike the independent levels of an integrable system. How strongly they repel depends only on a time-reversal symmetry, giving the three Wigner-Dyson classes (orthogonal, unitary, symplectic). This part derives the repulsion directly from the eigenvalue measure and checks the universal spacing and moment statistics numerically.</p>
-<p>You’ll take away the <strong>Wigner surmise</strong>, the <strong>semicircle law</strong> and its combinatorics, and the gap-ratio statistic you’ll reuse in Chapter 4 to detect chaos without unfolding a spectrum.</p>
+<p>A quantum system with no integrable structure has energy levels that look erratic, yet their fine-grained statistics are reproducible. Across nuclei, quantum billiards, and disordered conductors, the spacing distribution of neighbouring levels matches that of a random matrix sharing the system’s symmetries, the content of the Bohigas-Giannoni-Schmit conjecture. Random matrix theory supplies the reference distributions and explains why they are universal.</p>
+<p>The mechanism is level repulsion. Changing variables from matrix entries to eigenvalues produces a Jacobian carrying a factor of the squared eigenvalue differences, which suppresses configurations with near-degenerate levels. The power with which that factor vanishes is fixed by the time-reversal and spin-rotation symmetry of the ensemble, giving exponents <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>, and <span class="math inline">\(4\)</span> for the orthogonal, unitary, and symplectic classes. This part derives the Wigner surmise from the two-by-two case, computes the semicircle density through its moments and the Catalan numbers that count them, and introduces the gap-ratio statistic that diagnoses chaos without the spectral unfolding that raw level spacings require.</p>
+<p>One caution about the surmise. It is exact only for <span class="math inline">\(2\times2\)</span> matrices; its accuracy at large dimension is an empirical near-coincidence rather than the true large-<span class="math inline">\(N\)</span> spacing law. This is part of why the gap ratio, which is insensitive to the local mean level density, is often preferred in practice.</p>
 <section id="notebooks-in-this-part" class="level2">
 <h2 class="anchored" data-anchor-id="notebooks-in-this-part">Notebooks in this part</h2>
 <ul>
@@ -872,28 +873,34 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "2 · Random Matrix Theory"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>A chaotic quantum system has no obvious small parameter, yet its **spectrum** is</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>remarkably universal. The fine-grained statistics of its energy levels match</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>those of a *random matrix* with the same symmetries. This is the Bohigas-</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Giannoni-Schmit observation, and it is the first concrete sense in which "quantum</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>chaos" can be measured.</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>The key phenomenon is **level repulsion**, eigenvalues of a random matrix avoid</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>each other, unlike the independent levels of an integrable system. How strongly</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>they repel depends only on a time-reversal symmetry, giving the three</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Wigner-Dyson classes (orthogonal, unitary, symplectic). This part derives the</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>repulsion directly from the eigenvalue measure and checks the universal spacing</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>and moment statistics numerically.</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>You'll take away the **Wigner surmise**, the **semicircle law** and its</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>combinatorics, and the gap-ratio statistic you'll reuse in Chapter 4 to detect</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>chaos without unfolding a spectrum.</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebooks in this part</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Level repulsion in the GOE</span><span class="co">](../notebooks/ch2/solution_ch2_goe_spacing.ipynb)</span>, deriving the Wigner surmise for nearest-neighbour spacings.</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Moments of the Wigner semicircle</span><span class="co">](../notebooks/ch2/solution_ch2_semicircle_moments.ipynb)</span>, the Catalan-number combinatorics behind the density.</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Eigenphase repulsion in the CUE</span><span class="co">](../notebooks/ch2/solution_ch2_cue_eigenphase.ipynb)</span>, the same physics for unitaries on the circle.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>A quantum system with no integrable structure has energy levels that look</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>erratic, yet their fine-grained statistics are reproducible. Across nuclei,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>quantum billiards, and disordered conductors, the spacing distribution of</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>neighbouring levels matches that of a random matrix sharing the system's</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>symmetries, the content of the Bohigas-Giannoni-Schmit conjecture. Random matrix</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>theory supplies the reference distributions and explains why they are universal.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>The mechanism is level repulsion. Changing variables from matrix entries to</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>eigenvalues produces a Jacobian carrying a factor of the squared eigenvalue</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>differences, which suppresses configurations with near-degenerate levels. The</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>power with which that factor vanishes is fixed by the time-reversal and</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>spin-rotation symmetry of the ensemble, giving exponents $1$, $2$, and $4$ for</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>the orthogonal, unitary, and symplectic classes. This part derives the Wigner</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>surmise from the two-by-two case, computes the semicircle density through its</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>moments and the Catalan numbers that count them, and introduces the gap-ratio</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>statistic that diagnoses chaos without the spectral unfolding that raw level</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>spacings require.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>One caution about the surmise. It is exact only for $2\times2$ matrices; its</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>accuracy at large dimension is an empirical near-coincidence rather than the true</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>large-$N$ spacing law. This is part of why the gap ratio, which is insensitive to</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>the local mean level density, is often preferred in practice.</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebooks in this part</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Level repulsion in the GOE</span><span class="co">](../notebooks/ch2/solution_ch2_goe_spacing.ipynb)</span>, deriving the Wigner surmise for nearest-neighbour spacings.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Moments of the Wigner semicircle</span><span class="co">](../notebooks/ch2/solution_ch2_semicircle_moments.ipynb)</span>, the Catalan-number combinatorics behind the density.</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Eigenphase repulsion in the CUE</span><span class="co">](../notebooks/ch2/solution_ch2_cue_eigenphase.ipynb)</span>, the same physics for unitaries on the circle.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

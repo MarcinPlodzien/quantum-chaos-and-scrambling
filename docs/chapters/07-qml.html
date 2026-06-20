@@ -541,15 +541,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>The tutorial closes where randomness becomes a <em>liability</em>. The expressivity that makes deep quantum circuits interesting is exactly what makes them hard to train, and the proof is the Haar second moment from Chapter 3.</p>
-<p>The central phenomenon is the <strong>barren plateau</strong>: for a circuit that is random enough to form a 2-design, the variance of any cost-function gradient vanishes <strong>exponentially</strong> in the number of qubits. The optimization landscape flattens, and gradient-based training stalls. The same calculation explains the cures, <strong>local</strong> cost functions, symmetry restrictions, shallow blocks, which keep the circuit <em>away</em> from full Haar randomness and restore a polynomial gradient.</p>
-<p>The plateau wears several faces, all the same physics:</p>
-<ul>
-<li><strong>quantum kernels</strong> whose entries concentrate exponentially, washing out the similarity structure a kernel method needs;</li>
-<li><strong>quantum Fisher information</strong> that flattens, the metrology-flavored view of the same variance collapse;</li>
-<li><strong>generative and reservoir models</strong> (Born machines, extreme learning machines, reservoir computing) where over-scrambling pushes outputs toward Porter-Thomas statistics and useful signal concentrates away.</li>
-</ul>
-<p>The lesson is a balance. Scrambling buys expressivity but costs trainability, and the useful regime is the structured, <em>incomplete</em> one in between.</p>
+<p>A variational quantum circuit is trained by following the gradient of a cost function, which works only when that gradient is large enough to estimate from a realistic number of measurements. Once the circuit is expressive enough to form an approximate <span class="math inline">\(2\)</span>-design over its parameters, the Haar second moment from Chapter 3 forces the variance of every gradient component to shrink exponentially in the qubit count. This is the barren plateau, where the landscape is flat to within sampling noise and gradient-based optimization has no direction to follow.</p>
+<p>The same second-moment estimate identifies what restores a usable gradient. Local cost functions, restricted symmetry sectors, and shallow circuit blocks all keep the ensemble short of a full <span class="math inline">\(2\)</span>-design and recover a variance that decays only polynomially. The plateau reappears under other names with one origin. Quantum kernel entries concentrate around a fixed value and lose the structure a kernel method relies on, the quantum Fisher information matrix flattens in the metrology reading of the same collapse, and generative and reservoir models, from Born machines to extreme learning machines and reservoir computers, push their output distributions toward Porter-Thomas statistics so that the informative signal concentrates away.</p>
+<p>The operative tension is that scrambling supplies expressivity while removing trainability, so the workable regime is a structured ensemble that stops short of Haar randomness.</p>
 <section id="notebooks-in-this-part" class="level2">
 <h2 class="anchored" data-anchor-id="notebooks-in-this-part">Notebooks in this part</h2>
 <ul>
@@ -893,29 +887,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "7 · Quantum Machine Learning"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>The tutorial closes where randomness becomes a *liability*. The expressivity that</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>makes deep quantum circuits interesting is exactly what makes them hard to train, </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>and the proof is the Haar second moment from Chapter 3.</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>The central phenomenon is the **barren plateau**: for a circuit that is random</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>enough to form a 2-design, the variance of any cost-function gradient vanishes</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>**exponentially** in the number of qubits. The optimization landscape flattens, and</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>gradient-based training stalls. The same calculation explains the cures, </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>**local** cost functions, symmetry restrictions, shallow blocks, which keep the</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>circuit *away* from full Haar randomness and restore a polynomial gradient.</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>The plateau wears several faces, all the same physics:</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**quantum kernels** whose entries concentrate exponentially, washing out the</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a> similarity structure a kernel method needs;</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**quantum Fisher information** that flattens, the metrology-flavored view of the</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a> same variance collapse;</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**generative and reservoir models** (Born machines, extreme learning machines,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a> reservoir computing) where over-scrambling pushes outputs toward</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a> Porter-Thomas statistics and useful signal concentrates away.</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>The lesson is a balance. Scrambling buys expressivity but costs trainability, and</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>the useful regime is the structured, *incomplete* one in between.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>A variational quantum circuit is trained by following the gradient of a cost</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>function, which works only when that gradient is large enough to estimate from a</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>realistic number of measurements. Once the circuit is expressive enough to form</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>an approximate $2$-design over its parameters, the Haar second moment from</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Chapter 3 forces the variance of every gradient component to shrink</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>exponentially in the qubit count. This is the barren plateau, where the landscape</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>is flat to within sampling noise and gradient-based optimization has no direction</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>to follow.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>The same second-moment estimate identifies what restores a usable gradient.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Local cost functions, restricted symmetry sectors, and shallow circuit blocks all</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>keep the ensemble short of a full $2$-design and recover a variance that decays</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>only polynomially. The plateau reappears under other names with one origin.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Quantum kernel entries concentrate around a fixed value and lose the structure a</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>kernel method relies on, the quantum Fisher information matrix flattens in the</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>metrology reading of the same collapse, and generative and reservoir models, from</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Born machines to extreme learning machines and reservoir computers, push their</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>output distributions toward Porter-Thomas statistics so that the informative</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>signal concentrates away.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>The operative tension is that scrambling supplies expressivity while removing</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>trainability, so the workable regime is a structured ensemble that stops short of</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Haar randomness.</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebooks in this part</span></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>

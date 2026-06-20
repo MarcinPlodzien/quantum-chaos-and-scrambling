@@ -2,22 +2,28 @@
 title: "2 · Random Matrix Theory"
 ---
 
-A chaotic quantum system has no obvious small parameter, yet its **spectrum** is
-remarkably universal. The fine-grained statistics of its energy levels match
-those of a *random matrix* with the same symmetries. This is the Bohigas-
-Giannoni-Schmit observation, and it is the first concrete sense in which "quantum
-chaos" can be measured.
+A quantum system with no integrable structure has energy levels that look
+erratic, yet their fine-grained statistics are reproducible. Across nuclei,
+quantum billiards, and disordered conductors, the spacing distribution of
+neighbouring levels matches that of a random matrix sharing the system's
+symmetries, the content of the Bohigas-Giannoni-Schmit conjecture. Random matrix
+theory supplies the reference distributions and explains why they are universal.
 
-The key phenomenon is **level repulsion**, eigenvalues of a random matrix avoid
-each other, unlike the independent levels of an integrable system. How strongly
-they repel depends only on a time-reversal symmetry, giving the three
-Wigner-Dyson classes (orthogonal, unitary, symplectic). This part derives the
-repulsion directly from the eigenvalue measure and checks the universal spacing
-and moment statistics numerically.
+The mechanism is level repulsion. Changing variables from matrix entries to
+eigenvalues produces a Jacobian carrying a factor of the squared eigenvalue
+differences, which suppresses configurations with near-degenerate levels. The
+power with which that factor vanishes is fixed by the time-reversal and
+spin-rotation symmetry of the ensemble, giving exponents $1$, $2$, and $4$ for
+the orthogonal, unitary, and symplectic classes. This part derives the Wigner
+surmise from the two-by-two case, computes the semicircle density through its
+moments and the Catalan numbers that count them, and introduces the gap-ratio
+statistic that diagnoses chaos without the spectral unfolding that raw level
+spacings require.
 
-You'll take away the **Wigner surmise**, the **semicircle law** and its
-combinatorics, and the gap-ratio statistic you'll reuse in Chapter 4 to detect
-chaos without unfolding a spectrum.
+One caution about the surmise. It is exact only for $2\times2$ matrices; its
+accuracy at large dimension is an empirical near-coincidence rather than the true
+large-$N$ spacing law. This is part of why the gap ratio, which is insensitive to
+the local mean level density, is often preferred in practice.
 
 ## Notebooks in this part
 

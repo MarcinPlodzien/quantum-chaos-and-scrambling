@@ -50,7 +50,7 @@ for path in sorted(glob.glob(os.path.join(SRC, "solution_ch*.ipynb"))):
         s = re.sub(r"\s+", " ", s).strip(" -:")
         return s.replace("'", "''")
     title = yaml_clean(title) or pretty(stem)
-    desc = f"{CH_NAMES[ch]} — numerical solution."
+    desc = f"{CH_NAMES[ch]}, numerical solution."
     raw = ("---\n"
            f"title: '{title}'\n"
            f"description: '{desc}'\n"

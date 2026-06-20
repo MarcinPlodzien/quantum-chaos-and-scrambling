@@ -2,23 +2,27 @@
 title: "5 · Designs & Clifford Ensembles"
 ---
 
-Haar randomness is a beautiful benchmark and a practical impossibility. Writing
-down a Haar-random unitary on $N$ qubits costs exponentially many parameters. The
-fix is to match the Haar measure only where it matters, on its **low moments**.
+A Haar-random unitary on $N$ qubits needs exponentially many real parameters to
+specify and cannot be sampled or stored efficiently. Most calculations, however,
+touch the Haar measure only through its low moments, the averages of
+$U^{\otimes t} \otimes \bar U^{\otimes t}$. A unitary $t$-design is a finite
+ensemble that reproduces those averages up to order $t$, which is all the
+randomness the second-moment and fourth-moment formulas of Chapters 3 and 6
+actually consume.
 
-A **unitary $t$-design** is a finite ensemble whose averages agree with the Haar
-average up to the $t$-th moment. Everything in Chapters 3 and 6 depends only on
-the second (sometimes fourth) moment, so a 2- or 3-design is "random enough." The
-**Clifford group** is the workhorse. It is an exact 3-design, efficiently
-sampleable, and classically simulable, yet that very simulability tells us it is
-*missing something*.
+The Clifford group is the standard construction. It is an exact $3$-design and,
+by the Gottesman-Knill theorem, can be sampled and simulated classically in
+polynomial time. That same simulability marks what a design leaves out. Clifford
+circuits reach near-maximal entanglement, yet their out-of-time-ordered
+correlator takes only the values $0$ and $4$, with no smooth Lyapunov growth, so
+entanglement and genuine scrambling come apart here.
 
-That missing ingredient is **nonstabilizerness**, or "magic." This part makes
-the gap concrete. Clifford circuits can produce near-maximal entanglement, yet
-their out-of-time-ordered correlator only ever takes the values $0$ or $4$, 
-there is no smooth Lyapunov growth. The **stabilizer Rényi entropy** quantifies
-exactly how far a state sits from the stabilizer world, and it is zero precisely
-for the states Cliffords can reach.
+The missing resource is nonstabilizerness, or magic, the degree to which a state
+lies outside the set reachable by Clifford operations on computational basis
+states. The stabilizer Rényi entropy quantifies it from the expansion of the
+state over Pauli operators, vanishing exactly on stabilizer states and positive
+otherwise, and it is the quantity that separates a $3$-design from full Haar
+randomness.
 
 ## Notebooks in this part
 
