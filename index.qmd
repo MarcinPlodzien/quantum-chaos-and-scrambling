@@ -73,7 +73,7 @@ Seven short parts, each a *concept page* followed by *runnable notebooks*:
 
 You can work through it in order, or jump to whatever you need, since each notebook
 stands on its own. A companion **[Exercises & Solutions PDF](exercises.qmd)** collects
-analytical problems, worked solutions, and flashcards for every part.
+analytical problems and worked solutions for every part.
 
 ## One calculation across the chapters
 

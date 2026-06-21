@@ -4,9 +4,9 @@ toc: false
 ---
 
 Each chapter of this tutorial comes with analytical exercises. The companion PDF
-below collects **all of them with full, step-by-step solutions**, plus
-flashcards, active-recall concept tests, and short derivation blueprints, 
-interleaved by chapter. Use it to test yourself after running the notebooks.
+below collects **all of them with full, step-by-step solutions**, together with
+short derivations of the key results, interleaved by chapter. Use it to test
+yourself after running the notebooks.
 
 [**Download the full PDF**](exercises_and_solutions_complete.pdf){.btn .btn-primary}
 
@@ -19,7 +19,5 @@ interleaved by chapter. Use it to test yourself after running the notebooks.
 
 ::: {.callout-note}
 Every numerical claim in the solutions is reproduced by the notebooks in this
-tutorial and by the standalone check scripts in the
-[`verify_exercises/`](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/tree/main/verify_exercises)
-folder of the repository.
+tutorial.
 :::

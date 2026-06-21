@@ -35,7 +35,7 @@ hardware, no special libraries, just `numpy`, `scipy`, and `matplotlib`.
 
 - **`source_notebooks/`**, the 41 tutorial notebooks (clean, output-free).
 - **`verify_exercises/`**, standalone Python scripts that numerically check the key results.
-- **`exercises_and_solutions_complete.pdf`**, all exercises with full step-by-step solutions, flashcards, and derivation blueprints, interleaved by chapter.
+- **`exercises_and_solutions_complete.pdf`**, all exercises with full step-by-step solutions and short derivations of the key results, interleaved by chapter.
 - **`chapters/`, `index.qmd`, `_quarto.yml`**, the source of the website.
 - **`docs/`**, the pre-built website (served by GitHub Pages).
 
@@ -61,7 +61,7 @@ python verify_exercises/solution_ch7_barren_plateau.py
   page is followed by its runnable notebooks, and the exercises PDF lets you test yourself.
 - **As a reference.** Jump to any notebook. Each one stands on its own, and a short
   Connections note links it to the related notebooks.
-- **For teaching.** The notebooks, exercises, and flashcards drop straight into a lecture
+- **For teaching.** The notebooks and exercises drop straight into a lecture
   or problem set.
 
 ## Rebuilding the website
