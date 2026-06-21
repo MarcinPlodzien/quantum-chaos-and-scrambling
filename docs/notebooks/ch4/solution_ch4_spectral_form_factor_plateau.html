@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#sff-plateau-value-for-the-gue" id="toc-sff-plateau-value-for-the-gue" class="nav-link active" data-scroll-target="#sff-plateau-value-for-the-gue">SFF Plateau Value for the GUE</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
@@ -573,6 +574,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>At <span class="math inline">\(t=0\)</span> every phase aligns and the <span class="math inline">\(D^2\)</span> terms add coherently, giving <span class="math inline">\(K(0) = D^2\)</span> for a spectrum of <span class="math inline">\(D\)</span> levels. As time advances the off-diagonal terms, carrying nonzero energy differences, oscillate and interfere away. Only the <span class="math inline">\(D\)</span> diagonal terms, where a level is paired with itself, contribute a steady value, so the long-time average settles at <span class="math inline">\(\overline{K} = D\)</span>. The ratio <span class="math inline">\(K(0)/\overline{K} = D\)</span> records how much coherence was present at the start.</p>
 <p>Between these two ends the averaged form factor traces a recognizable shape. It first dips below its initial value, then climbs along a linear ramp before flattening into the plateau at <span class="math inline">\(D\)</span>. The ramp is the fingerprint of level repulsion, the tendency of chaotic spectra to avoid near-degeneracies, while the plateau height counts levels and nothing more.</p>
 <p>The notebook derives the plateau value by time-averaging the double sum and isolating the diagonal terms, then samples random Hamiltonians from the Gaussian unitary ensemble to show how the dip and ramp give way to the plateau pinned at <span class="math inline">\(K = D\)</span>.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>It helps to write the form factor as the squared modulus of a complex-time partition function. With <span class="math inline">\(Z(\beta + it) = \mathrm{Tr}\,e^{-(\beta+it)H} = \sum_n e^{-(\beta+it)E_n}\)</span>, the spectral form factor is</p>
+<p><span class="math display">\[
+K(\beta, t) = |Z(\beta+it)|^2 = \sum_{m,n} e^{-\beta(E_m+E_n)}\,e^{-it(E_m-E_n)} .
+\]</span></p>
+<p>Setting <span class="math inline">\(\beta = 0\)</span> isolates the spectral content. The double sum splits into a diagonal part (<span class="math inline">\(m=n\)</span>), which contributes the constant <span class="math inline">\(D\)</span>, and an off-diagonal part that depends on the distribution of level differences <span class="math inline">\(E_m - E_n\)</span>. For an uncorrelated (Poisson) spectrum the off-diagonal phases average to a fast decay with no ramp. For a chaotic spectrum the two-level correlations of the unitary (<span class="math inline">\(\beta = 2\)</span>) ensemble instead produce a linear-in-time ramp, <span class="math inline">\(K(t) \propto t\)</span>, that rises until the Heisenberg time <span class="math inline">\(t \sim D\)</span> and then saturates at the plateau <span class="math inline">\(\overline{K} = D\)</span>. The ramp is the time-domain image of level repulsion, and the plateau height counts the number of levels, so the whole dip-ramp-plateau curve is fixed by the spectral statistics alone and is blind to the choice of operator.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>

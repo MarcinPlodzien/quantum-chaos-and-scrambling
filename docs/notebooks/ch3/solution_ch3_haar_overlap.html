@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#overlap-of-haar-random-states-and-measure-concentration" id="toc-overlap-of-haar-random-states-and-measure-concentration" class="nav-link active" data-scroll-target="#overlap-of-haar-random-states-and-measure-concentration">Overlap of Haar-Random States and Measure Concentration</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -570,6 +571,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>That distribution turns out to be simple, a <span class="math inline">\(\mathrm{Beta}(1, D-1)\)</span> law with density that decays as <span class="math inline">\((1-\chi)^{D-2}\)</span>. Its mean is <span class="math inline">\(1/D\)</span>, so in a large space two independent states are typically almost orthogonal. The spread shrinks at the same <span class="math inline">\(1/D\)</span> rate as the mean, so the overlap concentrates toward zero in absolute terms even though its relative fluctuation stays of order one. As the dimension grows the overlap piles up near zero.</p>
 <p>This is the simplest face of concentration of measure, the phenomenon in which a smooth function of a high-dimensional random vector clusters tightly around its average. Concentration is what licenses typicality arguments, where a single random state is allowed to stand in for the ensemble because almost every state behaves the same way. The overlap distribution is a clean place to watch this happen with an exact formula in hand.</p>
 <p>A common misreading treats the small mean as a claim about one specific pair of states rather than about the law they are drawn from. The notebook computes the mean and variance directly from the density and confirms that the typical overlap and its absolute spread both vanish as <span class="math inline">\(D\)</span> increases.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The overlap distribution follows from the geometry of the sphere alone. By unitary invariance fix <span class="math inline">\(|\psi\rangle = (1,0,\dots,0)\)</span>, so that <span class="math inline">\(\chi = |\langle\psi|\phi\rangle|^2 = |\phi_1|^2\)</span> for a random <span class="math inline">\(|\phi\rangle\)</span> on <span class="math inline">\(S^{2D-1}\)</span>. The squared moduli <span class="math inline">\(\{|\phi_i|^2\}\)</span> are uniform on the simplex <span class="math inline">\(\sum_i |\phi_i|^2 = 1\)</span>, a flat Dirichlet distribution, and integrating out all but the first coordinate leaves</p>
+<p><span class="math display">\[
+P(\chi) = (D-1)(1-\chi)^{D-2}, \qquad 0 \le \chi \le 1,
+\]</span></p>
+<p>the <span class="math inline">\(\mathrm{Beta}(1, D-1)\)</span> law. Its mean is <span class="math inline">\(\mathbb{E}[\chi] = 1/D\)</span> and its variance is <span class="math inline">\(\mathrm{Var}(\chi) = (D-1)/[D^2(D+1)]\)</span>, so the standard deviation is of order <span class="math inline">\(1/D\)</span>, the same order as the mean. The typical overlap magnitude is <span class="math inline">\(|\langle\psi|\phi\rangle| \sim D^{-1/2}\)</span>, and an atypically large overlap is exponentially suppressed,</p>
+<p><span class="math display">\[
+\Pr\big(|\langle\psi|\phi\rangle|^2 &gt; \epsilon\big) \le e^{-c D \epsilon},
+\]</span></p>
+<p>so two random states in a large Hilbert space are almost always nearly orthogonal. The overlap concentrates toward zero in absolute terms while its relative spread stays of order one, which is why it does not self-average in the relative sense.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

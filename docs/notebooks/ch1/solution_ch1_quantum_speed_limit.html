@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#geodesic-length-and-the-quantum-speed-limit" id="toc-geodesic-length-and-the-quantum-speed-limit" class="nav-link active" data-scroll-target="#geodesic-length-and-the-quantum-speed-limit">Geodesic Length and the Quantum Speed Limit</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
@@ -572,6 +573,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The precise statement is the Mandelstam-Tamm bound, which sets the time to reach orthogonality at <span class="math inline">\(T_\perp = \pi/(2\Delta H)\)</span>. A state with sharply defined energy barely moves, while a state spread over a wide band of energies can turn over quickly. The bound holds for any Hamiltonian and any initial state, so it places a universal limit on the speed of unitary dynamics.</p>
 <p>There is a geometric way to read the same result. The evolution <span class="math inline">\(U(t) = e^{-iHt}\)</span> traces a path on the unitary group, and with the metric inherited from the Hilbert-Schmidt inner product this path is a geodesic traversed at constant speed. The state moves along the shortest route available to it, and the energy uncertainty plays the role of how fast it covers ground. A qubit prepared in an eigenstate of <span class="math inline">\(\sigma_z\)</span> and driven by <span class="math inline">\(H = (\omega/2)\sigma_x\)</span> has the largest spread its energy range allows. Its survival probability is <span class="math inline">\(\cos^2(\omega t/2)\)</span>, which first reaches zero exactly at <span class="math inline">\(T_\perp\)</span>, so the qubit saturates the bound.</p>
 <p>The notebook computes the geodesic length and the orthogonality time and confirms that this qubit sits right at the limit.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The geometric reading rests on the length of a path on <span class="math inline">\(U(D)\)</span>. With the Hilbert-Schmidt metric <span class="math inline">\(\langle X, Y\rangle = -\mathrm{Tr}(XY)\)</span> on the skew-Hermitian algebra, the length of a curve <span class="math inline">\(U(t)\)</span> is</p>
+<p><span class="math display">\[
+L[U(t)] = \int_0^1 \sqrt{\langle \dot U U^\dagger, \dot U U^\dagger\rangle}\,dt = \int_0^1 \sqrt{\mathrm{Tr}(\dot U^\dagger \dot U)}\,dt ,
+\]</span></p>
+<p>where the second form follows because <span class="math inline">\(\dot U U^\dagger\)</span> is skew-Hermitian and the trace is cyclic. For evolution under a fixed Hamiltonian, <span class="math inline">\(U(t) = e^{-iHt}\)</span> gives <span class="math inline">\(\dot U = -iHU\)</span> and <span class="math inline">\(\mathrm{Tr}(\dot U^\dagger \dot U) = \mathrm{Tr}(H^2)\)</span>, a constant. The path is therefore a geodesic traversed at constant speed <span class="math inline">\(\sqrt{\mathrm{Tr}(H^2)}\)</span>, and its length grows linearly in time. Restricted to the evolving state, the speed in the Fubini-Study metric is set by the energy uncertainty <span class="math inline">\(\Delta H = \sqrt{\langle H^2\rangle - \langle H\rangle^2}\)</span>, which is what turns the geometric length into the Mandelstam-Tamm time <span class="math inline">\(T_\perp = \pi/(2\Delta H)\)</span> to reach an orthogonal state.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>

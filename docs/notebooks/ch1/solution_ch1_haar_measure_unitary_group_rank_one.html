@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#haar-invariance-on-u1" id="toc-haar-invariance-on-u1" class="nav-link active" data-scroll-target="#haar-invariance-on-u1">Haar Invariance on <span class="math inline">\(U(1)\)</span></a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
@@ -572,6 +573,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The simplest instance is the circle group <span class="math inline">\(U(1)\)</span>, whose elements are phases <span class="math inline">\(e^{i\theta}\)</span>. Here the Haar measure is the uniform density <span class="math inline">\(d\theta/(2\pi)\)</span>, and one can see why invariance forces this form. A density on the circle expands in Fourier modes, and rotating the circle multiplies every nonzero mode by a phase. For the density to come back to itself under all rotations, those modes have to vanish, which leaves only the constant term that normalization then sets.</p>
 <p>The same argument reaches into higher dimensions through the determinant. If <span class="math inline">\(U\)</span> is drawn from the Haar measure on <span class="math inline">\(U(D)\)</span>, multiplying it by a global phase rotates <span class="math inline">\(\det U\)</span> around the unit circle, and Haar invariance says this rotation cannot change the distribution. The phase of the determinant is therefore forced to be uniform, a simple signature of Haar randomness that persists in any dimension.</p>
 <p>The notebook samples random unitaries and compares the distribution of the determinant phase against the uniform law.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>On the full group <span class="math inline">\(U(D)\)</span> the defining property is invariance under multiplication from either side,</p>
+<p><span class="math display">\[
+d\mu(U) = d\mu(VU) = d\mu(UV), \qquad \forall\, V \in U(D).
+\]</span></p>
+<p>Because <span class="math inline">\(U(D)\)</span> is compact, this measure exists, is unique, and can be normalized to <span class="math inline">\(\int_{U(D)} d\mu(U) = 1\)</span>. Left invariance is what guarantees that a Haar-random unitary applied to any fixed reference state produces a state <span class="math inline">\(|\psi\rangle = U|\psi_0\rangle\)</span> whose distribution is the uniform measure on the sphere <span class="math inline">\(S^{2D-1}\)</span>, independent of <span class="math inline">\(|\psi_0\rangle\)</span>. A concrete way to sample is to draw a complex Ginibre matrix <span class="math inline">\(G\)</span> with independent Gaussian entries and take the <span class="math inline">\(Q\)</span> factor of its QR decomposition, with the diagonal phases of <span class="math inline">\(R\)</span> fixed so that the result is uniform. The <span class="math inline">\(U(1)\)</span> case worked out in this notebook is the smallest instance of the same invariance argument, with the uniform phase density <span class="math inline">\(d\theta/(2\pi)\)</span> as its unique solution.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>

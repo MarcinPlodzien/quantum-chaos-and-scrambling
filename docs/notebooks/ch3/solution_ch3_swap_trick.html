@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-swap-trick-in-action" id="toc-the-swap-trick-in-action" class="nav-link active" data-scroll-target="#the-swap-trick-in-action">The SWAP Trick in Action</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -571,6 +572,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Setting <span class="math inline">\(A = B = \rho\)</span> turns the purity into the expectation of the swap operator in the state <span class="math inline">\(\rho\otimes\rho\)</span>. This is what makes purities and the related Rényi entropies measurable without reconstructing the full density matrix, since one prepares two copies and estimates a single observable across them. The same replication is the reason two-copy quantities appear so often once randomness enters the picture.</p>
 <p>The trick is also the computational engine behind the Weingarten calculus. Averages of two copies of a unitary against two copies of its conjugate reduce to permutations acting on the copies, and the swap is the nontrivial permutation that appears at this order. Counting how swaps and identities wire the copies together is exactly how second-moment Haar integrals are evaluated.</p>
 <p>The notebook applies the identity to the Bell state, whose reduced density matrix is maximally mixed, and reads off purity <span class="math inline">\(1/2\)</span>. It then compares against the Haar-averaged purity at equal subsystem dimensions <span class="math inline">\(m=n=2\)</span>, where the typical value is <span class="math inline">\(4/5\)</span>, placing the Bell state below the average and so more entangled than a generic two-qubit reduction.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The purity is the second spectral moment <span class="math inline">\(\gamma = \mathrm{Tr}\,\rho_A^2 = \sum_i \lambda_i^2\)</span>, and the swap trick rewrites it as a two-copy expectation, <span class="math inline">\(\mathrm{Tr}\,\rho_A^2 = \mathrm{Tr}\big(\mathbb{F}\,\rho_A \otimes \rho_A\big)\)</span>, where <span class="math inline">\(\mathbb{F}\)</span> is the swap operator on <span class="math inline">\(\mathcal{H}_A \otimes \mathcal{H}_A\)</span>. Averaging over the induced ensemble gives the exact Haar value</p>
+<p><span class="math display">\[
+\mathbb{E}[\gamma] = \frac{m+n}{mn+1},
+\]</span></p>
+<p>together with the per-eigenvalue moments <span class="math inline">\(\mathbb{E}[\lambda^2] = (m+n)/[m(mn+1)]\)</span> and <span class="math inline">\(\mathrm{Var}(\lambda) = (m^2-1)/[m^2(mn+1)]\)</span>. For a large environment, <span class="math inline">\(\mathbb{E}[\gamma] \simeq 1/m + 1/n\)</span>, approaching the maximally mixed purity <span class="math inline">\(1/m\)</span> with a correction set by the environment dimension <span class="math inline">\(n\)</span>. Near-maximal mixing therefore requires <span class="math inline">\(n \gg m\)</span>, not merely <span class="math inline">\(mn \gg 1\)</span>, since the equal bipartition <span class="math inline">\(m = n\)</span> leaves <span class="math inline">\(\mathbb{E}[\gamma] \simeq 2/m\)</span>.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

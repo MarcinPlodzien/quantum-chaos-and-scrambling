@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#concentration-of-purity-lévys-lemma" id="toc-concentration-of-purity-lévys-lemma" class="nav-link active" data-scroll-target="#concentration-of-purity-lévys-lemma">Concentration of Purity (Lévy’s Lemma)</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
@@ -573,6 +574,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Its average is known in closed form, <span class="math inline">\((m+n)/(mn+1)\)</span> for subsystem dimension <span class="math inline">\(m\)</span> and complement dimension <span class="math inline">\(n\)</span>, and what matters more is how little it fluctuates. As the total dimension grows the variance of the purity collapses, so nearly every random state yields almost the same subsystem purity. This shrinking spread is concentration of measure seen in a specific observable.</p>
 <p>Lévy’s lemma turns the observation into a quantitative bound. For a function on the space of pure states that does not change too steeply, the lemma states that the probability of straying from the mean by more than a fixed amount decays exponentially in the Hilbert space dimension. Applied to the purity, whose steepness is controlled by a fixed constant, it shows that deviations are suppressed exponentially in the number of qubits.</p>
 <p>This is the engine behind quantum typicality, the principle that one random state can represent the whole ensemble. The notebook makes the bound concrete, finding that already around twenty-two qubits a deviation of more than <span class="math inline">\(0.01\)</span> from the mean has probability below one in a million, and it watches the purity distribution narrow as the dimension increases.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The sharpness of typicality is controlled by concentration of measure on the sphere <span class="math inline">\(S^{2D-1}\)</span> of pure states. Let <span class="math inline">\(f(\psi) = \langle\psi|\mathcal{O}_A|\psi\rangle\)</span> for an observable <span class="math inline">\(\mathcal{O}_A\)</span> acting on subsystem <span class="math inline">\(A\)</span>. This function is Lipschitz with constant <span class="math inline">\(2\|\mathcal{O}_A\|\)</span>, and Lévy’s lemma bounds its fluctuations around the Haar mean,</p>
+<p><span class="math display">\[
+\Pr\big(|f(\psi) - \mathbb{E}[f]| &gt; \epsilon\big) \le 2\exp\!\Big(\!-\frac{C D \epsilon^2}{\|\mathcal{O}_A\|^2}\Big),
+\]</span></p>
+<p>with <span class="math inline">\(C\)</span> a constant of order one and the mean fixed by the maximally mixed state, <span class="math inline">\(\mathbb{E}[f] = \mathrm{Tr}(\mathcal{O}_A\,\mathbb{I}_A/m)\)</span>. The deviation probability is exponentially small in the full dimension <span class="math inline">\(D = mn\)</span>, so for almost every pure state the reduced matrix satisfies <span class="math inline">\(\rho_A \approx \mathbb{I}_A/m\)</span> up to corrections that vanish as the environment grows. The purity is the corresponding two-copy quantity, and its Haar average <span class="math inline">\((m+n)/(mn+1)\)</span> sits within <span class="math inline">\(\mathcal{O}(1/n)\)</span> of the maximally mixed value <span class="math inline">\(1/m\)</span>. Typicality of this kind is kinematic, a property of Hilbert-space geometry alone, and needs no assumption about dynamics or equilibration.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>

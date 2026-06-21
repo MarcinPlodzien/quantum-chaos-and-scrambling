@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-asymptotic-page-formula-via-marchenko-pastur" id="toc-the-asymptotic-page-formula-via-marchenko-pastur" class="nav-link active" data-scroll-target="#the-asymptotic-page-formula-via-marchenko-pastur">The Asymptotic Page Formula via Marchenko-Pastur</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
@@ -572,6 +573,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The answer is that the mean entropy lies just below the largest value it could take. The maximum is <span class="math inline">\(\ln m\)</span>, reached when the reduction is exactly maximally mixed, and the average falls short of it by a small deficit. In the regime studied here that deficit is <span class="math inline">\(m/(2n)\)</span>, so the entropy approaches <span class="math inline">\(\ln m - m/(2n)\)</span>. When the complement is much larger than the subsystem the correction is tiny and a typical reduction is nearly maximally mixed.</p>
 <p>The derivation rests on the spectrum of the random reduced state, whose rescaled eigenvalues follow the Marchenko-Pastur distribution familiar from random matrix theory. Averaging the entropy function against this spectral law, and expanding around the mean eigenvalue, produces the logarithm plus the correction in a couple of clean steps. The variance of that distribution is what sets the size of the deficit.</p>
 <p>This result is a cornerstone of the typicality arguments that run through random states and scrambling dynamics, where Haar-random states model thermalized ones. The size of the deficit is also what distinguishes a generic random state, slightly short of maximal, from one whose reduction is exactly maximally mixed. The notebook reproduces both the exact Page value and its asymptotic form by sampling random states.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The exact average follows from the eigenvalue statistics of <span class="math inline">\(\rho_A\)</span>. Writing the Haar-random state in a product basis and tracing out <span class="math inline">\(B\)</span> gives <span class="math inline">\(\rho_A = W/\mathrm{Tr}\,W\)</span> with <span class="math inline">\(W = XX^\dagger\)</span> a complex Wishart matrix built from an <span class="math inline">\(m \times n\)</span> Gaussian matrix <span class="math inline">\(X\)</span>. The joint density of the eigenvalues <span class="math inline">\(\{\lambda_i\}\)</span> of <span class="math inline">\(\rho_A\)</span> is</p>
+<p><span class="math display">\[
+P(\lambda_1,\dots,\lambda_m) \propto \delta\!\Big(\textstyle\sum_i \lambda_i - 1\Big)\,\prod_{i=1}^m \lambda_i^{\,n-m}\,\prod_{i&lt;j}(\lambda_i-\lambda_j)^2 .
+\]</span></p>
+<p>The factor <span class="math inline">\(\prod_{i&lt;j}(\lambda_i-\lambda_j)^2\)</span> is the level repulsion of the unitary (<span class="math inline">\(\beta = 2\)</span>) ensemble, and the delta function fixes the unit trace. Averaging the von Neumann entropy <span class="math inline">\(S(\rho_A) = -\sum_i \lambda_i \ln \lambda_i\)</span> over this density gives Page’s exact result for <span class="math inline">\(m \le n\)</span>,</p>
+<p><span class="math display">\[
+\mathbb{E}[S(\rho_A)] = \sum_{k=n+1}^{mn}\frac{1}{k} - \frac{m-1}{2n},
+\]</span></p>
+<p>whose large-dimension expansion is <span class="math inline">\(\mathbb{E}[S] \simeq \ln m - \tfrac{m}{2n}\)</span>. The same density yields the average purity <span class="math inline">\(\mathbb{E}[\mathrm{Tr}\,\rho_A^2] = (m+n)/(mn+1)\)</span>, which tends to <span class="math inline">\(1/m\)</span> as the environment grows. The Marchenko-Pastur law used below is the continuum limit of this eigenvalue density when <span class="math inline">\(m, n \to \infty\)</span> at fixed ratio <span class="math inline">\(c = m/n\)</span>, so the two routes to the Page value describe the same statistics at different resolutions.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>

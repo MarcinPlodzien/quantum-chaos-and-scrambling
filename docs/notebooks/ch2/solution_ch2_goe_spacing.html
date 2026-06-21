@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-2-times-2-goe-and-linear-level-repulsion" id="toc-the-2-times-2-goe-and-linear-level-repulsion" class="nav-link active" data-scroll-target="#the-2-times-2-goe-and-linear-level-repulsion">The <span class="math inline">\(2 \times 2\)</span> GOE and Linear Level Repulsion</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -571,6 +572,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For a Hamiltonian with time-reversal symmetry the appropriate model is the Gaussian Orthogonal Ensemble, built from real symmetric matrices with random Gaussian entries. The spacing distribution is captured almost completely by the smallest nontrivial case, a <span class="math inline">\(2\times 2\)</span> matrix. This shortcut yields the Wigner surmise <span class="math inline">\(P(s) = \tfrac{s}{2}e^{-s^2/4}\)</span>, which tracks the behavior of large matrices very closely.</p>
 <p>The defining feature is the way the density vanishes linearly as the spacing goes to zero. Two neighboring levels rarely sit on top of each other, an effect known as level repulsion, and for this time-reversal-symmetric class the suppression grows linearly in the gap, which is characteristic of the <span class="math inline">\(\beta = 1\)</span> symmetry index. The repulsion can be traced directly to the random-matrix weight, where coincident eigenvalues correspond to a measure-zero configuration that the distribution pushes against.</p>
 <p>The notebook derives the surmise by integrating the GOE weight of a <span class="math inline">\(2\times 2\)</span> matrix over its trace and angular variables, then samples random matrices to confirm the linear repulsion at small spacing.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The linear repulsion has a structural origin in the change of variables from matrix entries to eigenvalues. For an invariant Gaussian ensemble the Jacobian of this transformation produces a Vandermonde factor <span class="math inline">\(\prod_{i&lt;j}|\lambda_i - \lambda_j|^\beta\)</span>, so the joint eigenvalue density takes the log-gas form</p>
+<p><span class="math display">\[
+P(\lambda_1,\dots,\lambda_N) \propto \prod_{i&lt;j}|\lambda_i-\lambda_j|^\beta\; e^{-\frac{\beta}{2}\sum_i V(\lambda_i)} ,
+\]</span></p>
+<p>a one-dimensional Coulomb gas of eigenvalues that repel logarithmically, with <span class="math inline">\(\beta^{-1}\)</span> acting as a temperature. The exponent <span class="math inline">\(\beta\)</span> is the Dyson index, fixed by time-reversal symmetry through the threefold way: <span class="math inline">\(\beta = 1\)</span> for time-reversal-invariant systems with <span class="math inline">\(T^2 = +1\)</span> (orthogonal, GOE), <span class="math inline">\(\beta = 2\)</span> when time-reversal is broken (unitary, GUE), and <span class="math inline">\(\beta = 4\)</span> for <span class="math inline">\(T^2 = -1\)</span> (symplectic, GSE). The small-spacing repulsion inherits this exponent, <span class="math inline">\(P(s) \propto s^\beta\)</span> as <span class="math inline">\(s \to 0\)</span>, so the linear growth of the GOE surmise is the <span class="math inline">\(\beta = 1\)</span> case. On larger scales the same correlations appear as spectral rigidity, measured by the number variance <span class="math inline">\(\Sigma^2(L) = \langle (N(L) - L)^2\rangle\)</span> of the unfolded spectrum, which grows only logarithmically for chaotic spectra against the linear <span class="math inline">\(\Sigma^2(L) = L\)</span> of an uncorrelated Poisson spectrum.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
