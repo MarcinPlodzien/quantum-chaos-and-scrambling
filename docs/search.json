@@ -116,14 +116,14 @@
     "href": "index.html#what-youll-learn",
     "title": "From Haar Random States to Quantum Machine Learning",
     "section": "What you’ll learn",
-    "text": "What you’ll learn\nA surprising amount of modern quantum theory comes down to one question. What happens when you average over random quantum evolutions? The answer ties together several topics that look unrelated at first.\n\nspectral statistics of chaotic Hamiltonians · the entanglement of a typical quantum state · how scrambled information hides and re-emerges · why some quantum machine-learning models refuse to train.\n\nThis tutorial builds the toolkit once and then follows it across all of them. By the end you will be able to:\n\naverage over random unitaries by hand using the Weingarten calculus, and predict second- and fourth-moment quantities (purity, frame potentials, gradient variances);\nread the fingerprints of quantum chaos in a spectrum, level repulsion, the spectral form factor, the random-matrix universality classes;\nquantify scrambling with out-of-time-ordered correlators, Krylov complexity, and tripartite mutual information;\nuse randomness as a tool, classical shadows, randomized benchmarking, and the Hayden-Preskill recovery protocol;\nexplain barren plateaus and the expressivity-trainability tension in quantum machine learning, from first principles."
+    "text": "What you’ll learn\nBy the end you will be able to:\n\naverage over random unitaries by hand using the Weingarten calculus, and predict second- and fourth-moment quantities (purity, frame potentials, gradient variances);\nread the fingerprints of quantum chaos in a spectrum: level repulsion, the spectral form factor, the random-matrix universality classes;\nquantify scrambling with out-of-time-ordered correlators, Krylov complexity, and tripartite mutual information;\nuse randomness as a tool: classical shadows, randomized benchmarking, and the Hayden-Preskill recovery protocol;\nexplain barren plateaus and the expressivity-trainability tension in quantum machine learning, from first principles."
   },
   {
     "objectID": "index.html#how-the-tutorial-is-organized",
     "href": "index.html#how-the-tutorial-is-organized",
     "title": "From Haar Random States to Quantum Machine Learning",
     "section": "How the tutorial is organized",
-    "text": "How the tutorial is organized\nSeven short parts, each a concept page followed by runnable notebooks:\n\n\n\nPart\nYou’ll be able to…\nNotebooks\n\n\n\n\n1 · Mathematical Foundations\nSpeak the language of channels, Lie algebras, state geometry and measure theory\n14\n\n\n2 · Random Matrix Theory\nDiagnose chaos from a spectrum\n3\n\n\n3 · Haar Measure & Weingarten Calculus\nAverage over random unitaries and derive the Page formula\n7\n\n\n4 · Quantum Dynamics & Chaos\nMeasure scrambling in real time\n3\n\n\n5 · Designs & Clifford Ensembles\nReplace Haar randomness with something efficient\n2\n\n\n6 · Applications of Scrambling\nTurn randomness into protocols\n5\n\n\n7 · Quantum Machine Learning\nUnderstand trainability through the same lens\n7\n\n\n\nYou can work through it in order, or jump to whatever you need, since each notebook stands on its own. A companion Exercises & Solutions PDF collects analytical problems and worked solutions for every part."
+    "text": "How the tutorial is organized\nSeven short parts, each a concept page followed by runnable notebooks:\n\n\n\nPart\nYou’ll be able to…\nNotebooks\n\n\n\n\n1 · Mathematical Foundations\nSpeak the language of channels, Lie algebras, state geometry and measure theory\n14\n\n\n2 · Random Matrix Theory\nDiagnose chaos from a spectrum\n3\n\n\n3 · Haar Measure & Weingarten Calculus\nAverage over random unitaries and derive the Page formula\n7\n\n\n4 · Quantum Dynamics & Chaos\nMeasure scrambling in real time\n3\n\n\n5 · Designs & Clifford Ensembles\nReplace Haar randomness with something efficient\n2\n\n\n6 · Applications of Scrambling\nTurn randomness into protocols\n5\n\n\n7 · Quantum Machine Learning\nUnderstand trainability through the same lens\n7\n\n\n\nThe parts are largely independent and each notebook stands on its own, so you can read in order or jump to what you need. The second-moment twirl worked out in Part 3 recurs in the Page formula, the classical-shadows channel, the randomized-benchmarking decay and the barren-plateau gradient variance; where a notebook reuses an earlier result, a short Connections note at its end points back to it. A companion Exercises & Solutions PDF collects analytical problems and worked solutions for every part."
   },
   {
     "objectID": "index.html#one-calculation-across-the-chapters",
@@ -488,5 +488,12 @@
     "title": "From Haar Random States to Quantum Machine Learning",
     "section": "About the author",
     "text": "About the author\nMarcin Płodzień\nTheoretical physicist working in the field of many-body systems, with a focus on quantum simulators and deep learning for quantum mechanics.\nEmail · ORCID · Google Scholar · GitHub · Scopus · Web of Science"
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "From Haar Random States to Quantum Machine Learning",
+    "section": "Getting started",
+    "text": "Getting started\ngit clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling\ncd quantum-chaos-and-scrambling\npip install -r requirements.txt\njupyter lab # open any notebook under source_notebooks/\nEverything runs on a laptop with a standard scientific-Python stack (numpy, scipy, matplotlib). No quantum hardware, no GPUs, no special libraries."
   }
 ]

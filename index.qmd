@@ -34,28 +34,19 @@ Readers who want the mathematics in more depth can consult the companion lecture
 
 ## What you'll learn
 
-A surprising amount of modern quantum theory comes down to one question. **What
-happens when you average over random quantum evolutions?** The answer ties together
-several topics that look unrelated at first.
-
-> spectral statistics of chaotic Hamiltonians · the entanglement of a typical
-> quantum state · how scrambled information hides and re-emerges · why some
-> quantum machine-learning models refuse to train.
-
-This tutorial builds the toolkit once and then follows it across all of them.
 By the end you will be able to:
 
 - **average over random unitaries by hand** using the Weingarten calculus, and
- predict second- and fourth-moment quantities (purity, frame potentials,
- gradient variances);
-- **read the fingerprints of quantum chaos** in a spectrum, level repulsion,
- the spectral form factor, the random-matrix universality classes;
+  predict second- and fourth-moment quantities (purity, frame potentials,
+  gradient variances);
+- **read the fingerprints of quantum chaos** in a spectrum: level repulsion,
+  the spectral form factor, the random-matrix universality classes;
 - **quantify scrambling** with out-of-time-ordered correlators, Krylov
- complexity, and tripartite mutual information;
-- **use randomness as a tool**, classical shadows, randomized benchmarking, and
- the Hayden-Preskill recovery protocol;
+  complexity, and tripartite mutual information;
+- **use randomness as a tool**: classical shadows, randomized benchmarking, and
+  the Hayden-Preskill recovery protocol;
 - **explain barren plateaus** and the expressivity-trainability tension in
- quantum machine learning, from first principles.
+  quantum machine learning, from first principles.
 
 ## How the tutorial is organized
 
@@ -71,22 +62,15 @@ Seven short parts, each a *concept page* followed by *runnable notebooks*:
 | [6 · Applications of Scrambling](chapters/06-applications.qmd) | Turn randomness into protocols | 5 |
 | [7 · Quantum Machine Learning](chapters/07-qml.qmd) | Understand trainability through the same lens | 7 |
 
-You can work through it in order, or jump to whatever you need, since each notebook
-stands on its own. A companion **[Exercises & Solutions PDF](exercises.qmd)** collects
-analytical problems and worked solutions for every part.
+The parts are largely independent and each notebook stands on its own, so you can read in
+order or jump to what you need. The second-moment twirl worked out in Part 3 recurs in the
+Page formula, the classical-shadows channel, the randomized-benchmarking decay and the
+barren-plateau gradient variance; where a notebook reuses an earlier result, a short
+Connections note at its end points back to it. A companion
+**[Exercises & Solutions PDF](exercises.qmd)** collects analytical problems and worked
+solutions for every part.
 
-## One calculation across the chapters
-
-A single object recurs throughout the tutorial. The second moment of a random unitary,
-the twirl that sends an operator to a combination of the identity and the swap, is worked
-out in [Part 3](chapters/03-haar-weingarten.qmd) and then reused in the Page formula, the
-classical shadows channel, the randomized benchmarking decay, and the barren-plateau
-gradient variance. Concentration of measure, the shrinking of fluctuations as the
-dimension grows, likewise links the entanglement of a typical state with the trainability
-of a quantum model. Where a notebook reuses a result from an earlier one, a short
-Connections note at its end points back to it.
-
-## Run it in two minutes
+## Getting started
 
 ```bash
 git clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling
@@ -96,30 +80,12 @@ jupyter lab # open any notebook under source_notebooks/
 ```
 
 Everything runs on a laptop with a standard scientific-Python stack
-(`numpy`, `scipy`, `matplotlib`). No quantum hardware, no GPUs, no special
-libraries.
+(`numpy`, `scipy`, `matplotlib`). No quantum hardware, no GPUs, no special libraries.
 
 ## Who this is for
 
-Graduate students and researchers in quantum information, condensed matter, and
-quantum machine learning, and anyone comfortable with linear algebra and Python who
-wants to *compute* with these ideas rather than only read about them. It is meant in
-particular for people learning these scattered topics on their own, where hands-on,
-runnable material is hard to find. The mathematical prerequisites are light and built up
-as needed in Part 1.
-
----
-
-## About the author
-
-**Marcin Płodzień**
-
-Theoretical physicist working in the field of many-body systems, with a focus on quantum
-simulators and deep learning for quantum mechanics.
-
-[Email](mailto:mplodzien@gmail.com) ·
-[ORCID](https://orcid.org/0000-0002-0835-1644) ·
-[Google Scholar](https://scholar.google.com/citations?user=eC9nCmgAAAAJ&hl=en) ·
-[GitHub](https://github.com/MarcinPlodzien) ·
-[Scopus](https://www.scopus.com/authid/detail.uri?authorId=55031869100) ·
-[Web of Science](https://www.webofscience.com/wos/author/record/K-7326-2017)
+Graduate students and researchers in quantum information, condensed matter, and quantum
+machine learning, and anyone comfortable with linear algebra and Python who wants to
+*compute* with these ideas rather than only read about them. It is meant in particular for
+people learning these scattered topics on their own, where hands-on, runnable material is
+hard to find. The mathematical prerequisites are light and built up as needed in Part 1.
