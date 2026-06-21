@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#bloch-sphere-geodesics-and-the-fubini-study-metric" id="toc-bloch-sphere-geodesics-and-the-fubini-study-metric" class="nav-link active" data-scroll-target="#bloch-sphere-geodesics-and-the-fubini-study-metric">Bloch Sphere Geodesics and the Fubini-Study Metric</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -569,6 +570,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>That construction is the Fubini-Study metric. The distance it assigns to two states is the angle <span class="math inline">\(\arccos|\langle\psi|\phi\rangle|\)</span> between the rays they span, so states with large overlap sit close together and orthogonal states sit a quarter turn apart. Reading distance as an angle is more than a figure of speech, since the line element is literally the metric of a curved surface and the shortest paths are arcs along it.</p>
 <p>The same line element measures how quickly a state moves under evolution, because a Hamiltonian pushes a state a definite distance per unit time in this geometry. It is the real part of the quantum geometric tensor, which is why it returns in quantum speed limits and in questions of how sensitively a state responds to a parameter. For a single qubit the space of rays is two-dimensional, and the metric works out to that of a round sphere, the familiar Bloch sphere, though it carries a radius that the bare Bloch vector does not make obvious.</p>
 <p>This exercise derives the line element directly from the qubit state in the half-angle parametrization, reduces it to the metric of a sphere of radius one half, and measures the geodesic distance from the north pole to a point on the equator, both by integrating along the meridian and from the closed-form overlap formula.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The Fubini-Study metric is the distance on the space of rays <span class="math inline">\(\mathbb{CP}^{D-1}\)</span> induced by the Hilbert-space inner product once the global phase is removed. For a normalized <span class="math inline">\(|\psi\rangle\)</span> and a nearby <span class="math inline">\(|\psi + d\psi\rangle\)</span> the line element is</p>
+<p><span class="math display">\[
+ds^2 = \langle d\psi | d\psi\rangle - |\langle \psi | d\psi\rangle|^2 ,
+\]</span></p>
+<p>the squared norm of the variation with its component along <span class="math inline">\(|\psi\rangle\)</span> projected out, which is what makes it phase-invariant. Equivalently the geodesic distance between two rays is the Fubini-Study angle</p>
+<p><span class="math display">\[
+\gamma(\psi,\phi) = \arccos|\langle\psi|\phi\rangle| ,
+\]</span></p>
+<p>so orthogonal states sit a quarter turn apart and the overlap fixes the distance. For a qubit in the half-angle parametrization <span class="math inline">\(|\psi\rangle = \cos(\theta/2)|0\rangle + e^{i\varphi}\sin(\theta/2)|1\rangle\)</span>, the line element reduces to <span class="math inline">\(ds^2 = \tfrac14\big(d\theta^2 + \sin^2\theta\, d\varphi^2\big)\)</span>, the metric of a sphere of radius <span class="math inline">\(\tfrac12\)</span>. The Bloch sphere drawn with unit radius therefore carries twice the Fubini-Study distance, the factor that appears whenever overlaps are turned into angles.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

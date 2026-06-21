@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#surjectivity-of-the-exponential-map-on-ud" id="toc-surjectivity-of-the-exponential-map-on-ud" class="nav-link active" data-scroll-target="#surjectivity-of-the-exponential-map-on-ud">Surjectivity of the Exponential Map on <span class="math inline">\(U(D)\)</span></a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
@@ -573,6 +574,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For the unitary group the answer is yes, and this reflects the fact that <span class="math inline">\(U(D)\)</span> is compact. Compactness is what makes the exponential map cover the whole group, and once it is dropped the property can fail. Over the real invertible matrices, for instance, exponentiating a real generator always produces a positive determinant, so no generator can ever reach a matrix whose determinant is negative.</p>
 <p>The reason surjectivity holds is that a unitary is a normal operator, so the spectral theorem supplies an orthonormal basis of eigenvectors with eigenvalues of unit modulus, each of the form <span class="math inline">\(e^{i\theta}\)</span>. Collecting the phases <span class="math inline">\(\theta_j\)</span> and weighting the corresponding eigenprojectors by them assembles a skew-Hermitian generator whose exponential reproduces the original unitary. Because each phase can be shifted by any multiple of <span class="math inline">\(2\pi\)</span> without changing its eigenvalue, many different generators map to the same unitary, so the map covers the group while being far from one to one.</p>
 <p>The notebook diagonalizes Haar-random unitaries and checks that exponentiating the principal-logarithm generator returns each matrix.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>Every unitary is a single exponential of a Hermitian generator. Because <span class="math inline">\(U(D)\)</span> is a compact connected Lie group, the exponential map</p>
+<p><span class="math display">\[
+\exp : \mathfrak{u}(D) \to U(D), \qquad X \mapsto e^X
+\]</span></p>
+<p>is surjective, so for any <span class="math inline">\(U\)</span> there is a Hermitian <span class="math inline">\(H\)</span> with <span class="math inline">\(U = e^{-iH}\)</span>. The constructive reason is the spectral theorem. A unitary is normal, so it diagonalizes as <span class="math inline">\(U = V\,\mathrm{diag}(e^{i\theta_j})\,V^\dagger\)</span> with real eigenphases <span class="math inline">\(\theta_j\)</span>, and setting <span class="math inline">\(H = V\,\mathrm{diag}(\theta_j)\,V^\dagger\)</span> gives a Hermitian generator with <span class="math inline">\(e^{-iH} = U\)</span>. The generator is not unique, since each <span class="math inline">\(\theta_j\)</span> is defined only modulo <span class="math inline">\(2\pi\)</span>, but one always exists. This is what guarantees that any target unitary can be written as evolution under some Hamiltonian, the premise behind reading quantum gates as continuous-time dynamics.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>

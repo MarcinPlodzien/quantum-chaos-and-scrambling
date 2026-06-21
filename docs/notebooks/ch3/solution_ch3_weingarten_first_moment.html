@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#operator-averages-using-the-first-moment-formula" id="toc-operator-averages-using-the-first-moment-formula" class="nav-link active" data-scroll-target="#operator-averages-using-the-first-moment-formula">Operator Averages Using the First Moment Formula</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -571,6 +572,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This forces the answer to be a multiple of the identity, and matching traces on both sides fixes the multiple. The result is <span class="math inline">\(\mathbb{E}_U[U A U^\dagger] = \frac{\mathrm{Tr}(A)}{D}\,I\)</span>, where <span class="math inline">\(D\)</span> is the dimension. Read as a physical process this is complete depolarization, where the averaged rotation drives any input toward the maximally mixed state while keeping its normalization. Read through representation theory it is Schur’s lemma, since an operator commuting with every unitary must be proportional to the identity.</p>
 <p>In the language of the Weingarten calculus this is the <span class="math inline">\(k=1\)</span> case, the simplest instance of a general rule that turns Haar averages into sums over permutations. Here there is only one permutation to sum, so the combinatorics stays invisible, yet the same logic organizes every higher moment that follows. The identity also names the operation called twirling, which recurs whenever one averages a fixed observable against a randomly chosen frame.</p>
 <p>The notebook puts the formula to work on <span class="math inline">\(\mathbb{E}_U[\mathrm{Tr}(U A U^\dagger B)]\)</span>, a contraction of the rotated operator against a second fixed matrix <span class="math inline">\(B\)</span>. Pulling the average inside the trace and applying the identity collapses the expression to a product of two traces divided by <span class="math inline">\(D\)</span>, so all correlation between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is washed out.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The first moment is the simplest Weingarten average. Averaging a single conjugation over the Haar measure gives</p>
+<p><span class="math display">\[
+\int_{U(D)} U X U^\dagger\, d\mu(U) = \frac{\mathrm{Tr}(X)}{D}\,\mathbb{I}
+\]</span></p>
+<p>for any operator <span class="math inline">\(X\)</span>. The reason is Schur’s lemma. Replacing <span class="math inline">\(U \to VU\)</span> leaves the Haar measure unchanged, so the left-hand side commutes with every <span class="math inline">\(V \in U(D)\)</span> and must be a multiple of the identity on the irreducible defining representation. Taking the trace of both sides fixes the constant to <span class="math inline">\(\mathrm{Tr}(X)/D\)</span>. Equivalently, the map <span class="math inline">\(\mathcal{T}(X) = \int U X U^\dagger\, d\mu(U)\)</span> is the projector onto the commutant of the group action, which at first order is one-dimensional and spanned by <span class="math inline">\(\mathbb{I}\)</span>. This is the <span class="math inline">\(t = 1\)</span> case of the general pattern, where the <span class="math inline">\(t\)</span>-fold twirl <span class="math inline">\(\int U^{\otimes t} X\, U^{\dagger\otimes t}\, d\mu\)</span> projects onto the algebra of permutation operators through Schur-Weyl duality. Here that algebra is trivial, so a single Haar average erases everything about <span class="math inline">\(X\)</span> except its trace.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#choi-matrix-of-the-amplitude-damping-channel" id="toc-choi-matrix-of-the-amplitude-damping-channel" class="nav-link active" data-scroll-target="#choi-matrix-of-the-amplitude-damping-channel">Choi Matrix of the Amplitude-Damping Channel</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -571,6 +572,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The channel studied here is amplitude damping, which models an excited qubit leaking energy to its environment and settling toward its ground state. This is the <span class="math inline">\(T_1\)</span> relaxation familiar from nuclear magnetic resonance and from superconducting qubits, where an excitation decays over time. Because every state is drawn toward <span class="math inline">\(|0\rangle\)</span>, the channel is non-unital and does not leave the maximally mixed state in place, unlike isotropic noise that has no preferred direction. A single parameter, the probability that the excitation is lost, sets how strong the damping is.</p>
 <p>Reading the channel off its Choi matrix turns an abstract condition into a concrete calculation. Once the matrix is built, checking that it describes a valid channel is a matter of inspecting a four-by-four spectrum, and the rank of that matrix reports how many Kraus operators the channel genuinely needs, which in turn signals whether the channel is reversible or has begun to lose information.</p>
 <p>This exercise builds the Choi matrix from the Kraus operators, finds its spectrum <span class="math inline">\(\{2-\gamma,\gamma,0,0\}\)</span> and confirms that it stays non-negative for every damping strength, and reads the limiting cases of no damping and full reset off the rank of the matrix.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The Choi-Jamiolkowski isomorphism turns a channel into a state on a doubled space. Acting with the channel on one half of the unnormalized maximally entangled vector <span class="math inline">\(|\Omega\rangle = \sum_i |i\rangle|i\rangle\)</span> produces the Choi matrix</p>
+<p><span class="math display">\[
+J(\mathcal{E}) = (\mathcal{E} \otimes \mathrm{id})\,|\Omega\rangle\langle\Omega| = \sum_{i,j} \mathcal{E}(|i\rangle\langle j|) \otimes |i\rangle\langle j| .
+\]</span></p>
+<p>The map <span class="math inline">\(\mathcal{E}\)</span> is completely positive if and only if <span class="math inline">\(J(\mathcal{E})\)</span> is positive semidefinite, and trace preserving if and only if <span class="math inline">\(\mathrm{Tr}_1 J(\mathcal{E}) = \mathbb{I}\)</span>, so channel properties become spectral properties of a matrix. The amplitude-damping channel models relaxation from <span class="math inline">\(|1\rangle\)</span> to <span class="math inline">\(|0\rangle\)</span> with probability <span class="math inline">\(\gamma\)</span> through the Kraus operators</p>
+<p><span class="math display">\[
+K_0 = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; \sqrt{1-\gamma}\end{pmatrix}, \qquad K_1 = \begin{pmatrix}0 &amp; \sqrt{\gamma} \\ 0 &amp; 0\end{pmatrix},
+\]</span></p>
+<p>and its Choi matrix has eigenvalues that expose how the channel both preserves and damps the basis states. Reading channel properties off <span class="math inline">\(J(\mathcal{E})\)</span> is the device that lets the rest of the tutorial treat noisy evolutions and states on the same footing.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-depolarizing-channel" id="toc-the-depolarizing-channel" class="nav-link active" data-scroll-target="#the-depolarizing-channel">The Depolarizing Channel</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -570,6 +571,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>That isotropy is why the channel serves as a reference point for noise. Any single-qubit channel, however biased its errors, can be averaged over the Clifford group in a procedure called twirling, and the average always comes out as a depolarizing channel with the same mean effect. Twirling washes out the directional detail and keeps the part of the error that survives randomization, so the depolarizing model stands in for a generic error once its orientation has been scrambled. This is the reason it sits at the center of randomized benchmarking and of estimates for error-correction thresholds.</p>
 <p>To quantify the damage one needs a figure of merit, and a useful one is the entanglement fidelity, which sends half of a maximally entangled pair through the channel and asks how much of the original entanglement survives. It reports how well the channel preserves correlations with a held-back reference, going beyond what happens to each input state on its own.</p>
 <p>This exercise writes the channel in its Pauli-Kraus form, checks that it is unital and that the Kraus operators are complete, and computes the entanglement fidelity, the overlap that survives when the channel acts on one half of a maximally entangled pair. The fidelity falls linearly to one quarter as the noise reaches full strength.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>A quantum channel is a completely positive trace-preserving map, written through Kraus operators <span class="math inline">\(\{K_k\}\)</span> as</p>
+<p><span class="math display">\[
+\mathcal{E}(\rho) = \sum_k K_k \rho K_k^\dagger , \qquad \sum_k K_k^\dagger K_k = \mathbb{I},
+\]</span></p>
+<p>where the sum condition enforces trace preservation. The single-qubit depolarizing channel mixes the input with the maximally mixed state,</p>
+<p><span class="math display">\[
+\mathcal{E}_p(\rho) = (1-p)\,\rho + p\,\frac{\mathbb{I}}{2},
+\]</span></p>
+<p>with Kraus operators <span class="math inline">\(K_0 = \sqrt{1-3p/4}\,\mathbb{I}\)</span> and <span class="math inline">\(K_j = \sqrt{p/4}\,\sigma_j\)</span> for the three Paulis. On the Bloch vector it acts as an isotropic contraction <span class="math inline">\(\vec r \mapsto (1-p)\,\vec r\)</span>. The entanglement fidelity, measured by sending half of a maximally entangled pair through the channel, is</p>
+<p><span class="math display">\[
+F_e = \sum_k \left|\tfrac{1}{2}\mathrm{Tr}(K_k)\right|^2 = 1 - \tfrac{3p}{4},
+\]</span></p>
+<p>since only the identity Kraus operator has nonzero trace. Complete positivity is the requirement that this stays a valid state even when the channel acts on part of a larger entangled system, which is exactly what the Choi matrix of the related notebook makes explicit.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

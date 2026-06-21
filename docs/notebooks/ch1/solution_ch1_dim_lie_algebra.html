@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud" id="toc-dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud" class="nav-link active" data-scroll-target="#dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud">Dimension of the Lie Algebras <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span></a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -570,6 +571,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The counting is direct. Skew-Hermiticity ties each below-diagonal entry to its mirror image above and forces every diagonal entry to be purely imaginary, so the free real parameters number <span class="math inline">\(D^2\)</span>. Requiring the trace to vanish removes exactly one more, since that is a single condition on the imaginary diagonal, leaving <span class="math inline">\(D^2 - 1\)</span> generators for <span class="math inline">\(\mathfrak{su}(D)\)</span>. For a single qubit this recovers the three Pauli generators, as it should.</p>
 <p>What matters is how the count grows with system size. For <span class="math inline">\(N\)</span> qubits the dimension is <span class="math inline">\(D = 2^N\)</span>, and the generator count becomes <span class="math inline">\(4^N - 1\)</span>, an exponential in the number of qubits. The space of directions a generic circuit can move in is therefore enormous, and that very abundance is what dilutes the signal in variational optimization. When a circuit randomizes enough to imitate the first two moments of the unitary group, the variance of a cost-function gradient shrinks like <span class="math inline">\(4^{-N}\)</span>, and the training landscape flattens into a barren plateau where the gradients are too small to follow.</p>
 <p>This exercise carries out the parameter count for <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span>, confirms the <span class="math inline">\(4^N - 1\)</span> scaling for qubits, and connects it to the barren plateau.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The dimensions follow from counting independent generators. The algebra <span class="math inline">\(\mathfrak{u}(D)\)</span> consists of skew-Hermitian matrices <span class="math inline">\(X^\dagger = -X\)</span>. A complex <span class="math inline">\(D\times D\)</span> matrix carries <span class="math inline">\(2D^2\)</span> real parameters, and the skew-Hermitian condition is a real-linear constraint that halves them,</p>
+<p><span class="math display">\[
+\dim_{\mathbb{R}}\mathfrak{u}(D) = D^2 .
+\]</span></p>
+<p>The diagonal entries are pure imaginary (<span class="math inline">\(D\)</span> real parameters) and the <span class="math inline">\(\binom{D}{2}\)</span> off-diagonal pairs each carry two (<span class="math inline">\(D^2 - D\)</span> parameters), summing to <span class="math inline">\(D^2\)</span>. Imposing tracelessness <span class="math inline">\(\mathrm{Tr}\,X = 0\)</span> removes one direction,</p>
+<p><span class="math display">\[
+\dim_{\mathbb{R}}\mathfrak{su}(D) = D^2 - 1 .
+\]</span></p>
+<p>For a single qubit this gives <span class="math inline">\(\dim\mathfrak{su}(2) = 3\)</span>, the three Pauli generators. These counts set the size of the space a universal gate set must fill, and they reappear directly in the dimension factors of Weingarten averages and barren-plateau gradient variances.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

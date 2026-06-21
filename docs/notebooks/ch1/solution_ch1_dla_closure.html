@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-adjoint-representation-and-dla-closure" id="toc-the-adjoint-representation-and-dla-closure" class="nav-link active" data-scroll-target="#the-adjoint-representation-and-dla-closure">The Adjoint Representation and DLA Closure</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -570,6 +571,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When the generators share a symmetry, the algebra cannot grow to fill the whole space of traceless generators <span class="math inline">\(\mathfrak{su}(D)\)</span>. The reason is short. Any operator that commutes with every generator also commutes with every commutator built from them, hence with the entire algebra. Such a conserved operator splits the Hilbert space into its eigenspaces, and the reachable unitaries leave each of those sectors in place rather than mixing them. The algebra is then block diagonal, and the directions that would carry one sector into another are simply missing.</p>
 <p>This is the mechanism behind controllability and its failure. A circuit whose generators close onto all of <span class="math inline">\(\mathfrak{su}(D)\)</span> can approximate any unitary, while a hidden conservation law confines it to a smaller reachable set, with consequences for what such a circuit can compute or simulate. Counting the dimension of the algebra is therefore a way to read off how much of the unitary group the hardware can actually access.</p>
 <p>This exercise closes the algebra of the two-qubit transverse-field Ising generators by iterating commutators until no new operators appear, finds a six-dimensional algebra inside the fifteen-dimensional <span class="math inline">\(\mathfrak{su}(4)\)</span>, and identifies the parity operator <span class="math inline">\(\sigma_z\otimes\sigma_z\)</span> as the conserved quantity that forbids the nine remaining directions.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>A set of Hamiltonians <span class="math inline">\(\{iH_1, \dots, iH_k\}\)</span> generates a dynamical Lie algebra by closing under commutation. Beginning with the generators, one repeatedly adjoins every commutator <span class="math inline">\([iH_a, iH_b]\)</span> until no new directions appear, producing the smallest subalgebra <span class="math inline">\(\mathfrak{g} \subseteq \mathfrak{su}(D)\)</span> that contains them,</p>
+<p><span class="math display">\[
+\mathfrak{g} = \langle\, iH_1, \dots, iH_k \,\rangle_{\mathrm{Lie}} .
+\]</span></p>
+<p>The unitaries reachable by switching among the corresponding evolutions form the connected subgroup <span class="math inline">\(e^{\mathfrak{g}}\)</span>, so the algebra fixes exactly which operations are accessible. When <span class="math inline">\(\mathfrak{g} = \mathfrak{su}(D)\)</span> the gate set is universal and can approximate any unitary, while a smaller <span class="math inline">\(\mathfrak{g}\)</span> confines the dynamics to a subgroup. The dimension of <span class="math inline">\(\mathfrak{g}\)</span> also governs later statistics: an algebra that fills all <span class="math inline">\(D^2 - 1\)</span> directions of <span class="math inline">\(\mathfrak{su}(D)\)</span> supports the scrambling and approximate 2-design behavior behind barren plateaus, whereas a polynomially small algebra does not.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

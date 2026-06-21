@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#entanglement-of-a-parametric-two-qubit-state" id="toc-entanglement-of-a-parametric-two-qubit-state" class="nav-link active" data-scroll-target="#entanglement-of-a-parametric-two-qubit-state">Entanglement of a Parametric Two-Qubit State</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -571,6 +572,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Mixedness needs a number to track it. One choice is the purity, which equals one for a pure state and drops as the state spreads over more eigenvalues. Another is the von Neumann entropy, which is zero for a pure state and climbs toward its maximum as those eigenvalues even out. For a pair of qubits the reduced state has only two eigenvalues, so a single weight fixes both quantities at once.</p>
 <p>The family <span class="math inline">\(\cos\theta\,|00\rangle + \sin\theta\,|11\rangle\)</span> is already written in its Schmidt form, meaning the entanglement is laid bare by the two coefficients with no further diagonalization needed. The reduced density matrix is diagonal with eigenvalues <span class="math inline">\(\cos^2\theta\)</span> and <span class="math inline">\(\sin^2\theta\)</span>, and its von Neumann entropy is the binary entropy of those weights, a single curve in the mixing angle. The ends <span class="math inline">\(\theta = 0\)</span> and <span class="math inline">\(\theta = \pi/2\)</span> put all the weight on one term and give product states, while <span class="math inline">\(\theta = \pi/4\)</span> balances the two and produces a Bell state whose reduced density matrix is maximally mixed.</p>
 <p>This exercise traces out one qubit, computes the purity and the von Neumann entropy across the family, and locates the separable and maximally entangled points.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The entanglement of a pure bipartite state is read from the Schmidt decomposition</p>
+<p><span class="math display">\[
+|\psi\rangle = \sum_i \sqrt{p_i}\,|i\rangle_A\,|i\rangle_B ,
+\]</span></p>
+<p>whose coefficients <span class="math inline">\(\sqrt{p_i}\)</span> are the singular values of the coefficient matrix and whose squares <span class="math inline">\(p_i\)</span> are the eigenvalues of the reduced density matrix <span class="math inline">\(\rho_A = \mathrm{Tr}_B|\psi\rangle\langle\psi|\)</span>. The state is a product exactly when one <span class="math inline">\(p_i = 1\)</span>, and maximally entangled when the <span class="math inline">\(p_i\)</span> are all equal. The entanglement entropy</p>
+<p><span class="math display">\[
+S(\rho_A) = -\sum_i p_i \log p_i
+\]</span></p>
+<p>interpolates between these limits. For two qubits the reduced state is <span class="math inline">\(2\times 2\)</span>, so a single Schmidt angle controls the entanglement, and it can equally be tracked by the purity <span class="math inline">\(\mathrm{Tr}\,\rho_A^2 = \sum_i p_i^2\)</span> or the concurrence. As a tunable coupling in the state is varied, the Schmidt weights shift continuously and the entropy traces out how strongly the two qubits are correlated along the path.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#moments-of-the-wigner-semicircle" id="toc-moments-of-the-wigner-semicircle" class="nav-link active" data-scroll-target="#moments-of-the-wigner-semicircle">Moments of the Wigner Semicircle</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -572,6 +573,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A convenient way to characterize the semicircle is through its moments, the averages of successive powers of the eigenvalue. Because the semicircle is symmetric about zero, every odd moment cancels. The even moments are more interesting, and they turn out to be the Catalan numbers <span class="math inline">\(C_k = \tfrac{1}{k+1}\binom{2k}{k}\)</span>, a sequence that appears all over combinatorics.</p>
 <p>The appearance of the Catalan numbers is more than a curiosity, because they count non-crossing pairings of points, and the very same non-crossing pairings organize the Weingarten calculus used later to evaluate Haar integrals over unitaries. The spectral shape of random Hermitian matrices and the algebra of random unitaries are speaking the same combinatorial language. Reading off the lowest moments gives <span class="math inline">\(m_2 = 1\)</span> and <span class="math inline">\(m_4 = 2\)</span>, and their ratio <span class="math inline">\(m_4/m_2^2 = 2\)</span> reports a tail lighter than a Gaussian would have, a consequence of the hard edge where the semicircle stops.</p>
 <p>The notebook evaluates the low moments by a trigonometric substitution and matches them to the Catalan sequence.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>For a Wigner matrix with entries scaled so the spectrum stays of order one, the empirical eigenvalue density converges to the semicircle law</p>
+<p><span class="math display">\[
+\rho(x) = \frac{1}{2\pi}\sqrt{4 - x^2}, \qquad x \in [-2, 2].
+\]</span></p>
+<p>Its moments are cleanest combinatorially. The odd moments vanish by symmetry, and the even moments are the Catalan numbers,</p>
+<p><span class="math display">\[
+m_{2k} = \int_{-2}^{2} x^{2k}\,\rho(x)\,dx = C_k = \frac{1}{k+1}\binom{2k}{k}.
+\]</span></p>
+<p>The origin is a moment expansion of <span class="math inline">\(\mathbb{E}\!\left[\tfrac1N \mathrm{Tr}\,H^{2k}\right]\)</span> into closed walks on the matrix indices. At large <span class="math inline">\(N\)</span> only the walks that pair their steps without crossing survive, and the number of non-crossing pairings of <span class="math inline">\(2k\)</span> objects is exactly <span class="math inline">\(C_k\)</span>. The first values <span class="math inline">\(m_2 = 1\)</span>, <span class="math inline">\(m_4 = 2\)</span>, <span class="math inline">\(m_6 = 5\)</span> are <span class="math inline">\(C_1, C_2, C_3\)</span>. This is the spectral analogue of the Gaussian Wick theorem with non-crossing pairings in place of all pairings, and it is the entry point to free probability, where the semicircle plays the role the Gaussian plays for independent variables.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

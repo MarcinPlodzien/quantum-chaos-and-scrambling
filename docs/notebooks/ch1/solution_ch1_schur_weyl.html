@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#schur-weyl-decomposition-for-k-2" id="toc-schur-weyl-decomposition-for-k-2" class="nav-link active" data-scroll-target="#schur-weyl-decomposition-for-k-2">Schur-Weyl Decomposition for <span class="math inline">\(k = 2\)</span></a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -570,6 +571,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The duality is the statement that permuting the copies and applying the same unitary to every copy are complementary symmetries, and that together they carve the multi-copy space into blocks labeled by both at once. At the level of two copies this organizing principle reduces to the single split into symmetric and antisymmetric parts, whose dimensions <span class="math inline">\(D(D+1)/2\)</span> and <span class="math inline">\(D(D-1)/2\)</span> add back up to the full <span class="math inline">\(D^2\)</span>.</p>
 <p>The same operator also lets a product of traces be folded into one trace over the doubled space. The identity <span class="math inline">\(\mathrm{Tr}(AB) = \mathrm{Tr}[(A\otimes B)F]\)</span> rewrites quadratic quantities such as purities as expectation values of <span class="math inline">\(F\)</span>, and that move is the standard entry point for averaging second moments over the unitary group, where the symmetric and antisymmetric projectors are exactly what such an average produces.</p>
 <p>This exercise computes the traces of <span class="math inline">\(F\)</span> and <span class="math inline">\(F^2\)</span>, counts the dimensions <span class="math inline">\(D(D+1)/2\)</span> and <span class="math inline">\(D(D-1)/2\)</span> of the symmetric and antisymmetric subspaces, and applies the SWAP identity to recover the purity <span class="math inline">\(1/D\)</span> of the maximally mixed state.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>Schur-Weyl duality describes how the unitary and symmetric groups share the tensor space <span class="math inline">\((\mathbb{C}^D)^{\otimes k}\)</span>. The two commuting actions are <span class="math inline">\(U^{\otimes k}\)</span> for <span class="math inline">\(U \in U(D)\)</span> and the permutations <span class="math inline">\(\pi \in S_k\)</span> of the tensor factors, and the space splits into joint irreducible blocks labeled by Young diagrams. The operators that commute with <span class="math inline">\(U^{\otimes k}\)</span> for every <span class="math inline">\(U\)</span> are exactly the linear span of the permutations, which is why Haar averages collapse onto sums over <span class="math inline">\(S_k\)</span>. For <span class="math inline">\(k = 2\)</span> the only permutations are the identity and the swap <span class="math inline">\(\mathbb{F}\)</span>, and the projectors</p>
+<p><span class="math display">\[
+P_{\mathrm{sym}} = \tfrac12(\mathbb{I} + \mathbb{F}), \qquad P_{\mathrm{asym}} = \tfrac12(\mathbb{I} - \mathbb{F})
+\]</span></p>
+<p>split <span class="math inline">\(\mathbb{C}^D \otimes \mathbb{C}^D\)</span> into its symmetric and antisymmetric subspaces of dimensions <span class="math inline">\(D(D+1)/2\)</span> and <span class="math inline">\(D(D-1)/2\)</span>. The swap also implements the trace trick <span class="math inline">\(\mathrm{Tr}(\mathbb{F}\,A\otimes B) = \mathrm{Tr}(AB)\)</span>, the lever behind the purity and overlap calculations used throughout the tutorial.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#eigenphase-repulsion-in-the-2-times-2-cue" id="toc-eigenphase-repulsion-in-the-2-times-2-cue" class="nav-link active" data-scroll-target="#eigenphase-repulsion-in-the-2-times-2-cue">Eigenphase Repulsion in the <span class="math inline">\(2 \times 2\)</span> CUE</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -571,6 +572,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For two eigenvalues the calculation can be carried all the way through. Reducing the Vandermonde factor to the single gap variable gives the spacing density <span class="math inline">\(P(\varphi) = (1-\cos\varphi)/(2\pi)\)</span>, where <span class="math inline">\(\varphi\)</span> is the angular separation of the two phases. The density is largest when the phases sit diametrically opposite on the circle and falls off as they come together.</p>
 <p>Near zero spacing the density vanishes like <span class="math inline">\(\varphi^2\)</span>, a quadratic repulsion that marks the <span class="math inline">\(\beta = 2\)</span> unitary symmetry class and is stronger than the linear repulsion seen in the time-reversal-symmetric case. The same quadratic repulsion turns up far beyond random matrices, in the spectra of heavy nuclei and even in the spacing of the zeros of the Riemann zeta function, where the same statistics appear.</p>
 <p>The notebook reduces the Vandermonde factor to the spacing variable and compares the normalized density against phases sampled from random <span class="math inline">\(U(2)\)</span> matrices.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>The circular unitary ensemble is <span class="math inline">\(U(D)\)</span> under the Haar measure, and its eigenvalues are pure phases <span class="math inline">\(e^{i\theta_j}\)</span> on the unit circle. Integrating out the eigenvectors leaves the Weyl joint density of the eigenphases,</p>
+<p><span class="math display">\[
+P(\theta_1,\dots,\theta_D) \propto \prod_{j&lt;k}\big|e^{i\theta_j} - e^{i\theta_k}\big|^2 ,
+\]</span></p>
+<p>the circular counterpart of the Vandermonde-squared weight of the <span class="math inline">\(\beta = 2\)</span> Gaussian ensembles. Since <span class="math inline">\(|e^{i\theta_j} - e^{i\theta_k}|^2 = 2 - 2\cos(\theta_j-\theta_k)\)</span> vanishes quadratically as two phases approach, the eigenphases repel with the same exponent as the GUE. The mean density is uniform at <span class="math inline">\(D/2\pi\)</span>, and the connected pair correlation has the sine-kernel form <span class="math inline">\(-\big(\sin(\pi r)/\pi r\big)^2\)</span> in the unfolded spacing <span class="math inline">\(r\)</span>, identical to the GUE bulk. Unitary and Hermitian chaotic spectra therefore share their local statistics, which is why the CUE is the natural random-matrix model for Floquet and scattering systems, where the evolution operator rather than a Hamiltonian is the object of interest.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>

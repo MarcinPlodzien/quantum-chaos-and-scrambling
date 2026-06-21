@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#krylov-complexity-from-the-geometric-distribution" id="toc-krylov-complexity-from-the-geometric-distribution" class="nav-link active" data-scroll-target="#krylov-complexity-from-the-geometric-distribution">Krylov Complexity from the Geometric Distribution</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
@@ -573,6 +574,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The motion is governed entirely by how the Lanczos coefficients grow with chain index. The notebook treats the case where they grow linearly, the amplitude at site <span class="math inline">\(n\)</span> proportional to <span class="math inline">\(n\)</span>. This linear growth is the signature of the most strongly chaotic systems, and it lets the hopping problem be solved in closed form. The amplitude profile along the chain becomes a geometric distribution whose width spreads in time.</p>
 <p>Carrying out the sums, the complexity works out to <span class="math inline">\(C_K(t) = \sinh^2(\alpha t)\)</span>, where <span class="math inline">\(\alpha\)</span> sets the rate. At late times this grows like <span class="math inline">\(e^{2\alpha t}\)</span>, an exponential spreading of the operator down the chain. The growth rate plays the role of a Lyapunov exponent for operator dynamics and bounds the exponent that governs the related out-of-time-order correlator, which is why Krylov complexity works as a chaos diagnostic that needs no averaging over an ensemble.</p>
 <p>The linear-coefficient assumption describes the maximally chaotic limit, and generic systems depart from it once the chain index grows large. The notebook derives the closed form <span class="math inline">\(C_K(t) = \sinh^2(\alpha t)\)</span> from the geometric distribution and confirms it, together with the variance of the position, by summing the chain numerically.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>Operator growth can be recast as a single-particle hopping problem through the Lanczos algorithm. Starting from an operator <span class="math inline">\(\mathcal{O}\)</span> and the Liouvillian <span class="math inline">\(\mathcal{L} = [H, \cdot]\)</span>, repeated application of <span class="math inline">\(\mathcal{L}\)</span> with Gram-Schmidt orthogonalization builds the Krylov basis <span class="math inline">\(\{\mathcal{O}_n\}\)</span>, in which <span class="math inline">\(\mathcal{L}\)</span> is tridiagonal,</p>
+<p><span class="math display">\[
+\mathcal{L}\,\mathcal{O}_n = b_{n+1}\,\mathcal{O}_{n+1} + b_n\,\mathcal{O}_{n-1}.
+\]</span></p>
+<p>The Heisenberg evolution then maps onto an amplitude <span class="math inline">\(\varphi_n(t)\)</span> on a semi-infinite chain with hopping amplitudes <span class="math inline">\(b_n\)</span>, the Lanczos coefficients, and the Krylov complexity is the mean position on that chain,</p>
+<p><span class="math display">\[
+\mathcal{C}_K(t) = \sum_n n\,|\varphi_n(t)|^2 .
+\]</span></p>
+<p>The rate at which the <span class="math inline">\(b_n\)</span> grow controls how fast the operator spreads. The universal operator-growth hypothesis holds that for chaotic systems the <span class="math inline">\(b_n\)</span> grow as fast as locality allows, asymptotically linearly with <span class="math inline">\(b_n \sim \alpha n\)</span>, and a linear ramp of hopping amplitudes drives exponential growth of the position, <span class="math inline">\(\mathcal{C}_K(t) \sim e^{2\alpha t}\)</span>. The slope <span class="math inline">\(\alpha\)</span> upper-bounds the Lyapunov exponent of the out-of-time-ordered correlator, so Krylov complexity is a basis-independent diagnostic of scrambling that needs no choice of probe operator.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>

@@ -521,6 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#classical-shadows-channel-inversion-and-tomography" id="toc-classical-shadows-channel-inversion-and-tomography" class="nav-link active" data-scroll-target="#classical-shadows-channel-inversion-and-tomography">Classical Shadows: Channel Inversion and Tomography</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
@@ -572,6 +573,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A snapshot is unbiased, meaning its average is the real state, yet on its own it is not a legitimate density matrix, since it can carry negative eigenvalues and a trace away from one. That is acceptable because the snapshot is a classical bookkeeping object rather than a physical state, and it only has to be correct in the average.</p>
 <p>What makes the method efficient is how the fluctuations behave. Averaging over <span class="math inline">\(T\)</span> shots suppresses them as <span class="math inline">\(1/\sqrt{T}\)</span>, and for an observable supported on <span class="math inline">\(k\)</span> qubits the variance picks up a factor <span class="math inline">\(3^k\)</span>, one factor of three for each single-qubit inversion the estimator has to undo. This shadow-norm scaling does not depend on the system size <span class="math inline">\(N\)</span>, so a local observable stays cheap on a large system while the cost climbs steeply only as the support of the observable grows.</p>
 <p>The calculation assembles the full pipeline from random bases through snapshots to estimates and applies it to two-qubit observables on a Bell state, where the running average settles toward the exact value inside its <span class="math inline">\(1/\sqrt{T}\)</span> error band.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>Classical shadows estimate many observables of an unknown state <span class="math inline">\(\rho\)</span> from randomized single-copy measurements. Each round applies a random unitary <span class="math inline">\(U\)</span> from a fixed ensemble, measures in the computational basis to get an outcome <span class="math inline">\(|b\rangle\)</span>, and records the snapshot <span class="math inline">\(U^\dagger|b\rangle\langle b|U\)</span>. Averaging over unitaries and outcomes defines the measurement channel</p>
+<p><span class="math display">\[
+\mathcal{M}(\rho) = \mathbb{E}_{U,b}\big[\,U^\dagger|b\rangle\langle b|U\,\big],
+\]</span></p>
+<p>a fixed linear map set by the ensemble. An unbiased single-shot estimator of <span class="math inline">\(\rho\)</span> follows by inverting it,</p>
+<p><span class="math display">\[
+\hat\rho = \mathcal{M}^{-1}\big(U^\dagger|b\rangle\langle b|U\big), \qquad \mathbb{E}[\hat\rho] = \rho .
+\]</span></p>
+<p>For random single-qubit Pauli measurements the channel factorizes across qubits and acts on each as <span class="math inline">\(\mathcal{M}(X) = \tfrac13 X + \tfrac13 \mathrm{Tr}(X)\,\mathbb{I}\)</span>, whose inverse is <span class="math inline">\(\mathcal{M}^{-1}(X) = 3X - \mathrm{Tr}(X)\,\mathbb{I}\)</span>, giving the local estimator <span class="math inline">\(3\,U^\dagger|b\rangle\langle b|U - \mathbb{I}\)</span> per qubit. The statistical cost of an estimate is set by the shadow norm of the observable, which for a <span class="math inline">\(k\)</span>-local Pauli scales as <span class="math inline">\(3^k\)</span>, so it depends on the locality of the target rather than the size of the system.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
