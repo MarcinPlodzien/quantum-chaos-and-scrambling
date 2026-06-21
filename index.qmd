@@ -13,7 +13,7 @@ short Python notebook you can open, run, and modify. If you can read `numpy`, yo
 can follow along.
 :::
 
-## The bigger picture
+## Background
 
 A recurring lesson in quantum many-body physics and quantum information is that the
 typical behaviour of a complex quantum system is sharply constrained, even when its

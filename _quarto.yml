@@ -55,25 +55,66 @@ website:
         href: index.qmd
       - section: "1 · Mathematical Foundations"
         href: chapters/01-foundations.qmd
-        contents: "notebooks/ch1/*.ipynb"
+        contents:
+          - notebooks/ch1/solution_ch1_fubini_study.ipynb
+          - notebooks/ch1/solution_ch1_entanglement_parametric.ipynb
+          - notebooks/ch1/solution_ch1_depolarizing_channel.ipynb
+          - notebooks/ch1/solution_ch1_dla_closure.ipynb
+          - notebooks/ch1/solution_ch1_schur_weyl.ipynb
+          - notebooks/ch1/solution_ch1_choi_amplitude_damping.ipynb
+          - notebooks/ch1/solution_ch1_dim_lie_algebra.ipynb
+          - notebooks/ch1/solution_ch1_exp_surjectivity.ipynb
+          - notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.ipynb
+          - notebooks/ch1/solution_ch1_quantum_speed_limit.ipynb
+          - notebooks/ch1/solution_ch1_sectional_curvature.ipynb
+          - notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.ipynb
+          - notebooks/ch1/solution_ch1_measure_theory_basics.ipynb
+          - notebooks/ch1/solution_ch1_borel_measurability.ipynb
       - section: "2 · Random Matrix Theory"
         href: chapters/02-random-matrix-theory.qmd
-        contents: "notebooks/ch2/*.ipynb"
+        contents:
+          - notebooks/ch2/solution_ch2_goe_spacing.ipynb
+          - notebooks/ch2/solution_ch2_semicircle_moments.ipynb
+          - notebooks/ch2/solution_ch2_cue_eigenphase.ipynb
       - section: "3 · Haar Measure & Weingarten Calculus"
         href: chapters/03-haar-weingarten.qmd
-        contents: "notebooks/ch3/*.ipynb"
+        contents:
+          - notebooks/ch3/solution_ch3_weingarten_first_moment.ipynb
+          - notebooks/ch3/solution_ch3_swap_trick.ipynb
+          - notebooks/ch3/solution_ch3_haar_overlap.ipynb
+          - notebooks/ch3/solution_ch3_fourth_moment_trace.ipynb
+          - notebooks/ch3/solution_ch3_tensor_weingarten_calculus.ipynb
+          - notebooks/ch3/solution_ch3_page_formula.ipynb
+          - notebooks/ch3/solution_ch3_purity_concentration.ipynb
       - section: "4 · Quantum Dynamics & Chaos"
         href: chapters/04-dynamics.qmd
-        contents: "notebooks/ch4/*.ipynb"
+        contents:
+          - notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb
+          - notebooks/ch4/solution_ch4_spectral_form_factor_plateau.ipynb
+          - notebooks/ch4/solution_ch4_krylov_complexity.ipynb
       - section: "5 · Designs & Clifford Ensembles"
         href: chapters/05-designs.qmd
-        contents: "notebooks/ch5/*.ipynb"
+        contents:
+          - notebooks/ch5/solution_ch5_clifford_otoc.ipynb
+          - notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.ipynb
       - section: "6 · Applications of Scrambling"
         href: chapters/06-applications.qmd
-        contents: "notebooks/ch6/*.ipynb"
+        contents:
+          - notebooks/ch6/solution_ch6_shadow_channel.ipynb
+          - notebooks/ch6/solution_ch6_numerical_shadows.ipynb
+          - notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.ipynb
+          - notebooks/ch6/solution_ch6_tripartite_mutual_information.ipynb
+          - notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.ipynb
       - section: "7 · Quantum Machine Learning"
         href: chapters/07-qml.qmd
-        contents: "notebooks/ch7/*.ipynb"
+        contents:
+          - notebooks/ch7/solution_ch7_barren_plateau.ipynb
+          - notebooks/ch7/solution_ch7_local_vs_global_cost.ipynb
+          - notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.ipynb
+          - notebooks/ch7/solution_ch7_quantum_kernel_concentration.ipynb
+          - notebooks/ch7/solution_ch7_born_machine.ipynb
+          - notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.ipynb
+          - notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.ipynb
       - text: "Exercises & Solutions (PDF)"
         href: exercises.qmd
   page-footer:

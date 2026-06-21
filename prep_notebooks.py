@@ -42,7 +42,8 @@ for path in sorted(glob.glob(os.path.join(SRC, "solution_ch*.ipynb"))):
         if c.cell_type == "markdown":
             c.source = re.sub(r"(?m)^\s*---\s*$", "<hr/>", c.source)
     title = first_h1(nb) or pretty(stem)
-    title = re.sub(r"^(Solution|Exercise)[:\s-]+", "", title).strip() or pretty(stem)
+    title = re.sub(r"^(Solution|Exercise)[:\s-]+", "", title)
+    title = re.sub(r"^\d+\.\w+\s*[,.:\-]+\s*", "", title).strip() or pretty(stem)
 
     def yaml_clean(s):
         s = re.sub(r"\$[^$]*\$", "", s)
