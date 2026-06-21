@@ -533,6 +533,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
   <li><a href="#part-e-numerical-implementation" id="toc-part-e-numerical-implementation" class="nav-link" data-scroll-target="#part-e-numerical-implementation">Part (e): Numerical Implementation</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch6/solution_ch6_numerical_shadows.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -891,6 +892,15 @@ Classical shadows: unbiased estimation confirmed.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The single-shot snapshots are unbiased but individually unphysical, carrying negative eigenvalues, yet their running average converges to the true expectation with error falling as <span class="math inline">\(1/\sqrt{T}\)</span>. For <span class="math inline">\(k\)</span>-local observables the variance scales as <span class="math inline">\(3^k\)</span> independent of <span class="math inline">\(N\)</span>, which is what makes shadows practical for local properties of large systems.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>Huang et al., <em>Predicting Many Properties of a Quantum System from Very Few Measurements</em>, Nature Physics (2020).</li>
+<li>Brydges et al., <em>Probing Rényi Entanglement Entropy via Randomized Measurements</em>, Science (2019).</li>
+<li>Vermersch et al., <em>Probing Scrambling Using Statistical Correlations between Randomized Measurements</em>, Physical Review X (2019).</li>
+</ul>
+<p>Deeper mathematical background is given in the companion lecture notes: Płodzień, <em>Information Scrambling, Quantum Chaos, and Haar-Random States</em> (2025). <a href="https://arxiv.org/abs/2511.14397">arXiv:2511.14397</a></p>
 
 
 </section>

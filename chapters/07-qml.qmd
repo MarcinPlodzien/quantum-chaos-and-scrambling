@@ -6,7 +6,7 @@ A variational quantum circuit is trained by following the gradient of a cost
 function, which works only when that gradient is large enough to estimate from a
 realistic number of measurements. Once the circuit is expressive enough to form
 an approximate $2$-design over its parameters, the Haar second moment from
-Chapter 3 forces the variance of every gradient component to shrink
+Part 3 forces the variance of every gradient component to shrink
 exponentially in the qubit count. This is the barren plateau, where the landscape
 is flat to within sampling noise and gradient-based optimization has no direction
 to follow.
@@ -38,5 +38,5 @@ Haar randomness.
 
 ::: {.callout-note appearance="simple"}
 **Full circle.** The exponential that obstructs training here is the same
-$1/D$ from the Page formula in Chapter 3, typicality, viewed from the other side.
+$1/D$ from the Page formula in Part 3, typicality, viewed from the other side.
 :::

@@ -541,7 +541,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>A variational quantum circuit is trained by following the gradient of a cost function, which works only when that gradient is large enough to estimate from a realistic number of measurements. Once the circuit is expressive enough to form an approximate <span class="math inline">\(2\)</span>-design over its parameters, the Haar second moment from Chapter 3 forces the variance of every gradient component to shrink exponentially in the qubit count. This is the barren plateau, where the landscape is flat to within sampling noise and gradient-based optimization has no direction to follow.</p>
+<p>A variational quantum circuit is trained by following the gradient of a cost function, which works only when that gradient is large enough to estimate from a realistic number of measurements. Once the circuit is expressive enough to form an approximate <span class="math inline">\(2\)</span>-design over its parameters, the Haar second moment from Part 3 forces the variance of every gradient component to shrink exponentially in the qubit count. This is the barren plateau, where the landscape is flat to within sampling noise and gradient-based optimization has no direction to follow.</p>
 <p>The same second-moment estimate identifies what restores a usable gradient. Local cost functions, restricted symmetry sectors, and shallow circuit blocks all keep the ensemble short of a full <span class="math inline">\(2\)</span>-design and recover a variance that decays only polynomially. The plateau reappears under other names with one origin. Quantum kernel entries concentrate around a fixed value and lose the structure a kernel method relies on, the quantum Fisher information matrix flattens in the metrology reading of the same collapse, and generative and reservoir models, from Born machines to extreme learning machines and reservoir computers, push their output distributions toward Porter-Thomas statistics so that the informative signal concentrates away.</p>
 <p>The operative tension is that scrambling supplies expressivity while removing trainability, so the workable regime is a structured ensemble that stops short of Haar randomness.</p>
 <section id="notebooks-in-this-part" class="level2">
@@ -561,7 +561,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Full circle.</strong> The exponential that obstructs training here is the same <span class="math inline">\(1/D\)</span> from the Page formula in Chapter 3, typicality, viewed from the other side.</p>
+<p><strong>Full circle.</strong> The exponential that obstructs training here is the same <span class="math inline">\(1/D\)</span> from the Page formula in Part 3, typicality, viewed from the other side.</p>
 </div>
 </div>
 </div>
@@ -891,7 +891,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>function, which works only when that gradient is large enough to estimate from a</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>realistic number of measurements. Once the circuit is expressive enough to form</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>an approximate $2$-design over its parameters, the Haar second moment from</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Chapter 3 forces the variance of every gradient component to shrink</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Part 3 forces the variance of every gradient component to shrink</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>exponentially in the qubit count. This is the barren plateau, where the landscape</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>is flat to within sampling noise and gradient-based optimization has no direction</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>to follow.</span>
@@ -923,7 +923,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="simple"}</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>**Full circle.** The exponential that obstructs training here is the same</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>$1/D$ from the Page formula in Chapter 3, typicality, viewed from the other side.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>$1/D$ from the Page formula in Part 3, typicality, viewed from the other side.</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

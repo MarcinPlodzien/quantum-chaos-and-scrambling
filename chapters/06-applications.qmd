@@ -21,7 +21,7 @@ The Hayden-Preskill thought experiment applies that mathematics to a black hole
 modelled as a fast scrambler. Information dropped in can be reconstructed from
 the outgoing radiation almost as soon as it is absorbed, provided one already
 holds the radiation emitted earlier, a statement the decoupling theorem makes
-precise and which reuses the Page-curve estimate of Chapter 3. Tripartite mutual
+precise and which reuses the Page-curve estimate of Part 3. Tripartite mutual
 information turns the same average into a scrambling diagnostic, while the
 fragility of GHZ-state metrology shows the cost of storing information
 non-locally, where the loss of a single qubit erases a Heisenberg-scaling signal.

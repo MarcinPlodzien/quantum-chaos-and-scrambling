@@ -47,5 +47,5 @@ later chapters.
 ::: {.callout-tip appearance="simple"}
 **Where to start.** If you only want the tools used later, do *Schur-Weyl
 duality*, *Haar invariance*, and *the depolarizing channel* first, everything in
-Chapter 3 builds directly on them.
+Part 3 builds directly on them.
 :::

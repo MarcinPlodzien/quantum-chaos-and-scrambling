@@ -534,6 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
   <li><a href="#visual-pedagogical-proof" id="toc-visual-pedagogical-proof" class="nav-link" data-scroll-target="#visual-pedagogical-proof">Visual Pedagogical Proof</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch4/solution_ch4_krylov_complexity.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -762,6 +763,16 @@ Krylov complexity = sinh²(αt) confirmed.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>Linearly growing Lanczos coefficients produce a geometric distribution on the Krylov chain and complexity <span class="math inline">\(C_K(t) = \sinh^2(\alpha t)\)</span>. Mean and standard deviation both scale as <span class="math inline">\(e^{2\alpha t}\)</span>, so the operator spreads ballistically at rate <span class="math inline">\(2\alpha\)</span>, the operator-growth Lyapunov exponent.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>Parker et al., <em>A Universal Operator Growth Hypothesis</em>, Physical Review X (2019).</li>
+<li>Lanczos, <em>An iteration method for the solution of the eigenvalue problem of linear differential and integral operators</em>, Journal of Research of the National Bureau of Standards (1950).</li>
+<li>Balasubramanian et al., <em>Quantum chaos and the complexity of spread of states</em>, Physical Review D (2022).</li>
+<li>Viswanath and Müller, <em>The Recursion Method: Application to Many-Body Dynamics</em>, Springer (1994).</li>
+</ul>
+<p>Deeper mathematical background is given in the companion lecture notes: Płodzień, <em>Information Scrambling, Quantum Chaos, and Haar-Random States</em> (2025). <a href="https://arxiv.org/abs/2511.14397">arXiv:2511.14397</a></p>
 
 
 </section>

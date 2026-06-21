@@ -28,6 +28,10 @@ Weingarten calculus and a modest amount of representation theory. This tutorial 
 it once and applies it across each setting, with every step carried out explicitly and
 checked numerically.
 
+Readers who want the mathematics in more depth can consult the companion lecture notes,
+[*Information Scrambling, Quantum Chaos, and Haar-Random States*](https://arxiv.org/abs/2511.14397)
+(arXiv:2511.14397), which these notebooks accompany.
+
 ## What you'll learn
 
 A surprising amount of modern quantum theory comes down to one question. **What

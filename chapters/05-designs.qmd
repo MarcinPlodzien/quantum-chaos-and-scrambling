@@ -7,7 +7,7 @@ specify and cannot be sampled or stored efficiently. Most calculations, however,
 touch the Haar measure only through its low moments, the averages of
 $U^{\otimes t} \otimes \bar U^{\otimes t}$. A unitary $t$-design is a finite
 ensemble that reproduces those averages up to order $t$, which is all the
-randomness the second-moment and fourth-moment formulas of Chapters 3 and 6
+randomness the second-moment and fourth-moment formulas of Parts 3 and 6
 actually consume.
 
 The Clifford group is the standard construction. It is an exact $3$-design and,
