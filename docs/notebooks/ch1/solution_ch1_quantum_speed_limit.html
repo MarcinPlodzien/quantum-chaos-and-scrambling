@@ -520,8 +520,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#geodesic-length-and-the-quantum-speed-limit" id="toc-geodesic-length-and-the-quantum-speed-limit" class="nav-link active" data-scroll-target="#geodesic-length-and-the-quantum-speed-limit">Geodesic Length and the Quantum Speed Limit</a>
   <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#motivation-1" id="toc-motivation-1" class="nav-link" data-scroll-target="#motivation-1">Motivation</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
@@ -565,12 +565,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="geodesic-length-and-the-quantum-speed-limit" class="level1">
 <h1>Geodesic Length and the Quantum Speed Limit</h1>
 <hr>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>A quantum state evolving under a fixed Hamiltonian needs time to change appreciably, and there is a floor on how little time it can take to become fully distinguishable from where it started. Distinguishable here means orthogonal, so the overlap with the initial state has dropped to zero. This minimum time is controlled by a single number, the energy uncertainty <span class="math inline">\(\Delta H\)</span> of the initial state, with a smaller spread in energy forcing slower change.</p>
+<p>The precise statement is the Mandelstam-Tamm bound, which sets the time to reach orthogonality at <span class="math inline">\(T_\perp = \pi/(2\Delta H)\)</span>. A state with sharply defined energy barely moves, while a state spread over a wide band of energies can turn over quickly. The bound holds for any Hamiltonian and any initial state, so it places a universal limit on the speed of unitary dynamics.</p>
+<p>There is a geometric way to read the same result. The evolution <span class="math inline">\(U(t) = e^{-iHt}\)</span> traces a path on the unitary group, and with the metric inherited from the Hilbert-Schmidt inner product this path is a geodesic traversed at constant speed. The state moves along the shortest route available to it, and the energy uncertainty plays the role of how fast it covers ground. A qubit prepared in an eigenstate of <span class="math inline">\(\sigma_z\)</span> and driven by <span class="math inline">\(H = (\omega/2)\sigma_x\)</span> has the largest spread its energy range allows. Its survival probability is <span class="math inline">\(\cos^2(\omega t/2)\)</span>, which first reaches zero exactly at <span class="math inline">\(T_\perp\)</span>, so the qubit saturates the bound.</p>
+<p>The notebook computes the geodesic length and the orthogonality time and confirms that this qubit sits right at the limit.</p>
+</section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>How fast can a quantum state evolve? The <strong>quantum speed limit</strong> (Mandelstam-Tamm bound) sets a lower bound on the time needed to evolve between orthogonal states. This exercise derives the bound from the geometry of the unitary group: Hamiltonian evolution traces a <strong>geodesic</strong> on <span class="math inline">\(U(D)\)</span> whose speed is set by the energy spread <span class="math inline">\(\Delta H\)</span>. The construction links Riemannian geometry to quantum dynamics.</p>
-</section>
-<section id="motivation-1" class="level2">
-<h2 class="anchored" data-anchor-id="motivation-1">Motivation</h2>
 <p>How fast can a quantum state evolve? The <strong>quantum speed limit</strong> (Mandelstam-Tamm bound) sets a fundamental lower bound on the time needed to evolve between orthogonal states. This exercise derives the bound from the geometry of the unitary group: Hamiltonian evolution traces a <strong>geodesic</strong> on <span class="math inline">\(U(D)\)</span> whose speed is set by the energy spread <span class="math inline">\(\Delta H\)</span>. The connection between Riemannian geometry and quantum dynamics is one of the deepest structural insights in quantum information.</p>
 </section>
 <section id="exercise" class="level2">
@@ -639,7 +642,7 @@ T_\perp = \frac{\pi}{2 \cdot \omega/2} = \frac{\pi}{\omega}.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:00.144421Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:00.144247Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:00.382627Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:00.382218Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:31.675854Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:31.675675Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:32.051152Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:32.050638Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -679,7 +682,7 @@ At T_⊥ = π/ω: P = 0</code></pre>
 </section>
 <section id="figure-survival-probability-and-the-orthogonality-time" class="level2">
 <h2 class="anchored" data-anchor-id="figure-survival-probability-and-the-orthogonality-time">Figure: Survival probability and the orthogonality time</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:00.384228Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:00.384061Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:00.993014Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:00.992610Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:32.053265Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:32.052863Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:32.983467Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:32.982883Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -722,7 +725,7 @@ At T_⊥ = π/ω: P = 0</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>Hamiltonian evolution is a constant-speed geodesic on <span class="math inline">\(U(D)\)</span>, with speed <span class="math inline">\(\sqrt{\mathrm{Tr}(H^2)}\)</span>. For <span class="math inline">\(|0\rangle\)</span> under <span class="math inline">\(H=(\omega/2)\sigma_x\)</span> the survival probability is <span class="math inline">\(\cos^2(\omega t/2)\)</span>, which first vanishes exactly at <span class="math inline">\(T_\perp=\pi/\omega\)</span>, saturating the Mandelstam-Tamm bound.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:00.994380Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:00.994195Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:00.998279Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:00.998047Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:32.985467Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:32.985187Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:32.991294Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:32.990905Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -753,7 +756,7 @@ At T_⊥ = π/ω: P = 0</code></pre>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>U_perp <span class="op">=</span> expm(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> H <span class="op">*</span> T_perp)</span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>surv <span class="op">=</span> <span class="bu">abs</span>(psi0.conj() <span class="op">@</span> U_perp <span class="op">@</span> psi0)<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> surv <span class="op">&lt;</span> <span class="fl">1e-10</span>, <span class="ss">f"Survival = </span><span class="sc">{</span>surv<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Survival at T_⊥ = </span><span class="sc">{</span>surv<span class="sc">:.2e}</span><span class="ss">: bound saturated. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Survival at T_⊥ = </span><span class="sc">{</span>surv<span class="sc">:.2e}</span><span class="ss">: bound saturated."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>ω = 2.0, ΔH = 1.0, T_⊥ = π/ω = 1.5708
@@ -772,7 +775,7 @@ Length at T_⊥ = π/√2 = 2.2214
    1.750        0.853553
    2.000        1.000000
 
-Survival at T_⊥ = 0.00e+00: bound saturated. ✓</code></pre>
+Survival at T_⊥ = 0.00e+00: bound saturated.</code></pre>
 </div>
 </div>
 

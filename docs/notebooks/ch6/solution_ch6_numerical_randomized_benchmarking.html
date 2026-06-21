@@ -568,7 +568,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Randomized benchmarking extracts the average error per gate from the decay of a survival probability, sidestepping the full process tomography that scales badly and is itself corrupted by state-preparation and measurement error. Random Clifford sequences are applied and then inverted, and twirling the noise over the Clifford group, a unitary 2-design, averages an arbitrary error channel into a depolarizing one. The survival probability then decays as a single exponential whose rate fixes the average gate fidelity. That clean exponential assumes gate-independent and time-independent noise, since correlated or coherent errors show up as deviations from the single-exponential form.</p>
+<p>Randomized benchmarking reads the average error per gate off the way a survival probability falls as circuits get longer, sidestepping full process tomography, which scales badly and is itself corrupted by errors in preparing and measuring the qubit. A run applies a sequence of random Clifford gates and then a single recovery gate chosen to invert the whole sequence, so with perfect gates the qubit comes back exactly to where it started. Any drop in the return probability is therefore due to the noise, and averaging over the random Cliffords reshapes that noise into a standard form.</p>
+<p>The reshaping is the Clifford twirl. Averaging an error channel over the Clifford group, which is a unitary 2-design, yields a map that commutes with every Clifford, and Schur’s lemma then forces such a map to act as a single scalar <span class="math inline">\(\alpha\)</span> on the traceless part of any state while leaving the identity fixed, the signature of a depolarizing channel. The intuition is that the random gates scramble any structure the noise had, leaving only its overall strength.</p>
+<p>Stacking <span class="math inline">\(m\)</span> of these depolarizing channels multiplies the traceless part by <span class="math inline">\(\alpha^m\)</span>, so the survival probability follows <span class="math inline">\(\bar p(m) = A\alpha^m + B\)</span>, with the preparation and measurement errors swept entirely into the constants <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. One exponential fit returns <span class="math inline">\(\alpha\)</span>, and from it the average gate fidelity <span class="math inline">\(F_{\mathrm{avg}} = \alpha + (1-\alpha)/D\)</span> and the error rate <span class="math inline">\(r = (D-1)(1-\alpha)/D\)</span>.</p>
+<p>A clean single exponential assumes noise that is the same from gate to gate and from step to step, so correlated or coherent errors reveal themselves as deviations from that form. The calculation runs the protocol under depolarizing noise and fits <span class="math inline">\(\alpha\)</span>, then confirms that twirling an amplitude-damping channel, which is neither depolarizing nor even unital to begin with, lands on a depolarizing channel.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -651,7 +654,7 @@ F_{\mathrm{avg}} = \int d\psi\, \left[\alpha\, \langle\psi|\psi\rangle^2 + (1-\a
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:19.154227Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:19.154094Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:19.407540Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:19.407249Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:36.048922Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:36.048662Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:36.405768Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:36.405073Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -690,7 +693,7 @@ Single qubit (d=2):
 </section>
 <section id="parts-d-and-e-numerical-implementation" class="level2">
 <h2 class="anchored" data-anchor-id="parts-d-and-e-numerical-implementation">Parts (d) and (e): Numerical Implementation</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:19.409016Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:19.408867Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:19.617540Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:19.617218Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:36.407992Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:36.407778Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:36.685951Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:36.685530Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -727,7 +730,7 @@ Single qubit (d=2):
 <pre><code>Generated 24 single-qubit Cliffords</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:19.618979Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:19.618761Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:20.806891Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:20.806556Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:36.687886Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:36.687346Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:38.265958Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:38.265457Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Noise model: depolarizing channel</span></span>
@@ -755,7 +758,7 @@ Single qubit (d=2):
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        U_total <span class="op">=</span> np.eye(<span class="dv">2</span>, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> C <span class="kw">in</span> gates: U_total <span class="op">=</span> C <span class="op">@</span> U_total</span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        gates.append(U_total.conj().T)  <span class="co"># recovery</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        rho <span class="op">=</span> rho0.copy()</span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> C <span class="kw">in</span> gates:</span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>            rho <span class="op">=</span> noisy_gate(C, rho, p_error)</span>
@@ -774,7 +777,7 @@ m=  64: p̄ = 0.5863
 m= 128: p̄ = 0.5153</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:20.808429Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:20.808172Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:20.823178Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:20.822909Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:38.267706Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:38.267449Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:38.283127Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:38.282778Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit exponential decay</span></span>
@@ -801,7 +804,7 @@ Fit: A=0.4867, α=0.9733, B=0.5000
 F_avg = 0.986667  (theory 0.990000)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:20.824385Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:20.824136Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:20.828970Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:20.828710Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:38.284680Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:38.284522Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:38.290750Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:38.290351Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Part (e): Twirling the amplitude-damping channel</span></span>
@@ -831,7 +834,7 @@ F_avg = 0.986667  (theory 0.990000)</code></pre>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        p_est <span class="op">=</span> np.mean(p_vals.real)</span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">: α = </span><span class="sc">{</span>p_est<span class="sc">:.4f}</span><span class="ss"> (depolarizing confirmed)"</span>)</span>
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Clifford twirl: any channel → depolarizing. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Clifford twirl: any channel → depolarizing."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -840,14 +843,14 @@ Twirling amplitude-damping channel:
   |+⟩⟨+|: α = 0.9325 (depolarizing confirmed)
   mixed : α = 0.9325 (depolarizing confirmed)
 
-Clifford twirl: any channel → depolarizing. ✓</code></pre>
+Clifford twirl: any channel → depolarizing.</code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="visual-pedagogical-proof" class="level2">
 <h2 class="anchored" data-anchor-id="visual-pedagogical-proof">Visual Pedagogical Proof</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:20.830247Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:20.830052Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:21.287984Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:21.287691Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:38.292227Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:38.292063Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:38.923169Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:38.922664Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -879,7 +882,7 @@ Clifford twirl: any channel → depolarizing. ✓</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The Clifford twirl reduces an arbitrary CPTP error to a single depolarizing parameter <span class="math inline">\(\alpha\)</span>, so the survival probability follows <span class="math inline">\(F(m)=A\,\alpha^m+B\)</span> and one exponential fit returns <span class="math inline">\(\alpha\)</span> and the average fidelity. State-preparation and measurement errors fall entirely into <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, leaving the fidelity read from the decay rate unbiased.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:21.289356Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:21.289195Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:21.400992Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:21.400717Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:38.925117Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:38.924847Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:39.079692Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:39.079305Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -900,7 +903,7 @@ Clifford twirl: any channel → depolarizing. ✓</code></pre>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">150</span></span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>plt.scatter(m_lengths, noisy_decay, color<span class="op">=</span><span class="st">'royalblue'</span>, label<span class="op">=</span><span class="st">'Simulated RB Data'</span>)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>plt.plot(m_lengths, decay_func(m_lengths, <span class="op">*</span>popt), <span class="st">'crimson'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, </span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>plt.plot(m_lengths, decay_func(m_lengths, <span class="op">*</span>popt), <span class="st">'crimson'</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="ss">f'Exponential Fit (p=</span><span class="sc">{</span>popt[<span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">)'</span>)</span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.plot(m_lengths, exact_decay, <span class="st">'k--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'Ideal Decay'</span>)</span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>

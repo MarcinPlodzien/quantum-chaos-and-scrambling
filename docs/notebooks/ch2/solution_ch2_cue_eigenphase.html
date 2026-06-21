@@ -565,7 +565,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>A Haar-random unitary has eigenvalues on the unit circle whose phases are correlated. The joint density carries a Vandermonde factor, so the eigenphases repel rather than fall where they please. For the <span class="math inline">\(2 \times 2\)</span> CUE the spacing density <span class="math inline">\(P(\varphi) = (1 - \cos\varphi)/(2\pi)\)</span> is exact, and it vanishes quadratically at zero spacing. Quadratic repulsion is the <span class="math inline">\(\beta = 2\)</span> hallmark of unitary symmetry, observed from nuclear spectra to the zeros of the Riemann zeta function.</p>
+<p>The eigenvalues of a Haar-random unitary all sit on the unit circle, each one a pure phase <span class="math inline">\(e^{i\theta}\)</span>. Their angles are not thrown down independently, because the joint distribution of the phases contains the squared Vandermonde factor <span class="math inline">\(\prod_{j&lt;k}|e^{i\theta_j}-e^{i\theta_k}|^2\)</span>. This factor shrinks toward zero whenever two phases approach each other, so configurations with nearly coincident eigenvalues are strongly disfavored. The resulting ensemble is the Circular Unitary Ensemble, the unitary-group counterpart of the Gaussian models for Hermitian matrices.</p>
+<p>For two eigenvalues the calculation can be carried all the way through. Reducing the Vandermonde factor to the single gap variable gives the spacing density <span class="math inline">\(P(\varphi) = (1-\cos\varphi)/(2\pi)\)</span>, where <span class="math inline">\(\varphi\)</span> is the angular separation of the two phases. The density is largest when the phases sit diametrically opposite on the circle and falls off as they come together.</p>
+<p>Near zero spacing the density vanishes like <span class="math inline">\(\varphi^2\)</span>, a quadratic repulsion that marks the <span class="math inline">\(\beta = 2\)</span> unitary symmetry class and is stronger than the linear repulsion seen in the time-reversal-symmetric case. The same quadratic repulsion turns up far beyond random matrices, in the spectra of heavy nuclei and even in the spacing of the zeros of the Riemann zeta function, where the same statistics appear.</p>
+<p>The notebook reduces the Vandermonde factor to the spacing variable and compares the normalized density against phases sampled from random <span class="math inline">\(U(2)\)</span> matrices.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -620,7 +623,7 @@ P(0) = \frac{1 - 1}{2\pi} = 0.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:07.927781Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:07.927619Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:08.182116Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:08.181698Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:42.818062Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:42.817630Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:43.179418Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:43.178874Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -650,7 +653,7 @@ Z = ∫(2−2cosφ)dφ = 4*pi
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:08.183771Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:08.183526Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:10.739272Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:10.738861Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:43.181936Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:43.181416Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:46.410528Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:46.409713Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -690,17 +693,17 @@ Z = ∫(2−2cosφ)dφ = 4*pi
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Most probable spacing</span></span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>mode <span class="op">=</span> centers[np.argmax(hist)]</span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Most probable spacing: </span><span class="sc">{</span>mode<span class="sc">:.2f}</span><span class="ss"> (expected π = </span><span class="sc">{</span>np<span class="sc">.</span>pi<span class="sc">:.2f}</span><span class="ss">)"</span>)</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Level repulsion confirmed. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Level repulsion confirmed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Max |histogram − P(φ)| = 0.0128
 Fraction with φ &lt; 0.1: 0.0000 (level repulsion)
 Most probable spacing: 3.14 (expected π = 3.14)
 
-Level repulsion confirmed. ✓</code></pre>
+Level repulsion confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:10.740756Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:10.740535Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:11.176799Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:11.176434Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:46.412775Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:46.412503Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:46.981446Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:46.980957Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

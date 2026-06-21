@@ -567,7 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The spectral form factor <span class="math inline">\(K(t) = |\mathrm{Tr}\,e^{-iHt}|^2\)</span> probes correlations between energy levels and is a standard spectral signature of quantum chaos. Once the oscillating off-diagonal phases dephase, only the <span class="math inline">\(D\)</span> diagonal terms survive, pinning the long-time average to a plateau. The notebook derives that value, <span class="math inline">\(\overline{K} = D\)</span>, against the coherent starting value <span class="math inline">\(K(0) = D^2\)</span>. The plateau reflects only the level count, while the approach to it through the dip and ramp carries the signature of level repulsion.</p>
+<p>The spectral form factor is built from the trace <span class="math inline">\(\mathrm{Tr}\,e^{-iHt}\)</span>, the sum of phases <span class="math inline">\(e^{-iE_n t}\)</span> running over the energy levels of a Hamiltonian <span class="math inline">\(H\)</span>. Its magnitude squared, <span class="math inline">\(K(t) = |\mathrm{Tr}\,e^{-iHt}|^2\)</span>, expands into a double sum over pairs of levels weighted by their energy differences, which is why it serves as a probe of how the levels are correlated. Quantum chaos leaves a characteristic imprint on these correlations, and the form factor is one of the simplest places to read it.</p>
+<p>At <span class="math inline">\(t=0\)</span> every phase aligns and the <span class="math inline">\(D^2\)</span> terms add coherently, giving <span class="math inline">\(K(0) = D^2\)</span> for a spectrum of <span class="math inline">\(D\)</span> levels. As time advances the off-diagonal terms, carrying nonzero energy differences, oscillate and interfere away. Only the <span class="math inline">\(D\)</span> diagonal terms, where a level is paired with itself, contribute a steady value, so the long-time average settles at <span class="math inline">\(\overline{K} = D\)</span>. The ratio <span class="math inline">\(K(0)/\overline{K} = D\)</span> records how much coherence was present at the start.</p>
+<p>Between these two ends the averaged form factor traces a recognizable shape. It first dips below its initial value, then climbs along a linear ramp before flattening into the plateau at <span class="math inline">\(D\)</span>. The ramp is the fingerprint of level repulsion, the tendency of chaotic spectra to avoid near-degeneracies, while the plateau height counts levels and nothing more.</p>
+<p>The notebook derives the plateau value by time-averaging the double sum and isolating the diagonal terms, then samples random Hamiltonians from the Gaussian unitary ensemble to show how the dip and ramp give way to the plateau pinned at <span class="math inline">\(K = D\)</span>.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -619,7 +622,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:55.499657Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:55.499519Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:55.636386Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:55.636021Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:01.702729Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:01.702472Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:01.926517Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:01.926091Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -656,7 +659,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:55.638022Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:55.637682Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:55.721340Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:55.720986Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:01.928505Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:01.928159Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:02.098852Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:02.098147Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -667,16 +670,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.random.randn(D,D) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D,D)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> (A <span class="op">+</span> A.conj().T) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>np.sqrt(D))</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    E <span class="op">=</span> np.linalg.eigvalsh(H)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># SFF at 1000 time points and average</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    times <span class="op">=</span> np.linspace(<span class="dv">10</span>, <span class="dv">500</span>, <span class="dv">1000</span>)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    K_vals <span class="op">=</span> [<span class="bu">abs</span>(np.<span class="bu">sum</span>(np.exp(<span class="op">-</span><span class="ot">1j</span><span class="op">*</span>E<span class="op">*</span>t)))<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> t <span class="kw">in</span> times]</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    K_bar <span class="op">=</span> np.mean(K_vals)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">:3d}</span><span class="ss">: K(0)=</span><span class="sc">{</span>D<span class="op">**</span><span class="dv">2</span><span class="sc">:5d}</span><span class="ss">,  K̄=</span><span class="sc">{</span>K_bar<span class="sc">:8.2f}</span><span class="ss">,  K̄/D=</span><span class="sc">{</span>K_bar<span class="op">/</span>D<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(K_bar<span class="op">/</span>D <span class="op">-</span> <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">0.15</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">SFF plateau at K̄ = D confirmed. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">SFF plateau at K̄ = D confirmed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>D=  4: K(0)=   16,  K̄=    3.98,  K̄/D=0.996
@@ -684,14 +687,14 @@ D=  8: K(0)=   64,  K̄=    7.90,  K̄/D=0.988
 D= 16: K(0)=  256,  K̄=   15.79,  K̄/D=0.987
 D= 32: K(0)= 1024,  K̄=   30.58,  K̄/D=0.956
 
-SFF plateau at K̄ = D confirmed. ✓</code></pre>
+SFF plateau at K̄ = D confirmed.</code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="visual-pedagogical-proof" class="level2">
 <h2 class="anchored" data-anchor-id="visual-pedagogical-proof">Visual Pedagogical Proof</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:55.723744Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:55.723527Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:59.979385Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:59.979086Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:02.100961Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:02.100649Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:09.917870Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:09.917475Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

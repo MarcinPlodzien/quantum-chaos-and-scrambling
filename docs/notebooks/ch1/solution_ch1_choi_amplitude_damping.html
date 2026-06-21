@@ -566,7 +566,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The Choi matrix represents a quantum channel as a single operator on a doubled Hilbert space, obtained by sending one half of a maximally entangled state through the channel. Under the Choi-Jamiołkowski isomorphism the channel is completely positive exactly when its Choi matrix is positive semidefinite, which turns a condition on all possible inputs into one spectral check. The amplitude-damping channel models the decay of an excited qubit, the <span class="math inline">\(T_1\)</span> process in NMR and superconducting hardware, and it is non-unital because it pushes every state toward the ground state. This exercise builds its Choi matrix and reads complete positivity off the spectrum.</p>
+<p>A quantum channel can be specified by listing its action on every input state, but that is an unwieldy object to test or compare. A tidier description packs the whole channel into one matrix. Prepare a maximally entangled pair, send one half through the channel while the other half waits untouched, and the joint state that comes out, the Choi matrix, encodes everything the channel can do. The Choi-Jamiolkowski isomorphism makes the dictionary between channel and matrix exact, and it trades a hard requirement for an easy one. Complete positivity, the demand that the channel stay physical even when applied to part of a larger entangled system, becomes the single statement that the Choi matrix has no negative eigenvalues.</p>
+<p>The channel studied here is amplitude damping, which models an excited qubit leaking energy to its environment and settling toward its ground state. This is the <span class="math inline">\(T_1\)</span> relaxation familiar from nuclear magnetic resonance and from superconducting qubits, where an excitation decays over time. Because every state is drawn toward <span class="math inline">\(|0\rangle\)</span>, the channel is non-unital and does not leave the maximally mixed state in place, unlike isotropic noise that has no preferred direction. A single parameter, the probability that the excitation is lost, sets how strong the damping is.</p>
+<p>Reading the channel off its Choi matrix turns an abstract condition into a concrete calculation. Once the matrix is built, checking that it describes a valid channel is a matter of inspecting a four-by-four spectrum, and the rank of that matrix reports how many Kraus operators the channel genuinely needs, which in turn signals whether the channel is reversible or has begun to lose information.</p>
+<p>This exercise builds the Choi matrix from the Kraus operators, finds its spectrum <span class="math inline">\(\{2-\gamma,\gamma,0,0\}\)</span> and confirms that it stays non-negative for every damping strength, and reads the limiting cases of no damping and full reset off the rank of the matrix.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -650,7 +653,7 @@ B = \begin{pmatrix} 1 &amp; \sqrt{1-\gamma} \\ \sqrt{1-\gamma} &amp; 1-\gamma \e
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:30.879156Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:30.879041Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:31.030962Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:31.030621Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:48.747851Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:48.747654Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:48.943532Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:48.943131Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -663,14 +666,14 @@ B = \begin{pmatrix} 1 &amp; \sqrt{1-\gamma} \\ \sqrt{1-\gamma} &amp; 1-\gamma \e
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>completeness <span class="op">=</span> K0dK0 <span class="op">+</span> K1dK1</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"K₀†K₀ + K₁†K₁ ="</span>, completeness.tolist())</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> completeness <span class="op">==</span> sp.eye(<span class="dv">2</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Trace preservation ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Trace preservation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>K₀†K₀ + K₁†K₁ = [[1, 0], [0, 1]]
-Trace preservation ✓</code></pre>
+Trace preservation</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:31.032180Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:31.032044Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:31.098042Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:31.097649Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:48.945184Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:48.944861Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:49.037432Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:49.037062Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2x2 block eigenvalues: trace = 2-γ, det = 0</span></span>
@@ -691,7 +694,7 @@ Full spectrum: {2 - gamma, γ, 0, 0}</code></pre>
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:31.099259Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:31.099131Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:31.138867Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:31.138574Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:49.039304Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:49.039090Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:49.095456Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:49.094865Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -715,19 +718,19 @@ Full spectrum: {2 - gamma, γ, 0, 0}</code></pre>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.allclose(evals, expected, atol<span class="op">=</span><span class="fl">1e-12</span>)</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">all</span>(e <span class="op">&gt;=</span> <span class="op">-</span><span class="fl">1e-12</span> <span class="cf">for</span> e <span class="kw">in</span> evals)</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"γ=</span><span class="sc">{</span>gamma_val<span class="sc">:.1f}</span><span class="ss">: eigenvalues = [</span><span class="sc">{</span><span class="st">', '</span><span class="sc">.</span>join(<span class="ss">f'</span><span class="sc">{</span>e<span class="sc">:.4f}</span><span class="ss">'</span> <span class="cf">for</span> e <span class="kw">in</span> evals)<span class="sc">}</span><span class="ss">] ✓"</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"γ=</span><span class="sc">{</span>gamma_val<span class="sc">:.1f}</span><span class="ss">: eigenvalues = [</span><span class="sc">{</span><span class="st">', '</span><span class="sc">.</span>join(<span class="ss">f'</span><span class="sc">{</span>e<span class="sc">:.4f}</span><span class="ss">'</span> <span class="cf">for</span> e <span class="kw">in</span> evals)<span class="sc">}</span><span class="ss">]"</span>)</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">All eigenvalues ≥ 0 for γ ∈ [0,1]: complete positivity confirmed. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">All eigenvalues ≥ 0 for γ ∈ [0,1]: complete positivity confirmed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>γ=0.0: eigenvalues = [0.0000, 0.0000, 0.0000, 2.0000] ✓
-γ=0.1: eigenvalues = [-0.0000, 0.0000, 0.1000, 1.9000] ✓
-γ=0.3: eigenvalues = [0.0000, 0.0000, 0.3000, 1.7000] ✓
-γ=0.5: eigenvalues = [0.0000, 0.0000, 0.5000, 1.5000] ✓
-γ=0.7: eigenvalues = [0.0000, 0.0000, 0.7000, 1.3000] ✓
-γ=1.0: eigenvalues = [0.0000, 0.0000, 1.0000, 1.0000] ✓
+<pre><code>γ=0.0: eigenvalues = [0.0000, 0.0000, 0.0000, 2.0000]
+γ=0.1: eigenvalues = [-0.0000, 0.0000, 0.1000, 1.9000]
+γ=0.3: eigenvalues = [0.0000, 0.0000, 0.3000, 1.7000]
+γ=0.5: eigenvalues = [0.0000, 0.0000, 0.5000, 1.5000]
+γ=0.7: eigenvalues = [0.0000, 0.0000, 0.7000, 1.3000]
+γ=1.0: eigenvalues = [0.0000, 0.0000, 1.0000, 1.0000]
 
-All eigenvalues ≥ 0 for γ ∈ [0,1]: complete positivity confirmed. ✓</code></pre>
+All eigenvalues ≥ 0 for γ ∈ [0,1]: complete positivity confirmed.</code></pre>
 </div>
 </div>
 <hr>

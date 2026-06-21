@@ -571,7 +571,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This exercise develops the complete theory of why deep quantum circuits destroy the utility of Quantum Extreme Learning Machines. We begin with the physical picture, formalize the POVM structure, and then prove three escalating results about signal death under Haar scrambling.</p>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>A quantum extreme learning machine encodes data into a fixed random circuit and trains only a linear readout on the measured probabilities, so all nonlinearity comes from the quantum map and none from the optimization. Tracing out the reservoir turns each readout feature into the Born probability of a POVM element on the input register, and concentration of measure controls how much input information those features retain. Under a Haar-random reservoir every POVM element averages to a multiple of the identity and the input-dependent part of each feature has variance falling as <span class="math inline">\(1/D^2\)</span>, so the signal drops below shot noise unless the shot budget grows with the Hilbert-space dimension.</p>
+<p>A quantum extreme learning machine keeps the training almost trivial and lets the physics do the hard part. Data is encoded into a fixed random circuit that is never optimized, and only a linear readout on the measured probabilities is fit afterward. The quantum dynamics supply whatever nonlinearity the model needs, and the learning step stays a plain linear regression. The circuit acts on the input together with an auxiliary reservoir register, and tracing the reservoir out recasts each readout feature as a Born probability on the input alone, <span class="math inline">\(f_b(x) = \mathrm{Tr}(M_b\,\rho_{\mathrm{in}}(x))\)</span>, where <span class="math inline">\(M_b\)</span> is an effective measurement operator. What matters is how much of the input still shows through these features once the circuit has mixed everything together.</p>
+<p>Under a random reservoir the averaging washes the operators out. The mean effective measurement is <span class="math inline">\(\mathbb{E}[M_b] = I_{\mathrm{in}}/D\)</span>, a flat operator proportional to the identity, so every feature averages to <span class="math inline">\(1/D\)</span> regardless of which input was encoded. The mean therefore carries no information at all about <span class="math inline">\(x\)</span>, and whatever the model can learn must live in the fluctuations around it.</p>
+<p>Those fluctuations are small. The variance of a feature is of order <span class="math inline">\(1/D^2\)</span> with <span class="math inline">\(D = 2^N\)</span>, so the input-dependent part of <span class="math inline">\(f_b(x)\)</span> is a faint ripple riding on a uniform <span class="math inline">\(1/D\)</span> background. The signal is present, but it is exponentially fainter than the constant it sits on.</p>
+<p>This sets a hard floor on measurement. Resolving the <span class="math inline">\(1/D\)</span> ripple against shot noise takes more than <span class="math inline">\(D = 2^N\)</span> measurements per feature before any input dependence becomes visible. A reservoir that works has to sit close to the onset of scrambling, deep enough that the effective measurements reach across a wide subspace yet shallow enough to keep their dependence on the input above the sampling floor.</p>
 </section>
 <section id="the-physical-setup" class="level2">
 <h2 class="anchored" data-anchor-id="the-physical-setup">1. The Physical Setup</h2>
@@ -700,7 +703,7 @@ M_b \;=\; \langle 0|_{\mathrm{res}}\, U^\dagger\, |b\rangle\langle b|\, U\, |0\r
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">7. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:35:14.656269Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:35:14.656000Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:35:14.937442Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:35:14.937071Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:54.662065Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:54.661851Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:55.081164Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:55.080769Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -744,8 +747,10 @@ Part (b): E[f^2] = 2/(D*(D + 1))
 
 Asymptotic expansion for large D:
   E[f]   = 1/D
-  Var[f] = -2/D**3 + D**(-2) + O(D**(-4), (D, oo))
-
+  Var[f] = -2/D**3 + D**(-2) + O(D**(-4), (D, oo))</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
 Part (c): Shot threshold nu &gt; D*(D + 1)/(D - 1)
   For large D: nu &gt; oo * D</code></pre>
 </div>
@@ -754,50 +759,52 @@ Part (c): Shot threshold nu &gt; D*(D + 1)/(D - 1)
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">8. Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:35:14.938905Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:35:14.938718Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:35:15.980605Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:35:15.980294Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:55.083114Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:55.082861Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:56.517069Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:56.516464Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'QELM POVM Feature Concentration'</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span> <span class="op">*</span> <span class="dv">70</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="st">"Config"</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"D"</span><span class="sc">:&gt;4s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"E[f] MC"</span><span class="sc">:&gt;9s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"1/D"</span><span class="sc">:&gt;9s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"Var MC"</span><span class="sc">:&gt;10s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"Var Exact"</span><span class="sc">:&gt;10s}</span><span class="ss">'</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">70</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> Nin, Nres <span class="kw">in</span> [(<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">1</span>,<span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">2</span>)]:</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> Nin <span class="op">+</span> Nres<span class="op">;</span> D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    D_in <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>Nin<span class="op">;</span> D_res <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>Nres</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    psi_in <span class="op">=</span> np.ones(D_in) <span class="op">/</span> np.sqrt(D_in)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    psi_res <span class="op">=</span> np.zeros(D_res)<span class="op">;</span> psi_res[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> np.kron(np.outer(psi_in, psi_in), np.outer(psi_res, psi_res))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> []</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> unitary_group.rvs(D)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        rho <span class="op">=</span> U <span class="op">@</span> sigma <span class="op">@</span> U.conj().T</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        features.append(np.diag(rho).real)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> np.array(features)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    mean_f <span class="op">=</span> np.mean(features)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    var_f <span class="op">=</span> np.mean(np.var(features, axis<span class="op">=</span><span class="dv">0</span>))</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    var_exact <span class="op">=</span> (D <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (D <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>Nin<span class="sc">}</span><span class="ss">+</span><span class="sc">{</span>Nres<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>D<span class="sc">:4d}</span><span class="ss">  </span><span class="sc">{</span>mean_f<span class="sc">:9.5f}</span><span class="ss">  </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>D<span class="sc">:9.5f}</span><span class="ss">  </span><span class="sc">{</span>var_f<span class="sc">:10.2e}</span><span class="ss">  </span><span class="sc">{</span>var_exact<span class="sc">:10.2e}</span><span class="ss">'</span>)</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mean_f <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>D) <span class="op">&lt;</span> <span class="fl">0.01</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(var_f <span class="op">-</span> var_exact) <span class="op">/</span> var_exact <span class="op">&lt;</span> <span class="fl">0.15</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">All assertions passed.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'QELM POVM Feature Concentration'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span> <span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="st">"Config"</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"D"</span><span class="sc">:&gt;4s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"E[f] MC"</span><span class="sc">:&gt;9s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"1/D"</span><span class="sc">:&gt;9s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"Var MC"</span><span class="sc">:&gt;10s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">"Var Exact"</span><span class="sc">:&gt;10s}</span><span class="ss">'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> Nin, Nres <span class="kw">in</span> [(<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">1</span>,<span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">2</span>)]:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> Nin <span class="op">+</span> Nres<span class="op">;</span> D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    D_in <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>Nin<span class="op">;</span> D_res <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>Nres</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    psi_in <span class="op">=</span> np.ones(D_in) <span class="op">/</span> np.sqrt(D_in)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    psi_res <span class="op">=</span> np.zeros(D_res)<span class="op">;</span> psi_res[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> np.kron(np.outer(psi_in, psi_in), np.outer(psi_res, psi_res))</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> []</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> unitary_group.rvs(D)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        rho <span class="op">=</span> U <span class="op">@</span> sigma <span class="op">@</span> U.conj().T</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        features.append(np.diag(rho).real)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> np.array(features)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    mean_f <span class="op">=</span> np.mean(features)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    var_f <span class="op">=</span> np.mean(np.var(features, axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    var_exact <span class="op">=</span> (D <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (D <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>Nin<span class="sc">}</span><span class="ss">+</span><span class="sc">{</span>Nres<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>D<span class="sc">:4d}</span><span class="ss">  </span><span class="sc">{</span>mean_f<span class="sc">:9.5f}</span><span class="ss">  </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>D<span class="sc">:9.5f}</span><span class="ss">  </span><span class="sc">{</span>var_f<span class="sc">:10.2e}</span><span class="ss">  </span><span class="sc">{</span>var_exact<span class="sc">:10.2e}</span><span class="ss">'</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mean_f <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>D) <span class="op">&lt;</span> <span class="fl">0.01</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(var_f <span class="op">-</span> var_exact) <span class="op">/</span> var_exact <span class="op">&lt;</span> <span class="fl">0.15</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">All assertions passed.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>QELM POVM Feature Concentration
 ======================================================================
   Config     D    E[f] MC        1/D      Var MC   Var Exact
-----------------------------------------------------------------------
-1+1:    4    0.25000    0.25000    3.72e-02    3.75e-02</code></pre>
+----------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1+1:    4    0.25000    0.25000    3.72e-02    3.75e-02</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1+2:    8    0.12500    0.12500    1.21e-02    1.22e-02</code></pre>
@@ -816,49 +823,49 @@ All assertions passed.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>Under full Haar scrambling the features concentrate at <span class="math inline">\(1/D\)</span> with variance of order <span class="math inline">\(1/D^2\)</span>, so resolving the input takes order <span class="math inline">\(D\)</span> shots and the mean POVM element carries no directional information at all. Working reservoirs therefore sit at the edge of scrambling, deep enough to be expressive yet shallow enough to keep input sensitivity above the sampling floor.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:35:15.982263Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:35:15.981925Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:35:16.764187Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:35:16.763934Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:56.519241Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:56.518972Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:57.760704Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:57.760278Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>D_plot <span class="op">=</span> <span class="dv">16</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fb_samples <span class="op">=</span> []</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">500</span>):</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    U <span class="op">=</span> unitary_group.rvs(D_plot)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">=</span> U[:, <span class="dv">0</span>]</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    fb_samples.append(<span class="bu">abs</span>(psi[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">150</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">4.5</span>))</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>ax1.hist(fb_samples, bins<span class="op">=</span><span class="dv">40</span>, color<span class="op">=</span><span class="st">'royalblue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, density<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>         edgecolor<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>p_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="bu">max</span>(fb_samples)<span class="op">*</span><span class="fl">1.1</span>, <span class="dv">200</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>ax1.plot(p_grid, D_plot <span class="op">*</span> np.exp(<span class="op">-</span>D_plot <span class="op">*</span> p_grid), <span class="st">'k-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="vs">r'Porter-Thomas $De^{-Df}$'</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>ax1.axvline(<span class="dv">1</span><span class="op">/</span>D_plot, color<span class="op">=</span><span class="st">'crimson'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="vs">r'$1/D$'</span>)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="vs">r'Feature value $f_b$'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Probability density'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="ss">f'Single Feature Distribution (D=</span><span class="sc">{</span>D_plot<span class="sc">}</span><span class="ss">)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>ax1.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, ls<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>D_range <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">12</span>)</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>var_exact <span class="op">=</span> (D_range <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> (D_range<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (D_range <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>var_approx <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> D_range<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>ax2.loglog(D_range, var_exact, <span class="st">'ko-'</span>, markersize<span class="op">=</span><span class="dv">6</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="vs">r'Exact $(D-1)/[D^2(D+1)]$'</span>)</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>ax2.loglog(D_range, var_approx, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>,</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="vs">r'Asymptotic $1/D^2$'</span>)</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'Hilbert space dimension $D$'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'Feature variance'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Signal Death under Scrambling'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>ax2.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, ls<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>D_plot <span class="op">=</span> <span class="dv">16</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>fb_samples <span class="op">=</span> []</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">500</span>):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    U <span class="op">=</span> unitary_group.rvs(D_plot)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">=</span> U[:, <span class="dv">0</span>]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    fb_samples.append(<span class="bu">abs</span>(psi[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">4.5</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>ax1.hist(fb_samples, bins<span class="op">=</span><span class="dv">40</span>, color<span class="op">=</span><span class="st">'royalblue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, density<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>         edgecolor<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>p_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="bu">max</span>(fb_samples)<span class="op">*</span><span class="fl">1.1</span>, <span class="dv">200</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>ax1.plot(p_grid, D_plot <span class="op">*</span> np.exp(<span class="op">-</span>D_plot <span class="op">*</span> p_grid), <span class="st">'k-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="vs">r'Porter-Thomas $De^{-Df}$'</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>ax1.axvline(<span class="dv">1</span><span class="op">/</span>D_plot, color<span class="op">=</span><span class="st">'crimson'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="vs">r'$1/D$'</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="vs">r'Feature value $f_b$'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Probability density'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="ss">f'Single Feature Distribution (D=</span><span class="sc">{</span>D_plot<span class="sc">}</span><span class="ss">)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>ax1.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, ls<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>D_range <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">12</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>var_exact <span class="op">=</span> (D_range <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> (D_range<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (D_range <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>var_approx <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> D_range<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>ax2.loglog(D_range, var_exact, <span class="st">'ko-'</span>, markersize<span class="op">=</span><span class="dv">6</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="vs">r'Exact $(D-1)/[D^2(D+1)]$'</span>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>ax2.loglog(D_range, var_approx, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="vs">r'Asymptotic $1/D^2$'</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'Hilbert space dimension $D$'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'Feature variance'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Signal Death under Scrambling'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>ax2.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, ls<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="solution_ch7_quantum_extreme_learning_machine_concentration_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>

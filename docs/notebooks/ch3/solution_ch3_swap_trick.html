@@ -565,7 +565,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The SWAP trick rewrites <span class="math inline">\(\mathrm{Tr}(AB)\)</span> as <span class="math inline">\(\mathrm{Tr}[(A \otimes B)F]\)</span>, where <span class="math inline">\(F\)</span> is the swap on two copies of the Hilbert space, trading a single-copy product for a two-copy expectation. Setting <span class="math inline">\(A = B = \rho\)</span> turns the purity <span class="math inline">\(\mathrm{Tr}(\rho^2)\)</span> into a quantity measurable from two identical preparations, which is how purities and Rényi entropies are obtained without full tomography. The same replication identity is the computational engine of the Weingarten calculus, where Haar moments reduce to permutations acting on tensor copies. Here it is applied to the Bell state and compared against the Haar average.</p>
+<p>Many quantities of interest are quadratic in a state, the purity <span class="math inline">\(\mathrm{Tr}(\rho^2)\)</span> being the basic example, and these are awkward to access directly because they are nonlinear in <span class="math inline">\(\rho\)</span>. The SWAP trick removes the nonlinearity by moving to two identical copies of the system. On the doubled space there is an operator <span class="math inline">\(F\)</span> that exchanges the two copies, sending <span class="math inline">\(|i\rangle|j\rangle\)</span> to <span class="math inline">\(|j\rangle|i\rangle\)</span>, and a short index calculation gives <span class="math inline">\(\mathrm{Tr}(AB) = \mathrm{Tr}[(A\otimes B)\,F]\)</span> for any two operators.</p>
+<p>Setting <span class="math inline">\(A = B = \rho\)</span> turns the purity into the expectation of the swap operator in the state <span class="math inline">\(\rho\otimes\rho\)</span>. This is what makes purities and the related Rényi entropies measurable without reconstructing the full density matrix, since one prepares two copies and estimates a single observable across them. The same replication is the reason two-copy quantities appear so often once randomness enters the picture.</p>
+<p>The trick is also the computational engine behind the Weingarten calculus. Averages of two copies of a unitary against two copies of its conjugate reduce to permutations acting on the copies, and the swap is the nontrivial permutation that appears at this order. Counting how swaps and identities wire the copies together is exactly how second-moment Haar integrals are evaluated.</p>
+<p>The notebook applies the identity to the Bell state, whose reduced density matrix is maximally mixed, and reads off purity <span class="math inline">\(1/2\)</span>. It then compares against the Haar-averaged purity at equal subsystem dimensions <span class="math inline">\(m=n=2\)</span>, where the typical value is <span class="math inline">\(4/5\)</span>, placing the Bell state below the average and so more entangled than a generic two-qubit reduction.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -616,7 +619,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:29.656086Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:29.655955Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:30.067936Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:30.067584Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:26.520122Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:26.519966Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:27.152524Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:27.151874Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -664,7 +667,7 @@ This connects purity to the 2-copy Hilbert space.</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:30.069614Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:30.069425Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:30.239708Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:30.239378Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:27.154862Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:27.154581Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:27.414177Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:27.413697Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -695,7 +698,7 @@ Bell purity (SWAP):   0.5000
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:30.241233Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:30.241023Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:31.215414Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:31.215093Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:27.416400Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:27.416131Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:28.869272Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:28.868817Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Part (c): Haar-averaged purity</span></span>
@@ -715,13 +718,13 @@ Bell purity (SWAP):   0.5000
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E[γ] = </span><span class="sc">{</span>E_gamma<span class="sc">:.4f}</span><span class="ss">  (theory (m+n)/(mn+1) = </span><span class="sc">{</span>pred<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Bell purity = 0.500 &lt; E[γ] = </span><span class="sc">{</span>pred<span class="sc">:.3f}</span><span class="ss">: Bell is MORE entangled than typical."</span>)</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">abs</span>(E_gamma <span class="op">-</span> pred) <span class="op">&lt;</span> <span class="fl">0.02</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">SWAP trick and Haar average verified. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">SWAP trick and Haar average verified."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>E[γ] = 0.7998  (theory (m+n)/(mn+1) = 0.8000)
 Bell purity = 0.500 &lt; E[γ] = 0.800: Bell is MORE entangled than typical.
 
-SWAP trick and Haar average verified. ✓</code></pre>
+SWAP trick and Haar average verified.</code></pre>
 </div>
 </div>
 </section>

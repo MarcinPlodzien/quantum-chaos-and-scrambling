@@ -583,7 +583,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This notebook builds fluency with the tensor diagrammatic rules for computing Haar integrals over the unitary group. Every analytical step is derived symbolically in SymPy and independently verified by Monte Carlo sampling of Haar-random unitaries via NumPy/SciPy.</p>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>A Haar average over the unitary group is the integral of a polynomial in the entries <span class="math inline">\(U_{ij}\)</span> and their conjugates, and the Weingarten calculus evaluates it as a finite sum over pairs of permutations. The dimension factors come from counting closed loops in the associated tensor diagram, while the Weingarten function supplies the rational weights. This reduces an integral over a continuous group to a combinatorial bookkeeping problem, which is what makes the higher moments tractable. The notebook works the first three moments by hand and checks each against symbolic algebra and Monte Carlo sampling.</p>
+<p>A Haar average over the unitary group is the integral of a polynomial built from the entries <span class="math inline">\(U_{ij}\)</span> and their complex conjugates, taken uniformly over all unitaries of a fixed dimension. Such integrals look forbidding because the group is continuous and high-dimensional, yet they collapse to something finite and combinatorial. The Weingarten calculus is the tool that carries out this collapse.</p>
+<p>The rule expresses an average with <span class="math inline">\(k\)</span> copies of <span class="math inline">\(U\)</span> and <span class="math inline">\(k\)</span> of <span class="math inline">\(U^\dagger\)</span> as a sum over pairs of permutations of <span class="math inline">\(k\)</span> objects. One permutation records how the output indices of the <span class="math inline">\(U\)</span> factors are matched to those of the <span class="math inline">\(U^\dagger\)</span> factors, the other does the same for the input indices, and each pairing carries a rational weight given by the Weingarten function. The dimension <span class="math inline">\(D\)</span> enters only through powers that count the closed loops formed when the index matchings are drawn as a tensor diagram.</p>
+<p>This mirrors Wick’s theorem for Gaussian integrals, where expectations reduce to sums over ways of pairing variables. Here the pairings are permutations rather than simple contractions, and the Weingarten weights replace the Gaussian propagator. The identity permutation, the uncrossed pairing, carries the largest weight and dominates at large <span class="math inline">\(D\)</span>, while crossings are suppressed by powers of <span class="math inline">\(1/D\)</span>, which makes the leading behavior of many quantities easy to read off.</p>
+<p>The notebook works the lowest moments by hand within this scheme, climbing from the first-order trace product through the second-order purity to <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}\,U|^6]=6\)</span>, and checks each step against symbolic algebra and Monte Carlo sampling.</p>
 </section>
 <section id="physical-motivation" class="level2">
 <h2 class="anchored" data-anchor-id="physical-motivation">1. Physical Motivation</h2>
@@ -670,7 +673,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Closed loop</strong> (wire with no open ends) = contributes a factor of <span class="math inline">\(D\)</span></li>
 <li><strong>Cup</strong> (semicircular arc connecting two wires) = Kronecker delta <span class="math inline">\(\delta_{ij}\)</span></li>
 </ul>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:33.461769Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:33.461588Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:33.949746Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:33.949424Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:31.911988Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:31.911810Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:32.642861Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:32.642048Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports used throughout</span></span>
@@ -756,7 +759,7 @@ S_3 has 6 elements:
 <p><strong>Step 2, Apply <span class="math inline">\(k=1\)</span> Weingarten (<span class="math inline">\(|S_1| = 1\)</span>, only <span class="math inline">\(\pi = \sigma = \mathrm{id}\)</span>):</strong> <span class="math display">\[\mathbb{E}[U_{ij}U^*_{lk}] = \frac{1}{D}\,\delta_{il}\,\delta_{jk}\]</span></p>
 <p><strong>Step 3, Contract deltas:</strong> - <span class="math inline">\(\delta_{jk}\)</span> closes a loop through <span class="math inline">\(\hat{A}\)</span>: <span class="math inline">\(\sum_j A_{jj} = \mathrm{Tr}(\hat{A})\)</span> - <span class="math inline">\(\delta_{il}\)</span> closes a loop through <span class="math inline">\(\hat{B}\)</span>: <span class="math inline">\(\sum_i B_{ii} = \mathrm{Tr}(\hat{B})\)</span></p>
 <p><strong>Result:</strong> <span class="math inline">\(\mathbb{E}[\mathrm{Tr}(UAU^\dagger B)] = \frac{\mathrm{Tr}(\hat{A})\,\mathrm{Tr}(\hat{B})}{D}\)</span></p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:33.951401Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:33.951190Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:34.075101Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:34.074618Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:32.645292Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:32.645052Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:32.823851Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:32.823277Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (a): SymPy symbolic verification ==='</span>)</span>
@@ -783,7 +786,7 @@ S_3 has 6 elements:
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Index contraction: </span><span class="sc">{</span>simplify(result_indices)<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Formula Tr(A)Tr(B)/D: </span><span class="sc">{</span>simplify(result_formula)<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> expand(result_indices <span class="op">-</span> result_formula) <span class="op">==</span> <span class="dv">0</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  MATCH ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  MATCH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Part (a): SymPy symbolic verification ===
@@ -791,10 +794,10 @@ S_3 has 6 elements:
 Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
   Index contraction: a00*b00/3 + a00*b11/3 + a00*b22/3 + a11*b00/3 + a11*b11/3 + a11*b22/3 + a22*b00/3 + a22*b11/3 + a22*b22/3
   Formula Tr(A)Tr(B)/D: (a00 + a11 + a22)*(b00 + b11 + b22)/3
-  MATCH ✓</code></pre>
+  MATCH</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:34.076618Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:34.076480Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:35.890244Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:35.889936Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:32.826197Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:32.825985Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:35.201812Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:35.201209Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (a): NumPy Monte Carlo cross-check ==='</span>)</span>
@@ -804,20 +807,20 @@ Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Random complex matrices</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    A_n <span class="op">=</span> np.random.randn(D_val, D_val) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D_val, D_val)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    B_n <span class="op">=</span> np.random.randn(D_val, D_val) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D_val, D_val)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Monte Carlo: sample Haar-random U, compute Tr(UAU†B)</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    mc_vals <span class="op">=</span> [np.trace(U <span class="op">@</span> A_n <span class="op">@</span> U.conj().T <span class="op">@</span> B_n) </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    mc_vals <span class="op">=</span> [np.trace(U <span class="op">@</span> A_n <span class="op">@</span> U.conj().T <span class="op">@</span> B_n)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> U <span class="kw">in</span> [unitary_group.rvs(D_val) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15000</span>)]]</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    mc_mean <span class="op">=</span> np.mean(mc_vals)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Analytical</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> np.trace(A_n) <span class="op">*</span> np.trace(B_n) <span class="op">/</span> D_val</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  D=</span><span class="sc">{</span>D_val<span class="sc">}</span><span class="ss">: MC = </span><span class="sc">{</span>mc_mean<span class="sc">:.4f}</span><span class="ss">, analytic = </span><span class="sc">{</span>exact<span class="sc">:.4f}</span><span class="ss">, '</span> </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  D=</span><span class="sc">{</span>D_val<span class="sc">}</span><span class="ss">: MC = </span><span class="sc">{</span>mc_mean<span class="sc">:.4f}</span><span class="ss">, analytic = </span><span class="sc">{</span>exact<span class="sc">:.4f}</span><span class="ss">, '</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'|err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc_mean <span class="op">-</span> exact)<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_mean <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="fl">0.3</span> <span class="op">*</span> <span class="bu">max</span>(<span class="bu">abs</span>(exact), <span class="fl">1.0</span>)</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All first-moment checks PASS ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All first-moment checks PASS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Part (a): NumPy Monte Carlo cross-check ===</code></pre>
@@ -830,7 +833,7 @@ Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  D=8: MC = 0.2752-0.0297j, analytic = 0.2306+0.0000j, |err| = 0.0536
-  All first-moment checks PASS ✓</code></pre>
+  All first-moment checks PASS</code></pre>
 </div>
 </div>
 <hr>
@@ -876,7 +879,7 @@ Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
 </tbody>
 </table>
 <p><strong>Step 5, Assembly:</strong> <span class="math display">\[\mathbb{E}[\mathrm{Tr}(\hat{\rho}_A^2)] = \frac{1}{D(D+1)}(D_A D_B^2 + D_A^2 D_B) = \frac{D_A D_B(D_A + D_B)}{D_A D_B(D_A D_B + 1)} = \frac{D_A + D_B}{D_A D_B + 1}\]</span></p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:35.891797Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:35.891625Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:35.946617Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:35.946309Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:35.203999Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:35.203805Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:35.284174Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:35.283522Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): Step-by-step purity derivation ==='</span>)</span>
@@ -901,7 +904,7 @@ Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>wg_sum <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(D_sym<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> (<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(D_sym<span class="op">*</span>(D_sym<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>))</span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Wg(id) + Wg((12)) = </span><span class="sc">{</span>simplify(wg_sum)<span class="sc">}</span><span class="ss"> = 1/[D(D+1)]'</span>)</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> simplify(wg_sum <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>(D_sym<span class="op">*</span>(D_sym<span class="op">+</span><span class="dv">1</span>))) <span class="op">==</span> <span class="dv">0</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  Confirmed ✓'</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  Confirmed'</span>)</span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Loop counting table</span></span>
@@ -936,7 +939,7 @@ Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
 
 Step 2: Sigma sum (free because reference state fixes all inputs)
   Wg(id) + Wg((12)) = 1/(D*(D + 1)) = 1/[D(D+1)]
-  Confirmed ✓
+  Confirmed
 
 Step 3: Cycle counting table
      π | Eff on A (π∘SWAP) | Eff on B (π∘id) | Loop factor
@@ -952,7 +955,7 @@ Step 4: Numerical verification
   DA=2,DB=8: analytic = 0.58823529, formula = 0.58823529, match = True</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:35.948037Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:35.947721Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:37.406294Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:37.405982Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:35.286099Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:35.285903Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:37.189730Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:37.189265Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): NumPy Monte Carlo cross-check ==='</span>)</span>
@@ -972,7 +975,7 @@ Step 4: Numerical verification
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'analytic = </span><span class="sc">{</span>exact<span class="sc">:.4f}</span><span class="ss">, |err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc <span class="op">-</span> exact)<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="dv">3</span> <span class="op">*</span> mc_err <span class="op">+</span> <span class="fl">0.01</span>  <span class="co"># within ~3σ</span></span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All purity checks PASS ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All purity checks PASS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Part (b): NumPy Monte Carlo cross-check ===</code></pre>
@@ -985,7 +988,7 @@ Step 4: Numerical verification
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  DA=3,DB=3: MC = 0.6004 ± 0.0010, analytic = 0.6000, |err| = 0.0004
-  All purity checks PASS ✓</code></pre>
+  All purity checks PASS</code></pre>
 </div>
 </div>
 <hr>
@@ -1000,7 +1003,7 @@ Step 4: Numerical verification
 <p>This sets <span class="math inline">\(j_a = i_a\)</span> and <span class="math inline">\(m_a = \ell_a\)</span> (the trace constraint: all indices are “diagonal”).</p>
 <p><strong>Step 2, Weingarten sum:</strong> For each <span class="math inline">\((\pi, \sigma) \in S_3 \times S_3\)</span>, the delta product <span class="math inline">\(\prod_a \delta_{i_a, \ell_{\pi(a)}} \delta_{i_a, \ell_{\sigma(a)}}\)</span> forces <span class="math inline">\(\ell_{\pi(a)} = \ell_{\sigma(a)}\)</span> for all <span class="math inline">\(a\)</span>. The number of free summation indices equals <span class="math inline">\(D^{\#\text{cycles}(\pi^{-1}\sigma)}\)</span>.</p>
 <p><strong>Step 3, Group by cycle type of <span class="math inline">\(\pi^{-1}\sigma\)</span>:</strong> Since <span class="math inline">\(\mathrm{Wg}\)</span> depends only on cycle type, we count how many of the <span class="math inline">\(36\)</span> pairs <span class="math inline">\((\pi, \sigma)\)</span> give each cycle type of <span class="math inline">\(\pi^{-1}\sigma\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:37.407707Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:37.407543Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:37.411425Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:37.411164Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:37.191749Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:37.191550Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:37.197046Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:37.196662Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (c): Full S₃ Weingarten calculus ==='</span>)</span>
@@ -1051,7 +1054,7 @@ Step 2: Distribution of π⁻¹σ cycle types across all 36 pairs
         (3,) |      12 |        1 | D^1</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:37.412653Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:37.412463Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:37.416082Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:37.415852Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:37.198771Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:37.198456Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:37.203867Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:37.203476Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Compute E[|Tr(U)|^6] for several D</span></span>
@@ -1108,7 +1111,7 @@ Result: E[|Tr(U)|⁶] = 6 = 3! for all D ≥ 3
 This is the CUE moment theorem: E[|Tr(U)|^{2k}] = k!</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:37.417265Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:37.417031Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:39.786766Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:39.786417Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:37.205646Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:37.205268Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:40.323771Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:40.323203Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: NumPy Monte Carlo cross-check</span></span>
@@ -1123,7 +1126,7 @@ This is the CUE moment theorem: E[|Tr(U)|^{2k}] = k!</code></pre>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'|err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc <span class="op">-</span> <span class="dv">6</span>)<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc <span class="op">-</span> <span class="fl">6.0</span>) <span class="op">&lt;</span> <span class="dv">3</span><span class="op">*</span>mc_err <span class="op">+</span> <span class="fl">0.2</span></span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All sixth-moment checks PASS ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All sixth-moment checks PASS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Step 4: NumPy Monte Carlo cross-check</code></pre>
@@ -1136,7 +1139,7 @@ This is the CUE moment theorem: E[|Tr(U)|^{2k}] = k!</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  D= 10: MC = 6.089 ± 0.178, analytic = 6.000, |err| = 0.089
-  All sixth-moment checks PASS ✓</code></pre>
+  All sixth-moment checks PASS</code></pre>
 </div>
 </div>
 <hr>

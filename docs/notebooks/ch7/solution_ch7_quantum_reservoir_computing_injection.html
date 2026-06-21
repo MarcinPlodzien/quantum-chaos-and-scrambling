@@ -567,7 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Quantum reservoir computing processes a time series by injecting each input into a small subsystem of a fixed quantum reservoir and letting the dynamics scramble it, training only a linear readout. A usable reservoir must have fading memory, forgetting inputs from the distant past so that its output depends on a finite window. The injection step resets the input qubit by tracing it out and preparing a fresh state, and because the partial trace contracts trace distance the map is strictly contractive, which supplies fading memory with no assumption on the scrambling unitary. The cost lives in readout, since projective measurement destroys the state and the standard restarting protocol replays the whole sequence.</p>
+<p>Quantum reservoir computing processes a time series by feeding it through a fixed quantum system. At each step the current input is injected into a small piece of a larger reservoir, where the internal dynamics scramble it together with the memory of earlier inputs. A linear readout on a few observables is the only part that gets trained. For that readout to be a stable function of the signal the reservoir needs fading memory, meaning its state depends on a finite window of recent inputs while the influence of the distant past steadily dies away.</p>
+<p>The fading comes from the act of injection rather than from any chaos in the dynamics. Loading an input <span class="math inline">\(x\)</span> proceeds by discarding the injection qubit and writing a fresh state <span class="math inline">\(|\psi(x)\rangle\)</span> in its place, so the channel factorizes as <span class="math inline">\(\mathcal{E}_x(\rho) = \mathrm{Tr}_1(\rho)\otimes|\psi(x)\rangle\langle\psi(x)|\)</span>. Throwing the qubit away is what erases history. Each injection overwrites one subsystem with something that depends only on the present input, so a little of whatever once distinguished two past trajectories is discarded at every step.</p>
+<p>Made precise, this is a contraction. The map is completely positive and trace preserving, and the partial trace can only bring two states closer in trace distance, never push them apart, so two reservoir states that began some distance apart satisfy <span class="math inline">\(\|\mathcal{E}_x(\rho) - \mathcal{E}_x(\sigma)\|_1 \leq \|\rho - \sigma\|_1\)</span> after the injection. The bound holds for every scrambling unitary, so fading memory is guaranteed by the discarding step and needs no assumption about how chaotic the reservoir is.</p>
+<p>A cost comes attached to reading the reservoir out. Projective measurement destroys the state, so recovering the output at every time step means restarting and replaying the sequence from the beginning for each step and each shot. Over a length-<span class="math inline">\(T\)</span> series this is <span class="math inline">\(\nu\,T(T+1)/2\)</span> runs, an overhead that grows like <span class="math inline">\(\nu T^2\)</span> and that pushes practical schemes toward weak continuous measurement, which reads the reservoir gently enough to leave it running.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -635,7 +638,7 @@ K_a = (I_{\bar{1}} \otimes |\psi(x)\rangle_1)(I_{\bar{1}} \otimes \langle a|_1),
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:35:24.207794Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:35:24.207603Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:35:24.364241Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:35:24.363842Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:42:07.300488Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:42:07.300379Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:42:07.538629Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:42:07.538211Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -691,7 +694,7 @@ Part (c): Total runs = nu * T(T+1)/2 = T*nu*(T + 1)/2
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The injection map factorizes into a partial trace and a state preparation, and since the partial trace contracts trace distance, past inputs grow indistinguishable step by step and the reservoir has fading memory with no assumption on the scrambling unitary. Projective readout with restarting costs <span class="math inline">\(\nu\,T(T+1)/2\)</span> runs, an <span class="math inline">\(O(\nu T^2)\)</span> overhead that motivates weak continuous measurement.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:35:24.365788Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:35:24.365645Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:35:24.425233Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:35:24.424848Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:42:07.541064Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:42:07.540775Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:42:07.629308Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:42:07.628664Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -724,12 +727,12 @@ Part (c): Total runs = nu * T(T+1)/2 = T*nu*(T + 1)/2
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    rho <span class="op">=</span> A <span class="op">@</span> A.conj().T<span class="op">;</span> rho <span class="op">/=</span> np.trace(rho)</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> np.random.randn(D, D) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D, D)</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> B <span class="op">@</span> B.conj().T<span class="op">;</span> sigma <span class="op">/=</span> np.trace(sigma)</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    td_in <span class="op">=</span> trace_dist(rho, sigma)</span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    rho_out <span class="op">=</span> <span class="bu">sum</span>(K <span class="op">@</span> rho <span class="op">@</span> K.conj().T <span class="cf">for</span> K <span class="kw">in</span> K_ops)</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    sig_out <span class="op">=</span> <span class="bu">sum</span>(K <span class="op">@</span> sigma <span class="op">@</span> K.conj().T <span class="cf">for</span> K <span class="kw">in</span> K_ops)</span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    td_out <span class="op">=</span> trace_dist(rho_out, sig_out)</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> td_out <span class="op">&lt;=</span> td_in <span class="op">+</span> <span class="fl">1e-10</span></span>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> td_out <span class="op">&lt;</span> td_in <span class="op">-</span> <span class="fl">1e-6</span>: n_strict <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>

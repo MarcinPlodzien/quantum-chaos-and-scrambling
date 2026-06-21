@@ -526,8 +526,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
-  <li><a href="#part-a-deriving-mathcalm-via-the-k1-weingarten-formula" id="toc-part-a-deriving-mathcalm-via-the-k1-weingarten-formula" class="nav-link" data-scroll-target="#part-a-deriving-mathcalm-via-the-k1-weingarten-formula">Part (a): Deriving <span class="math inline">\(\mathcal{M}\)</span> via the <span class="math inline">\(k=1\)</span> Weingarten formula</a></li>
-  <li><a href="#part-b-channel-inversion" id="toc-part-b-channel-inversion" class="nav-link" data-scroll-target="#part-b-channel-inversion">Part (b): Channel inversion</a></li>
+  <li><a href="#part-a-deriving-mathcalm-from-the-2-design-average" id="toc-part-a-deriving-mathcalm-from-the-2-design-average" class="nav-link" data-scroll-target="#part-a-deriving-mathcalm-from-the-2-design-average">Part (a): Deriving <span class="math inline">\(\mathcal{M}\)</span> from the 2-design average</a></li>
+  <li><a href="#part-b-inverting-the-channel" id="toc-part-b-inverting-the-channel" class="nav-link" data-scroll-target="#part-b-inverting-the-channel">Part (b): Inverting the channel</a></li>
   <li><a href="#part-c-general-d-dimensional-formula" id="toc-part-c-general-d-dimensional-formula" class="nav-link" data-scroll-target="#part-c-general-d-dimensional-formula">Part (c): General <span class="math inline">\(D\)</span>-dimensional formula</a></li>
   </ul></li>
   <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
@@ -567,7 +567,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Classical shadows estimate many observables of an unknown state from few random measurements by storing, for each shot, a classical snapshot built from the applied unitary and the measurement outcome. Averaging the measure-and-prepare map over a unitary 2-design gives the shadow channel <span class="math inline">\(\mathcal{M}\)</span>, a depolarizing-type map that contracts the traceless part of any state toward the identity. Recovering unbiased estimates requires inverting <span class="math inline">\(\mathcal{M}\)</span>, and since the inverse re-amplifies that traceless part it also sets the sampling variance of the protocol.</p>
+<p>Classical shadows learn many properties of an unknown state <span class="math inline">\(\rho\)</span> from a handful of randomized measurements. A single shot draws a unitary <span class="math inline">\(U\)</span> from a chosen ensemble, rotates the state by <span class="math inline">\(U\)</span>, and measures in the computational basis, recording the outcome <span class="math inline">\(b\)</span> together with the unitary that produced it. From this record we reconstruct the snapshot <span class="math inline">\(U^\dagger |b\rangle\langle b| U\)</span>, the post-measurement state written back in the original frame. Each snapshot is a rank-one operator, cheap to store and to manipulate.</p>
+<p>A single snapshot is random in two ways, through the draw of <span class="math inline">\(U\)</span> and through the Born-rule outcome <span class="math inline">\(b\)</span>. Averaging the snapshot construction over the ensemble of unitaries and over the outcomes defines a linear map on operators, <span class="math display">\[
+\mathcal{M}(\rho) = \mathbb{E}_U \sum_b \langle b| U \rho U^\dagger |b\rangle\, U^\dagger |b\rangle\langle b| U,
+\]</span> the measurement channel. It records what the randomized measurement reports on average when the input is <span class="math inline">\(\rho\)</span>.</p>
+<p>When the ensemble is a unitary 2-design, such as the global Clifford group, the average can depend on <span class="math inline">\(\rho\)</span> only through <span class="math inline">\(\rho\)</span> itself and through <span class="math inline">\(\mathrm{Tr}(\rho)\,I\)</span>. The channel then takes the depolarizing form <span class="math display">\[
+\mathcal{M}(\rho) = \frac{\rho + \mathrm{Tr}(\rho)\,I}{D+1},
+\]</span> which leaves the trace fixed and shrinks the traceless part by the factor <span class="math inline">\(1/(D+1)\)</span>. Because no part of the operator is sent to zero, the map is invertible. Its inverse is <span class="math display">\[
+\mathcal{M}^{-1}(\tau) = (D+1)\,\tau - \mathrm{Tr}(\tau)\,I,
+\]</span> and for a single qubit, <span class="math inline">\(D=2\)</span>, this reads <span class="math inline">\(\mathcal{M}^{-1}(\tau) = 3\tau - \mathrm{Tr}(\tau)\,I\)</span>. Applying <span class="math inline">\(\mathcal{M}^{-1}\)</span> to each snapshot re-amplifies the traceless part by exactly the factor the measurement suppressed, so the corrected snapshot is an unbiased estimator of <span class="math inline">\(\rho\)</span>.</p>
+<p>The factor <span class="math inline">\(D+1\)</span> is the dimension of the symmetric subspace of two copies that appears in the <span class="math inline">\(k=2\)</span> Weingarten formula, and the shrinkage it encodes is the cost of randomizing the measurement. When <span class="math inline">\(D\)</span> is large the channel is close to singular on the traceless sector, and inverting an almost-singular channel inflates the variance of the estimator. That inflation is the price of tomographic completeness, the ability to read off any observable from the same set of snapshots.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -589,47 +598,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="solution" class="level2">
 <h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<section id="part-a-deriving-mathcalm-via-the-k1-weingarten-formula" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-deriving-mathcalm-via-the-k1-weingarten-formula">Part (a): Deriving <span class="math inline">\(\mathcal{M}\)</span> via the <span class="math inline">\(k=1\)</span> Weingarten formula</h3>
-<p>The shadow channel is <span class="math inline">\(\mathcal{M}(\sigma) = \mathbb{E}_U \sum_b \mathrm{Tr}(U\sigma U^\dagger |b\rangle\langle b|)\, U^\dagger|b\rangle\langle b|U\)</span>.</p>
-<p>In index notation:</p>
-<p><span class="math display">\[
-\mathcal{M}(\sigma)_{ij} = \sum_b \mathbb{E}_U\bigl[\overline{U}_{bi}\, U_{bj}\, \sum_{k,l} U_{bk}\, \sigma_{kl}\, \overline{U}_{bl}\bigr].
+<section id="part-a-deriving-mathcalm-from-the-2-design-average" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-deriving-mathcalm-from-the-2-design-average">Part (a): Deriving <span class="math inline">\(\mathcal{M}\)</span> from the 2-design average</h3>
+<p>Start from the measurement channel, <span class="math display">\[
+\mathcal{M}(\rho) = \mathbb{E}_U \sum_b \langle b| U \rho U^\dagger |b\rangle\, U^\dagger |b\rangle\langle b| U .
+\]</span> Each term carries two factors of <span class="math inline">\(U\)</span> and two of <span class="math inline">\(U^\dagger\)</span>, so the average is a degree-two polynomial in the entries of <span class="math inline">\(U\)</span>. For a unitary 2-design this average equals the Haar average of the same polynomial.</p>
+<p><strong>The form of the channel.</strong> For any fixed <span class="math inline">\(V\)</span> in the group, the substitution <span class="math inline">\(U \to UV^\dagger\)</span> leaves a 2-design average unchanged, and it sends <span class="math inline">\(\rho \to V \rho V^\dagger\)</span> while keeping the outer <span class="math inline">\(U^\dagger |b\rangle\langle b| U\)</span> unchanged after relabeling. Hence <span class="math inline">\(\mathcal{M}(V\rho V^\dagger) = V \mathcal{M}(\rho) V^\dagger\)</span> for every <span class="math inline">\(V\)</span>. A linear map on operators that commutes with conjugation by every unitary can only be a combination of the two invariant superoperators, the identity map and the trace map. Therefore <span class="math display">\[
+\mathcal{M}(\rho) = a\,\rho + b\,\mathrm{Tr}(\rho)\,I
+\]</span> for scalars <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> that depend on <span class="math inline">\(D\)</span> alone.</p>
+<p><strong>First equation, from <span class="math inline">\(\rho = I\)</span>.</strong> Setting <span class="math inline">\(\rho = I\)</span> gives <span class="math inline">\(\sum_b U^\dagger |b\rangle\langle b| U = U^\dagger I U = I\)</span> inside the average, so <span class="math inline">\(\mathcal{M}(I) = I\)</span>. Matching with <span class="math inline">\(a\,I + b\,\mathrm{Tr}(I)\,I = (a + bD)\,I\)</span> yields <span class="math display">\[
+a + bD = 1 .
 \]</span></p>
-<p>This requires the <span class="math inline">\(k=2\)</span> Weingarten integral. For a 2-design (single-qubit Cliffords with <span class="math inline">\(D=2\)</span>):</p>
-<p><span class="math display">\[
-\mathbb{E}[U_{bk} U_{bj} \overline{U}_{bl}\overline{U}_{bi}] = \sum_{\pi,\sigma \in S_2} \mathrm{Wg}(\pi^{-1}\sigma) \,\delta_{b,b}^{(\pi)}\, \delta_{\cdots}^{(\sigma)}.
+<p><strong>Second equation, from the second moment.</strong> Write the channel in indices, using <span class="math inline">\((U^\dagger |b\rangle\langle b| U)_{ij} = \overline{U_{bi}}\,U_{bj}\)</span> and <span class="math inline">\(\langle b|U\rho U^\dagger|b\rangle = \sum_{kl} U_{bk}\,\rho_{kl}\,\overline{U_{bl}}\)</span>, <span class="math display">\[
+\mathcal{M}(\rho)_{ij} = \sum_{b,k,l} \rho_{kl}\; \mathbb{E}_U\!\left[\, U_{bj}\,U_{bk}\,\overline{U_{bi}}\,\overline{U_{bl}} \,\right].
+\]</span> The Haar second moment is <span class="math display">\[
+\mathbb{E}_U\!\left[\, U_{bj}\,U_{bk}\,\overline{U_{bi}}\,\overline{U_{bl}} \,\right]
+= \big(\mathrm{Wg}(e) + \mathrm{Wg}(\text{swap})\big)\,\big(\delta_{ij}\delta_{kl} + \delta_{il}\delta_{kj}\big),
+\]</span> because all four row indices equal <span class="math inline">\(b\)</span>, so both permutations of the rows contribute equally and the column deltas supply the two pairings <span class="math inline">\(\delta_{ij}\delta_{kl}\)</span> and <span class="math inline">\(\delta_{il}\delta_{kj}\)</span>. With the <span class="math inline">\(k=2\)</span> Weingarten values <span class="math inline">\(\mathrm{Wg}(e) = \frac{1}{D^2-1}\)</span> and <span class="math inline">\(\mathrm{Wg}(\text{swap}) = \frac{-1}{D(D^2-1)}\)</span>, <span class="math display">\[
+c \equiv \mathrm{Wg}(e) + \mathrm{Wg}(\text{swap}) = \frac{1}{D^2-1}\Big(1 - \frac{1}{D}\Big) = \frac{1}{D(D+1)} .
+\]</span> Summing over <span class="math inline">\(b\)</span> multiplies by <span class="math inline">\(D\)</span>, and the two pairings give <span class="math inline">\(\mathrm{Tr}(\rho)\,I\)</span> and <span class="math inline">\(\rho\)</span> respectively, <span class="math display">\[
+\mathcal{M}(\rho) = D\,c\,\big(\rho + \mathrm{Tr}(\rho)\,I\big) = \frac{\rho + \mathrm{Tr}(\rho)\,I}{D+1} .
+\]</span> So <span class="math inline">\(a = b = \frac{1}{D+1}\)</span>, which also satisfies <span class="math inline">\(a + bD = 1\)</span> as required.</p>
+<p><strong>Single qubit.</strong> For <span class="math inline">\(D = 2\)</span>, <span class="math display">\[
+\mathcal{M}(\sigma) = \frac{\sigma + \mathrm{Tr}(\sigma)\,I}{3}.
 \]</span></p>
-<p>After contracting, the result for any <span class="math inline">\(D\)</span> is:</p>
-<p><span class="math display">\[
-\mathcal{M}(\sigma) = \frac{\sigma + \mathrm{Tr}(\sigma)I}{D+1}.
-\]</span></p>
-<p>For <span class="math inline">\(D = 2\)</span>: <span class="math inline">\(\mathcal{M}(\sigma) = \frac{\sigma + \mathrm{Tr}(\sigma)I}{3}\)</span>. <span class="math inline">\(\quad \checkmark\)</span></p>
 </section>
-<section id="part-b-channel-inversion" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-channel-inversion">Part (b): Channel inversion</h3>
-<p><strong>Claim:</strong> <span class="math inline">\(\mathcal{M}^{-1}(\tau) = (D+1)\tau - \mathrm{Tr}(\tau)I\)</span>.</p>
-<p><strong>Proof:</strong> Apply <span class="math inline">\(\mathcal{M}^{-1}\)</span> to <span class="math inline">\(\mathcal{M}(\sigma)\)</span>:</p>
-<p><span class="math display">\[
-\mathcal{M}^{-1}\!\left(\frac{\sigma + \mathrm{Tr}(\sigma)I}{D+1}\right) = (D+1)\frac{\sigma + \mathrm{Tr}(\sigma)I}{D+1} - \mathrm{Tr}\!\left(\frac{\sigma + \mathrm{Tr}(\sigma)I}{D+1}\right)I.
+<section id="part-b-inverting-the-channel" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-inverting-the-channel">Part (b): Inverting the channel</h3>
+<p>Write the output as <span class="math inline">\(\tau = \mathcal{M}(\rho) = a\,\rho + b\,\mathrm{Tr}(\rho)\,I\)</span> with <span class="math inline">\(a = b = \frac{1}{D+1}\)</span>, and solve for <span class="math inline">\(\rho\)</span>.</p>
+<p><strong>Recover the trace.</strong> Taking the trace of both sides and using <span class="math inline">\(\mathrm{Tr}(I) = D\)</span>, <span class="math display">\[
+\mathrm{Tr}(\tau) = (a + bD)\,\mathrm{Tr}(\rho) = \mathrm{Tr}(\rho),
+\]</span> since <span class="math inline">\(a + bD = 1\)</span>. The channel preserves the trace, so <span class="math inline">\(\mathrm{Tr}(\rho)\)</span> is read off directly from <span class="math inline">\(\tau\)</span>.</p>
+<p><strong>Solve for <span class="math inline">\(\rho\)</span>.</strong> Substitute <span class="math inline">\(\mathrm{Tr}(\rho) = \mathrm{Tr}(\tau)\)</span> into <span class="math inline">\(\tau = a\,\rho + b\,\mathrm{Tr}(\rho)\,I\)</span> and isolate <span class="math inline">\(\rho\)</span>, <span class="math display">\[
+\rho = \frac{1}{a}\big(\tau - b\,\mathrm{Tr}(\tau)\,I\big).
+\]</span> With <span class="math inline">\(a = b = \frac{1}{D+1}\)</span> this is <span class="math display">\[
+\mathcal{M}^{-1}(\tau) = (D+1)\,\tau - \mathrm{Tr}(\tau)\,I .
 \]</span></p>
-<p><span class="math display">\[
-= \sigma + \mathrm{Tr}(\sigma)I - \frac{\mathrm{Tr}(\sigma) + D\,\mathrm{Tr}(\sigma)}{D+1}I = \sigma + \mathrm{Tr}(\sigma)I - \mathrm{Tr}(\sigma)I = \sigma. \quad \checkmark
+<p><strong>Verification.</strong> Apply <span class="math inline">\(\mathcal{M}^{-1}\)</span> to <span class="math inline">\(\mathcal{M}(\rho)\)</span>, <span class="math display">\[
+\mathcal{M}^{-1}\!\big(\mathcal{M}(\rho)\big)
+= (D+1)\,\frac{\rho + \mathrm{Tr}(\rho)\,I}{D+1} - \mathrm{Tr}\!\left(\frac{\rho + \mathrm{Tr}(\rho)\,I}{D+1}\right) I .
+\]</span> The first term is <span class="math inline">\(\rho + \mathrm{Tr}(\rho)\,I\)</span>. In the second term, <span class="math inline">\(\mathrm{Tr}(\rho + \mathrm{Tr}(\rho)\,I) = \mathrm{Tr}(\rho) + D\,\mathrm{Tr}(\rho) = (D+1)\,\mathrm{Tr}(\rho)\)</span>, so the second term is <span class="math inline">\(\mathrm{Tr}(\rho)\,I\)</span>. They cancel, <span class="math display">\[
+\mathcal{M}^{-1}\!\big(\mathcal{M}(\rho)\big) = \rho + \mathrm{Tr}(\rho)\,I - \mathrm{Tr}(\rho)\,I = \rho .
 \]</span></p>
-<p>For <span class="math inline">\(D = 2\)</span>: <span class="math inline">\(\mathcal{M}^{-1}(\tau) = 3\tau - \mathrm{Tr}(\tau)I\)</span>.</p>
+<p><strong>Single qubit.</strong> For <span class="math inline">\(D = 2\)</span>, <span class="math inline">\(\mathcal{M}^{-1}(\tau) = 3\,\tau - \mathrm{Tr}(\tau)\,I\)</span>. The numerical cell below applies this inverse to random matrices and confirms <span class="math inline">\(\mathcal{M}^{-1}(\mathcal{M}(\sigma)) = \sigma\)</span> for <span class="math inline">\(D = 2, 3, 4\)</span>.</p>
 </section>
 <section id="part-c-general-d-dimensional-formula" class="level3">
 <h3 class="anchored" data-anchor-id="part-c-general-d-dimensional-formula">Part (c): General <span class="math inline">\(D\)</span>-dimensional formula</h3>
 <p><span class="math display">\[
-\boxed{\mathcal{M}(\sigma) = \frac{\sigma + \mathrm{Tr}(\sigma)I}{D+1}, \qquad \mathcal{M}^{-1}(\tau) = (D+1)\tau - \mathrm{Tr}(\tau)I.}
+\boxed{\mathcal{M}(\sigma) = \frac{\sigma + \mathrm{Tr}(\sigma)\,I}{D+1}, \qquad \mathcal{M}^{-1}(\tau) = (D+1)\,\tau - \mathrm{Tr}(\tau)\,I.}
 \]</span></p>
-<p>This is equivalent to saying that <span class="math inline">\(\mathcal{M}\)</span> acts as <span class="math inline">\(1/(D+1)\)</span> on the traceless sector and maps <span class="math inline">\(I \to I\)</span> (trace preservation). The factor <span class="math inline">\((D+1)\)</span> arises from the dimension of the symmetric subspace <span class="math inline">\(\mathrm{Sym}^2(\mathbb{C}^D)\)</span> in the <span class="math inline">\(k=2\)</span> Weingarten formula.</p>
+<p>The channel acts as <span class="math inline">\(1/(D+1)\)</span> on the traceless sector and fixes <span class="math inline">\(I\)</span>, which makes it trace preserving. The factor <span class="math inline">\(D+1\)</span> is the dimension of the symmetric subspace <span class="math inline">\(\mathrm{Sym}^2(\mathbb{C}^D)\)</span> that appears in the <span class="math inline">\(k=2\)</span> Weingarten formula. The inverse multiplies the traceless sector back by <span class="math inline">\(D+1\)</span>, so for large <span class="math inline">\(D\)</span> the channel is nearly singular there and the inversion amplifies fluctuations, which is the origin of the estimator variance.</p>
 <hr>
 </section>
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:28.250102Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:28.249943Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:28.479452Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:28.479148Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:48.592641Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:48.592485Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:48.901403Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:48.900874Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -679,7 +703,7 @@ Inversion map: M^(-1)(tau) = (D+1)*tau - Tr(tau)*I
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The shadow channel scales the traceless part of a state by <span class="math inline">\(1/(D+1)\)</span> and leaves the identity fixed, so it inverts to <span class="math inline">\(\mathcal{M}^{-1}(\tau)=(D+1)\tau-\mathrm{Tr}(\tau)\,I\)</span> and turns each snapshot into an unbiased estimator of <span class="math inline">\(\rho\)</span>. The factor <span class="math inline">\(D+1\)</span> is the dimension of the symmetric subspace appearing in the <span class="math inline">\(k=2\)</span> Weingarten formula.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:28.481063Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:28.480909Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:28.560984Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:28.557589Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:48.903343Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:48.903132Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:49.011306Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:49.010821Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -688,25 +712,25 @@ Inversion map: M^(-1)(tau) = (D+1)*tau - Tr(tau)*I
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]:</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    I_D <span class="op">=</span> np.eye(D, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> M(sigma): <span class="cf">return</span> (sigma <span class="op">+</span> np.trace(sigma)<span class="op">*</span>I_D)<span class="op">/</span>(D<span class="op">+</span><span class="dv">1</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> M_inv(tau): <span class="cf">return</span> (D<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>tau <span class="op">-</span> np.trace(tau)<span class="op">*</span>I_D</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> trial <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        sigma <span class="op">=</span> np.random.randn(D,D) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D,D)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        err <span class="op">=</span> np.linalg.norm(M_inv(M(sigma)) <span class="op">-</span> sigma)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> err <span class="op">&lt;</span> <span class="fl">1e-12</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">: M⁻¹(M(σ)) = σ verified for 5 random matrices. ✓"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">: M⁻¹(M(σ)) = σ verified for 5 random matrices."</span>)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Shadow channel inversion confirmed for all D. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Shadow channel inversion confirmed for all D."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>D=2: M⁻¹(M(σ)) = σ verified for 5 random matrices. ✓
-D=3: M⁻¹(M(σ)) = σ verified for 5 random matrices. ✓
-D=4: M⁻¹(M(σ)) = σ verified for 5 random matrices. ✓
+<pre><code>D=2: M⁻¹(M(σ)) = σ verified for 5 random matrices.
+D=3: M⁻¹(M(σ)) = σ verified for 5 random matrices.
+D=4: M⁻¹(M(σ)) = σ verified for 5 random matrices.
 
-Shadow channel inversion confirmed for all D. ✓</code></pre>
+Shadow channel inversion confirmed for all D.</code></pre>
 </div>
 </div>
 

@@ -566,7 +566,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The Wigner semicircle law gives the limiting eigenvalue density of a large random Hermitian matrix from the Gaussian Unitary Ensemble. Its even moments are the Catalan numbers, which count non-crossing pair partitions and reappear in the Weingarten calculus of Part 3. The odd moments vanish by symmetry of the density. These moments fix the shape of the spectrum and form the entry point to spectral universality.</p>
+<p>When a large Hermitian matrix is filled with random Gaussian entries, drawn from the Gaussian Unitary Ensemble, its eigenvalues do not spread out arbitrarily. As the size grows they pack into a fixed shape, the Wigner semicircle supported on the interval <span class="math inline">\([-2,2]\)</span>, and the details of the individual entries wash out. This convergence to a single limiting spectral density holds across a wide range of entry distributions.</p>
+<p>A convenient way to characterize the semicircle is through its moments, the averages of successive powers of the eigenvalue. Because the semicircle is symmetric about zero, every odd moment cancels. The even moments are more interesting, and they turn out to be the Catalan numbers <span class="math inline">\(C_k = \tfrac{1}{k+1}\binom{2k}{k}\)</span>, a sequence that appears all over combinatorics.</p>
+<p>The appearance of the Catalan numbers is more than a curiosity, because they count non-crossing pairings of points, and the very same non-crossing pairings organize the Weingarten calculus used later to evaluate Haar integrals over unitaries. The spectral shape of random Hermitian matrices and the algebra of random unitaries are speaking the same combinatorial language. Reading off the lowest moments gives <span class="math inline">\(m_2 = 1\)</span> and <span class="math inline">\(m_4 = 2\)</span>, and their ratio <span class="math inline">\(m_4/m_2^2 = 2\)</span> reports a tail lighter than a Gaussian would have, a consequence of the hard edge where the semicircle stops.</p>
+<p>The notebook evaluates the low moments by a trigonometric substitution and matches them to the Catalan sequence.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -629,7 +632,7 @@ C_0 = 1, \quad C_1 = 1, \quad C_2 = 2, \quad C_3 = 5, \quad C_4 = 14, \quad \ldo
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:16.848117Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:16.848010Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:25.939231Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:25.938943Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:54.987145Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:54.987042Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:36:08.223508Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:36:08.223052Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -665,7 +668,7 @@ m_3 = 0</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:25.940818Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:25.940631Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:40.302784Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:40.301958Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:08.225437Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:08.225186Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:36:32.070001Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:36:32.069003Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -699,7 +702,7 @@ m_3 = 0</code></pre>
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>m2_mc <span class="op">=</span> np.mean(evals<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>m4_mc <span class="op">=</span> np.mean(evals<span class="op">**</span><span class="dv">4</span>)</span>
 <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">GUE Monte Carlo (N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">): m₂ = </span><span class="sc">{</span>m2_mc<span class="sc">:.4f}</span><span class="ss">, m₄ = </span><span class="sc">{</span>m4_mc<span class="sc">:.4f}</span><span class="ss">, m₄/m₂² = </span><span class="sc">{</span>m4_mc<span class="op">/</span>m2_mc<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Catalan moments confirmed. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Catalan moments confirmed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  k    m_k (quad)   Catalan
@@ -719,11 +722,11 @@ m_3 = 0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-GUE Monte Carlo (N=400): m₂ = 0.9997, m₄ = 1.9989, m₄/m₂² = 2.0001
-Catalan moments confirmed. ✓</code></pre>
+GUE Monte Carlo (N=400): m₂ = 0.9998, m₄ = 1.9993, m₄/m₂² = 2.0001
+Catalan moments confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:40.305069Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:40.304812Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:45.732270Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:45.731908Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:32.073448Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:32.073008Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:36:42.610203Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:36:42.609681Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

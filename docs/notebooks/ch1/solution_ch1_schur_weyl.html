@@ -565,7 +565,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The SWAP operator <span class="math inline">\(F\)</span> exchanges two copies of a Hilbert space and represents the symmetric group <span class="math inline">\(S_2\)</span> in Schur-Weyl duality. For two copies it splits the space into symmetric and antisymmetric subspaces, the <span class="math inline">\(\pm 1\)</span> eigenspaces of <span class="math inline">\(F\)</span>. The trace identity <span class="math inline">\(\mathrm{Tr}(AB) = \mathrm{Tr}[(A \otimes B) F]\)</span> that follows is the standard device for writing purities and higher moments as operator expectation values. This exercise establishes the spectral and dimensional facts and verifies the identity.</p>
+<p>Many quantities in quantum information involve several identical copies of a system acted on in the same way, and whenever copies are interchangeable the symmetry worth using is the permutation of those copies. With two copies there is a single nontrivial permutation, carried out by the SWAP operator <span class="math inline">\(F\)</span>, which exchanges the two tensor factors. Swapping twice returns everything to where it began, so <span class="math inline">\(F\)</span> is its own inverse and its eigenvalues can only be <span class="math inline">\(+1\)</span> or <span class="math inline">\(-1\)</span>. The states left unchanged form the symmetric subspace and those that flip sign form the antisymmetric subspace, and these two pieces are the irreducible representations of the permutation group <span class="math inline">\(S_2\)</span> that Schur-Weyl duality identifies at <span class="math inline">\(k = 2\)</span>.</p>
+<p>The duality is the statement that permuting the copies and applying the same unitary to every copy are complementary symmetries, and that together they carve the multi-copy space into blocks labeled by both at once. At the level of two copies this organizing principle reduces to the single split into symmetric and antisymmetric parts, whose dimensions <span class="math inline">\(D(D+1)/2\)</span> and <span class="math inline">\(D(D-1)/2\)</span> add back up to the full <span class="math inline">\(D^2\)</span>.</p>
+<p>The same operator also lets a product of traces be folded into one trace over the doubled space. The identity <span class="math inline">\(\mathrm{Tr}(AB) = \mathrm{Tr}[(A\otimes B)F]\)</span> rewrites quadratic quantities such as purities as expectation values of <span class="math inline">\(F\)</span>, and that move is the standard entry point for averaging second moments over the unitary group, where the symmetric and antisymmetric projectors are exactly what such an average produces.</p>
+<p>This exercise computes the traces of <span class="math inline">\(F\)</span> and <span class="math inline">\(F^2\)</span>, counts the dimensions <span class="math inline">\(D(D+1)/2\)</span> and <span class="math inline">\(D(D-1)/2\)</span> of the symmetric and antisymmetric subspaces, and applies the SWAP identity to recover the purity <span class="math inline">\(1/D\)</span> of the maximally mixed state.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -625,7 +628,7 @@ P_+ = \frac{I + F}{2} \quad (\text{symmetric}), \qquad P_- = \frac{I - F}{2} \qu
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:03.189325Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:03.188646Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:03.336217Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:03.335903Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:36.099765Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:36.099630Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:36.291435Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:36.290813Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -637,11 +640,11 @@ P_+ = \frac{I + F}{2} \quad (\text{symmetric}), \qquad P_- = \frac{I - F}{2} \qu
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            row <span class="op">=</span> a<span class="op">*</span>D <span class="op">+</span> b</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            col <span class="op">=</span> b<span class="op">*</span>D <span class="op">+</span> a</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            F[row, col] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> sp.trace(F) <span class="op">==</span> D</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> sp.trace(F<span class="op">*</span>F) <span class="op">==</span> D<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> F<span class="op">*</span>F <span class="op">==</span> sp.eye(D<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    P_sym <span class="op">=</span> (sp.eye(D<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> F) <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    P_anti <span class="op">=</span> (sp.eye(D<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> F) <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">: Tr(F)=</span><span class="sc">{</span>sp<span class="sc">.</span>trace(F)<span class="sc">}</span><span class="ss">, dim(Sym²)=</span><span class="sc">{</span>sp<span class="sc">.</span>trace(P_sym)<span class="sc">}</span><span class="ss">, "</span></span>
@@ -657,7 +660,7 @@ D=4: Tr(F)=4, dim(Sym²)=10, dim(∧²)=6, sum=16</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:03.337745Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:03.337585Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:03.382737Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:03.382402Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:36.293208Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:36.292994Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:36.358099Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:36.355537Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -668,25 +671,25 @@ D=4: Tr(F)=4, dim(Sym²)=10, dim(∧²)=6, sum=16</code></pre>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> a <span class="kw">in</span> <span class="bu">range</span>(D):</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> b <span class="kw">in</span> <span class="bu">range</span>(D):</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            F[a<span class="op">*</span>D<span class="op">+</span>b, b<span class="op">*</span>D<span class="op">+</span>a] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># SWAP trick: Tr(ρ²) via F</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    rho <span class="op">=</span> np.eye(D) <span class="op">/</span> D</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    purity_direct <span class="op">=</span> np.trace(rho <span class="op">@</span> rho)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    purity_swap <span class="op">=</span> np.trace(np.kron(rho, rho) <span class="op">@</span> F)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(purity_direct, <span class="dv">1</span><span class="op">/</span>D)</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(purity_swap, <span class="dv">1</span><span class="op">/</span>D)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Also verify for a random pure state</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">=</span> np.random.randn(D) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">/=</span> np.linalg.norm(psi)</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    rho_pure <span class="op">=</span> np.outer(psi, psi.conj())</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(np.trace(np.kron(rho_pure, rho_pure) <span class="op">@</span> F), <span class="fl">1.0</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">: Tr(ρ²)_mixed = </span><span class="sc">{</span>purity_direct<span class="sc">:.4f}</span><span class="ss"> = 1/</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">, "</span></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"Tr(ρ²)_pure = </span><span class="sc">{</span>np<span class="sc">.</span>trace(rho_pure <span class="op">@</span> rho_pure)<span class="sc">.</span>real<span class="sc">:.4f}</span><span class="ss"> = 1"</span>)</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">SWAP trick verified for mixed and pure states. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">SWAP trick verified for mixed and pure states."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>D=2: Tr(ρ²)_mixed = 0.5000 = 1/2, Tr(ρ²)_pure = 1.0000 = 1
@@ -694,7 +697,7 @@ D=3: Tr(ρ²)_mixed = 0.3333 = 1/3, Tr(ρ²)_pure = 1.0000 = 1
 D=4: Tr(ρ²)_mixed = 0.2500 = 1/4, Tr(ρ²)_pure = 1.0000 = 1
 D=5: Tr(ρ²)_mixed = 0.2000 = 1/5, Tr(ρ²)_pure = 1.0000 = 1
 
-SWAP trick verified for mixed and pure states. ✓</code></pre>
+SWAP trick verified for mixed and pure states.</code></pre>
 </div>
 </div>
 <hr>

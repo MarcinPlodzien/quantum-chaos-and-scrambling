@@ -569,7 +569,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Stabilizer states are those reachable from a computational-basis state by Clifford circuits, and magic, or nonstabilizerness, measures how far a state lies from that set. It is the resource Clifford operations cannot create, and it is necessary for any quantum advantage beyond efficient classical simulation. The stabilizer Rényi entropy quantifies magic from the spread of the state’s Pauli expectation values, which makes it computable without an explicit minimization over stabilizer states. The notebook contrasts the magic of a Haar-random state with that of a stabilizer state.</p>
+<p>Clifford circuits acting on a computational basis state produce the stabilizer states, and the Gottesman-Knill theorem says these can be followed on an ordinary computer no matter how entangled they look. Any genuine quantum advantage therefore has to come from states that sit outside the stabilizer set, and the distance from that set is called magic, or nonstabilizerness. Quantifying it directly would mean minimizing over all stabilizer states, which is impractical, so a more workable handle reads the magic off the pattern of a state’s Pauli expectation values.</p>
+<p>The stabilizer Renyi entropy builds on writing the density matrix <span class="math inline">\(|\psi\rangle\langle\psi|\)</span> in the Pauli basis and treating the normalized fourth powers <span class="math inline">\(\langle P\rangle^4\)</span> as a probability distribution over the <span class="math inline">\(4^N\)</span> Pauli strings. The intuition is that a state with little magic concentrates its weight on a few Paulis, while a state full of magic smears that weight out broadly, and an entropy of the distribution captures the difference in one number.</p>
+<p>A stabilizer state places weight <span class="math inline">\(\pm 1\)</span> on exactly <span class="math inline">\(2^N\)</span> Paulis and zero on the rest, so its distribution is as peaked as it can be and the second Renyi entropy <span class="math inline">\(M_2\)</span> vanishes. A Haar-random state instead spreads its weight almost evenly, and a fourth-moment average over the Haar measure gives <span class="math inline">\(M_2 \approx N-2\)</span>, close to the most that <span class="math inline">\(N\)</span> qubits can carry. Typical states are nearly as magical as the bound allows.</p>
+<p>The calculation evaluates the Haar average of the Pauli purity with the symmetric-subspace projector for four copies, which gives <span class="math inline">\(\mathbb{E}[\Xi_P] = 4/(D+3)\)</span> and hence <span class="math inline">\(M_2 = N - 2 + \mathcal{O}(2^{-N})\)</span>. The stabilizer value <span class="math inline">\(M_2 = 0\)</span> then follows from a direct count. Magic comes out as typical under Haar randomness in the same way entanglement is, while the states a classical computer can keep up with carry none of it.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -655,7 +658,7 @@ M_2 = -\log_2(1) = 0.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:05.145525Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:05.145323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:05.405379Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:05.404877Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:16.887893Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:16.887626Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:17.266859Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:17.266309Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -695,7 +698,7 @@ Stabilizer: Xi = D/D = 1, M_2 = -log2(1) = 0</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:05.407039Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:05.406898Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:13.474820Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:13.474334Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:17.269266Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:17.268813Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:27.930822Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:27.930192Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -721,23 +724,23 @@ Stabilizer: Xi = D/D = 1, M_2 = -log2(1) = 0</code></pre>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    P_all <span class="op">=</span> all_paulis(N)</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    P_test <span class="op">=</span> P_all[<span class="dv">1</span>] <span class="co"># A single non-identity Pauli</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    P4_list, xi_list <span class="op">=</span> [], []</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20000</span>):</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Part (a)</span></span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        P4_list.append( (psi.conj() <span class="op">@</span> P_test <span class="op">@</span> psi).real<span class="op">**</span><span class="dv">4</span> )</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Part (b)</span></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        xi <span class="op">=</span> <span class="bu">sum</span>((psi.conj() <span class="op">@</span> P <span class="op">@</span> psi).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all) <span class="op">/</span> D</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        xi_list.append(xi)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    mc_P4 <span class="op">=</span> np.mean(P4_list)</span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    th_P4 <span class="op">=</span> <span class="dv">3</span><span class="op">/</span>((D<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>(D<span class="op">+</span><span class="dv">3</span>))</span>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    mc_xi <span class="op">=</span> np.mean(xi_list)</span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    th_xi <span class="op">=</span> <span class="dv">4</span><span class="op">/</span>(D<span class="op">+</span><span class="dv">3</span>)</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">  </span><span class="sc">{</span>D<span class="sc">:4d}</span><span class="ss">  </span><span class="sc">{</span>mc_P4<span class="sc">:14.6f}</span><span class="ss">  </span><span class="sc">{</span>th_P4<span class="sc">:16.6f}</span><span class="ss">  </span><span class="sc">{</span>mc_xi<span class="sc">:12.6f}</span><span class="ss">  </span><span class="sc">{</span>th_xi<span class="sc">:12.6f}</span><span class="ss">"</span>)</span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_P4 <span class="op">-</span> th_P4) <span class="op">&lt;</span> <span class="fl">0.01</span></span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_xi <span class="op">-</span> th_xi) <span class="op">&lt;</span> <span class="fl">0.02</span></span>
@@ -747,7 +750,7 @@ Stabilizer: Xi = D/D = 1, M_2 = -log2(1) = 0</code></pre>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>P_all_2 <span class="op">=</span> all_paulis(<span class="dv">2</span>)</span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>xi_stab <span class="op">=</span> <span class="bu">sum</span>((psi_stab.conj() <span class="op">@</span> P <span class="op">@</span> psi_stab).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all_2) <span class="op">/</span> <span class="dv">4</span></span>
 <span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Stabilizer state |00⟩: Ξ = </span><span class="sc">{</span>xi_stab<span class="sc">:.1f}</span><span class="ss">, M₂ = </span><span class="sc">{</span><span class="op">-</span>np<span class="sc">.</span>log2(xi_stab)<span class="sc">:.1f}</span><span class="ss"> (expected 0.0) ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Stabilizer state |00⟩: Ξ = </span><span class="sc">{</span>xi_stab<span class="sc">:.1f}</span><span class="ss">, M₂ = </span><span class="sc">{</span><span class="op">-</span>np<span class="sc">.</span>log2(xi_stab)<span class="sc">:.1f}</span><span class="ss"> (expected 0.0)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Stabilizer Rényi Entropy of Haar Random States
@@ -763,14 +766,14 @@ Stabilizer: Xi = D/D = 1, M_2 = -log2(1) = 0</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>  3     8        0.029697          0.030303      0.363124      0.363636
 
-Stabilizer state |00⟩: Ξ = 1.0, M₂ = -0.0 (expected 0.0) ✓</code></pre>
+Stabilizer state |00⟩: Ξ = 1.0, M₂ = -0.0 (expected 0.0)</code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="visual-pedagogical-proof" class="level2">
 <h2 class="anchored" data-anchor-id="visual-pedagogical-proof">Visual Pedagogical Proof</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:13.476466Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:13.476173Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:13.962954Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:13.962638Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:27.932941Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:27.932656Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:28.627147Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:28.626610Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -811,7 +814,7 @@ Stabilizer state |00⟩: Ξ = 1.0, M₂ = -0.0 (expected 0.0) ✓</code></pre>
 <p><img src="solution_ch5_stabilizer_renyi_entropy_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:13.965103Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:13.964330Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:14.095089Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:14.094802Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:28.629683Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:28.628868Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:28.807383Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:28.806874Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

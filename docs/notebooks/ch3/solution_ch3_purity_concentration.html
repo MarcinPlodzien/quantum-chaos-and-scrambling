@@ -567,7 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The purity <span class="math inline">\(\gamma = \mathrm{Tr}(\rho_A^2)\)</span> measures how mixed a subsystem is, running from <span class="math inline">\(1/m\)</span> at maximal mixing to <span class="math inline">\(1\)</span> for a pure reduction. For a Haar-random global state it has mean <span class="math inline">\((m+n)/(mn+1)\)</span> and a variance that collapses as the total dimension grows. That collapse is concentration of measure made quantitative, and Lévy’s lemma sharpens it into an exponential bound on deviations. The notebook tracks the shrinking spread and connects it to the typicality used elsewhere.</p>
+<p>The purity <span class="math inline">\(\gamma = \mathrm{Tr}(\rho_A^2)\)</span> is a single number that reports how mixed a subsystem is. It equals one when the subsystem is in a pure state and falls to <span class="math inline">\(1/m\)</span> when the reduction of dimension <span class="math inline">\(m\)</span> is maximally mixed, so it serves as a quick proxy for entanglement without requiring the full entropy. For a global pure state drawn from the Haar measure, the purity of a subsystem becomes a random variable.</p>
+<p>Its average is known in closed form, <span class="math inline">\((m+n)/(mn+1)\)</span> for subsystem dimension <span class="math inline">\(m\)</span> and complement dimension <span class="math inline">\(n\)</span>, and what matters more is how little it fluctuates. As the total dimension grows the variance of the purity collapses, so nearly every random state yields almost the same subsystem purity. This shrinking spread is concentration of measure seen in a specific observable.</p>
+<p>Lévy’s lemma turns the observation into a quantitative bound. For a function on the space of pure states that does not change too steeply, the lemma states that the probability of straying from the mean by more than a fixed amount decays exponentially in the Hilbert space dimension. Applied to the purity, whose steepness is controlled by a fixed constant, it shows that deviations are suppressed exponentially in the number of qubits.</p>
+<p>This is the engine behind quantum typicality, the principle that one random state can represent the whole ensemble. The notebook makes the bound concrete, finding that already around twenty-two qubits a deviation of more than <span class="math inline">\(0.01\)</span> from the mean has probability below one in a million, and it watches the purity distribution narrow as the dimension increases.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -625,7 +628,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:18.963125Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:18.963022Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:19.207204Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:19.206864Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:10.511252Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:10.510919Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:10.897016Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:10.896450Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -666,7 +669,7 @@ Large d limit: 0 (maximally mixed = 1/d)
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
 <p>We verify concentration at small <span class="math inline">\(N\)</span> by sampling Haar-random states and checking the purity distribution.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:19.208798Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:19.208622Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:26.534287Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:26.533842Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:10.899467Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:10.899071Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:22.703579Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:22.702774Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -682,7 +685,7 @@ Large d limit: 0 (maximally mixed = 1/d)
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> m</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> m <span class="op">*</span> n</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    E_gamma_pred <span class="op">=</span> (m <span class="op">+</span> n) <span class="op">/</span> (m<span class="op">*</span>n <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    n_samples <span class="op">=</span> <span class="bu">min</span>(<span class="dv">5000</span>, <span class="bu">max</span>(<span class="dv">500</span>, <span class="dv">100000</span><span class="op">//</span>D))</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    purities <span class="op">=</span> []</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_samples):</span>
@@ -690,15 +693,15 @@ Large d limit: 0 (maximally mixed = 1/d)
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        rho <span class="op">=</span> np.outer(psi, psi.conj()).reshape(m, n, m, n)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        rho_A <span class="op">=</span> np.trace(rho, axis1<span class="op">=</span><span class="dv">1</span>, axis2<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        purities.append(np.trace(rho_A <span class="op">@</span> rho_A).real)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    purities <span class="op">=</span> np.array(purities)</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    E_gamma <span class="op">=</span> np.mean(purities)</span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    std_gamma <span class="op">=</span> np.std(purities)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">  </span><span class="sc">{</span>m<span class="sc">:4d}</span><span class="ss">  </span><span class="sc">{</span>D<span class="sc">:6d}</span><span class="ss">  </span><span class="sc">{</span>E_gamma<span class="sc">:10.4f}</span><span class="ss">  </span><span class="sc">{</span>E_gamma_pred<span class="sc">:14.4f}</span><span class="ss">  </span><span class="sc">{</span>std_gamma<span class="sc">:8.4f}</span><span class="ss">"</span>)</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(E_gamma <span class="op">-</span> E_gamma_pred) <span class="op">&lt;</span> <span class="fl">0.02</span></span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Concentration sharpens with D: std(γ) → 0. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Concentration sharpens with D: std(γ) → 0."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  N     m       D   E[γ] (MC)    (m+n)/(mn+1)    std(γ)
@@ -713,14 +716,14 @@ Large d limit: 0 (maximally mixed = 1/d)
 <div class="cell-output cell-output-stdout">
 <pre><code>  8    16     256      0.1244          0.1245    0.0053
 
-Concentration sharpens with D: std(γ) → 0. ✓</code></pre>
+Concentration sharpens with D: std(γ) → 0.</code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="visual-pedagogical-proof" class="level2">
 <h2 class="anchored" data-anchor-id="visual-pedagogical-proof">Visual Pedagogical Proof</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:33:26.536687Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:33:26.536396Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:33:27.155883Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:33:27.155521Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:39:22.708277Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:39:22.707774Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:39:23.490258Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:39:23.489937Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -734,7 +737,7 @@ Concentration sharpens with D: std(γ) → 0. ✓</code></pre>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    psi8 <span class="op">=</span> unitary_group.rvs(<span class="dv">8</span>)[:, <span class="dv">0</span>]</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    rho8 <span class="op">=</span> psi8.reshape(<span class="dv">2</span>, <span class="dv">4</span>) <span class="op">@</span> psi8.reshape(<span class="dv">2</span>, <span class="dv">4</span>).conj().T</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    purities_8.append(np.trace(rho8 <span class="op">@</span> rho8).real)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    psi16 <span class="op">=</span> unitary_group.rvs(<span class="dv">16</span>)[:, <span class="dv">0</span>]</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    rho16 <span class="op">=</span> psi16.reshape(<span class="dv">4</span>, <span class="dv">4</span>) <span class="op">@</span> psi16.reshape(<span class="dv">4</span>, <span class="dv">4</span>).conj().T</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    purities_16.append(np.trace(rho16 <span class="op">@</span> rho16).real)</span>

@@ -566,7 +566,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The GHZ state <span class="math inline">\((|0\rangle^{\otimes N}+|1\rangle^{\otimes N})/\sqrt{2}\)</span> is the probe that saturates the Heisenberg limit in phase estimation, with quantum Fisher information <span class="math inline">\(N^2\)</span> against the <span class="math inline">\(N\)</span> of uncorrelated probes. The entire advantage rests on the coherence between the all-zeros and all-ones components, which makes the GHZ state the standard illustration of how entanglement-enhanced metrology behaves under particle loss. A natural expectation is that losing one of <span class="math inline">\(N\)</span> qubits costs an <span class="math inline">\(O(1/N)\)</span> fraction of the signal, whereas the coherence here has no support left once any single qubit is removed.</p>
+<p>The GHZ state <span class="math inline">\((|0\rangle^{\otimes N} + |1\rangle^{\otimes N})/\sqrt{2}\)</span> is the textbook probe for phase estimation at the Heisenberg limit, where the quantum Fisher information reaches <span class="math inline">\(N^2\)</span> against the <span class="math inline">\(N\)</span> that <span class="math inline">\(N\)</span> independent probes would give. That Fisher information sets how finely a phase can be resolved, so the GHZ probe promises a precision that improves with <span class="math inline">\(N\)</span> faster than any unentangled strategy. The whole advantage lives in the coherence between the all-zeros and all-ones branches, which sweeps through phase at frequency <span class="math inline">\(N\)</span> under the collective generator.</p>
+<p>Because the signal is concentrated in that one global coherence, it is natural to ask what happens when a qubit is lost to the environment. One might guess the damage is mild, costing an <span class="math inline">\(O(1/N)\)</span> slice of the signal the way it would for a probe whose sensitivity is shared evenly across the qubits. For the GHZ state the loss is complete instead.</p>
+<p>Tracing out a single qubit sends the off-diagonal term <span class="math inline">\(|0\cdots0\rangle\langle1\cdots1|\)</span> straight to zero, because the lost qubit’s contributions to the two branches are orthogonal and cannot overlap once it is gone. What remains is a classical mixture of <span class="math inline">\(|0\cdots0\rangle\)</span> and <span class="math inline">\(|1\cdots1\rangle\)</span> with no coherence left for a phase to act on. The quantum Fisher information drops from <span class="math inline">\(N^2\)</span> to exactly zero after that single loss.</p>
+<p>The calculation carries out the partial trace and evaluates the mixed-state quantum Fisher information of the reduced state, confirming the collapse to zero. The all-or-nothing dependence on keeping every qubit is the reason robust metrology turns to states whose sensitivity falls off gradually as probes are lost.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -619,7 +622,7 @@ F_Q = 2\sum_{k,l} \frac{(\lambda_k - \lambda_l)^2}{\lambda_k + \lambda_l} |\lang
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:16.310319Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:16.309512Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:16.446762Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:16.446485Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:31.888958Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:31.888790Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:32.101936Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:32.101461Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -650,7 +653,7 @@ Fragility: losing 1 qubit destroys ALL N^2 metrological advantage</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:16.448221Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:16.448079Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:16.496996Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:16.496693Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:32.103888Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:32.103585Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:32.182967Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:32.182369Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -675,7 +678,7 @@ Fragility: losing 1 qubit destroys ALL N^2 metrological advantage</code></pre>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N<span class="op">;</span> D_r <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>(N<span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    ghz <span class="op">=</span> np.zeros(D, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    ghz[<span class="dv">0</span>] <span class="op">=</span> ghz[<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generator</span></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> np.zeros((D,D), dtype<span class="op">=</span><span class="bu">complex</span>)</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
@@ -683,27 +686,27 @@ Fragility: losing 1 qubit destroys ALL N^2 metrological advantage</code></pre>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N):</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            Zi <span class="op">=</span> np.kron(Zi, np.diag([<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>]).astype(<span class="bu">complex</span>) <span class="cf">if</span> j<span class="op">==</span>i <span class="cf">else</span> np.eye(<span class="dv">2</span>))</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        G <span class="op">+=</span> Zi<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    fq_full <span class="op">=</span> qfi_pure(ghz, G)</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Partial trace</span></span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    rho_r <span class="op">=</span> np.zeros((D_r,D_r), dtype<span class="op">=</span><span class="bu">complex</span>)</span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    psi_mat <span class="op">=</span> ghz.reshape(D_r, <span class="dv">2</span>)</span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    rho_r <span class="op">=</span> psi_mat <span class="op">@</span> psi_mat.conj().T</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    G_r <span class="op">=</span> np.zeros((D_r,D_r), dtype<span class="op">=</span><span class="bu">complex</span>)</span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N<span class="op">-</span><span class="dv">1</span>):</span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        Zi <span class="op">=</span> np.eye(<span class="dv">1</span>)</span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N<span class="op">-</span><span class="dv">1</span>):</span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>            Zi <span class="op">=</span> np.kron(Zi, np.diag([<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>]).astype(<span class="bu">complex</span>) <span class="cf">if</span> j<span class="op">==</span>i <span class="cf">else</span> np.eye(<span class="dv">2</span>))</span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        G_r <span class="op">+=</span> Zi<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    fq_red <span class="op">=</span> qfi_mixed(rho_r, G_r)</span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">  </span><span class="sc">{</span>fq_full<span class="sc">:10.1f}</span><span class="ss">  </span><span class="sc">{</span>N<span class="op">**</span><span class="dv">2</span><span class="sc">:5d}</span><span class="ss">  </span><span class="sc">{</span>fq_red<span class="sc">:14.6f}</span><span class="ss">"</span>)</span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(fq_full <span class="op">-</span> N<span class="op">**</span><span class="dv">2</span>) <span class="op">&lt;</span> <span class="fl">1e-6</span></span>
 <span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(fq_red) <span class="op">&lt;</span> <span class="fl">1e-10</span></span>
 <span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">F_Q: N² → 0 upon single-qubit loss. Fragility confirmed. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">F_Q: N² → 0 upon single-qubit loss. Fragility confirmed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  N    F_Q(GHZ)     N²    F_Q(reduced)
@@ -714,10 +717,10 @@ Fragility: losing 1 qubit destroys ALL N^2 metrological advantage</code></pre>
   5        25.0     25        0.000000
   6        36.0     36        0.000000
 
-F_Q: N² → 0 upon single-qubit loss. Fragility confirmed. ✓</code></pre>
+F_Q: N² → 0 upon single-qubit loss. Fragility confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:16.499850Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:16.499624Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:17.038516Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:17.038122Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:32.185974Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:32.185618Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:32.991213Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:32.990686Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

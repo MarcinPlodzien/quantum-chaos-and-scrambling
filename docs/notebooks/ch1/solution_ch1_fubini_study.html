@@ -564,7 +564,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The Fubini-Study metric is the natural Riemannian metric on projective Hilbert space, the space of pure quantum states with the global phase removed. It measures the intrinsic distance between two states and underlies the quantum geometric tensor and the quantum speed limit. For a single qubit the projective space is the two-sphere, so the Fubini-Study metric fixes the geometry of the Bloch sphere. This exercise derives that metric from the line element and computes a geodesic distance.</p>
+<p>Two quantum states that differ only by an overall phase give identical predictions for every measurement, so that phase carries no physical content. The honest space of pure states is therefore not the Hilbert space itself but the set of rays that survive once the phase is divided out, the complex projective space. To do geometry there we need a notion of distance that ignores the phase, and the natural one starts from the overlap of two nearby states and keeps only the part of their difference that moves the ray, discarding the part that merely rotates the phase.</p>
+<p>That construction is the Fubini-Study metric. The distance it assigns to two states is the angle <span class="math inline">\(\arccos|\langle\psi|\phi\rangle|\)</span> between the rays they span, so states with large overlap sit close together and orthogonal states sit a quarter turn apart. Reading distance as an angle is more than a figure of speech, since the line element is literally the metric of a curved surface and the shortest paths are arcs along it.</p>
+<p>The same line element measures how quickly a state moves under evolution, because a Hamiltonian pushes a state a definite distance per unit time in this geometry. It is the real part of the quantum geometric tensor, which is why it returns in quantum speed limits and in questions of how sensitively a state responds to a parameter. For a single qubit the space of rays is two-dimensional, and the metric works out to that of a round sphere, the familiar Bloch sphere, though it carries a radius that the bare Bloch vector does not make obvious.</p>
+<p>This exercise derives the line element directly from the qubit state in the half-angle parametrization, reduces it to the metric of a sphere of radius one half, and measures the geodesic distance from the north pole to a point on the equator, both by integrating along the meridian and from the closed-form overlap formula.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -634,7 +637,7 @@ d_{\mathrm{FS}}(|\psi\rangle, |\phi\rangle) = \arccos|\langle\psi|\phi\rangle|.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:50.203439Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:50.203084Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:50.409081Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:50.408526Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:18.167175Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:18.167019Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:18.477739Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:18.477279Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -667,7 +670,7 @@ d_FS(|0⟩, |+⟩) = pi/4 = pi/4</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:50.410661Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:50.410474Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:50.450022Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:50.449625Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:18.480402Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:18.479875Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:18.597395Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:18.596735Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -689,14 +692,14 @@ d_FS(|0⟩, |+⟩) = pi/4 = pi/4</code></pre>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d_FS(</span><span class="sc">{</span>name1<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>name2<span class="sc">}</span><span class="ss">) = </span><span class="sc">{</span>d_fs<span class="sc">:.4f}</span><span class="ss"> (expected </span><span class="sc">{</span>expected<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(d_fs, expected, atol<span class="op">=</span><span class="fl">1e-10</span>)</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">All assertions passed. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">All assertions passed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>d_FS(|0⟩, |+⟩) = 0.7854 (expected 0.7854)
 d_FS(|0⟩, |1⟩) = 1.5708 (expected 1.5708)
 d_FS(|0⟩, |0⟩) = 0.0000 (expected 0.0000)
 
-All assertions passed. ✓</code></pre>
+All assertions passed.</code></pre>
 </div>
 </div>
 <hr>

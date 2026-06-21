@@ -567,7 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>A Born machine is a quantum generative model that samples bitstrings from the Born distribution <span class="math inline">\(p(x)=|\langle x|U(\boldsymbol{\theta})|0\rangle|^2\)</span>, with the appeal that an <span class="math inline">\(N\)</span>-qubit circuit defines a distribution over <span class="math inline">\(2^N\)</span> outcomes. Its expressivity is bounded from two directions. A product state can only factorize the distribution and so has a constrained inverse participation ratio, while a circuit deep enough to form a 2-design produces a Porter-Thomas distribution whose Shannon entropy sits a fixed deficit below the uniform value. The same entanglement that lets the model spread probability also caps the classical correlations it can generate between disjoint registers.</p>
+<p>A Born machine is a generative model that produces samples the way a quantum measurement does. A circuit <span class="math inline">\(U(\boldsymbol{\theta})\)</span> acts on <span class="math inline">\(N\)</span> qubits, and reading out the result in the computational basis returns a bitstring <span class="math inline">\(x\)</span> with probability <span class="math inline">\(p(x) = |\langle x|U(\boldsymbol{\theta})|0\rangle|^2\)</span>. The <span class="math inline">\(2^N\)</span> possible outcomes carry a probability distribution, and training the model means reshaping that distribution by adjusting the angles until the samples resemble the data. How rich the distribution can get is governed by how much entanglement the circuit builds, and both ends of the entanglement range impose a limit.</p>
+<p>With no entanglement the state is a product across qubits and the distribution factorizes, each bit decided on its own. The inverse participation ratio <span class="math inline">\(\sum_x p(x)^2\)</span>, which counts how few outcomes carry most of the weight, is then fixed entirely by the single-qubit magnetizations to <span class="math inline">\(2^{-N}\prod_j(1+m_j^2)\)</span>. It runs from <span class="math inline">\(1/D\)</span> when the weight is spread flat to <span class="math inline">\(1\)</span> when it all collapses onto one bitstring. A product circuit can be broad or sharp, yet it can place no correlation between qubits.</p>
+<p>At the opposite end a circuit deep enough to form a 2-design draws from a Porter-Thomas distribution, where the individual probabilities scatter according to the law <span class="math inline">\(De^{-Dp}\)</span>, the speckle pattern of a random quantum state. Such a state is never smooth. Its Shannon entropy lands a fixed amount <span class="math inline">\(1-\gamma_E \approx 0.423\)</span> nats below the uniform value <span class="math inline">\(\ln D\)</span>, a constant deficit set by the random-speckle statistics rather than by anything tunable.</p>
+<p>The same entanglement that lets the model spread weight across the outcome space also caps the correlations it can carry. The classical mutual information between two registers is bounded by <span class="math inline">\(2S(\rho_A)\)</span>, twice the entanglement entropy of the cut, through the data processing inequality. Reproducing correlations between distant parts of a dataset therefore demands genuine long-range entanglement in the circuit, which ties the statistical reach of the model to a physical resource.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -641,7 +644,7 @@ I_Q(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB}) = S(\rho_A) + S(\rho_A) - 0 = 2S
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:58.882204Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:58.882104Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:59.126759Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:59.126493Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:33.146250Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:33.146124Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:33.480870Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:33.480299Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -676,7 +679,7 @@ I(X_A:X_B) &lt;= I_Q(A:B) = 2*S(rho_A) for pure states</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:59.128272Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:59.127973Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:59.812375Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:59.811972Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:33.483283Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:33.482862Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:34.422384Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:34.421975Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -725,7 +728,7 @@ I(X_A:X_B) &lt;= I_Q(A:B) = 2*S(rho_A) for pure states</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>A product state has IPR between <span class="math inline">\(1/D\)</span> and <span class="math inline">\(1\)</span> set by its local magnetizations, while a Haar-random Born machine follows the Porter-Thomas law and undershoots the uniform entropy by <span class="math inline">\(1-\gamma_E\approx0.423\)</span> nats. Classical correlations between two subsystems are capped by <span class="math inline">\(2S(\rho_A)\)</span>, so a Born machine cannot reproduce long-range correlations without long-range entanglement.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:59.813797Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:59.813569Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:35:00.641175Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:35:00.640852Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:34.424151Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:34.423899Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:35.510353Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:35.509701Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -750,11 +753,11 @@ I(X_A:X_B) &lt;= I_Q(A:B) = 2*S(rho_A) for pure states</code></pre>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> p[p <span class="op">&gt;</span> <span class="fl">1e-15</span>]</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        E_H_mc <span class="op">+=</span> <span class="op">-</span>np.<span class="bu">sum</span>(p <span class="op">*</span> np.log(p))</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    E_H_mc <span class="op">/=</span> <span class="dv">1000</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    E_H_exact <span class="op">=</span> digamma(D<span class="op">+</span><span class="dv">1</span>) <span class="op">-</span> digamma(<span class="dv">2</span>)</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    H_unif <span class="op">=</span> np.log(D)</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    deficit <span class="op">=</span> H_unif <span class="op">-</span> E_H_mc</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">  </span><span class="sc">{</span>D<span class="sc">:4d}</span><span class="ss">  </span><span class="sc">{</span>E_H_mc<span class="sc">:10.4f}</span><span class="ss">  </span><span class="sc">{</span>E_H_exact<span class="sc">:10.4f}</span><span class="ss">  </span><span class="sc">{</span>deficit<span class="sc">:10.4f}</span><span class="ss">  </span><span class="sc">{</span><span class="dv">1</span><span class="op">-</span>gamma_E<span class="sc">:10.4f}</span><span class="ss">"</span>)</span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(E_H_mc <span class="op">-</span> E_H_exact) <span class="op">&lt;</span> <span class="fl">0.05</span></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
@@ -764,14 +767,14 @@ I(X_A:X_B) &lt;= I_Q(A:B) = 2*S(rho_A) for pure states</code></pre>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">4</span><span class="op">;</span> D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N<span class="op">;</span> m <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>(N<span class="op">//</span><span class="dv">2</span>)</span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Quantum Entropy S(A)</span></span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    psi_mat <span class="op">=</span> psi.reshape(m, m)</span>
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    rho_A <span class="op">=</span> psi_mat <span class="op">@</span> psi_mat.conj().T</span>
 <span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    eigs <span class="op">=</span> np.linalg.eigvalsh(rho_A)</span>
 <span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    eigs <span class="op">=</span> eigs[eigs <span class="op">&gt;</span> <span class="fl">1e-15</span>]</span>
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    S_A <span class="op">=</span> <span class="op">-</span>np.<span class="bu">sum</span>(eigs <span class="op">*</span> np.log(eigs))</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Classical MI I(X_A : X_B)</span></span>
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    p_AB <span class="op">=</span> <span class="bu">abs</span>(psi_mat)<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    p_A <span class="op">=</span> p_AB.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
@@ -782,7 +785,7 @@ I(X_A:X_B) &lt;= I_Q(A:B) = 2*S(rho_A) for pure states</code></pre>
 <span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> p_AB[a,b] <span class="op">&gt;</span> <span class="fl">1e-15</span>:</span>
 <span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>                I_class <span class="op">+=</span> p_AB[a,b] <span class="op">*</span> np.log(p_AB[a,b] <span class="op">/</span> (p_A[a] <span class="op">*</span> p_B[b]))</span>
 <span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Trial </span><span class="sc">{</span>trial<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: I(X_A:X_B) = </span><span class="sc">{</span>I_class<span class="sc">:.4f}</span><span class="ss"> &lt;= 2S(A) = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>S_A<span class="sc">:.4f}</span><span class="ss"> ✓"</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Trial </span><span class="sc">{</span>trial<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: I(X_A:X_B) = </span><span class="sc">{</span>I_class<span class="sc">:.4f}</span><span class="ss"> &lt;= 2S(A) = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>S_A<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> I_class <span class="op">&lt;=</span> <span class="dv">2</span><span class="op">*</span>S_A <span class="op">+</span> <span class="fl">1e-10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
@@ -801,9 +804,9 @@ I(X_A:X_B) &lt;= I_Q(A:B) = 2*S(rho_A) for pure states</code></pre>
 
 Part (c): Data Processing Bound I(X_A : X_B) &lt;= 2S(A)
 =======================================================
-Trial 1: I(X_A:X_B) = 0.2500 &lt;= 2S(A) = 1.3350 ✓
-Trial 2: I(X_A:X_B) = 0.1849 &lt;= 2S(A) = 1.9065 ✓
-Trial 3: I(X_A:X_B) = 0.3829 &lt;= 2S(A) = 2.0482 ✓</code></pre>
+Trial 1: I(X_A:X_B) = 0.2500 &lt;= 2S(A) = 1.3350
+Trial 2: I(X_A:X_B) = 0.1849 &lt;= 2S(A) = 1.9065
+Trial 3: I(X_A:X_B) = 0.3829 &lt;= 2S(A) = 2.0482</code></pre>
 </div>
 </div>
 

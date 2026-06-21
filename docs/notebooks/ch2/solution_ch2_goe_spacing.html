@@ -565,7 +565,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The nearest-neighbour spacing distribution measures how adjacent energy levels sit relative to the local mean spacing. For the Gaussian Orthogonal Ensemble it is given by the Wigner surmise, the exact result for a <span class="math inline">\(2 \times 2\)</span> matrix, which already approximates large matrices well. The density vanishes linearly as the spacing goes to zero, the signature of level repulsion in systems with time-reversal symmetry (<span class="math inline">\(\beta = 1\)</span>). Spacing statistics are a standard diagnostic of quantum chaos and a baseline against which Haar-random spectra are read.</p>
+<p>In a complex quantum system the energy levels are not scattered independently along the spectrum. Once the spacings between neighboring levels are rescaled by the local average spacing, their distribution settles into a universal form that depends only on the symmetries of the Hamiltonian and not on its microscopic specifics. This universality is what lets a few symmetry classes describe the spectral statistics of systems as different as heavy nuclei and disordered metals.</p>
+<p>For a Hamiltonian with time-reversal symmetry the appropriate model is the Gaussian Orthogonal Ensemble, built from real symmetric matrices with random Gaussian entries. The spacing distribution is captured almost completely by the smallest nontrivial case, a <span class="math inline">\(2\times 2\)</span> matrix. This shortcut yields the Wigner surmise <span class="math inline">\(P(s) = \tfrac{s}{2}e^{-s^2/4}\)</span>, which tracks the behavior of large matrices very closely.</p>
+<p>The defining feature is the way the density vanishes linearly as the spacing goes to zero. Two neighboring levels rarely sit on top of each other, an effect known as level repulsion, and for this time-reversal-symmetric class the suppression grows linearly in the gap, which is characteristic of the <span class="math inline">\(\beta = 1\)</span> symmetry index. The repulsion can be traced directly to the random-matrix weight, where coincident eigenvalues correspond to a measure-zero configuration that the distribution pushes against.</p>
+<p>The notebook derives the surmise by integrating the GOE weight of a <span class="math inline">\(2\times 2\)</span> matrix over its trace and angular variables, then samples random matrices to confirm the linear repulsion at small spacing.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -625,7 +628,7 @@ dx\,dy = s\,ds\,d\theta.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:13.333589Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:13.333213Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:13.661808Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:13.661425Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:50.095898Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:50.095698Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:50.580744Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:50.580155Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -656,7 +659,7 @@ Mode: s* = [sqrt(2)] = √2 = sqrt(2)</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:13.663143Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:13.662972Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:14.170700Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:14.170308Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:50.582993Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:50.582756Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:51.345791Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:51.345263Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -689,17 +692,17 @@ Mode: s* = [sqrt(2)] = √2 = sqrt(2)</code></pre>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Fraction with s &lt; 0.1: </span><span class="sc">{</span>frac_small<span class="sc">:.4f}</span><span class="ss"> (linear repulsion)"</span>)</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"⟨s⟩ = </span><span class="sc">{</span>np<span class="sc">.</span>mean(spacings)<span class="sc">:.4f}</span><span class="ss"> (theory: √π ≈ </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(np.pi)<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Wigner surmise (GOE) confirmed. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Wigner surmise (GOE) confirmed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Max |histogram − P(s)| = 0.0091
 Fraction with s &lt; 0.1: 0.0026 (linear repulsion)
 ⟨s⟩ = 1.7696 (theory: √π ≈ 1.7725)
 
-Wigner surmise (GOE) confirmed. ✓</code></pre>
+Wigner surmise (GOE) confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:14.172073Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:14.171914Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:14.621805Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:14.621538Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:51.347726Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:51.347364Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:52.046192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:52.045474Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

@@ -567,7 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The tripartite mutual information <span class="math inline">\(I_3(A:B:C)\)</span> collapses the pairwise and joint mutual informations of three subsystems into one number reporting how information about <span class="math inline">\(A\)</span> is shared between <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>. A negative value means the information is legible only from the joint system <span class="math inline">\(BC\)</span> and not from <span class="math inline">\(B\)</span> or <span class="math inline">\(C\)</span> separately, the operational signature that an evolution has scrambled local data into nonlocal correlations and the mechanism behind Hayden-Preskill information recovery. For a Haar-random state this negativity is generic, although at the small dimensions reachable numerically the <span class="math inline">\(O(1)\)</span> Page corrections compete with the <span class="math inline">\(-2\ln d\)</span> asymptote.</p>
+<p>The tripartite mutual information <span class="math inline">\(I_3(A\,B\,C)\)</span> combines the mutual information that <span class="math inline">\(A\)</span> shares with <span class="math inline">\(B\)</span> and with <span class="math inline">\(C\)</span> separately with the mutual information it shares with <span class="math inline">\(BC\)</span> jointly, packaging into one number how knowledge about <span class="math inline">\(A\)</span> is split between the two regions. Mutual information itself just measures how much two regions know about each other, so <span class="math inline">\(I_3\)</span> weighs what <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> each learn about <span class="math inline">\(A\)</span> on their own against what they learn together.</p>
+<p>When <span class="math inline">\(I_3\)</span> is negative, neither <span class="math inline">\(B\)</span> nor <span class="math inline">\(C\)</span> alone shares any correlation with <span class="math inline">\(A\)</span> while their union does, which is the fingerprint of an evolution that has buried local information in nonlocal correlations. This is the same delocalization behind Hayden-Preskill recovery, where a message thrown into a scrambler can be reconstructed only once a large enough slice of the output is in hand. A negative <span class="math inline">\(I_3\)</span> is in this sense a direct diagnostic of scrambling.</p>
+<p>For a Haar-random pure state on four equal parts of dimension <span class="math inline">\(d\)</span>, the Page approximation fixes each subsystem entropy by the smaller side of its cut. The pairwise informations then vanish while the information of <span class="math inline">\(A\)</span> with <span class="math inline">\(BC\)</span> saturates at <span class="math inline">\(2\ln d\)</span>, leaving <span class="math inline">\(I_3 \approx -2\ln d\)</span>. The negativity grows with <span class="math inline">\(d\)</span>, so larger subsystems hide information more thoroughly.</p>
+<p>The calculation derives this asymptote and then samples random states at small <span class="math inline">\(d\)</span>, where the leading <span class="math inline">\(-2\ln d\)</span> sits alongside <span class="math inline">\(O(1)\)</span> Page corrections of comparable size. The measured points therefore follow the full Page curve rather than the bare asymptote, while the negativity that signals scrambling holds at every dimension tested.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -624,7 +627,7 @@ I(A:BC) = S(A) + S(BC) - S(ABC) = \ln d + 2\ln d - \ln d = 2\ln d.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:30.808723Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:30.808561Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:30.948483Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:30.948138Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:52.123590Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:52.123336Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:52.334009Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:52.333366Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -663,7 +666,7 @@ I(A:BC) = S(A) + S(BC) - S(ABC) = \ln d + 2\ln d - \ln d = 2\ln d.
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:30.949987Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:30.949823Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:32.290178Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:32.289812Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:52.336392Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:52.335743Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:53.523699Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:53.523179Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -694,7 +697,7 @@ I(A:BC) = S(A) + S(BC) - S(ABC) = \ln d + 2\ln d - \ln d = 2\ln d.
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> d<span class="op">**</span><span class="dv">4</span></span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    n_samples <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1000</span>, <span class="bu">max</span>(<span class="dv">200</span>, <span class="dv">10000</span><span class="op">//</span>D))</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    dims <span class="op">=</span> [d]<span class="op">*</span><span class="dv">4</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    I3_vals <span class="op">=</span> []</span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_samples):</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]</span>
@@ -705,12 +708,12 @@ I(A:BC) = S(A) + S(BC) - S(ABC) = \ln d + 2\ln d - \ln d = 2\ln d.
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        SAC <span class="op">=</span> vn_entropy(reduced_dm(psi, dims, [<span class="dv">0</span>,<span class="dv">2</span>]))</span>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        SBC <span class="op">=</span> vn_entropy(reduced_dm(psi, dims, [<span class="dv">1</span>,<span class="dv">2</span>]))</span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        SABC <span class="op">=</span> vn_entropy(reduced_dm(psi, dims, [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>]))</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        I_AB <span class="op">=</span> SA <span class="op">+</span> SB <span class="op">-</span> SAB</span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        I_AC <span class="op">=</span> SA <span class="op">+</span> SC <span class="op">-</span> SAC</span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        I_ABC <span class="op">=</span> SA <span class="op">+</span> SBC <span class="op">-</span> SABC</span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        I3_vals.append(I_AB <span class="op">+</span> I_AC <span class="op">-</span> I_ABC)</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    page <span class="op">=</span> <span class="dv">4</span><span class="op">*</span>page_entropy(d, d<span class="op">**</span><span class="dv">3</span>) <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>page_entropy(d<span class="op">**</span><span class="dv">2</span>, d<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    lead <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.log(d)</span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">: ⟨I₃⟩ = </span><span class="sc">{</span>np<span class="sc">.</span>mean(I3_vals)<span class="sc">:.3f}</span><span class="ss">  "</span></span>
@@ -727,7 +730,7 @@ I(A:BC) = S(A) + S(BC) - S(ABC) = \ln d + 2\ln d - \ln d = 2\ln d.
 Negative I₃ at finite d, on the exact Page curve: information delocalization confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:32.292149Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:32.291892Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:33.670197Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:33.669907Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:53.526806Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:53.526412Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:55.584617Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:55.583962Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

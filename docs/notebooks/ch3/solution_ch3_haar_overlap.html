@@ -564,7 +564,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The squared overlap <span class="math inline">\(\chi = |\langle\psi|\phi\rangle|^2\)</span> between two independent Haar-random states answers how nearly orthogonal generic states are in a Hilbert space of dimension <span class="math inline">\(D\)</span>. It follows a <span class="math inline">\(\mathrm{Beta}(1, D-1)\)</span> law with mean <span class="math inline">\(1/D\)</span> and relative fluctuation of order <span class="math inline">\(1/\sqrt{D}\)</span>, so the typical overlap vanishes as the dimension grows. This is the simplest instance of concentration of measure, the property that underwrites typicality arguments in which one random state stands in for the ensemble average. A common slip is to read the small mean as a statement about a particular pair rather than about the distribution.</p>
+<p>Pick two pure states independently at random from a <span class="math inline">\(D\)</span>-dimensional Hilbert space, each drawn uniformly in the sense of the Haar measure, and ask how aligned they are. The natural measure of alignment is the squared overlap <span class="math inline">\(\chi = |\langle\psi|\phi\rangle|^2\)</span>, which runs from zero for orthogonal states to one when the two coincide. Since the states are random, <span class="math inline">\(\chi\)</span> is itself a random number, and the object worth studying is its distribution.</p>
+<p>That distribution turns out to be simple, a <span class="math inline">\(\mathrm{Beta}(1, D-1)\)</span> law with density that decays as <span class="math inline">\((1-\chi)^{D-2}\)</span>. Its mean is <span class="math inline">\(1/D\)</span>, so in a large space two independent states are typically almost orthogonal, and its spread shrinks fast enough that the relative fluctuation falls off like <span class="math inline">\(1/\sqrt{D}\)</span>. As the dimension grows the overlap piles up near zero and becomes increasingly predictable.</p>
+<p>This is the simplest face of concentration of measure, the phenomenon in which a smooth function of a high-dimensional random vector clusters tightly around its average. Concentration is what licenses typicality arguments, where a single random state is allowed to stand in for the ensemble because almost every state behaves the same way. The overlap distribution is a clean place to watch this happen with an exact formula in hand.</p>
+<p>A common misreading treats the small mean as a claim about one specific pair of states rather than about the law they are drawn from. The notebook computes the mean and variance directly from the density and confirms that the typical overlap and its relative spread both vanish as <span class="math inline">\(D\)</span> increases.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -616,7 +619,7 @@ P(\chi) = (D-1)(1-\chi)^{D-2}, \qquad \chi \in [0, 1].
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:58.880591Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:58.880434Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:59.118330Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:59.117964Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:59.619549Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:59.619418Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:36:59.951067Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:36:59.950626Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -667,7 +670,7 @@ Typical overlap for N qubits:
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:59.119987Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:59.119664Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:32:10.166106Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:32:10.165556Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:59.952972Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:59.952704Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:37:14.815696Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:37:14.815028Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -685,16 +688,16 @@ Typical overlap for N qubits:
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        phi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        overlaps.append(<span class="bu">abs</span>(psi.conj() <span class="op">@</span> phi)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    E_chi <span class="op">=</span> np.mean(overlaps)</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    V_chi <span class="op">=</span> np.var(overlaps)</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    V_pred <span class="op">=</span> (D<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span> (D<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(D<span class="op">+</span><span class="dv">1</span>))</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    rel <span class="op">=</span> np.sqrt(V_chi) <span class="op">/</span> E_chi</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>D<span class="sc">:5d}</span><span class="ss">  </span><span class="sc">{</span>E_chi<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>D<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>V_chi<span class="sc">:10.6f}</span><span class="ss">  </span><span class="sc">{</span>V_pred<span class="sc">:10.6f}</span><span class="ss">  </span><span class="sc">{</span>rel<span class="sc">:8.4f}</span><span class="ss">"</span>)</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(E_chi <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>D) <span class="op">&lt;</span> <span class="fl">0.01</span></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Concentration: σ/μ → 0 as D → ∞. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Concentration: σ/μ → 0 as D → ∞."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    D      E[χ]       1/D      Var(χ)        pred       σ/μ
@@ -715,10 +718,10 @@ Typical overlap for N qubits:
 <div class="cell-output cell-output-stdout">
 <pre><code>   32    0.0311    0.0312    0.000925    0.000917    0.9770
 
-Concentration: σ/μ → 0 as D → ∞. ✓</code></pre>
+Concentration: σ/μ → 0 as D → ∞.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:32:10.167904Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:32:10.167614Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:32:14.028166Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:32:14.027923Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:37:14.817793Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:37:14.817515Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:37:19.808392Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:37:19.807644Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

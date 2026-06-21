@@ -569,7 +569,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This exercise bridges the abstract formalism of σ-algebras and measurable functions to the concrete quantum information quantities that we integrate against the Haar measure throughout the book. We verify that familiar functions, the survival probability <span class="math inline">\(|\langle 0|U|0\rangle|^2\)</span> and the entanglement entropy <span class="math inline">\(S(\mathrm{Tr}_B[U|00\rangle\!\langle 00|U^\dagger])\)</span>, are <strong>Borel-measurable</strong> on the unitary group, and hence legitimate integrands for Haar averaging. The exercise also constructs the σ-algebra of the finite Pauli group to ground the abstract axioms in a hands-on computation.</p>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Integrating a function against the Haar measure presupposes that the function is measurable, so that preimages of intervals are sets the measure can weigh. Continuous functions clear this bar automatically, and the quantities averaged throughout this book are continuous in the matrix entries of <span class="math inline">\(U\)</span>. This exercise traces that reasoning for the survival probability and the entanglement entropy, then contrasts it with the finite Pauli group, where the power-set σ-algebra makes every function measurable.</p>
+<p>Writing down an average of a function over the unitary group quietly assumes that the function can be integrated, and integration in turn requires the function to be measurable. Measurable means that the set of inputs landing in any chosen interval is one the measure knows how to weigh, that is, a Borel set. Without this property the integral that defines a Haar average would have no meaning, so measurability is the entry ticket for any quantity we want to average.</p>
+<p>Continuous functions pass this test for free. A continuous function pulls every open set back to an open set, and the open sets are exactly what generate the Borel <span class="math inline">\(\sigma\)</span>-algebra, so the preimage of any Borel set is again Borel. Since the quantities averaged over <span class="math inline">\(U(D)\)</span> throughout the book depend continuously on the matrix entries of <span class="math inline">\(U\)</span>, each one is automatically a legitimate integrand and the averages are well posed.</p>
+<p>In practice one checks measurability by breaking a function into continuous building blocks and using the fact that composing continuous maps stays continuous. The survival probability <span class="math inline">\(|\langle 0|U|0\rangle|^2\)</span> is a polynomial in the entries of <span class="math inline">\(U\)</span> and so is continuous outright. The entanglement entropy takes more steps, passing through a partial trace and then the continuous map <span class="math inline">\(-x\log x\)</span> applied to the eigenvalues of the reduced state, yet each step preserves continuity. On a finite group like the Pauli group the question evaporates, because every subset belongs to the <span class="math inline">\(\sigma\)</span>-algebra and so every function is measurable.</p>
+<p>The notebook follows both functions through their continuous steps and contrasts them with the finite-group case.</p>
 </section>
 <section id="physical-motivation" class="level2">
 <h2 class="anchored" data-anchor-id="physical-motivation">1. Physical Motivation</h2>
@@ -653,7 +656,7 @@ U \xrightarrow{\text{(i)}} \hat{\rho} = U|00\rangle\!\langle 00|U^\dagger \xrigh
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">5. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:27.937709Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:27.937525Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:28.094996Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:28.094664Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:44.693747Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:44.693559Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:44.946328Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:44.945883Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -668,15 +671,15 @@ U \xrightarrow{\text{(i)}} \hat{\rho} = U|00\rangle\!\langle 00|U^\dagger \xrigh
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>f_symbolic <span class="op">=</span> sp.Abs(z)<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>f_expanded <span class="op">=</span> sp.expand(sp.re(z <span class="op">*</span> sp.conjugate(z)))</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'f(U) = |U₀₀|² = |x + iy|² = </span><span class="sc">{</span>f_expanded<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'This is the polynomial x² + y² → continuous → measurable  ✓'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'This is the polynomial x² + y² → continuous → measurable '</span>)</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> f_expanded <span class="op">==</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>f(U) = |U₀₀|² = |x + iy|² = x**2 + y**2
-This is the polynomial x² + y² → continuous → measurable  ✓</code></pre>
+This is the polynomial x² + y² → continuous → measurable </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:28.115803Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:28.115587Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:28.204196Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:28.203892Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:44.983807Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:44.983461Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:45.136754Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:45.136286Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (b): Symbolic chain for entanglement entropy ─────────────</span></span>
@@ -714,7 +717,7 @@ This is the polynomial x² + y² → continuous → measurable  ✓</code></pre>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>S_bell_simplified <span class="op">=</span> sp.simplify(S_bell)</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'S(Bell) = </span><span class="sc">{</span>S_bell_simplified<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span><span class="bu">float</span>(S_bell_simplified)<span class="sc">:.6f}</span><span class="ss">'</span>)</span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">abs</span>(<span class="bu">float</span>(S_bell_simplified) <span class="op">-</span> <span class="bu">float</span>(sp.log(<span class="dv">2</span>))) <span class="op">&lt;</span> <span class="fl">1e-10</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Expected: log(2) = </span><span class="sc">{</span><span class="bu">float</span>(sp.log(<span class="dv">2</span>))<span class="sc">:.6f}</span><span class="ss">  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Expected: log(2) = </span><span class="sc">{</span><span class="bu">float</span>(sp.log(<span class="dv">2</span>))<span class="sc">:.6f}</span><span class="ss"> '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>ρ_A = Tr_B[|ψ⟩⟨ψ|] =
@@ -731,10 +734,10 @@ Bell state ρ_A =
 
 Eigenvalues: {1/2: 2}
 S(Bell) = log(2) = 0.693147
-Expected: log(2) = 0.693147  ✓</code></pre>
+Expected: log(2) = 0.693147 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:28.205597Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:28.205430Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:28.208661Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:28.208423Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:45.139098Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:45.138805Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:45.143893Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:45.143503Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (c): σ-algebra axioms ───────────────────────────────────</span></span>
@@ -752,23 +755,23 @@ Expected: log(2) = 0.693147  ✓</code></pre>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">int</span>(size_powerset.subs(N_sym, <span class="dv">1</span>)) <span class="op">==</span> <span class="dv">16</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">int</span>(size_powerset.subs(N_sym, <span class="dv">2</span>)) <span class="op">==</span> <span class="dv">65536</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">|2^</span><span class="sc">{P_1}</span><span class="st">| = 16  ✓'</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'|2^</span><span class="sc">{P_2}</span><span class="st">| = 65,536  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">|2^</span><span class="sc">{P_1}</span><span class="st">| = 16 '</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'|2^</span><span class="sc">{P_2}</span><span class="st">| = 65,536 '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>N = 1:  |P_N| = 4^1 = 4,  |2^{P_N}| = 2^4 = 16
 N = 2:  |P_N| = 4^2 = 16,  |2^{P_N}| = 2^16 = 65,536
 N = 3:  |P_N| = 4^3 = 64,  |2^{P_N}| = 2^64 = 18,446,744,073,709,551,616
 
-|2^{P_1}| = 16  ✓
-|2^{P_2}| = 65,536  ✓</code></pre>
+|2^{P_1}| = 16 
+|2^{P_2}| = 65,536 </code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">6. Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:28.210025Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:28.209759Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:28.532082Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:28.531773Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:45.146078Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:45.145790Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:45.660344Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:45.659840Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -811,7 +814,7 @@ N = 3:  |P_N| = 4^3 = 64,  |2^{P_N}| = 2^64 = 18,446,744,073,709,551,616
 <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>U_tiny <span class="op">=</span> expm(<span class="fl">1e-12</span> <span class="op">*</span> A_base) <span class="op">@</span> U0</span>
 <span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">abs</span>(f_survival(U_tiny) <span class="op">-</span> f0) <span class="op">&lt;</span> <span class="fl">1e-10</span></span>
 <span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'δf → 0 as δU → 0: f(U) is continuous → Borel-measurable  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'δf → 0 as δU → 0: f(U) is continuous → Borel-measurable '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reference: f(U₀) = |⟨0|U₀|0⟩|² = 0.0937965513
@@ -828,10 +831,10 @@ Continuity: perturbation size vs function change
     1.00e-08                   3.81e-09            0.3813
     1.00e-10                   3.81e-11            0.3813
 
-δf → 0 as δU → 0: f(U) is continuous → Borel-measurable  ✓</code></pre>
+δf → 0 as δU → 0: f(U) is continuous → Borel-measurable </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:28.533668Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:28.533358Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:28.539054Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:28.538796Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:45.662280Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:45.661968Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:45.670028Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:45.669627Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (b): Numerical continuity of S(U) on U(4) ───────────────</span></span>
@@ -843,7 +846,7 @@ Continuity: perturbation size vs function change
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entanglement_entropy(U):</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""S(Tr_B[U|00&gt;&lt;00|U†]) - a measurable function on U(4).</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Chain of continuous operations:</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">      (i)   U → |ψ⟩ = U|00⟩ → ρ = |ψ⟩⟨ψ| (polynomial in U entries)</span></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">      (ii)  ρ → ρ_A = Tr_B(ρ)              (linear map)</span></span>
@@ -883,7 +886,7 @@ Continuity: perturbation size vs function change
 <span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>U_tiny <span class="op">=</span> expm(<span class="fl">1e-12</span> <span class="op">*</span> A_base) <span class="op">@</span> U0</span>
 <span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">abs</span>(entanglement_entropy(U_tiny) <span class="op">-</span> S0) <span class="op">&lt;</span> <span class="fl">1e-8</span></span>
 <span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'δS → 0 as δU → 0: S(U) is continuous → Borel-measurable  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'δS → 0 as δU → 0: S(U) is continuous → Borel-measurable '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reference: S(U₀) = 0.1584834938
@@ -899,10 +902,10 @@ Continuity of entanglement entropy S(U)
     1.00e-06                      3.07e-08      0.0307
     1.00e-08                      3.07e-10      0.0307
 
-δS → 0 as δU → 0: S(U) is continuous → Borel-measurable  ✓</code></pre>
+δS → 0 as δU → 0: S(U) is continuous → Borel-measurable </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:28.540276Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:28.540080Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:28.572028Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:28.571753Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:45.671911Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:45.671593Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:45.716672Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:45.716226Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Bonus: Verify S has the correct range ────────────────────────</span></span>
@@ -931,7 +934,7 @@ Continuity of entanglement entropy S(U)
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Mean S = </span><span class="sc">{</span>np<span class="sc">.</span>mean(S_random)<span class="sc">:.6f}</span><span class="ss">  (Page prediction: </span><span class="sc">{</span>S_page<span class="sc">:.6f}</span><span class="ss">)'</span>)</span>
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Std  S = </span><span class="sc">{</span>np<span class="sc">.</span>std(S_random)<span class="sc">:.6f}</span><span class="ss">'</span>)</span>
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">abs</span>(np.mean(S_random) <span class="op">-</span> S_page) <span class="op">&lt;</span> <span class="fl">0.05</span></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  Consistent with Page formula  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  Consistent with Page formula '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Product state (U = I): S = -0.0000000000  (expected 0)
@@ -940,10 +943,10 @@ Bell state:  S = 0.6931471806  (expected log2 = 0.6931471806)
 Random Haar (500 samples):
   Mean S = 0.335192  (Page prediction: 0.333333)
   Std  S = 0.175040
-  Consistent with Page formula  ✓</code></pre>
+  Consistent with Page formula </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:28.573257Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:28.573033Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:28.576768Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:28.576521Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:45.718592Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:45.718120Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:45.723553Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:45.723129Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (c): Power-set σ-algebra of the Pauli group ─────────────</span></span>
@@ -957,39 +960,39 @@ Random Haar (500 samples):
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    P_N <span class="op">=</span> <span class="bu">list</span>(iterproduct(pauli_labels, repeat<span class="op">=</span>N_val))</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    P_N_str <span class="op">=</span> [<span class="st">''</span>.join(p) <span class="cf">for</span> p <span class="kw">in</span> P_N]</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="bu">frozenset</span>(P_N_str)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    size_P <span class="op">=</span> <span class="bu">len</span>(P_N_str)</span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    size_powerset <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>size_P</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">N = </span><span class="sc">{</span>N_val<span class="sc">}</span><span class="ss">:'</span>)</span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  Ω = P_N with |Ω| = 4^</span><span class="sc">{</span>N_val<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>size_P<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  F = 2^Ω (power set) with |F| = 2^</span><span class="sc">{</span>size_P<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>size_powerset<span class="sc">:,}</span><span class="ss">'</span>)</span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  Every subset of Ω is measurable (belongs to F).'</span>)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (S1): Ω ∈ F</span></span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> omega <span class="op">==</span> <span class="bu">frozenset</span>(P_N_str)</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  (S1) Ω ∈ F: True  ✓'</span>)</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  (S1) Ω ∈ F: True '</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (S2): Complement closure</span></span>
 <span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> <span class="bu">frozenset</span>(P_N_str[:<span class="dv">3</span>])</span>
 <span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    A_comp <span class="op">=</span> omega <span class="op">-</span> A</span>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> A_comp.issubset(omega) <span class="kw">and</span> <span class="bu">len</span>(A) <span class="op">+</span> <span class="bu">len</span>(A_comp) <span class="op">==</span> size_P</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  (S2) A^c ∈ F (|A|=</span><span class="sc">{</span><span class="bu">len</span>(A)<span class="sc">}</span><span class="ss">, |A^c|=</span><span class="sc">{</span><span class="bu">len</span>(A_comp)<span class="sc">}</span><span class="ss">): True  ✓'</span>)</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  (S2) A^c ∈ F (|A|=</span><span class="sc">{</span><span class="bu">len</span>(A)<span class="sc">}</span><span class="ss">, |A^c|=</span><span class="sc">{</span><span class="bu">len</span>(A_comp)<span class="sc">}</span><span class="ss">): True '</span>)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (S3): Union closure</span></span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    A1 <span class="op">=</span> <span class="bu">frozenset</span>(P_N_str[:<span class="dv">2</span>])</span>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    A2 <span class="op">=</span> <span class="bu">frozenset</span>(P_N_str[<span class="dv">2</span>:<span class="dv">5</span>])</span>
 <span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    A3 <span class="op">=</span> <span class="bu">frozenset</span>(P_N_str[<span class="dv">1</span>:<span class="dv">4</span>])</span>
 <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    union <span class="op">=</span> A1 <span class="op">|</span> A2 <span class="op">|</span> A3</span>
 <span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> union.issubset(omega)</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  (S3) A₁ ∪ A₂ ∪ A₃ ∈ F (|∪| = </span><span class="sc">{</span><span class="bu">len</span>(union)<span class="sc">}</span><span class="ss">): True  ✓'</span>)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  (S3) A₁ ∪ A₂ ∪ A₃ ∈ F (|∪| = </span><span class="sc">{</span><span class="bu">len</span>(union)<span class="sc">}</span><span class="ss">): True '</span>)</span>
 <span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
 <span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Summary:'</span>)</span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  N=1: |2^</span><span class="sc">{P_1}</span><span class="st">| = 2^4 = 16  ✓'</span>)</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  N=2: |2^</span><span class="sc">{P_2}</span><span class="st">| = 2^16 = 65,536  ✓'</span>)</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  N=1: |2^</span><span class="sc">{P_1}</span><span class="st">| = 2^4 = 16 '</span>)</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  N=2: |2^</span><span class="sc">{P_2}</span><span class="st">| = 2^16 = 65,536 '</span>)</span>
 <span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  For finite groups, every subset is measurable ∈ F.'</span>)</span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  σ-algebra structure becomes nontrivial only for U(D).  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  σ-algebra structure becomes nontrivial only for U(D). '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Verifying σ-algebra axioms (S1)-(S3) for F = 2^{P_N}
@@ -999,23 +1002,23 @@ N = 1:
   Ω = P_N with |Ω| = 4^1 = 4
   F = 2^Ω (power set) with |F| = 2^4 = 16
   Every subset of Ω is measurable (belongs to F).
-  (S1) Ω ∈ F: True  ✓
-  (S2) A^c ∈ F (|A|=3, |A^c|=1): True  ✓
-  (S3) A₁ ∪ A₂ ∪ A₃ ∈ F (|∪| = 4): True  ✓
+  (S1) Ω ∈ F: True 
+  (S2) A^c ∈ F (|A|=3, |A^c|=1): True 
+  (S3) A₁ ∪ A₂ ∪ A₃ ∈ F (|∪| = 4): True 
 
 N = 2:
   Ω = P_N with |Ω| = 4^2 = 16
   F = 2^Ω (power set) with |F| = 2^16 = 65,536
   Every subset of Ω is measurable (belongs to F).
-  (S1) Ω ∈ F: True  ✓
-  (S2) A^c ∈ F (|A|=3, |A^c|=13): True  ✓
-  (S3) A₁ ∪ A₂ ∪ A₃ ∈ F (|∪| = 5): True  ✓
+  (S1) Ω ∈ F: True 
+  (S2) A^c ∈ F (|A|=3, |A^c|=13): True 
+  (S3) A₁ ∪ A₂ ∪ A₃ ∈ F (|∪| = 5): True 
 
 Summary:
-  N=1: |2^{P_1}| = 2^4 = 16  ✓
-  N=2: |2^{P_2}| = 2^16 = 65,536  ✓
+  N=1: |2^{P_1}| = 2^4 = 16 
+  N=2: |2^{P_2}| = 2^16 = 65,536 
   For finite groups, every subset is measurable ∈ F.
-  σ-algebra structure becomes nontrivial only for U(D).  ✓</code></pre>
+  σ-algebra structure becomes nontrivial only for U(D). </code></pre>
 </div>
 </div>
 </section>

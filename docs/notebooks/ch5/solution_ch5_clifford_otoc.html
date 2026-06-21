@@ -568,7 +568,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The out-of-time-order correlator tracks how a local operator grows under time evolution, and the squared commutator <span class="math inline">\(C(t)\)</span> built from it is the standard probe of operator spreading and the route to a quantum Lyapunov exponent. Clifford circuits map Paulis to Paulis, so an initially local Pauli stays a single Pauli string and <span class="math inline">\(C(t)\)</span> can take only the values <span class="math inline">\(0\)</span> and <span class="math inline">\(4\)</span>. Because Clifford ensembles form a unitary 3-design, they reproduce the low Haar moments while failing to scramble like a chaotic system. The notebook locates exactly where this stabilizer reference parts company with genuine chaos.</p>
+<p>Scrambling is how a chaotic many-body system hides local information, spreading it until no small region can reveal what was put in. A standard way to watch this starts with a local operator and follows it in the Heisenberg picture, where the dynamics grow it into something with support far from its starting point. The out-of-time-order correlator compares that grown operator against a probe sitting somewhere else, and the squared commutator built from the correlator measures how strongly the two now fail to commute. In a chaotic system this squared commutator starts small and climbs exponentially before saturating, and the rate of that climb defines a quantum Lyapunov exponent that marks the onset of scrambling.</p>
+<p>A Clifford circuit is an interesting test case because it genuinely spreads operators across the whole system while resting on a very rigid algebra. A Clifford unitary sends every Pauli operator to another Pauli operator, so an initially single-site Pauli <span class="math inline">\(W\)</span> evolves into one Pauli string of possibly large support rather than a spread over many strings at once. Any two Pauli operators either commute or anticommute, with no intermediate possibility, so the squared commutator <span class="math inline">\(C(t)\)</span> of the evolved <span class="math inline">\(W\)</span> with a probe <span class="math inline">\(V\)</span> can take only the value <span class="math inline">\(0\)</span> when the two commute or <span class="math inline">\(4\)</span> when they anticommute.</p>
+<p>This turns the smooth ramp into a single step. While the operator front has not yet reached <span class="math inline">\(V\)</span> the two commute and <span class="math inline">\(C(t)\)</span> stays at zero, and the instant the front arrives they anticommute and <span class="math inline">\(C(t)\)</span> jumps to four. No band of intermediate values is ever visited, so an exponential has nothing to populate and no Lyapunov exponent can be assigned, even though the operator does spread across the chain.</p>
+<p>What makes this worth dwelling on is that the Clifford group is a unitary 3-design, reproducing the first three Haar moments exactly, which usually signals random-like behavior. The calculation proves the <span class="math inline">\(C(t) \in \{0,4\}\)</span> dichotomy from the commutation algebra and then tracks the operator front numerically along a chain, setting the resulting step beside the smooth ramp of a chaotic correlator. Matching low Haar moments turns out to say nothing about whether operator growth carries the gradual character that dynamical chaos requires.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -624,7 +627,7 @@ C(t) = \frac{1}{D}\mathrm{Tr}\bigl(4V^\dagger W(t)^\dagger W(t) V\bigr) = \frac{
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:02.235477Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:02.235343Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:02.383821Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:02.383426Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:12.813141Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:12.812936Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:13.005954Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:13.005425Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -658,7 +661,7 @@ but Clifford dynamics can only produce F in {-1, +1}.</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:02.385499Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:02.385237Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:02.909793Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:02.909518Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:13.007866Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:13.007601Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:13.738657Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:13.738139Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -738,7 +741,7 @@ but Clifford dynamics can only produce F in {-1, +1}.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>For Clifford dynamics <span class="math inline">\(C(t)\)</span> takes only the values <span class="math inline">\(0\)</span> and <span class="math inline">\(4\)</span>, jumping the instant the operator light cone reaches <span class="math inline">\(V\)</span> with no exponential ramp between. No Lyapunov exponent can be assigned, so matching the first three Haar moments does not by itself imply chaotic operator growth.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:02.911350Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:02.911191Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:03.029778Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:03.029459Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:13.740731Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:13.740412Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:13.893797Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:13.893263Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -779,12 +782,12 @@ but Clifford dynamics can only produce F in {-1, +1}.</code></pre>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Distinct C values: </span><span class="sc">{</span><span class="bu">sorted</span>(C_values)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> C_values <span class="op">==</span> {<span class="fl">0.0</span>, <span class="fl">4.0</span>} <span class="kw">or</span> C_values <span class="op">&lt;=</span> {<span class="fl">0.0</span>, <span class="fl">4.0</span>}</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  C(t) ∈ {0, 4} confirmed: no Lyapunov exponent. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  C(t) ∈ {0, 4} confirmed: no Lyapunov exponent."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>C(t) values for 200 random 2-qubit Cliffords:
   Distinct C values: [np.float64(0.0), np.float64(4.0)]
-  C(t) ∈ {0, 4} confirmed: no Lyapunov exponent. ✓</code></pre>
+  C(t) ∈ {0, 4} confirmed: no Lyapunov exponent.</code></pre>
 </div>
 </div>
 

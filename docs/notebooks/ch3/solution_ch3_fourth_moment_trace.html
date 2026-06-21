@@ -570,7 +570,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This notebook derives <span class="math inline">\(\mathbb{E}_U[|\mathrm{Tr}(U)|^4] = 2\)</span> step by step, using SymPy to perform every index contraction symbolically. The result is independently verified by Monte Carlo sampling of Haar-random unitaries.</p>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">1. Background</h2>
-<p>The fourth moment <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}\,U|^4]\)</span> is the smallest Haar average that requires the <span class="math inline">\(k=2\)</span> Weingarten formula, since two copies of <span class="math inline">\(U\)</span> meet two of <span class="math inline">\(U^\dagger\)</span>. For a Haar-random unitary it equals <span class="math inline">\(2\)</span> for every <span class="math inline">\(D \ge 2\)</span>, independent of dimension. This is the benchmark certifying the second moment of a unitary 2-design, and the same number organizes the spectral form factor of the circular unitary ensemble. The dimension independence is what sets it apart from the lower moments, where <span class="math inline">\(D\)</span> still appears explicitly.</p>
+<p>The trace of a unitary, <span class="math inline">\(\mathrm{Tr}\,U\)</span>, is a complex number whose typical size we can study by averaging powers of its magnitude over the unitary group. The fourth moment <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}\,U|^4]\)</span> is the first such average that genuinely probes correlations between matrix entries, since it pairs two copies of <span class="math inline">\(U\)</span> with two copies of <span class="math inline">\(U^\dagger\)</span>. Lower powers either vanish or are fixed by the first moment alone, so this is where the structure begins.</p>
+<p>Evaluating it calls for the <span class="math inline">\(k=2\)</span> Weingarten formula, which expresses the average as a sum over the two permutations of two objects, the identity and the swap. Each permutation contributes a weight times a power of <span class="math inline">\(D\)</span> that counts closed index loops, and the planar and non-planar wirings partly cancel. What remains is the value <span class="math inline">\(2\)</span>, holding for every dimension <span class="math inline">\(D \ge 2\)</span> with no residual dependence on <span class="math inline">\(D\)</span>.</p>
+<p>That dimension independence is what makes the number useful as a reference. A unitary ensemble reproduces this fourth moment exactly when it forms a unitary 2-design, so <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}\,U|^4]=2\)</span> serves as a concrete check on how well a finite ensemble imitates the full Haar measure at second order. The same quantity reappears as a fixed feature of the spectral form factor of the circular unitary ensemble.</p>
+<p>The notebook derives the result by carrying out the index contractions symbolically over the four permutation pairs, then confirms the value by sampling Haar-random unitaries and watching the running average settle at <span class="math inline">\(2\)</span>.</p>
 </section>
 <section id="mathematical-preliminaries" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-preliminaries">2. Mathematical Preliminaries</h2>
@@ -657,7 +660,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="step-3-combine" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-combine">Step 3: Combine</h3>
 <p><span class="math display">\[\mathbb{E}[|\mathrm{Tr}(U)|^4] = \frac{2D^2}{D^2-1} - \frac{2}{D^2-1} = \frac{2(D^2-1)}{D^2-1} = \boxed{2}\]</span></p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:48.307182Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:48.306816Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:48.527730Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:48.527360Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:45.951989Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:45.951766Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:36:46.259850Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:36:46.257978Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -696,7 +699,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> cancel(total)</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sum = </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> result <span class="op">==</span> <span class="dv">2</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'VERIFIED: E[|Tr(U)|⁴] = 2 for all D ≥ 2  ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'VERIFIED: E[|Tr(U)|⁴] = 2 for all D ≥ 2 '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Step-by-step SymPy verification ===
@@ -711,10 +714,10 @@ Step 2: Four (π, σ) contributions:
   π=(12), σ=id   → π⁻¹σ=(12), Wg=-1/(D*(D**2 - 1)), loops=D, contrib=-1/(D**2 - 1)
 
 Sum = 2
-VERIFIED: E[|Tr(U)|⁴] = 2 for all D ≥ 2  ✓</code></pre>
+VERIFIED: E[|Tr(U)|⁴] = 2 for all D ≥ 2 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:48.529761Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:48.529552Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:48.538404Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:48.538069Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:46.262855Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:46.262513Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:36:46.274747Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:36:46.273960Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Brute-force index contraction verification</span></span>
@@ -745,33 +748,33 @@ VERIFIED: E[|Tr(U)|⁴] = 2 for all D ≥ 2  ✓</code></pre>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                        total_sum <span class="op">+=</span> val</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> D_val<span class="op">**</span><span class="dv">2</span> <span class="cf">if</span> pi_name <span class="op">==</span> sigma_name <span class="cf">else</span> D_val</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'  π=</span><span class="sc">{</span>pi_name<span class="sc">:4s}</span><span class="ss">, σ=</span><span class="sc">{</span>sigma_name<span class="sc">:4s}</span><span class="ss">: sum = </span><span class="sc">{</span>total_sum<span class="sc">}</span><span class="ss"> (expected </span><span class="sc">{</span>expected<span class="sc">}</span><span class="ss">) '</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>              <span class="ss">f'</span><span class="sc">{</span><span class="st">"✓"</span> <span class="cf">if</span> total_sum <span class="op">==</span> expected <span class="cf">else</span> <span class="st">"✗"</span><span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>              <span class="ss">f'</span><span class="sc">{</span><span class="st">""</span> <span class="cf">if</span> total_sum <span class="op">==</span> expected <span class="cf">else</span> <span class="st">""</span><span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Brute-force index contraction verification ===
 
 D = 2:
-  π=id  , σ=id  : sum = 4 (expected 4) ✓
-  π=(12), σ=(12): sum = 4 (expected 4) ✓
-  π=id  , σ=(12): sum = 2 (expected 2) ✓
-  π=(12), σ=id  : sum = 2 (expected 2) ✓
+  π=id  , σ=id  : sum = 4 (expected 4) 
+  π=(12), σ=(12): sum = 4 (expected 4) 
+  π=id  , σ=(12): sum = 2 (expected 2) 
+  π=(12), σ=id  : sum = 2 (expected 2) 
 
 D = 3:
-  π=id  , σ=id  : sum = 9 (expected 9) ✓
-  π=(12), σ=(12): sum = 9 (expected 9) ✓
-  π=id  , σ=(12): sum = 3 (expected 3) ✓
-  π=(12), σ=id  : sum = 3 (expected 3) ✓
+  π=id  , σ=id  : sum = 9 (expected 9) 
+  π=(12), σ=(12): sum = 9 (expected 9) 
+  π=id  , σ=(12): sum = 3 (expected 3) 
+  π=(12), σ=id  : sum = 3 (expected 3) 
 
 D = 4:
-  π=id  , σ=id  : sum = 16 (expected 16) ✓
-  π=(12), σ=(12): sum = 16 (expected 16) ✓
-  π=id  , σ=(12): sum = 4 (expected 4) ✓
-  π=(12), σ=id  : sum = 4 (expected 4) ✓
+  π=id  , σ=id  : sum = 16 (expected 16) 
+  π=(12), σ=(12): sum = 16 (expected 16) 
+  π=id  , σ=(12): sum = 4 (expected 4) 
+  π=(12), σ=id  : sum = 4 (expected 4) 
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:48.540617Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:48.539996Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:54.719112Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:54.718684Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:46.277178Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:46.276970Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:36:54.271242Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:36:54.270796Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: NumPy Monte Carlo cross-check</span></span>
@@ -783,7 +786,7 @@ D = 4:
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D_val <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>]:</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    n_samples <span class="op">=</span> <span class="dv">30000</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> np.array([<span class="bu">abs</span>(np.trace(unitary_group.rvs(D_val)))<span class="op">**</span><span class="dv">4</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> np.array([<span class="bu">abs</span>(np.trace(unitary_group.rvs(D_val)))<span class="op">**</span><span class="dv">4</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                     <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_samples)])</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    mc_mean <span class="op">=</span> np.mean(vals)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    mc_err <span class="op">=</span> np.std(vals) <span class="op">/</span> np.sqrt(n_samples)</span>
@@ -791,7 +794,7 @@ D = 4:
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_mean <span class="op">-</span> <span class="dv">2</span>) <span class="op">&lt;</span> <span class="dv">3</span><span class="op">*</span>mc_err <span class="op">+</span> <span class="fl">0.05</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Dimension-independent fourth moment = 2 confirmed ✓'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Dimension-independent fourth moment = 2 confirmed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== NumPy Monte Carlo cross-check ===
@@ -812,7 +815,7 @@ D = 4:
 <div class="cell-output cell-output-stdout">
 <pre><code>  D= 16: MC = 1.9798 ± 0.0256  (analytic: 2.0000)
 
-Dimension-independent fourth moment = 2 confirmed ✓</code></pre>
+Dimension-independent fourth moment = 2 confirmed</code></pre>
 </div>
 </div>
 <hr>
@@ -822,7 +825,7 @@ Dimension-independent fourth moment = 2 confirmed ✓</code></pre>
 <h2 class="anchored" data-anchor-id="physical-interpretation">4. Physical Interpretation</h2>
 <p><strong>Tensor network perspective:</strong> Each of the four <span class="math inline">\((\pi,\sigma)\)</span> terms corresponds to a distinct wiring of the tensor diagram: - <strong>Planar pairings</strong> (<span class="math inline">\(\pi^{-1}\sigma = \mathrm{id}\)</span>): uncrossed wires, producing 2 independent loops → <span class="math inline">\(D^2\)</span> per term - <strong>Non-planar pairings</strong> (<span class="math inline">\(\pi^{-1}\sigma = (12)\)</span>): crossed wires, forcing all indices to collapse to 1 loop → <span class="math inline">\(D\)</span> per term</p>
 <p>The exact cancellation <span class="math inline">\(\frac{2D^2}{D^2-1} - \frac{2}{D^2-1} = 2\)</span> is the algebraic manifestation of a <strong>topological</strong> fact: the number of independent wiring topologies, not the dimension of the group, controls the moments. This universality is why <span class="math inline">\(|\mathrm{Tr}(U)|^4 = 2\)</span> serves as the benchmark test for 2-design convergence.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:31:54.720651Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:31:54.720359Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:31:56.526963Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:31:56.526698Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:54.273037Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:54.272748Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:36:56.658974Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:36:56.658354Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

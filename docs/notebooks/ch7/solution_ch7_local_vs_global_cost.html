@@ -567,7 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Whether a variational circuit trains depends not only on the ansatz but on the cost observable, and the same 2-design circuit can lie on a barren plateau for one choice while staying trainable for another. A global cost that projects onto a target state and a local cost built from single-qubit terms both decay exponentially in the qubit number, yet the only quantity distinguishing their gradient variances is <span class="math inline">\(\mathrm{Tr}(O^2)\)</span> in the Weingarten result of the preceding exercise. Evaluating it for both observables fixes the two decay rates and the gap between them.</p>
+<p>The plateau result has a useful consequence. It ties the gradient variance of a deep, 2-design circuit to a single property of the cost, the trace <span class="math inline">\(\mathrm{Tr}(O^2)\)</span> of the observable <span class="math inline">\(O\)</span> being measured, through <span class="math inline">\(\mathrm{Var}[C] = \mathrm{Tr}(O^2)/[D(D+1)]\)</span>. The circuit itself drops out of the comparison, which means the choice of what to measure, rather than how the gates are arranged, becomes the handle on whether training can proceed.</p>
+<p>Two costs make the point. A global cost asks the whole register to match a target bitstring at once, while a local cost adds up small checks on individual qubits and rewards each one on its own. The global projector <span class="math inline">\(O_G = |0\rangle\langle 0|^{\otimes N} - I/D\)</span> has a trace of order one, so its variance falls like <span class="math inline">\(1/D^2 = 2^{-2N}\)</span>, the steepest plateau available. The normalized local observable <span class="math inline">\(O_L = \frac{1}{N}\sum_j Z_j\)</span> has a trace that grows with the Hilbert space, <span class="math inline">\(\mathrm{Tr}(O_L^2) = D/N\)</span>, and its variance is <span class="math inline">\(1/[N(D+1)]\)</span>, close to <span class="math inline">\(1/(N\,2^N)\)</span>. Both still vanish, with the local exponent exactly half the global one.</p>
+<p>Halving the exponent is not a small thing. The ratio <span class="math inline">\(\mathrm{Var}_L/\mathrm{Var}_G \approx 2^N/N\)</span> can be the difference between a circuit that still has a usable slope near twenty qubits and one whose slope vanished long before. The reason sits behind the arithmetic. A single-qubit term feels only the gates inside its backward light cone, the patch of circuit that can influence it, and when that patch is small the relevant Haar average is taken over a small unitary instead of the full <span class="math inline">\(2^N\)</span>-dimensional one.</p>
+<p>This is where the real escape lives. As long as the circuit stays shallow, the light cone of a local term covers only a handful of qubits, its effective dimension is fixed, and the gradient variance shrinks merely as <span class="math inline">\(1/\mathrm{poly}(N)\)</span> rather than exponentially. Let the depth grow until those light cones overlap and scramble the whole register, and the local cost loses its advantage and rejoins the exponential law computed here. Trainability of a local cost is therefore a statement about depth as much as about the observable.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -659,7 +662,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:35:02.833070Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:35:02.832760Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:35:03.001191Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:35:03.000822Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:38.430490Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:38.430338Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:38.644756Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:38.644300Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -702,7 +705,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:35:03.002741Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:35:03.002554Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:35:03.730501Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:35:03.730207Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:38.647119Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:38.646559Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:39.563957Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:39.563327Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -733,7 +736,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The global cost decays as <span class="math inline">\(2^{-2N}\)</span> and the local cost as <span class="math inline">\(2^{-N}\)</span>, a separation of order <span class="math inline">\(2^N/N\)</span> that comes entirely from <span class="math inline">\(\mathrm{Tr}(O^2)\sim D/N\)</span> for the local observable against <span class="math inline">\(O(1)\)</span> for the global one. Locality halves the exponent of the plateau, so cost-function design sets the boundary between trainable and untrainable circuits at fixed depth.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:35:03.732094Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:35:03.731709Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:35:12.441754Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:35:12.441270Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:39.565860Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:39.565601Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:51.420238Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:51.419696Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -745,7 +748,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]:</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    psi0 <span class="op">=</span> np.zeros(D, dtype<span class="op">=</span><span class="bu">complex</span>)<span class="op">;</span> psi0[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build observables</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    O_G <span class="op">=</span> np.outer(psi0, psi0) <span class="op">-</span> np.eye(D)<span class="op">/</span>D</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    O_L <span class="op">=</span> np.zeros((D, D), dtype<span class="op">=</span><span class="bu">complex</span>)</span>
@@ -754,10 +757,10 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(N):</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            Oj <span class="op">=</span> np.kron(Oj, sz <span class="cf">if</span> k <span class="op">==</span> j <span class="cf">else</span> np.eye(<span class="dv">2</span>))</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        O_L <span class="op">+=</span> Oj <span class="op">/</span> N</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    trOG2 <span class="op">=</span> np.trace(O_G <span class="op">@</span> O_G).real</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    trOL2 <span class="op">=</span> np.trace(O_L <span class="op">@</span> O_L).real</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Monte Carlo</span></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    costs_G, costs_L <span class="op">=</span> [], []</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8000</span>):</span>
@@ -765,12 +768,12 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> U <span class="op">@</span> psi0</span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        costs_G.append((psi.conj() <span class="op">@</span> O_G <span class="op">@</span> psi).real)</span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        costs_L.append((psi.conj() <span class="op">@</span> O_L <span class="op">@</span> psi).real)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    var_G <span class="op">=</span> np.var(costs_G)</span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    var_L <span class="op">=</span> np.var(costs_L)</span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    pred_G <span class="op">=</span> trOG2 <span class="op">/</span> (D<span class="op">*</span>(D<span class="op">+</span><span class="dv">1</span>))</span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    pred_L <span class="op">=</span> trOL2 <span class="op">/</span> (D<span class="op">*</span>(D<span class="op">+</span><span class="dv">1</span>))</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">: Tr(O_G²)=</span><span class="sc">{</span>trOG2<span class="sc">:.3f}</span><span class="ss">, Tr(O_L²)=</span><span class="sc">{</span>trOL2<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"      Var_G=</span><span class="sc">{</span>var_G<span class="sc">:.2e}</span><span class="ss"> (pred </span><span class="sc">{</span>pred_G<span class="sc">:.2e}</span><span class="ss">), "</span></span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"Var_L=</span><span class="sc">{</span>var_L<span class="sc">:.2e}</span><span class="ss"> (pred </span><span class="sc">{</span>pred_L<span class="sc">:.2e}</span><span class="ss">)"</span>)</span>
@@ -778,7 +781,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"      Var_L/Var_G = </span><span class="sc">{</span>var_L<span class="op">/</span>var_G<span class="sc">:.1f}</span><span class="ss"> (pred D/N = </span><span class="sc">{</span>D<span class="op">/</span>N<span class="sc">:.1f}</span><span class="ss">)"</span>)</span>
 <span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
 <span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Local cost has exponentially larger gradient. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Local cost has exponentially larger gradient."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>N=2: Tr(O_G²)=0.750, Tr(O_L²)=2.000
@@ -809,7 +812,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
       Var_G=2.33e-04 (pred 2.37e-04), Var_L=2.56e-03 (pred 2.56e-03)
       Var_L/Var_G = 11.0 (pred D/N = 10.7)
 
-Local cost has exponentially larger gradient. ✓</code></pre>
+Local cost has exponentially larger gradient.</code></pre>
 </div>
 </div>
 

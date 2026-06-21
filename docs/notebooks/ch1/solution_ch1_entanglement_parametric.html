@@ -566,7 +566,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Entanglement is the part of the correlation between two subsystems that no classical state can reproduce. The reduced density matrix, obtained by tracing out one subsystem, encodes everything a local observer can access, and its spectrum fixes the entanglement entropy. A two-qubit state controlled by a single mixing angle <span class="math inline">\(\theta\)</span> keeps the reduced state and its entropy tractable in closed form. This exercise follows the entropy from a separable state to a maximally entangled one.</p>
+<p>When two systems share a joint pure state, a measurement on one can be correlated with the other in ways no shared classical variable could reproduce. That excess correlation is entanglement, and in the pure-state case it has a clean signature. An observer holding only one of the two subsystems cannot see the global state and instead works with the reduced density matrix obtained by tracing out the partner. For a product state this reduced state is itself pure and the subsystem carries definite information of its own. Once the parts are entangled the reduced state turns mixed, and the more mixed it becomes, the more entanglement the pair holds.</p>
+<p>Mixedness needs a number to track it. One choice is the purity, which equals one for a pure state and drops as the state spreads over more eigenvalues. Another is the von Neumann entropy, which is zero for a pure state and climbs toward its maximum as those eigenvalues even out. For a pair of qubits the reduced state has only two eigenvalues, so a single weight fixes both quantities at once.</p>
+<p>The family <span class="math inline">\(\cos\theta\,|00\rangle + \sin\theta\,|11\rangle\)</span> is already written in its Schmidt form, meaning the entanglement is laid bare by the two coefficients with no further diagonalization needed. The reduced density matrix is diagonal with eigenvalues <span class="math inline">\(\cos^2\theta\)</span> and <span class="math inline">\(\sin^2\theta\)</span>, and its von Neumann entropy is the binary entropy of those weights, a single curve in the mixing angle. The ends <span class="math inline">\(\theta = 0\)</span> and <span class="math inline">\(\theta = \pi/2\)</span> put all the weight on one term and give product states, while <span class="math inline">\(\theta = \pi/4\)</span> balances the two and produces a Bell state whose reduced density matrix is maximally mixed.</p>
+<p>This exercise traces out one qubit, computes the purity and the von Neumann entropy across the family, and locates the separable and maximally entangled points.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -629,7 +632,7 @@ S = -\cos^2\!\theta\,\ln(\cos^2\!\theta) - \sin^2\!\theta\,\ln(\sin^2\!\theta).
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:44.199372Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:44.199261Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:44.500276Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:44.499796Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:07.292089Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:07.291834Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:07.736604Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:07.736123Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -664,7 +667,7 @@ S = -log(sin(theta)**2)*sin(theta)**2 - log(cos(theta)**2)*cos(theta)**2
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:44.501677Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:44.501516Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:44.540693Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:44.540402Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:07.738492Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:07.738245Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:07.794223Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:07.793734Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -682,7 +685,7 @@ S = -log(sin(theta)**2)*sin(theta)**2 - log(cos(theta)**2)*cos(theta)**2
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> <span class="op">-</span>np.<span class="bu">sum</span>(eigs_pos <span class="op">*</span> np.log(eigs_pos))</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>theta<span class="op">/</span>np<span class="sc">.</span>pi<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>gamma<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>S<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>S<span class="op">/</span>np<span class="sc">.</span>log(<span class="dv">2</span>)<span class="sc">:8.4f}</span><span class="ss">"</span>)</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Maximal entanglement at θ = π/4 (S = ln2). ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Maximal entanglement at θ = π/4 (S = ln2)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     θ/π         γ         S     S/ln2
@@ -697,14 +700,14 @@ S = -log(sin(theta)**2)*sin(theta)**2 - log(cos(theta)**2)*cos(theta)**2
   0.4375    0.9268    0.1617    0.2333
   0.5000    1.0000   -0.0000   -0.0000
 
-Maximal entanglement at θ = π/4 (S = ln2). ✓</code></pre>
+Maximal entanglement at θ = π/4 (S = ln2).</code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="entanglement-entropy-versus-the-mixing-angle" class="level2">
 <h2 class="anchored" data-anchor-id="entanglement-entropy-versus-the-mixing-angle">Entanglement Entropy versus the Mixing Angle</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:44.542296Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:44.542107Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:45.041816Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:45.041541Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:07.799522Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:07.799231Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:08.507220Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:08.506775Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

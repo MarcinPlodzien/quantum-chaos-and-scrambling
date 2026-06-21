@@ -567,7 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The Haar measure is the unique invariant probability measure on a compact group. On the circle group <span class="math inline">\(U(1)\)</span> it reduces to the uniform density <span class="math inline">\(d\theta/(2\pi)\)</span>, the simplest case from which the construction on <span class="math inline">\(U(D)\)</span> is built. Invariance fixes this measure uniquely and forces the phase of <span class="math inline">\(\det U\)</span> to be uniform, a fact used whenever one averages over random unitaries.</p>
+<p>To average a quantity over random unitaries we first need a sensible notion of what random means on the group, and that is supplied by a measure that weighs subsets of the group. The natural choice is the one that does not change when the group acts on itself by multiplication, called the Haar measure. Invariance under this action is exactly what makes an average meaningful, since it guarantees that relabeling by any fixed unitary leaves the average untouched. On a compact group this invariant measure exists and is unique once the total weight is fixed to one.</p>
+<p>The simplest instance is the circle group <span class="math inline">\(U(1)\)</span>, whose elements are phases <span class="math inline">\(e^{i\theta}\)</span>. Here the Haar measure is the uniform density <span class="math inline">\(d\theta/(2\pi)\)</span>, and one can see why invariance forces this form. A density on the circle expands in Fourier modes, and rotating the circle multiplies every nonzero mode by a phase. For the density to come back to itself under all rotations, those modes have to vanish, which leaves only the constant term that normalization then sets.</p>
+<p>The same argument reaches into higher dimensions through the determinant. If <span class="math inline">\(U\)</span> is drawn from the Haar measure on <span class="math inline">\(U(D)\)</span>, multiplying it by a global phase rotates <span class="math inline">\(\det U\)</span> around the unit circle, and Haar invariance says this rotation cannot change the distribution. The phase of the determinant is therefore forced to be uniform, a simple signature of Haar randomness that persists in any dimension.</p>
+<p>The notebook samples random unitaries and compares the distribution of the determinant phase against the uniform law.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -617,7 +620,7 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:52.755093Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:52.754954Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:53.282004Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:53.281667Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:21.594442Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:21.594158Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:22.381625Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:22.381095Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -637,12 +640,12 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 <div class="cell-output cell-output-stdout">
 <pre><code>For n≠0, choose α=2π/(3n): e^{inα} − 1 = -1 + exp(2*I*pi/3)
   m=-3: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
-  m=-2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
-  m=-1: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
-  m=+0: ∫ e^{imθ} = 1, ∫ e^{im(θ+α)} = 1</code></pre>
+  m=-2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  m=+1: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
+<pre><code>  m=-1: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
+  m=+0: ∫ e^{imθ} = 1, ∫ e^{im(θ+α)} = 1
+  m=+1: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
   m=+2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
   m=+3: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0</code></pre>
 </div>
@@ -655,7 +658,7 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 </section>
 <section id="figure-sampled-u1-phase-is-uniform" class="level2">
 <h2 class="anchored" data-anchor-id="figure-sampled-u1-phase-is-uniform">Figure: Sampled <span class="math inline">\(U(1)\)</span> phase is uniform</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:53.283403Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:53.283231Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:54.852802Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:54.852522Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:22.383832Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:22.383578Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:24.549580Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:24.549178Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -695,7 +698,7 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>Invariance alone pins down the Haar measure on <span class="math inline">\(U(1)\)</span> as the uniform density <span class="math inline">\(1/(2\pi)\)</span>. The same argument, applied to the determinant, shows that <span class="math inline">\(\det U\)</span> has uniform phase for Haar-random <span class="math inline">\(U \in U(D)\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:30:54.854142Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:30:54.853938Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:30:55.477561Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:30:55.477256Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:24.551708Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:24.551403Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:25.382368Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:25.381972Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -710,23 +713,25 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> unitary_group.rvs(D)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        det_phase <span class="op">=</span> np.angle(np.linalg.det(U)) <span class="op">%</span> (<span class="dv">2</span><span class="op">*</span>np.pi)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        phases.append(det_phase <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>np.pi))  <span class="co"># normalize to [0,1)</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># KS test against uniform[0,1]</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    stat, pval <span class="op">=</span> kstest(phases, <span class="st">'uniform'</span>)</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">: KS statistic = </span><span class="sc">{</span>stat<span class="sc">:.4f}</span><span class="ss">, p-value = </span><span class="sc">{</span>pval<span class="sc">:.4f}</span><span class="ss"> "</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"[</span><span class="sc">{</span><span class="st">'uniform ✓'</span> <span class="cf">if</span> pval <span class="op">&gt;</span> <span class="fl">0.01</span> <span class="cf">else</span> <span class="st">'REJECT'</span><span class="sc">}</span><span class="ss">]"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"[</span><span class="sc">{</span><span class="st">'uniform'</span> <span class="cf">if</span> pval <span class="op">&gt;</span> <span class="fl">0.01</span> <span class="cf">else</span> <span class="st">'REJECT'</span><span class="sc">}</span><span class="ss">]"</span>)</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> pval <span class="op">&gt;</span> <span class="fl">0.01</span></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Determinant phase is uniform for all D. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Determinant phase is uniform for all D."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>D=2: KS statistic = 0.0155, p-value = 0.1817 [uniform ✓]
-D=4: KS statistic = 0.0083, p-value = 0.8809 [uniform ✓]</code></pre>
+<pre><code>D=2: KS statistic = 0.0155, p-value = 0.1817 [uniform]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>D=8: KS statistic = 0.0171, p-value = 0.1080 [uniform ✓]
+<pre><code>D=4: KS statistic = 0.0083, p-value = 0.8809 [uniform]</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>D=8: KS statistic = 0.0171, p-value = 0.1080 [uniform]
 
-Determinant phase is uniform for all D. ✓</code></pre>
+Determinant phase is uniform for all D.</code></pre>
 </div>
 </div>
 

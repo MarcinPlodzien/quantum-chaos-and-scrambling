@@ -567,7 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Training a variational quantum circuit by gradient descent stalls on a barren plateau, a region of parameter space where gradients are exponentially small in the qubit number <span class="math inline">\(N\)</span> and sink below shot noise. For a circuit forming a unitary 2-design, the Weingarten calculus that evaluates Haar moments shows the gradient variance of a global traceless observable decaying as <span class="math inline">\(2^{-N}\)</span>, and this fixes the trainability problem shared across variational quantum algorithms and quantum machine learning. The suppression is specific to the 2-design assumption and to global cost observables, so local costs and circuits too shallow to scramble can avoid it.</p>
+<p>A variational quantum algorithm treats a quantum circuit as a tunable machine. The circuit carries a set of adjustable angles, and a classical optimizer nudges those angles to make some measured cost as small as possible. The method leans on the same idea as rolling a ball downhill, where each step reads the local slope of the cost and moves against it. A barren plateau is the situation where the landscape has gone flat, so the ball sits on a wide level field with no slope that tells it which way to go.</p>
+<p>The flatness is sharp, and it deepens with system size. When the circuit is rich enough to imitate the first two moments of a fully random unitary, a property called a unitary 2-design, the gradient of a global cost has an average of zero and a variance that shrinks like <span class="math inline">\(2^{-N}\)</span> in the number of qubits <span class="math inline">\(N\)</span>. The mean already vanishes by symmetry, so the variance carries the entire signal, and once it drops beneath the noise floor of a finite measurement the optimizer reads a flat slope and stalls.</p>
+<p>The cause is concentration of measure, the tendency of a smooth function on a high-dimensional space to sit almost everywhere near its average. A cost built from a random unitary clusters around its mean with fluctuations that fall off exponentially in the dimension <span class="math inline">\(D = 2^N\)</span>, so nearly every choice of angles returns nearly the same number. The 2-design assumption turns this picture into an identity through the Weingarten calculus, where averaging the squared cost reduces to a short sum over the two permutations of two objects, and for a traceless observable a single term survives to give <span class="math inline">\(\mathrm{Var}[C] = \mathrm{Tr}(O^2)/[D(D+1)]\)</span>.</p>
+<p>Worked out for the total magnetization <span class="math inline">\(O = \sum_j Z_j\)</span>, the trace equals <span class="math inline">\(ND\)</span> and the variance collapses to roughly <span class="math inline">\(N\,2^{-N}\)</span>. The same number sets the experimental price, since resolving a gradient component against its own fluctuations takes on the order of <span class="math inline">\(2^N\)</span> shots, which gate noise makes still harder at depth. Because the suppression rides on the 2-design and on the global reach of the observable, the ways out, a local cost and a shallow circuit, are already visible as the cases where one of those two ingredients is missing.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -675,7 +678,7 @@ C^2 = \sum_{a_1, b_1, a_2, b_2} O_{a_1 b_1}\, O_{a_2 b_2}\, U_{b_1, 0}\, U_{b_2,
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:36.041684Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:36.041499Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:36.293958Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:36.293661Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:58.652598Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:58.652387Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:59.039224Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:59.038639Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -699,7 +702,7 @@ E[C²] = N·D × [Wg(id)+Wg((12))] = N/(D + 1)</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:36.295586Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:36.295430Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:46.519727Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:46.519347Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:59.041356Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:59.041066Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:15.503031Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:15.502069Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -719,18 +722,18 @@ E[C²] = N·D × [Wg(id)+Wg((12))] = N/(D + 1)</code></pre>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(N):</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            Oj <span class="op">=</span> np.kron(Oj, sz <span class="cf">if</span> k <span class="op">==</span> j <span class="cf">else</span> np.eye(<span class="dv">2</span>))</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        O <span class="op">+=</span> Oj</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    psi0 <span class="op">=</span> np.zeros(D, dtype<span class="op">=</span><span class="bu">complex</span>)<span class="op">;</span> psi0[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    costs <span class="op">=</span> []</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>):</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> unitary_group.rvs(D)</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        costs.append((psi0.conj() <span class="op">@</span> U.conj().T <span class="op">@</span> O <span class="op">@</span> U <span class="op">@</span> psi0).real)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    E_C2 <span class="op">=</span> np.mean(np.array(costs)<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> N <span class="op">/</span> (D <span class="op">+</span> <span class="dv">1</span>)</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">  </span><span class="sc">{</span>D<span class="sc">:5d}</span><span class="ss">  </span><span class="sc">{</span>E_C2<span class="sc">:12.6f}</span><span class="ss">  </span><span class="sc">{</span>pred<span class="sc">:10.6f}</span><span class="ss">  </span><span class="sc">{</span>E_C2<span class="op">/</span>pred<span class="sc">:7.3f}</span><span class="ss">"</span>)</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Weingarten prediction N/(D+1) confirmed. Barren plateau. ✓"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Weingarten prediction N/(D+1) confirmed. Barren plateau."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  N      D      E[C²] MC     N/(D+1)    ratio
@@ -751,10 +754,10 @@ E[C²] = N·D × [Wg(id)+Wg((12))] = N/(D + 1)</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>  6     64      0.093065    0.092308    1.008
 
-Weingarten prediction N/(D+1) confirmed. Barren plateau. ✓</code></pre>
+Weingarten prediction N/(D+1) confirmed. Barren plateau.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-20T23:34:46.522735Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-20T23:34:46.522470Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-20T23:34:47.075789Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-20T23:34:47.075466Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:15.506941Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:15.506482Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:16.251417Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:16.250836Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
