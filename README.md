@@ -89,12 +89,6 @@ See the publishing steps below, or `build.sh` for details.
 If this tutorial helps your work, please cite it (see [`CITATION.cff`](CITATION.cff)).
 You can also use the "Cite this repository" button on GitHub.
 
-## Contributing
-
-Found a bug, an unclear explanation, or a result that doesn't reproduce on your
-machine? Please [open an issue or a pull request](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues).
-The notebooks are meant to be poked at.
-
 ## License
 
 Released under the [MIT License](LICENSE), free to use, modify, and share,
