@@ -532,6 +532,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
   <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch3/solution_ch3_page_formula.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -780,6 +781,10 @@ Page formula confirmed: E[S] → ln(m) − m/(2n).</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The average entanglement entropy lies <span class="math inline">\(m/(2n)\)</span> below the maximal <span class="math inline">\(\ln m\)</span>, and Monte Carlo sampling reproduces both the exact Page value and its asymptotic form. Typical random states are close to maximally entangled, with a deficit that vanishes in the large-complement limit.</p>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<p>That a typical pure state is almost maximally entangled is a statement about concentration of measure, the same one that controls the <a href="../../notebooks/ch3/solution_ch3_haar_overlap.html">overlap distribution</a> and <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html">purity concentration</a>. The averaging that produces the Page value is the Haar second moment introduced in the <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html">Weingarten notebooks</a>, which returns in the <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html">classical shadows channel</a> and the <a href="../../notebooks/ch7/solution_ch7_barren_plateau.html">barren plateau variance</a>. The factor one over the dimension that appears here sets the scale of those later results as well.</p>
 
 
 </section>

@@ -67,9 +67,22 @@ Seven short parts, each a *concept page* followed by *runnable notebooks*:
 | [6 · Applications of Scrambling](chapters/06-applications.qmd) | Turn randomness into protocols | 5 |
 | [7 · Quantum Machine Learning](chapters/07-qml.qmd) | Understand trainability through the same lens | 7 |
 
-You can read it front to back as a course, or jump to any notebook, each one
-stands on its own. A companion **[Exercises & Solutions PDF](exercises.qmd)**
-collects analytical problems, worked solutions, and flashcards for every part.
+You can work through it in order, or jump to whatever you need, since each notebook
+stands on its own. A companion **[Exercises & Solutions PDF](exercises.qmd)** collects
+analytical problems, worked solutions, and flashcards for every part.
+
+## One calculation across the chapters
+
+These topics are usually learned separately, from different courses and papers, which
+hides how closely they are tied. The same Haar average keeps coming back. The second
+moment of a random unitary, the twirl that sends an operator to a combination of the
+identity and the swap, is computed once in [Part 3](chapters/03-haar-weingarten.qmd) and
+then returns as the Page formula, the classical shadows channel, the randomized
+benchmarking decay, and the barren-plateau gradient variance. Concentration of measure,
+the shrinking of fluctuations as the dimension grows, ties the entanglement of a typical
+state to the trainability of a quantum model. Where a notebook reuses an object from an
+earlier one, a short Connections note at its end points back to it, so the through-line
+stays visible while you work.
 
 ## Run it in two minutes
 
@@ -86,10 +99,12 @@ libraries.
 
 ## Who this is for
 
-Graduate students and researchers in quantum information, condensed matter, or
-quantum machine learning, and anyone comfortable with linear algebra and Python
-who wants to *compute* with these ideas rather than only read about them. The
-mathematical prerequisites are light and built up as needed in Part 1.
+Graduate students and researchers in quantum information, condensed matter, and
+quantum machine learning, and anyone comfortable with linear algebra and Python who
+wants to *compute* with these ideas rather than only read about them. It is meant in
+particular for people learning these scattered topics on their own, where hands-on,
+runnable material is hard to find. The mathematical prerequisites are light and built up
+as needed in Part 1.
 
 ---
 

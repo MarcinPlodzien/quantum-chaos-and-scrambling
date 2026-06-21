@@ -534,6 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#parts-d-and-e-numerical-implementation" id="toc-parts-d-and-e-numerical-implementation" class="nav-link" data-scroll-target="#parts-d-and-e-numerical-implementation">Parts (d) and (e): Numerical Implementation</a></li>
   <li><a href="#visual-pedagogical-proof" id="toc-visual-pedagogical-proof" class="nav-link" data-scroll-target="#visual-pedagogical-proof">Visual Pedagogical Proof</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -919,6 +920,10 @@ Clifford twirl: any channel → depolarizing.</code></pre>
 <p><img src="solution_ch6_numerical_randomized_benchmarking_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<p>The Clifford twirl that reduces complicated gate noise to a single depolarizing parameter is the second Haar moment again, the same average that builds the <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html">classical shadows channel</a> and gives the <a href="../../notebooks/ch3/solution_ch3_page_formula.html">Page formula</a>. The exponential decay you fit here is the experimental shadow of that one calculation, which is why benchmarking and shadow tomography rest on the same theory.</p>
 
 
 </section>

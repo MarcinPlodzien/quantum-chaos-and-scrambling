@@ -533,6 +533,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
   <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch6/solution_ch6_tripartite_mutual_information.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -795,6 +796,10 @@ Negative I₃ at finite d, on the exact Page curve: information delocalization c
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>For a Haar-random state on four equal parts the pairwise informations <span class="math inline">\(I(A:B)\)</span> and <span class="math inline">\(I(A:C)\)</span> vanish while <span class="math inline">\(I(A:BC)\)</span> saturates, so <span class="math inline">\(I_3\)</span> is negative at every dimension and the information about <span class="math inline">\(A\)</span> lives in correlations spread across <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>. The leading asymptote is <span class="math inline">\(-2\ln d\)</span>, but at the accessible small dimensions the simulated points track the exact Page curve, with the negativity itself robust against those <span class="math inline">\(O(1)\)</span> corrections.</p>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<p>A negative tripartite mutual information is the information-theoretic fingerprint of the scrambling that the <a href="../../notebooks/ch4/solution_ch4_commutator_fidelity_identity.html">OTOC</a> probes dynamically, so this notebook and the OTOC notebooks describe the same delocalization in different languages. Its value is set by the <a href="../../notebooks/ch3/solution_ch3_page_formula.html">Page formula</a>, which is why a question about black-hole information reduces to a calculation about typical entanglement.</p>
 
 
 </section>

@@ -531,6 +531,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
   <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch3/solution_ch3_weingarten_first_moment.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -695,6 +696,10 @@ First moment formula: trace factorization confirmed.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>Haar-averaging a conjugated operator keeps only its trace, so <span class="math inline">\(\mathbb{E}_U[\mathrm{Tr}(U A U^\dagger B)] = \mathrm{Tr}(A)\,\mathrm{Tr}(B)/D\)</span>. All directional information in <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is washed out, leaving a product of traces divided by the dimension.</p>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<p>This notebook computes the first Haar moment, the average of a single copy of a random unitary. Its second-moment partner, the twirl that sends an operator to a combination of the identity and the swap, is the single most reused calculation in the tutorial. It appears in the <a href="../../notebooks/ch3/solution_ch3_swap_trick.html">SWAP trick</a> and the <a href="../../notebooks/ch3/solution_ch3_page_formula.html">Page formula</a>, then returns far from random states in the <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html">classical shadows channel</a>, the <a href="../../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.html">randomized benchmarking</a> decay, and the <a href="../../notebooks/ch7/solution_ch7_barren_plateau.html">barren plateau variance</a>. Recognizing it once means you have already done most of those later calculations.</p>
 
 
 </section>

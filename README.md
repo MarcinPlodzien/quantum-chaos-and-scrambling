@@ -9,13 +9,13 @@
 
 A surprising amount of modern quantum theory rests on one question: **what happens
 when you average over random quantum evolutions?** This tutorial builds that
-toolkit once — the Haar measure and the Weingarten calculus — and follows it
+toolkit once, the Haar measure and the Weingarten calculus, and follows it
 across random matrix theory, scrambling dynamics, unitary designs, classical
 shadows, and the trainability of quantum machine-learning models.
 
 Everything is **self-contained and runnable**: 41 short Jupyter notebooks, each
 demonstrating one result, plus a complete set of worked exercises. No quantum
-hardware, no special libraries — just `numpy`, `scipy`, and `matplotlib`.
+hardware, no special libraries, just `numpy`, `scipy`, and `matplotlib`.
 
 > **Read it online:** <https://marcinplodzien.github.io/quantum-chaos-and-scrambling/>
 
@@ -25,19 +25,19 @@ hardware, no special libraries — just `numpy`, `scipy`, and `matplotlib`.
 
 | Chapter | Topic | Notebooks |
 |---|---|---|
-| 1 | Mathematical Foundations — channels, Lie algebras, state geometry, measure theory | 14 |
-| 2 | Random Matrix Theory — level repulsion, the semicircle law | 3 |
-| 3 | Haar Measure & Weingarten Calculus — twirling, the Page formula, concentration | 7 |
-| 4 | Quantum Dynamics & Chaos — OTOCs, the spectral form factor, Krylov complexity | 3 |
-| 5 | Designs & Clifford Ensembles — $t$-designs, magic / stabilizer Rényi entropy | 2 |
-| 6 | Applications of Scrambling — classical shadows, randomized benchmarking, Hayden–Preskill | 5 |
-| 7 | Quantum Machine Learning — barren plateaus, quantum kernels, reservoir computing | 7 |
+| 1 | Mathematical Foundations, channels, Lie algebras, state geometry, measure theory | 14 |
+| 2 | Random Matrix Theory, level repulsion, the semicircle law | 3 |
+| 3 | Haar Measure & Weingarten Calculus, twirling, the Page formula, concentration | 7 |
+| 4 | Quantum Dynamics & Chaos, OTOCs, the spectral form factor, Krylov complexity | 3 |
+| 5 | Designs & Clifford Ensembles, $t$-designs, magic / stabilizer Rényi entropy | 2 |
+| 6 | Applications of Scrambling, classical shadows, randomized benchmarking, Hayden-Preskill | 5 |
+| 7 | Quantum Machine Learning, barren plateaus, quantum kernels, reservoir computing | 7 |
 
-- **`source_notebooks/`** — the 41 tutorial notebooks (clean, output-free).
-- **`verify_exercises/`** — standalone Python scripts that numerically check the key results.
-- **`exercises_and_solutions_complete.pdf`** — all exercises with full step-by-step solutions, flashcards, and derivation blueprints, interleaved by chapter.
-- **`chapters/`, `index.qmd`, `_quarto.yml`** — the source of the website.
-- **`docs/`** — the pre-built website (served by GitHub Pages).
+- **`source_notebooks/`**, the 41 tutorial notebooks (clean, output-free).
+- **`verify_exercises/`**, standalone Python scripts that numerically check the key results.
+- **`exercises_and_solutions_complete.pdf`**, all exercises with full step-by-step solutions, flashcards, and derivation blueprints, interleaved by chapter.
+- **`chapters/`, `index.qmd`, `_quarto.yml`**, the source of the website.
+- **`docs/`**, the pre-built website (served by GitHub Pages).
 
 ## Quick start
 
@@ -57,11 +57,12 @@ python verify_exercises/solution_ch7_barren_plateau.py
 
 ## How to use it
 
-- **As a course** — read the chapters in order on the website; each concept page is
-  followed by its runnable notebooks, and the exercises PDF lets you self-test.
-- **As a reference** — jump to any notebook; they stand on their own.
-- **In teaching** — the notebooks, exercises, and flashcards are built to drop
-  straight into a lecture or problem set.
+- **Learning on your own.** Work through the parts in order on the website. Each concept
+  page is followed by its runnable notebooks, and the exercises PDF lets you test yourself.
+- **As a reference.** Jump to any notebook. Each one stands on its own, and a short
+  Connections note links it to the related notebooks.
+- **For teaching.** The notebooks, exercises, and flashcards drop straight into a lecture
+  or problem set.
 
 ## Rebuilding the website
 
@@ -70,7 +71,7 @@ executed at build time so the published pages include all plots and results;
 the source notebooks are kept output-free for clean diffs.
 
 ```bash
-bash build.sh        # prep → execute notebooks → render into ./docs (15–30 min)
+bash build.sh        # prep → execute notebooks → render into ./docs (15-30 min)
 ```
 
 See the publishing steps below, or `build.sh` for details.
@@ -103,5 +104,5 @@ The notebooks are meant to be poked at.
 
 ## License
 
-Released under the [MIT License](LICENSE) — free to use, modify, and share,
+Released under the [MIT License](LICENSE), free to use, modify, and share,
 with attribution.

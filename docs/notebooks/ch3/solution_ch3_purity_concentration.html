@@ -533,6 +533,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
   <li><a href="#visual-pedagogical-proof" id="toc-visual-pedagogical-proof" class="nav-link" data-scroll-target="#visual-pedagogical-proof">Visual Pedagogical Proof</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch3/solution_ch3_purity_concentration.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -765,6 +766,10 @@ Concentration sharpens with D: std(γ) → 0.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The subsystem purity concentrates on its mean <span class="math inline">\((m+n)/(mn+1)\)</span> with a spread that shrinks exponentially in the qubit number, so by around 22 qubits a deviation past <span class="math inline">\(0.01\)</span> has probability below one in a million. A single random state then reproduces the ensemble-averaged purity.</p>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<p>The collapse of purity fluctuations as the dimension grows is concentration of measure, the same effect behind the <a href="../../notebooks/ch3/solution_ch3_page_formula.html">Page formula</a> and the <a href="../../notebooks/ch3/solution_ch3_haar_overlap.html">overlap distribution</a>. In quantum machine learning it reappears with the opposite sign of usefulness, where the <a href="../../notebooks/ch7/solution_ch7_quantum_kernel_concentration.html">kernel</a> and <a href="../../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.html">feature</a> values concentrate so tightly that the data they encode becomes invisible.</p>
 
 
 </section>

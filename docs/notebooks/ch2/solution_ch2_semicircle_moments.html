@@ -532,6 +532,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
   <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch2/solution_ch2_semicircle_moments.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -764,6 +765,10 @@ Catalan moments confirmed.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The even moments of the semicircle are the Catalan numbers, with <span class="math inline">\(m_2 = 1\)</span> and <span class="math inline">\(m_4 = 2\)</span>. A histogram of GUE eigenvalues fills out the semicircle on <span class="math inline">\([-2, 2]\)</span>, matching the analytic density.</p>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<p>The even moments of the semicircle are Catalan numbers, and they count the non-crossing pairings of the matrix indices. That same counting is what makes the <a href="../../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.html">Weingarten calculus</a> tractable, where Haar averages reduce to sums over permutations and the leading contributions are again the non-crossing ones. The fluctuations around this average density are what produce the <a href="../../notebooks/ch2/solution_ch2_goe_spacing.html">level repulsion</a> measured by the spacing distribution.</p>
 
 
 </section>

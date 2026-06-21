@@ -533,6 +533,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
   <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -788,6 +789,10 @@ C-F identity and Haar scrambling confirmed.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The identity <span class="math inline">\(C(t) = 2\,(1 - \mathrm{Re}\,F(t))\)</span> holds exactly for unitary <span class="math inline">\(W\)</span> and <span class="math inline">\(V\)</span>, so the two curves coincide at every time. Under chaotic dynamics <span class="math inline">\(C(t)\)</span> climbs from zero while <span class="math inline">\(F \to 0\)</span>, reaching the fully scrambled value <span class="math inline">\(C \to 2\)</span>.</p>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<p>The out-of-time-ordered correlator measured here is the standard dynamical diagnostic of scrambling. Its information-theoretic counterpart is the <a href="../../notebooks/ch6/solution_ch6_tripartite_mutual_information.html">tripartite mutual information</a>, which detects the same delocalization of information, and its Clifford special case is the <a href="../../notebooks/ch5/solution_ch5_clifford_otoc.html">discrete OTOC</a>, where the smooth growth degenerates into two values. Reading these together shows how one physical idea is captured by very different observables.</p>
 
 
 </section>
