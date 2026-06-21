@@ -35,6 +35,9 @@ else
   quarto render
 fi
 
+# GitHub Pages needs .nojekyll so underscore-prefixed asset folders are served.
+touch docs/.nojekyll
+
 echo "==> [2/3] Committing changes..."
 git add -A
 if git diff --cached --quiet; then
