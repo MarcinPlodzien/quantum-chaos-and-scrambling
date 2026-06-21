@@ -582,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="preliminaries-toolbox">Preliminaries / Toolbox</h2>
 <p>Before diving into the solution, recall the following concepts:</p>
 <p><strong>1. Cost Functions in VQAs:</strong> The objective is <span class="math inline">\(C(\boldsymbol{\theta}) = \langle 0| U^\dagger(\boldsymbol{\theta}) O U(\boldsymbol{\theta}) |0\rangle\)</span>.</p>
-<p><strong>2. Global vs.&nbsp;Local Observables:</strong> A global cost relies on an observable that acts non-trivially on all qubits, e.g., <span class="math inline">\(O_G = |0\rangle\langle 0|^{\otimes N}\)</span>. A local cost is a sum of local terms, e.g., <span class="math inline">\(O_L = \frac{1}{N}\sum_j |0\rangle\langle 0|_j\)</span>.</p>
+<p><strong>2. Global vs.&nbsp;Local Observables:</strong> A global cost relies on an observable that acts non-trivially on all qubits, e.g., the traceless global projector <span class="math inline">\(O_G = |0\rangle\langle 0|^{\otimes N} - I/D\)</span>. A local cost is a sum of local terms, e.g., <span class="math inline">\(O_L = \frac{1}{N}\sum_j Z_j\)</span>.</p>
 <p><strong>3. Barren Plateaus (2-design):</strong> If <span class="math inline">\(U(\boldsymbol{\theta})\)</span> forms a 2-design, the variance of the cost function is <span class="math inline">\(\mathrm{Var}[C] = \frac{\mathrm{Tr}(O^2)}{D(D+1)}\)</span> where <span class="math inline">\(D=2^N\)</span>.</p>
 <p><strong>4. Trace properties:</strong> <span class="math inline">\(\mathrm{Tr}(A \otimes B) = \mathrm{Tr}(A)\mathrm{Tr}(B)\)</span>. The dimension is <span class="math inline">\(D=2^N\)</span>.</p>
 </section>
@@ -664,50 +664,47 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:38.430490Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:38.430338Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:38.644756Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:38.644300Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:02:27.046674Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:02:27.046476Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:02:27.216363Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:02:27.215833Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>D, N_sym <span class="op">=</span> sp.symbols(<span class="st">'D N'</span>, positive<span class="op">=</span><span class="va">True</span>, integer<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Global cost: O_G = |0&gt;&lt;0|^N, Tr(O_G^2) = 1</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Local cost: O_L = (1/N) sum_j |0&gt;&lt;0|_j, Tr(O_L^2) = 1/N</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Var_global <span class="op">=</span> sp.Rational(<span class="dv">1</span>,<span class="dv">1</span>) <span class="op">/</span> (D <span class="op">*</span> (D <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Var_local <span class="op">=</span> sp.Rational(<span class="dv">1</span>,<span class="dv">1</span>) <span class="op">/</span> (N_sym <span class="op">*</span> D <span class="op">*</span> (D <span class="op">+</span> <span class="dv">1</span>)) <span class="op">*</span> N_sym  <span class="co"># trace is 1/N * N terms</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Actually for local cost:</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Tr(O_L^2) = (1/N^2) * [N*Tr(|0&gt;&lt;0|_j^2 tensor I) + cross terms]</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># For 2-design: Var_local ~ N * 2^(-N) / N = 2^(-N)</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># vs Var_global ~ 2^(-2N)</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Variance scaling (2-design circuits):'</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Global cost: Var ~ 1/D^2 = 2^(-2N)'</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Local cost:  Var ~ 1/D   = 2^(-N)'</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">10</span>):</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>n</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  N=</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">: Global=</span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>d<span class="op">**</span><span class="dv">2</span><span class="sc">:.2e}</span><span class="ss">, Local=</span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>d<span class="sc">:.2e}</span><span class="ss">, ratio=</span><span class="sc">{</span>d<span class="sc">:.0f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Traceless observables:  Tr(O_G^2) = (D-1)/D ~ O(1),  Tr(O_L^2) = D/N</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-design gradient variance ~ Tr(O^2)/(D(D+1)):</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   Global: Var_G ~ 1/(D(D+1))   ~ 2^(-2N)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   Local:  Var_L = (D/N)/(D(D+1)) = 1/(N(D+1)) ~ 2^(-N)/N</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Variance scaling (2-design circuits):'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Global cost: Tr(O_G^2) ~ 1    -&gt;  Var_G ~ 1/D^2   = 2^(-2N)'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Local cost:  Tr(O_L^2) = D/N  -&gt;  Var_L ~ 1/(N D) = 2^(-N)/N'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">10</span>):</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>n</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    var_g <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(d<span class="op">*</span>(d<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    var_l <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(n<span class="op">*</span>(d<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  N=</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">: Var_G=</span><span class="sc">{</span>var_g<span class="sc">:.2e}</span><span class="ss">, Var_L=</span><span class="sc">{</span>var_l<span class="sc">:.2e}</span><span class="ss">, ratio Var_L/Var_G=</span><span class="sc">{</span>var_l<span class="op">/</span>var_g<span class="sc">:.1f}</span><span class="ss">  (~D/N=</span><span class="sc">{</span>d<span class="op">/</span>n<span class="sc">:.1f}</span><span class="ss">)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Variance scaling (2-design circuits):
-  Global cost: Var ~ 1/D^2 = 2^(-2N)
-  Local cost:  Var ~ 1/D   = 2^(-N)
+  Global cost: Tr(O_G^2) ~ 1    -&gt;  Var_G ~ 1/D^2   = 2^(-2N)
+  Local cost:  Tr(O_L^2) = D/N  -&gt;  Var_L ~ 1/(N D) = 2^(-N)/N
 
-  N=2: Global=6.25e-02, Local=2.50e-01, ratio=4
-  N=3: Global=1.56e-02, Local=1.25e-01, ratio=8
-  N=4: Global=3.91e-03, Local=6.25e-02, ratio=16
-  N=5: Global=9.77e-04, Local=3.12e-02, ratio=32
-  N=6: Global=2.44e-04, Local=1.56e-02, ratio=64
-  N=7: Global=6.10e-05, Local=7.81e-03, ratio=128
-  N=8: Global=1.53e-05, Local=3.91e-03, ratio=256
-  N=9: Global=3.81e-06, Local=1.95e-03, ratio=512</code></pre>
+  N=2: Var_G=5.00e-02, Var_L=1.00e-01, ratio Var_L/Var_G=2.0  (~D/N=2.0)
+  N=3: Var_G=1.39e-02, Var_L=3.70e-02, ratio Var_L/Var_G=2.7  (~D/N=2.7)
+  N=4: Var_G=3.68e-03, Var_L=1.47e-02, ratio Var_L/Var_G=4.0  (~D/N=4.0)
+  N=5: Var_G=9.47e-04, Var_L=6.06e-03, ratio Var_L/Var_G=6.4  (~D/N=6.4)
+  N=6: Var_G=2.40e-04, Var_L=2.56e-03, ratio Var_L/Var_G=10.7  (~D/N=10.7)
+  N=7: Var_G=6.06e-05, Var_L=1.11e-03, ratio Var_L/Var_G=18.3  (~D/N=18.3)
+  N=8: Var_G=1.52e-05, Var_L=4.86e-04, ratio Var_L/Var_G=32.0  (~D/N=32.0)
+  N=9: Var_G=3.81e-06, Var_L=2.17e-04, ratio Var_L/Var_G=56.9  (~D/N=56.9)</code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:38.647119Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:38.646559Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:39.563957Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:39.563327Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:02:27.218286Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:02:27.218036Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:02:28.020931Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:02:28.020445Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -738,7 +735,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The global cost decays as <span class="math inline">\(2^{-2N}\)</span> and the local cost as <span class="math inline">\(2^{-N}\)</span>, a separation of order <span class="math inline">\(2^N/N\)</span> that comes entirely from <span class="math inline">\(\mathrm{Tr}(O^2)\sim D/N\)</span> for the local observable against <span class="math inline">\(O(1)\)</span> for the global one. Locality halves the exponent of the plateau, so cost-function design sets the boundary between trainable and untrainable circuits at fixed depth.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:41:39.565860Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:41:39.565601Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:41:51.420238Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:41:51.419696Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:02:28.022860Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:02:28.022575Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:02:37.203963Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:02:37.203547Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>

@@ -606,9 +606,9 @@ H_1 = \sigma_z \otimes I, \qquad H_2 = I \otimes \sigma_z, \qquad H_3 = \sigma_x
 <p><span class="math display">\[
 [H_1, H_3] = [\sigma_z, \sigma_x] \otimes I \cdot \sigma_x = [\sigma_z, \sigma_x] \otimes \sigma_x.
 \]</span></p>
-<p>Using the Pauli commutation relation <span class="math inline">\([\sigma_z, \sigma_x] = -2i\sigma_y\)</span>:</p>
+<p>Using the Pauli commutation relation <span class="math inline">\([\sigma_z, \sigma_x] = 2i\sigma_y\)</span>:</p>
 <p><span class="math display">\[
-[-iH_1, -iH_3] = -[H_1, H_3] = 2i\,\sigma_y \otimes \sigma_x.
+[-iH_1, -iH_3] = -[H_1, H_3] = -2i\,\sigma_y \otimes \sigma_x.
 \]</span></p>
 <p>This produces a <strong>new generator</strong> <span class="math inline">\(\sigma_y \otimes \sigma_x\)</span> not in the original set.</p>
 </section>
@@ -638,7 +638,7 @@ H_1 = \sigma_z \otimes I, \qquad H_2 = I \otimes \sigma_z, \qquad H_3 = \sigma_x
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:04.001633Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:04.001351Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:04.299006Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:04.298590Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:26.788088Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:26.787816Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:27.041787Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:27.041420Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -689,7 +689,7 @@ dim(su(n)) = n**2 - 1
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:04.300977Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:04.300711Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:04.356786Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:04.356375Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:27.043289Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:27.043122Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:27.091162Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:27.090209Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -733,7 +733,7 @@ dim(su(n)) = n**2 - 1
 <pre><code>DLA dimension: 6 (expected 6)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:35:04.361392Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:35:04.361097Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:35:04.366437Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:35:04.365989Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:27.093212Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:27.092969Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:27.098484Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:27.098093Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify parity commutation</span></span>

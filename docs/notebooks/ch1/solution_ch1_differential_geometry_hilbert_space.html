@@ -633,7 +633,7 @@ d_{\mathrm{FS}}(|\psi\rangle, |\phi\rangle) = \arccos |\langle \psi | \phi \rang
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">5. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:55.573386Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:55.573096Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:56.165822Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:56.165093Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:20.596098Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:20.595929Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:20.957381Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:20.957057Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -689,7 +689,7 @@ g_tp = 0
 FS metric = (1/4)(dtheta^2 + sin^2 theta dphi^2) VERIFIED!</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:56.168162Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:56.167821Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:56.336872Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:56.336437Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:20.958874Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:20.958668Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:21.088816Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:21.088385Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Part (b): Berry curvature</span></span>
@@ -720,7 +720,7 @@ Berry curvature F_tp = -sin(theta)/2: VERIFIED!
 Total flux = -2*pi (Chern number c_1 = -1)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:56.338909Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:56.338635Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:56.351465Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:56.351058Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:21.090312Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:21.090062Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:21.100510Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:21.100088Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parts (c)-(d): QFI</span></span>
@@ -773,7 +773,7 @@ Geodesic distances VERIFIED!</code></pre>
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">6. Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:56.353274Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:56.353127Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:56.360923Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:56.360543Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:21.101953Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:21.101763Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:21.108139Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:21.107800Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -846,7 +846,7 @@ All checks PASS!</code></pre>
 </section>
 <section id="figure-geometric-tensor-components-vs-the-polar-angle" class="level2">
 <h2 class="anchored" data-anchor-id="figure-geometric-tensor-components-vs-the-polar-angle">8. Figure: Geometric tensor components vs the polar angle</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:56.362790Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:56.362517Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:56.995278Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:56.994903Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:21.109482Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:21.109276Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:21.569119Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:21.568664Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -882,7 +882,7 @@ All checks PASS!</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The qubit quantum geometric tensor has real part <span class="math inline">\(\mathrm{diag}(1/4,\sin^2\theta/4)\)</span>, the Fubini-Study metric of a sphere of radius <span class="math inline">\(1/2\)</span>, and imaginary part the Berry curvature <span class="math inline">\(-\sin\theta/2\)</span>, whose total flux gives the Chern number <span class="math inline">\(-1\)</span>. The quantum Fisher information <span class="math inline">\(F_Q=1-(\hat n\cdot\langle\boldsymbol\sigma\rangle_0)^2\)</span> vanishes exactly when the generator’s axis aligns with the initial Bloch vector.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:34:56.997133Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:34:56.996881Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:34:57.531030Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:34:57.530590Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:21.570718Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:21.570513Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:21.957300Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:21.957015Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

@@ -634,7 +634,7 @@ P(\chi) = (D-1)(1-\chi)^{D-2}, \qquad \chi \in [0, 1].
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:59.619549Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:59.619418Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:36:59.951067Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:36:59.950626Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:58:56.966364Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:58:56.966156Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:58:57.249592Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:58:57.249065Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -685,7 +685,7 @@ Typical overlap for N qubits:
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:36:59.952972Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:36:59.952704Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:37:14.815696Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:37:14.815028Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:58:57.251210Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:58:57.251005Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:59:08.875486Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:59:08.875071Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -712,7 +712,7 @@ Typical overlap for N qubits:
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>D<span class="sc">:5d}</span><span class="ss">  </span><span class="sc">{</span>E_chi<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>D<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>V_chi<span class="sc">:10.6f}</span><span class="ss">  </span><span class="sc">{</span>V_pred<span class="sc">:10.6f}</span><span class="ss">  </span><span class="sc">{</span>rel<span class="sc">:8.4f}</span><span class="ss">"</span>)</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(E_chi <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>D) <span class="op">&lt;</span> <span class="fl">0.01</span></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Concentration: σ/μ → 0 as D → ∞."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Concentration: absolute spread σ → 0, but σ/μ → 1 (order one)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    D      E[χ]       1/D      Var(χ)        pred       σ/μ
@@ -733,10 +733,10 @@ Typical overlap for N qubits:
 <div class="cell-output cell-output-stdout">
 <pre><code>   32    0.0311    0.0312    0.000925    0.000917    0.9770
 
-Concentration: σ/μ → 0 as D → ∞.</code></pre>
+Concentration: absolute spread σ → 0, but σ/μ → 1 (order one).</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:37:14.817793Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:37:14.817515Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:37:19.808392Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:37:19.807644Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:59:08.877486Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:59:08.876945Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:59:12.993458Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:59:12.993037Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

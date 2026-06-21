@@ -655,7 +655,7 @@ c \equiv \mathrm{Wg}(e) + \mathrm{Wg}(\text{swap}) = \frac{1}{D^2-1}\Big(1 - \fr
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:48.592641Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:48.592485Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:48.901403Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:48.900874Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:49.545091Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:49.544832Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:49.809102Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:49.808652Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -671,27 +671,22 @@ c \equiv \mathrm{Wg}(e) + \mathrm{Wg}(\text{swap}) = \frac{1}{D^2-1}\Big(1 - \fr
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Wg(id, D) = </span><span class="sc">{</span>Wg_id<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Wg((12), D) = </span><span class="sc">{</span>Wg_swap<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># The channel acts as: M(rho) = alpha*rho + beta*Tr(rho)*I</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> sp.simplify(D<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> Wg_id <span class="op">+</span> D <span class="op">*</span> Wg_swap)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> sp.simplify(D <span class="op">*</span> Wg_id <span class="op">+</span> D<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> Wg_swap)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize by D (number of basis outcomes)</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Actually: alpha_norm = 1/(D+1), beta_norm = 1/(D+1)</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Channel coefficients (before normalization):'</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  alpha = </span><span class="sc">{</span>sp<span class="sc">.</span>simplify(alpha)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  beta  = </span><span class="sc">{</span>sp<span class="sc">.</span>simplify(beta)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Inversion</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Inversion map: M^(-1)(tau) = (D+1)*tau - Tr(tau)*I'</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  For D=2: M^(-1)(tau) = 3*tau - I'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># The k=2 twirl coefficient is D*(Wg_id + Wg_swap):</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>coeff <span class="op">=</span> sp.simplify(D <span class="op">*</span> (Wg_id <span class="op">+</span> Wg_swap))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Channel coefficient  D*(Wg_id + Wg_swap) = </span><span class="sc">{</span>coeff<span class="sc">}</span><span class="ss">'</span>)   <span class="co"># = 1/(D+1)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  so  M(rho) = (rho + Tr(rho) I)/(D+1)'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Inversion</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Inversion map: M^(-1)(tau) = (D+1)*tau - Tr(tau)*I'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  For D=2: M^(-1)(tau) = 3*tau - I'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Weingarten functions for S_2:
   Wg(id, D) = 1/(D**2 - 1)
   Wg((12), D) = -1/(D*(D**2 - 1))
 
-Channel coefficients (before normalization):
-  alpha = 1
-  beta  = 0
+Channel coefficient  D*(Wg_id + Wg_swap) = 1/(D + 1)
+  so  M(rho) = (rho + Tr(rho) I)/(D+1)
 
 Inversion map: M^(-1)(tau) = (D+1)*tau - Tr(tau)*I
   For D=2: M^(-1)(tau) = 3*tau - I</code></pre>
@@ -705,7 +700,7 @@ Inversion map: M^(-1)(tau) = (D+1)*tau - Tr(tau)*I
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The shadow channel scales the traceless part of a state by <span class="math inline">\(1/(D+1)\)</span> and leaves the identity fixed, so it inverts to <span class="math inline">\(\mathcal{M}^{-1}(\tau)=(D+1)\tau-\mathrm{Tr}(\tau)\,I\)</span> and turns each snapshot into an unbiased estimator of <span class="math inline">\(\rho\)</span>. The factor <span class="math inline">\(D+1\)</span> is the dimension of the symmetric subspace appearing in the <span class="math inline">\(k=2\)</span> Weingarten formula.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:40:48.903343Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:40:48.903132Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:40:49.011306Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:40:49.010821Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:49.810586Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:49.810406Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:49.856897Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:49.856540Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>

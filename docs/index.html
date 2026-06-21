@@ -607,7 +607,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="one-calculation-across-the-chapters" class="level2">
 <h2 class="anchored" data-anchor-id="one-calculation-across-the-chapters">One calculation across the chapters</h2>
-<p>These topics are usually learned separately, from different courses and papers, which hides how closely they are tied. The same Haar average keeps coming back. The second moment of a random unitary, the twirl that sends an operator to a combination of the identity and the swap, is computed once in <a href="./chapters/03-haar-weingarten.html">Part 3</a> and then returns as the Page formula, the classical shadows channel, the randomized benchmarking decay, and the barren-plateau gradient variance. Concentration of measure, the shrinking of fluctuations as the dimension grows, ties the entanglement of a typical state to the trainability of a quantum model. Where a notebook reuses an object from an earlier one, a short Connections note at its end points back to it, so the through-line stays visible while you work.</p>
+<p>A single object recurs throughout the tutorial. The second moment of a random unitary, the twirl that sends an operator to a combination of the identity and the swap, is worked out in <a href="./chapters/03-haar-weingarten.html">Part 3</a> and then reused in the Page formula, the classical shadows channel, the randomized benchmarking decay, and the barren-plateau gradient variance. Concentration of measure, the shrinking of fluctuations as the dimension grows, likewise links the entanglement of a typical state with the trainability of a quantum model. Where a notebook reuses a result from an earlier one, a short Connections note at its end points back to it.</p>
 </section>
 <section id="run-it-in-two-minutes" class="level2">
 <h2 class="anchored" data-anchor-id="run-it-in-two-minutes">Run it in two minutes</h2>
@@ -621,20 +621,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="who-this-is-for">Who this is for</h2>
 <p>Graduate students and researchers in quantum information, condensed matter, and quantum machine learning, and anyone comfortable with linear algebra and Python who wants to <em>compute</em> with these ideas rather than only read about them. It is meant in particular for people learning these scattered topics on their own, where hands-on, runnable material is hard to find. The mathematical prerequisites are light and built up as needed in Part 1.</p>
 <hr>
-<div class="callout-tip callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>This tutorial is the open, hands-on companion to the monograph <em>Quantum Chaos and Information Scrambling: From Random Matrix Theory to Quantum Machine Learning</em>. It is designed to stand entirely on its own. Suggestions and fixes are welcome, please <a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling">open an issue or pull request</a>.</p>
-</div>
-</div>
-</div>
 </section>
 <section id="about-the-author" class="level2">
 <h2 class="anchored" data-anchor-id="about-the-author">About the author</h2>
 <p><strong>Marcin Płodzień</strong></p>
+<p>Theoretical physicist working in the field of many-body systems, with a focus on quantum simulators and deep learning for quantum mechanics.</p>
 <p><a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Google Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">Web of Science</a></p>
 
 
@@ -1030,58 +1021,52 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## One calculation across the chapters</span></span>
 <span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>These topics are usually learned separately, from different courses and papers, which</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>hides how closely they are tied. The same Haar average keeps coming back. The second</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>moment of a random unitary, the twirl that sends an operator to a combination of the</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>identity and the swap, is computed once in <span class="co">[</span><span class="ot">Part 3</span><span class="co">](chapters/03-haar-weingarten.qmd)</span> and</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>then returns as the Page formula, the classical shadows channel, the randomized</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>benchmarking decay, and the barren-plateau gradient variance. Concentration of measure,</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>the shrinking of fluctuations as the dimension grows, ties the entanglement of a typical</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>state to the trainability of a quantum model. Where a notebook reuses an object from an</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>earlier one, a short Connections note at its end points back to it, so the through-line</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>stays visible while you work.</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>A single object recurs throughout the tutorial. The second moment of a random unitary,</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>the twirl that sends an operator to a combination of the identity and the swap, is worked</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>out in <span class="co">[</span><span class="ot">Part 3</span><span class="co">](chapters/03-haar-weingarten.qmd)</span> and then reused in the Page formula, the</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>classical shadows channel, the randomized benchmarking decay, and the barren-plateau</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>gradient variance. Concentration of measure, the shrinking of fluctuations as the</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>dimension grows, likewise links the entanglement of a typical state with the trainability</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>of a quantum model. Where a notebook reuses a result from an earlier one, a short</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>Connections note at its end points back to it.</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## Run it in two minutes</span></span>
 <span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="fu">## Run it in two minutes</span></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling</span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quantum-chaos-and-scrambling</span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab <span class="co"># open any notebook under source_notebooks/</span></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>Everything runs on a laptop with a standard scientific-Python stack</span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>(<span class="in">`numpy`</span>, <span class="in">`scipy`</span>, <span class="in">`matplotlib`</span>). No quantum hardware, no GPUs, no special</span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>libraries.</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quantum-chaos-and-scrambling</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab <span class="co"># open any notebook under source_notebooks/</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>Everything runs on a laptop with a standard scientific-Python stack</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>(<span class="in">`numpy`</span>, <span class="in">`scipy`</span>, <span class="in">`matplotlib`</span>). No quantum hardware, no GPUs, no special</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>libraries.</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Who this is for</span></span>
 <span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Who this is for</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>Graduate students and researchers in quantum information, condensed matter, and</span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>quantum machine learning, and anyone comfortable with linear algebra and Python who</span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>wants to *compute* with these ideas rather than only read about them. It is meant in</span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>particular for people learning these scattered topics on their own, where hands-on,</span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>runnable material is hard to find. The mathematical prerequisites are light and built up</span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>as needed in Part 1.</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>Graduate students and researchers in quantum information, condensed matter, and</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>quantum machine learning, and anyone comfortable with linear algebra and Python who</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>wants to *compute* with these ideas rather than only read about them. It is meant in</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>particular for people learning these scattered topics on their own, where hands-on,</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>runnable material is hard to find. The mathematical prerequisites are light and built up</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>as needed in Part 1.</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the author</span></span>
 <span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="simple" icon=false}</span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>This tutorial is the open, hands-on companion to the monograph *Quantum Chaos and</span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>Information Scrambling: From Random Matrix Theory to Quantum Machine Learning*.</span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>It is designed to stand entirely on its own. Suggestions and fixes are welcome, </span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>please <span class="co">[</span><span class="ot">open an issue or pull request</span><span class="co">](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling)</span>.</span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the author</span></span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>**Marcin Płodzień**</span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Email</span><span class="co">](mailto:mplodzien@gmail.com)</span> ·</span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">ORCID</span><span class="co">](https://orcid.org/0000-0002-0835-1644)</span> ·</span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Google Scholar</span><span class="co">](https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en)</span> ·</span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://github.com/MarcinPlodzien)</span> ·</span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Scopus</span><span class="co">](https://www.scopus.com/authid/detail.uri?authorId=55031869100)</span> ·</span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Web of Science</span><span class="co">](https://www.webofscience.com/wos/author/record/K-7326-2017)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>**Marcin Płodzień**</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>Theoretical physicist working in the field of many-body systems, with a focus on quantum</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>simulators and deep learning for quantum mechanics.</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Email</span><span class="co">](mailto:mplodzien@gmail.com)</span> ·</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">ORCID</span><span class="co">](https://orcid.org/0000-0002-0835-1644)</span> ·</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Google Scholar</span><span class="co">](https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en)</span> ·</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://github.com/MarcinPlodzien)</span> ·</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Scopus</span><span class="co">](https://www.scopus.com/authid/detail.uri?authorId=55031869100)</span> ·</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Web of Science</span><span class="co">](https://www.webofscience.com/wos/author/record/K-7326-2017)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

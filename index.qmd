@@ -77,16 +77,14 @@ analytical problems, worked solutions, and flashcards for every part.
 
 ## One calculation across the chapters
 
-These topics are usually learned separately, from different courses and papers, which
-hides how closely they are tied. The same Haar average keeps coming back. The second
-moment of a random unitary, the twirl that sends an operator to a combination of the
-identity and the swap, is computed once in [Part 3](chapters/03-haar-weingarten.qmd) and
-then returns as the Page formula, the classical shadows channel, the randomized
-benchmarking decay, and the barren-plateau gradient variance. Concentration of measure,
-the shrinking of fluctuations as the dimension grows, ties the entanglement of a typical
-state to the trainability of a quantum model. Where a notebook reuses an object from an
-earlier one, a short Connections note at its end points back to it, so the through-line
-stays visible while you work.
+A single object recurs throughout the tutorial. The second moment of a random unitary,
+the twirl that sends an operator to a combination of the identity and the swap, is worked
+out in [Part 3](chapters/03-haar-weingarten.qmd) and then reused in the Page formula, the
+classical shadows channel, the randomized benchmarking decay, and the barren-plateau
+gradient variance. Concentration of measure, the shrinking of fluctuations as the
+dimension grows, likewise links the entanglement of a typical state with the trainability
+of a quantum model. Where a notebook reuses a result from an earlier one, a short
+Connections note at its end points back to it.
 
 ## Run it in two minutes
 
@@ -112,16 +110,12 @@ as needed in Part 1.
 
 ---
 
-::: {.callout-tip appearance="simple" icon=false}
-This tutorial is the open, hands-on companion to the monograph *Quantum Chaos and
-Information Scrambling: From Random Matrix Theory to Quantum Machine Learning*.
-It is designed to stand entirely on its own. Suggestions and fixes are welcome, 
-please [open an issue or pull request](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling).
-:::
-
 ## About the author
 
 **Marcin Płodzień**
+
+Theoretical physicist working in the field of many-body systems, with a focus on quantum
+simulators and deep learning for quantum mechanics.
 
 [Email](mailto:mplodzien@gmail.com) ·
 [ORCID](https://orcid.org/0000-0002-0835-1644) ·

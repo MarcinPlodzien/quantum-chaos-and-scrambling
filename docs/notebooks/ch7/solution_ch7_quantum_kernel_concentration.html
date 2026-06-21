@@ -662,7 +662,7 @@ K_{ij} \approx \delta_{ij} + \frac{1}{D}(1 - \delta_{ij}) + \mathcal{O}(1/D),
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">7. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:42:00.518379Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:42:00.518161Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:42:00.896246Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:42:00.895787Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:02:45.160007Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:02:45.159859Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:02:45.481574Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:02:45.481238Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -711,7 +711,7 @@ Asymptotic expansion:
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>For a Haar-random encoding the expected off-diagonal kernel is <span class="math inline">\(1/D\)</span> with variance <span class="math inline">\((D-1)/[D^2(D+1)]\sim1/D^2\)</span>, so the signal and its fluctuation are the same order and distinguishing two inputs takes order <span class="math inline">\(D\)</span> shots. Useful quantum kernels live between rigid and fully scrambling encodings, where the feature map sends data into a structured subspace.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T09:42:00.898049Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T09:42:00.897860Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T09:42:04.340374Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T09:42:04.339738Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:02:45.483168Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:02:45.482999Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:02:48.065402Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:02:48.064948Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
