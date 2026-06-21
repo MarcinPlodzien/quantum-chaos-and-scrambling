@@ -20,7 +20,7 @@ permutations are the identity and the swap, and a surprising amount of the later
 follows from that single case.
 
 Three consequences are worth isolating before the notebooks. The first moment is a
-twirl, sending any operator to its trace times the identity, which is the precise sense
+twirl, sending any operator to its normalized trace times the identity, which is the precise sense
 in which a uniformly random rotation erases everything but the trace. The second moment
 produces purities, frame potentials, and the Page formula for the entanglement of a
 typical pure state. Concentration of measure then upgrades these averages from typical to
@@ -31,7 +31,7 @@ from this part to quantum machine learning.
 
 ## Notebooks in this part
 
-- [The first Haar moment (twirling)](../notebooks/ch3/solution_ch3_weingarten_first_moment.ipynb), averaging an operator to its trace times the identity.
+- [The first Haar moment (twirling)](../notebooks/ch3/solution_ch3_weingarten_first_moment.ipynb), averaging an operator to its normalized trace times the identity.
 - [The SWAP trick](../notebooks/ch3/solution_ch3_swap_trick.ipynb), turning purity into a two-copy expectation value.
 - [Overlaps of random states](../notebooks/ch3/solution_ch3_haar_overlap.ipynb), the distribution of $|\langle\psi|\phi\rangle|^2$ and its moments.
 - [Fourth moment of the trace](../notebooks/ch3/solution_ch3_fourth_moment_trace.ipynb), a warm-up: $\mathbb{E}|\mathrm{Tr}\,U|^4 = 2$.

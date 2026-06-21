@@ -544,7 +544,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation">6. Physical Interpretation</a>
   <ul class="collapse">
-  <li><a href="#why-does-mathbbemathrmtru2k-k" id="toc-why-does-mathbbemathrmtru2k-k" class="nav-link" data-scroll-target="#why-does-mathbbemathrmtru2k-k">Why does <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}(U)|^{2k}] = k!\)</span>?</a></li>
+  <li><a href="#the-gaussian-limit-of-the-trace-moments" id="toc-the-gaussian-limit-of-the-trace-moments" class="nav-link" data-scroll-target="#the-gaussian-limit-of-the-trace-moments">The Gaussian limit of the trace moments</a></li>
   <li><a href="#the-topological-structure" id="toc-the-topological-structure" class="nav-link" data-scroll-target="#the-topological-structure">The topological structure</a></li>
   </ul></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
@@ -1148,9 +1148,9 @@ This is the CUE moment theorem: E[|Tr(U)|^{2k}] = k!</code></pre>
 </section>
 <section id="physical-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="physical-interpretation">6. Physical Interpretation</h2>
-<section id="why-does-mathbbemathrmtru2k-k" class="level3">
-<h3 class="anchored" data-anchor-id="why-does-mathbbemathrmtru2k-k">Why does <span class="math inline">\(\mathbb{E}[|\mathrm{Tr}(U)|^{2k}] = k!\)</span>?</h3>
-<p>This result connects Haar-random unitaries to <strong>complex Gaussian random variables</strong>. For a single complex Gaussian <span class="math inline">\(z \sim \mathcal{N}_\mathbb{C}(0,1)\)</span>, the moments are <span class="math inline">\(\mathbb{E}[|z|^{2k}] = k!\)</span> (by Wick’s theorem). In the large-<span class="math inline">\(D\)</span> limit, <span class="math inline">\(\mathrm{Tr}(U)\)</span> for a Haar-random <span class="math inline">\(U \in U(D)\)</span> behaves like a standard complex Gaussian, this is a consequence of the central limit theorem applied to the <span class="math inline">\(D\)</span> eigenvalues <span class="math inline">\(e^{i\theta_j}\)</span> of <span class="math inline">\(U\)</span>.</p>
+<section id="the-gaussian-limit-of-the-trace-moments" class="level3">
+<h3 class="anchored" data-anchor-id="the-gaussian-limit-of-the-trace-moments">The Gaussian limit of the trace moments</h3>
+<p>This result connects Haar-random unitaries to <strong>complex Gaussian random variables</strong>. For a single complex Gaussian <span class="math inline">\(z \sim \mathcal{N}_\mathbb{C}(0,1)\)</span>, the moments are <span class="math inline">\(\mathbb{E}[|z|^{2k}] = k!\)</span> (by Wick’s theorem). In the large-<span class="math inline">\(D\)</span> limit, <span class="math inline">\(\mathrm{Tr}(U)\)</span> for a Haar-random <span class="math inline">\(U \in U(D)\)</span> behaves like a standard complex Gaussian, a result of Diaconis and Shahshahani that holds despite the strong correlations between the eigenphases <span class="math inline">\(e^{i\theta_j}\)</span> of <span class="math inline">\(U\)</span>.</p>
 <p>The remarkable fact is that the Weingarten calculus gives <span class="math inline">\(k!\)</span> <strong>exactly</strong> for all <span class="math inline">\(D \geq k\)</span>, not just asymptotically. This is because the Weingarten function is the exact inverse of the representation-theoretic Gram matrix, and the exact cancellations between planar and non-planar contributions produce dimension-independent trace moments.</p>
 </section>
 <section id="the-topological-structure" class="level3">

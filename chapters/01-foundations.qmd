@@ -2,7 +2,7 @@
 title: "1 · Mathematical Foundations"
 ---
 
-Every later chapter averages some function of a random unitary, and to state
+Every later part averages some function of a random unitary, and to state
 what is being averaged one needs density matrices for the states, completely
 positive maps for the noisy evolutions, and a precise meaning for the word
 random. This part assembles that vocabulary from elementary pieces. The Lie

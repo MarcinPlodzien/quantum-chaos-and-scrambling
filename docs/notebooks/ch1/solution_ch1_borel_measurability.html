@@ -533,7 +533,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">5. Symbolic Verification (SymPy)</a></li>
   <li><a href="#numerical-verification-numpy" id="toc-numerical-verification-numpy" class="nav-link" data-scroll-target="#numerical-verification-numpy">6. Numerical Verification (NumPy)</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
-  <li><a href="#summary-and-connection-to-the-book" id="toc-summary-and-connection-to-the-book" class="nav-link" data-scroll-target="#summary-and-connection-to-the-book">7. Summary and Connection to the Book</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">7. Summary</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -1028,9 +1028,9 @@ Summary:
 <p>Survival probability and entanglement entropy are compositions of continuous maps on <span class="math inline">\(U(D)\)</span>, so both are Borel-measurable and their Haar averages are well-defined. Measurability only constrains integrands on a continuous group; on a finite group it holds for every function by construction.</p>
 <hr>
 </section>
-<section id="summary-and-connection-to-the-book" class="level2">
-<h2 class="anchored" data-anchor-id="summary-and-connection-to-the-book">7. Summary and Connection to the Book</h2>
-<p>This exercise established the <strong>measurability</strong> of the most common functions integrated against the Haar measure in this book:</p>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">7. Summary</h2>
+<p>This exercise established the <strong>measurability</strong> of the most common functions integrated against the Haar measure in this tutorial:</p>
 <table class="table">
 <colgroup>
 <col style="width: 27%">
@@ -1040,29 +1040,29 @@ Summary:
 <thead>
 <tr class="header">
 <th style="text-align: left;">Function</th>
-<th style="text-align: left;">Where in the book</th>
+<th style="text-align: left;">Where it appears</th>
 <th style="text-align: left;">Why it is measurable</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(f(U) = |\langle\psi|U|\phi\rangle|^2\)</span> (fidelity)</td>
-<td style="text-align: left;">Ch3: overlap distribution, Ch7: kernel</td>
+<td style="text-align: left;">Part 3: overlap distribution, Part 7: kernel</td>
 <td style="text-align: left;">Composition of coordinate projection + <span class="math inline">\(|\cdot|^2\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(S(U)\)</span> (entanglement entropy)</td>
-<td style="text-align: left;">Ch3: Page formula, Ch4: scrambling</td>
+<td style="text-align: left;">Part 3: Page formula, Part 4: scrambling</td>
 <td style="text-align: left;">Chain: partial trace → eigenvalues → <span class="math inline">\(-x\log x\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(C(U) = \mathrm{Tr}[\hat{O}\,U\hat{\rho}U^\dagger]\)</span> (cost)</td>
-<td style="text-align: left;">Ch7: barren plateaus</td>
+<td style="text-align: left;">Part 7: barren plateaus</td>
 <td style="text-align: left;">Bilinear in <span class="math inline">\(U\)</span> entries → polynomial → continuous</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\mathrm{OTOC}(U)\)</span></td>
-<td style="text-align: left;">Ch4: scrambling dynamics</td>
+<td style="text-align: left;">Part 4: scrambling dynamics</td>
 <td style="text-align: left;">Polynomial in <span class="math inline">\(U\)</span> entries → continuous</td>
 </tr>
 </tbody>

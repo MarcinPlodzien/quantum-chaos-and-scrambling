@@ -529,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#part-a-qfi-from-the-variance-of-the-generator" id="toc-part-a-qfi-from-the-variance-of-the-generator" class="nav-link" data-scroll-target="#part-a-qfi-from-the-variance-of-the-generator">Part (a): QFI from the variance of the generator</a></li>
   <li><a href="#part-b-haar-averaged-qfi" id="toc-part-b-haar-averaged-qfi" class="nav-link" data-scroll-target="#part-b-haar-averaged-qfi">Part (b): Haar-averaged QFI</a></li>
   <li><a href="#part-c-pauli-generator-and-the-trainability-paradox" id="toc-part-c-pauli-generator-and-the-trainability-paradox" class="nav-link" data-scroll-target="#part-c-pauli-generator-and-the-trainability-paradox">Part (c): Pauli generator and the trainability paradox</a></li>
-  <li><a href="#part-d-the-observable-weighted-qfi-bound" id="toc-part-d-the-observable-weighted-qfi-bound" class="nav-link" data-scroll-target="#part-d-the-observable-weighted-qfi-bound">Part (d): The observable-weighted QFI bound</a></li>
+  <li><a href="#part-d-what-the-qfi-bound-does-and-does-not-give" id="toc-part-d-what-the-qfi-bound-does-and-does-not-give" class="nav-link" data-scroll-target="#part-d-what-the-qfi-bound-does-and-does-not-give">Part (d): What the QFI bound does and does not give</a></li>
   </ul></li>
   <li><a href="#physical-interpretation-geometry-vs-trainability" id="toc-physical-interpretation-geometry-vs-trainability" class="nav-link" data-scroll-target="#physical-interpretation-geometry-vs-trainability">5. Physical Interpretation: Geometry vs Trainability</a></li>
   <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">6. Symbolic Verification (SymPy)</a></li>
@@ -615,7 +615,7 @@ F_Q(\theta) = 4\, \mathrm{Var}_{|\psi_0\rangle}(G) = 4\left(\langle G^2 \rangle 
 \mathbb{E}_{V_1}[F_Q] = \frac{4}{D+1}\left(\mathrm{Tr}(G^2) - \frac{(\mathrm{Tr}\, G)^2}{D}\right).
 \]</span></p>
 <p><strong>(c)</strong> For a traceless Pauli generator <span class="math inline">\(G\)</span> with <span class="math inline">\(G^2 = I\)</span> and <span class="math inline">\(\mathrm{Tr}(G) = 0\)</span>, show that <span class="math inline">\(\mathbb{E}[F_Q] = \frac{4D}{D+1} \xrightarrow{D \to \infty} 4\)</span>. Compare this with the gradient variance <span class="math inline">\(\sim 1/D\)</span>.</p>
-<p><strong>(d)</strong> Now consider the <strong>effective QFI</strong> <span class="math inline">\(\tilde{F}_Q = F_Q(\theta) \cdot \|\partial_\theta \langle O \rangle / F_Q\|^2\)</span>. Show that the gradient variance is bounded by <span class="math inline">\(\mathrm{Var}[\partial C/\partial\theta] \leq \|O\|^2 \cdot \mathbb{E}[F_Q] / D\)</span>, giving the exponential suppression.</p>
+<p><strong>(d)</strong> Using the pointwise bound <span class="math inline">\(|\partial_\theta C|^2 \leq F_Q\,\mathrm{Var}_\psi(O)\)</span>, show that the QFI alone bounds the gradient only by <span class="math inline">\(\mathcal{O}(1)\)</span>. Then explain why the ensemble variance is nonetheless <span class="math inline">\(\mathrm{Var}[\partial_\theta C] \sim 2/D\)</span>, and reconcile the two statements.</p>
 </section>
 <section id="step-by-step-derivation" class="level2">
 <h2 class="anchored" data-anchor-id="step-by-step-derivation">4. Step-by-Step Derivation</h2>
@@ -650,17 +650,18 @@ F_Q = 4\left(\langle \psi_1 | G^2 | \psi_1 \rangle - \langle \psi_1 | G | \psi_1
 <p>But recall that the gradient variance <span class="math inline">\(\mathrm{Var}[\partial C / \partial \theta] \sim 1/D \to 0\)</span> exponentially. This seems contradictory: the state moves in Hilbert space, but the cost doesn’t change?</p>
 <p><strong>Resolution:</strong> The state <span class="math inline">\(|\psi(\theta)\rangle\)</span> moves along a geodesic in <span class="math inline">\(\mathbb{CP}^{D-1}\)</span>, but the observable <span class="math inline">\(O\)</span> projects onto a tiny subspace. The motion is “perpendicular” to the cost landscape. The QFI tells us the state moves; the barren plateau tells us it moves in a direction that doesn’t matter for the observable. This is the <strong>curse of expressibility</strong>: the circuit explores exponentially many directions, but only <span class="math inline">\(\mathcal{O}(1)\)</span> of them align with a given cost function.</p>
 </section>
-<section id="part-d-the-observable-weighted-qfi-bound" class="level3">
-<h3 class="anchored" data-anchor-id="part-d-the-observable-weighted-qfi-bound">Part (d): The observable-weighted QFI bound</h3>
-<p>The gradient is <span class="math inline">\(\partial_\theta C = 2\,\mathrm{Im}\langle \psi | O | \partial_\theta \psi \rangle\)</span>. By the extended Cramér-Rao inequality:</p>
+<section id="part-d-what-the-qfi-bound-does-and-does-not-give" class="level3">
+<h3 class="anchored" data-anchor-id="part-d-what-the-qfi-bound-does-and-does-not-give">Part (d): What the QFI bound does and does not give</h3>
+<p>The gradient is <span class="math inline">\(\partial_\theta C = 2\,\mathrm{Im}\langle \psi | O | \partial_\theta \psi \rangle\)</span>. Cauchy-Schwarz together with the QFI gives the pointwise bound</p>
 <p><span class="math display">\[
-\mathrm{Var}[\partial_\theta C] \leq \mathrm{Var}[O] \cdot F_Q.
+|\partial_\theta C|^2 \leq F_Q\,\mathrm{Var}_\psi(O), \qquad \mathrm{Var}_\psi(O) = \langle\psi|O^2|\psi\rangle - \langle\psi|O|\psi\rangle^2.
 \]</span></p>
-<p>For Haar-random states, <span class="math inline">\(\mathrm{Var}[O] \sim \mathrm{Tr}(O^2)/D \sim 1/D\)</span> (the observable variance itself concentrates). Combined with <span class="math inline">\(F_Q \sim \mathcal{O}(1)\)</span>:</p>
+<p>For a single Pauli on a Haar-random state both factors are <span class="math inline">\(\mathcal{O}(1)\)</span>. Part (c) gave <span class="math inline">\(F_Q \to 4\)</span>, while <span class="math inline">\(\mathrm{Var}_\psi(O) \approx 1\)</span> since <span class="math inline">\(\langle O^2\rangle = 1\)</span> and <span class="math inline">\(\langle O\rangle^2 \sim 1/D\)</span>. The QFI bound on its own therefore only certifies <span class="math inline">\(|\partial_\theta C| = \mathcal{O}(1)\)</span> and does not produce the barren plateau.</p>
+<p>The exponential suppression lives in the <em>ensemble</em>, not in this single-point bound. Averaging <span class="math inline">\(|\partial_\theta C|^2\)</span> over Haar-random <span class="math inline">\(V_1, V_2\)</span> with the <span class="math inline">\(k=2\)</span> Weingarten formula gives</p>
 <p><span class="math display">\[
-\mathrm{Var}[\partial_\theta C] \lesssim \frac{\mathrm{Tr}(O^2)}{D} \cdot \frac{4D}{D+1} \sim \frac{4\,\mathrm{Tr}(O^2)}{D}.
+\mathrm{Var}[\partial_\theta C] = \frac{2D^2}{(D-1)(D+1)^2} \sim \frac{2}{D},
 \]</span></p>
-<p>For a single-Pauli observable with <span class="math inline">\(\mathrm{Tr}(O^2) = D\)</span> and <span class="math inline">\(\|O\| = \mathcal{O}(1)\)</span>, the exact variance is <span class="math inline">\(\mathrm{Var}[\partial_\theta C] = 2D^2/((D-1)(D+1)^2) \sim 2/D\)</span>: exponential suppression <span class="math inline">\(\sim 1/D\)</span>.</p>
+<p>because the direction in which the state actually moves with <span class="math inline">\(\theta\)</span> is generically almost orthogonal to the one the observable <span class="math inline">\(O\)</span> resolves. The QFI says the state moves; the Weingarten average says the cost barely registers it.</p>
 </section>
 </section>
 <section id="physical-interpretation-geometry-vs-trainability" class="level2">

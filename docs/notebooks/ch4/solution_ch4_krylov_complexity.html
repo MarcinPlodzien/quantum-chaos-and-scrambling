@@ -632,7 +632,7 @@ C_K = \tanh^2(\alpha t) \cdot \cosh^2(\alpha t) = \sinh^2(\alpha t).
 \mathrm{Var}(n) = \langle n^2 \rangle - \langle n \rangle^2 = \frac{\tau^2(1+\tau^2)}{(1-\tau^2)^2} - \frac{\tau^4}{(1-\tau^2)^2} = \frac{\tau^2}{(1-\tau^2)^2}.
 \]</span></p>
 <p>In hyperbolic functions: <span class="math inline">\(\mathrm{Var} = \sinh^2 \cdot \cosh^2 = \frac{1}{4}\sinh^2(2\alpha t)\)</span>.</p>
-<p>The standard deviation <span class="math inline">\(\sigma \sim e^{2\alpha t}\)</span> grows at the same rate as the mean, the operator wavepacket spreads ballistically on the Krylov chain.</p>
+<p>The standard deviation <span class="math inline">\(\sigma \sim e^{2\alpha t}\)</span> grows at the same exponential rate as the mean, so the wavepacket keeps a fixed relative width while its position runs exponentially down the Krylov chain.</p>
 <hr>
 </section>
 </section>
@@ -762,7 +762,7 @@ Krylov complexity = sinh²(αt) confirmed.</code></pre>
 </section>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
-<p>Linearly growing Lanczos coefficients produce a geometric distribution on the Krylov chain and complexity <span class="math inline">\(C_K(t) = \sinh^2(\alpha t)\)</span>. Mean and standard deviation both scale as <span class="math inline">\(e^{2\alpha t}\)</span>, so the operator spreads ballistically at rate <span class="math inline">\(2\alpha\)</span>, the operator-growth Lyapunov exponent.</p>
+<p>Linearly growing Lanczos coefficients produce a geometric distribution on the Krylov chain and complexity <span class="math inline">\(C_K(t) = \sinh^2(\alpha t)\)</span>. Mean and standard deviation both scale as <span class="math inline">\(e^{2\alpha t}\)</span>, so the operator’s position on the chain grows exponentially at rate <span class="math inline">\(2\alpha\)</span>, the operator-growth Lyapunov exponent.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
