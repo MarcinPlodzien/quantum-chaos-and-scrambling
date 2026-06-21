@@ -521,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud" id="toc-dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud" class="nav-link active" data-scroll-target="#dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud">Dimension of the Lie Algebras <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span></a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
   <li><a href="#part-a-dimension-of-mathfrakud" id="toc-part-a-dimension-of-mathfrakud" class="nav-link" data-scroll-target="#part-a-dimension-of-mathfrakud">Part (a): Dimension of <span class="math inline">\(\mathfrak{u}(D)\)</span></a></li>
@@ -562,14 +562,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud" class="level1">
 <h1>Dimension of the Lie Algebras <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span></h1>
-<strong>Chapter 1: Mathematical Foundations</strong> &nbsp;|&nbsp; <em>Section 1.4: Lie Algebras and the Exponential Map</em>
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>The Lie algebra <span class="math inline">\(\mathfrak{su}(D)\)</span> is the tangent space to the special unitary group at the identity, and its dimension counts the independent generators of unitary evolution on a <span class="math inline">\(D\)</span>-dimensional system. For <span class="math inline">\(N\)</span> qubits, where <span class="math inline">\(D = 2^N\)</span>, this dimension grows as <span class="math inline">\(4^N - 1\)</span>. The same exponential scaling that gives quantum circuits a large parameter space also dilutes cost-function gradients across that space. This exercise counts the dimension from the skew-Hermitian and tracelessness constraints and connects it to barren plateaus.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p><strong>(a)</strong> Count the real degrees of freedom in a <span class="math inline">\(D \times D\)</span> skew-Hermitian matrix and show <span class="math inline">\(\dim_\mathbb{R}\, \mathfrak{u}(D) = D^2\)</span>.</p>
 <p><strong>(b)</strong> The tracelessness constraint <span class="math inline">\(\mathrm{Tr}(X) = 0\)</span> defines <span class="math inline">\(\mathfrak{su}(D) \subset \mathfrak{u}(D)\)</span>. Show <span class="math inline">\(\dim_\mathbb{R}\, \mathfrak{su}(D) = D^2 - 1\)</span>.</p>
 <p><strong>(c)</strong> For <span class="math inline">\(N\)</span> qubits (<span class="math inline">\(D = 2^N\)</span>), how does <span class="math inline">\(\dim\,\mathfrak{su}(D)\)</span> scale with <span class="math inline">\(N\)</span>? Relate to the barren plateau phenomenon.</p>

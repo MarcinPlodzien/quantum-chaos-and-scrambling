@@ -524,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-physical-setup" id="toc-the-physical-setup" class="nav-link" data-scroll-target="#the-physical-setup">1. The Physical Setup</a></li>
   <li><a href="#connection-to-haar-measure-theory" id="toc-connection-to-haar-measure-theory" class="nav-link" data-scroll-target="#connection-to-haar-measure-theory">2. Connection to Haar Measure Theory</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">3. Preliminaries / Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">4. Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">4. Exercise</a></li>
   <li><a href="#analytical-derivation" id="toc-analytical-derivation" class="nav-link" data-scroll-target="#analytical-derivation">5. Analytical Derivation</a>
   <ul class="collapse">
   <li><a href="#part-a-average-kernel-value" id="toc-part-a-average-kernel-value" class="nav-link" data-scroll-target="#part-a-average-kernel-value">Part (a): Average Kernel Value</a></li>
@@ -565,7 +565,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="quantum-kernel-concentration-and-expressibility" class="level1">
 <h1>Quantum Kernel Concentration and Expressibility</h1>
-<strong>Chapter 7: Quantum Machine Learning</strong> &nbsp;|&nbsp; <em>Section 7.6: Quantum Kernel Methods</em>
 <hr>
 <p>This exercise develops the theory of quantum kernel methods from the perspective of Haar integration. We prove that quantum kernels defined by deep random circuits concentrate exponentially, rendering them unable to distinguish any two inputs. This establishes a precise connection between circuit expressibility and kernel quality.</p>
 <section id="background" class="level2">
@@ -602,8 +601,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \]</span> For the Haar measure, <span class="math inline">\(\mathcal{F}^{(2)}_{\mathrm{Haar}} = 2/(D(D+1))\)</span>.</p>
 <p><strong>4. Geometric Measure of Distinguishability:</strong> The kernel value <span class="math inline">\(\kappa(x,x')\)</span> is the cosine-squared of the angle between <span class="math inline">\(|\phi(x)\rangle\)</span> and <span class="math inline">\(|\phi(x')\rangle\)</span> on the complex projective space <span class="math inline">\(\mathbb{CP}^{D-1}\)</span>. When <span class="math inline">\(\kappa \to 0\)</span>, the states are orthogonal (maximally distinguishable); when <span class="math inline">\(\kappa = 1\)</span>, they are identical.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">4. Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">4. Exercise</h2>
 <p><strong>(a)</strong> Show that for a Haar-random encoding, the expected off-diagonal kernel value is <span class="math inline">\(\mathbb{E}[\kappa(x, x')] = 1/D\)</span>.</p>
 <p><strong>(b)</strong> Show that the variance of the kernel is <span class="math inline">\(\mathrm{Var}[\kappa] = \frac{D-1}{D^2(D+1)} \sim 1/D^2\)</span>, so the kernel matrix concentrates around <span class="math inline">\(K \approx I/D + (1-1/D)\,\mathrm{diag}\)</span>.</p>
 <p><strong>(c)</strong> Using SymPy, verify the exact formula for the kernel mean and variance symbolically.</p>

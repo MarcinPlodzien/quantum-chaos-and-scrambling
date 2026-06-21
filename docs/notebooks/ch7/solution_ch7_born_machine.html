@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
   <li><a href="#part-a-ipr-of-a-product-state" id="toc-part-a-ipr-of-a-product-state" class="nav-link" data-scroll-target="#part-a-ipr-of-a-product-state">Part (a): IPR of a Product State</a></li>
@@ -564,7 +564,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="born-machine-expressivity-and-concentration" class="level1">
 <h1>Born Machine Expressivity and Concentration</h1>
-<strong>Chapter 7: Quantum Machine Learning</strong> &nbsp;|&nbsp; <em>Section 7.3: Generative Modeling with Born Machines</em>
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
@@ -582,8 +581,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>3. Beta Integral Identity:</strong> If <span class="math inline">\(x \sim \mathrm{Beta}(\alpha, \beta)\)</span>, then <span class="math inline">\(\mathbb{E}[x \ln x] = \frac{\alpha}{\alpha+\beta}\left[\psi(\alpha+1) - \psi(\alpha+\beta+1)\right]\)</span>, where <span class="math inline">\(\psi(z)\)</span> is the digamma function.</p>
 <p><strong>4. Data Processing Inequality:</strong> The mutual information between classical bitstrings <span class="math inline">\(X_A\)</span> and <span class="math inline">\(X_B\)</span> obtained by local measurements on subsystems <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> cannot exceed the quantum mutual information <span class="math inline">\(I_Q(A:B)\)</span> of the pre-measurement state.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p><strong>(a)</strong> Show that for a product state <span class="math inline">\(|\psi\rangle = \bigotimes_{j=1}^N |\psi_j\rangle\)</span> with local <span class="math inline">\(Z\)</span>-magnetizations <span class="math inline">\(m_j = \langle Z_j\rangle\)</span>, the IPR is <span class="math inline">\(C_2 = 2^{-N} \prod_j (1 + m_j^2)\)</span>. Evaluate this for (i) all <span class="math inline">\(m_j = 0\)</span> and (ii) all <span class="math inline">\(m_j = \pm 1\)</span>.</p>
 <p><strong>(b)</strong> For Haar-random states, show that the average Shannon entropy is <span class="math inline">\(\mathbb{E}[H] = \psi(D+1) - \psi(2)\)</span>, and compute the entropy deficit <span class="math inline">\(\Delta_H = \ln D - \mathbb{E}[H]\)</span>.</p>
 <p><strong>(c)</strong> Let <span class="math inline">\(X_A\)</span> and <span class="math inline">\(X_B\)</span> be classical bitstrings from measuring disjoint bipartite systems <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. Prove <span class="math inline">\(I(X_A : X_B) \leq 2 S(\rho_A)\)</span>.</p>

@@ -521,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-swap-trick-in-action" id="toc-the-swap-trick-in-action" class="nav-link active" data-scroll-target="#the-swap-trick-in-action">The SWAP Trick in Action</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
   <li><a href="#part-a-proof-of-the-swap-trick" id="toc-part-a-proof-of-the-swap-trick" class="nav-link" data-scroll-target="#part-a-proof-of-the-swap-trick">Part (a): Proof of the SWAP trick</a></li>
@@ -562,14 +562,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="the-swap-trick-in-action" class="level1">
 <h1>The SWAP Trick in Action</h1>
-<strong>Chapter 3: Haar Ensembles</strong> &nbsp;|&nbsp; <em>Section 3.3: The SWAP Operator and Purity</em>
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>The SWAP trick rewrites <span class="math inline">\(\mathrm{Tr}(AB)\)</span> as <span class="math inline">\(\mathrm{Tr}[(A \otimes B)F]\)</span>, where <span class="math inline">\(F\)</span> is the swap on two copies of the Hilbert space, trading a single-copy product for a two-copy expectation. Setting <span class="math inline">\(A = B = \rho\)</span> turns the purity <span class="math inline">\(\mathrm{Tr}(\rho^2)\)</span> into a quantity measurable from two identical preparations, which is how purities and Rényi entropies are obtained without full tomography. The same replication identity is the computational engine of the Weingarten calculus, where Haar moments reduce to permutations acting on tensor copies. Here it is applied to the Bell state and compared against the Haar average.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p><strong>(a)</strong> Prove <span class="math inline">\(\mathrm{Tr}[(A \otimes B) F] = \mathrm{Tr}(AB)\)</span> for the SWAP operator <span class="math inline">\(F\)</span>.</p>
 <p><strong>(b)</strong> For the Bell state <span class="math inline">\(|\Phi^+\rangle = (|00\rangle + |11\rangle)/\sqrt{2}\)</span>, compute <span class="math inline">\(\rho_A\)</span> and verify <span class="math inline">\(\mathrm{Tr}(\rho_A^2) = \mathrm{Tr}[(\rho_A \otimes \rho_A) F_A] = 1/2\)</span>.</p>
 <p><strong>(c)</strong> Compare with the Haar-averaged purity <span class="math inline">\(\mathbb{E}[\gamma] = (m+n)/(mn+1)\)</span> at <span class="math inline">\(m = n = 2\)</span>. Is the Bell state more or less entangled than a typical random state?</p>

@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
   <li><a href="#part-a-lévys-lemma-bound" id="toc-part-a-lévys-lemma-bound" class="nav-link" data-scroll-target="#part-a-lévys-lemma-bound">Part (a): Lévy’s lemma bound</a></li>
@@ -564,11 +564,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="concentration-of-purity-lévys-lemma" class="level1">
 <h1>Concentration of Purity (Lévy’s Lemma)</h1>
-<strong>Chapter 3: Haar Ensembles</strong> &nbsp;|&nbsp; <em>Section 3.6: Concentration of Measure</em>
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The purity <span class="math inline">\(\gamma = \mathrm{Tr}(\rho_A^2)\)</span> measures how mixed a subsystem is, running from <span class="math inline">\(1/m\)</span> at maximal mixing to <span class="math inline">\(1\)</span> for a pure reduction. For a Haar-random global state it has mean <span class="math inline">\((m+n)/(mn+1)\)</span> and a variance that collapses as the total dimension grows. That collapse is concentration of measure made quantitative, and Lévy’s lemma sharpens it into an exponential bound on deviations. The notebook tracks the shrinking spread and connects it to the typicality used elsewhere in the chapter.</p>
+<p>The purity <span class="math inline">\(\gamma = \mathrm{Tr}(\rho_A^2)\)</span> measures how mixed a subsystem is, running from <span class="math inline">\(1/m\)</span> at maximal mixing to <span class="math inline">\(1\)</span> for a pure reduction. For a Haar-random global state it has mean <span class="math inline">\((m+n)/(mn+1)\)</span> and a variance that collapses as the total dimension grows. That collapse is concentration of measure made quantitative, and Lévy’s lemma sharpens it into an exponential bound on deviations. The notebook tracks the shrinking spread and connects it to the typicality used elsewhere.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -582,8 +581,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>3. Lévy’s Lemma:</strong> Given a Lipschitz-continuous function <span class="math inline">\(f: \mathbb{S}^{2D-1} \to \mathbb{R}\)</span> on the unit hypersphere, the probability that <span class="math inline">\(f(|\psi\rangle)\)</span> deviates from its median by more than <span class="math inline">\(\epsilon\)</span> decays exponentially with dimension <span class="math inline">\(D\)</span>: <span class="math inline">\(\Pr(|f - \bar{f}| \geq \epsilon) \leq 2 \exp\left(- \frac{C D \epsilon^2}{\eta^2}\right)\)</span>.</p>
 <p><strong>4. Partial Trace:</strong> The reduced density matrix of subsystem <span class="math inline">\(A\)</span> is <span class="math inline">\(\rho_A = \mathrm{Tr}_B(|\psi\rangle\langle\psi|)\)</span>, where <span class="math inline">\(|\psi\rangle\)</span> is a bipartite state on <span class="math inline">\(\mathcal{H}_A \otimes \mathcal{H}_B\)</span>.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p>The purity <span class="math inline">\(\gamma = \mathrm{Tr}(\rho_A^2)\)</span> of a Haar-random state has mean <span class="math inline">\(\mathbb{E}[\gamma] = (m+n)/(mn+1)\)</span>. The function <span class="math inline">\(f(\psi) = \mathrm{Tr}(\rho_A^2)\)</span> is Lipschitz with constant <span class="math inline">\(\eta_f = 4\)</span>.</p>
 <p><strong>(a)</strong> Using Lévy’s lemma, write the concentration bound <span class="math inline">\(\Pr(|\gamma - \mathbb{E}[\gamma]| &gt; \epsilon)\)</span>.</p>
 <p><strong>(b)</strong> For an equal bipartition (<span class="math inline">\(m = n = 2^{N/2}\)</span>), find the minimum <span class="math inline">\(N\)</span> such that <span class="math inline">\(\Pr(\gamma &gt; \mathbb{E}[\gamma] + 0.01) &lt; 10^{-6}\)</span>.</p>

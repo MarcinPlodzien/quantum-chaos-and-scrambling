@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
   <li><a href="#part-a-computing-mathrmtro2-for-each-cost" id="toc-part-a-computing-mathrmtro2-for-each-cost" class="nav-link" data-scroll-target="#part-a-computing-mathrmtro2-for-each-cost">Part (a): Computing <span class="math inline">\(\mathrm{Tr}(O^2)\)</span> for each cost</a></li>
@@ -564,7 +564,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="local-vs-global-cost-functions-in-deep-circuits" class="level1">
 <h1>Local vs Global Cost Functions in Deep Circuits</h1>
-<strong>Chapter 7: Quantum Machine Learning</strong> &nbsp;|&nbsp; <em>Section 7.2: Trainability and Cost Function Design</em>
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
@@ -582,8 +581,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>3. Barren Plateaus (2-design):</strong> If <span class="math inline">\(U(\boldsymbol{\theta})\)</span> forms a 2-design, the variance of the cost function is <span class="math inline">\(\mathrm{Var}[C] = \frac{\mathrm{Tr}(O^2)}{D(D+1)}\)</span> where <span class="math inline">\(D=2^N\)</span>.</p>
 <p><strong>4. Trace properties:</strong> <span class="math inline">\(\mathrm{Tr}(A \otimes B) = \mathrm{Tr}(A)\mathrm{Tr}(B)\)</span>. The dimension is <span class="math inline">\(D=2^N\)</span>.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p>For a 2-design circuit on <span class="math inline">\(N\)</span> qubits (<span class="math inline">\(D = 2^N\)</span>), compare two traceless cost observables:</p>
 <p><span class="math display">\[
 O_G = |0\rangle\langle 0|^{\otimes N} - \frac{I}{D} \qquad \text{(global projector, traceless)},

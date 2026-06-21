@@ -4,15 +4,6 @@ subtitle: "A hands-on numerical tutorial on randomness, scrambling, and learning
 toc: false
 ---
 
-::: {.callout-note appearance="simple" icon=false}
-## Start here
-
-This is a **self-contained, runnable tutorial**. There is no prerequisite reading
-and nothing to buy. Every idea is introduced briefly, then *demonstrated* in a
-short Python notebook you can open, run, and modify. If you can read `numpy`, you
-can follow along.
-:::
-
 ## Background
 
 A recurring lesson in quantum many-body physics and quantum information is that the

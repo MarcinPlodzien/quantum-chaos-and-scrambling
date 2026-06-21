@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
   <li><a href="#part-a-expanding-the-squared-commutator" id="toc-part-a-expanding-the-squared-commutator" class="nav-link" data-scroll-target="#part-a-expanding-the-squared-commutator">Part (a): Expanding the squared commutator</a></li>
@@ -564,11 +564,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="the-c-f-identity-otoc-commutator-relation" class="level1">
 <h1>The C-F Identity (OTOC-Commutator Relation)</h1>
-<strong>Chapter 4: Scrambling Dynamics</strong> &nbsp;|&nbsp; <em>Section 4.1: Out-of-Time-Order Correlators</em>
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The squared commutator <span class="math inline">\(C(t)\)</span> and the out-of-time-order correlator <span class="math inline">\(F(t)\)</span> are two diagnostics of how a local operator spreads under Heisenberg evolution. For unitary <span class="math inline">\(W\)</span> and <span class="math inline">\(V\)</span> they are not independent, since <span class="math inline">\(C(t) = 2\,(1 - \mathrm{Re}\,F(t))\)</span> holds exactly. The identity lets operator growth be read from a fidelity-type quantity and fixes the late-time scrambled values that anchor the rest of the chapter. Its clean form relies on unitarity of both operators and degrades for non-unitary or non-Hermitian probes.</p>
+<p>The squared commutator <span class="math inline">\(C(t)\)</span> and the out-of-time-order correlator <span class="math inline">\(F(t)\)</span> are two diagnostics of how a local operator spreads under Heisenberg evolution. For unitary <span class="math inline">\(W\)</span> and <span class="math inline">\(V\)</span> they are not independent, since <span class="math inline">\(C(t) = 2\,(1 - \mathrm{Re}\,F(t))\)</span> holds exactly. The identity lets operator growth be read from a fidelity-type quantity and fixes the late-time scrambled values that anchor the rest of this notebook. Its clean form relies on unitarity of both operators and degrades for non-unitary or non-Hermitian probes.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -582,8 +581,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>3. Infinite Temperature Average:</strong> <span class="math inline">\(\langle O \rangle = \mathrm{Tr}(O)/D\)</span>, representing the infinite-temperature equilibrium state.</p>
 <p><strong>4. Unitarity:</strong> <span class="math inline">\(W^\dagger W = I, V^\dagger V = I\)</span>.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p>For unitary operators <span class="math inline">\(W, V\)</span> and the infinite-temperature average <span class="math inline">\(\langle \cdot \rangle = \mathrm{Tr}(\cdot)/D\)</span>:</p>
 <p><span class="math display">\[
 F(t) = \langle W^\dagger(t) V^\dagger W(t) V \rangle, \qquad C(t) = \langle [W(t), V]^\dagger [W(t), V] \rangle.

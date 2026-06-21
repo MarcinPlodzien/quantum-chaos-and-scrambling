@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#analytical-derivation" id="toc-analytical-derivation" class="nav-link" data-scroll-target="#analytical-derivation">Analytical Derivation</a>
   <ul class="collapse">
   <li><a href="#part-a-kraus-decomposition" id="toc-part-a-kraus-decomposition" class="nav-link" data-scroll-target="#part-a-kraus-decomposition">Part (a): Kraus decomposition</a></li>
@@ -564,7 +564,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="injection-contractivity-and-restarting-overhead-in-qrc" class="level1">
 <h1>Injection Contractivity and Restarting Overhead in QRC</h1>
-<strong>Chapter 7: Quantum Machine Learning</strong> &nbsp;|&nbsp; <em>Section 7.5: Quantum Reservoir Computing</em>
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
@@ -585,8 +584,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>4. Contractivity:</strong> All CPTP maps are contractive under the trace distance: <span class="math inline">\(D_{\mathrm{tr}}(\mathcal{E}(\rho), \mathcal{E}(\sigma)) \leq D_{\mathrm{tr}}(\rho, \sigma)\)</span>.</p>
 <p><strong>5. Tensor Product Norm:</strong> For a tensor product state <span class="math inline">\(A \otimes B\)</span>, the trace norm factorizes: <span class="math inline">\(\|A \otimes B\|_1 = \|A\|_1 \cdot \|B\|_1\)</span>.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p><strong>(a)</strong> Write an explicit Kraus decomposition for the injection map <span class="math inline">\(\mathcal{E}_x\)</span> and verify completeness <span class="math inline">\(\sum K_a^\dagger K_a = I\)</span>.</p>
 <p><strong>(b)</strong> Show algebraically that <span class="math inline">\(\mathcal{E}_x\)</span> is contractive: <span class="math inline">\(\|\mathcal{E}_x(\rho) - \mathcal{E}_x(\sigma)\|_1 \leq \|\rho - \sigma\|_1\)</span>.</p>
 <p><strong>(c)</strong> In the standard restarting protocol, measuring the reservoir at time step <span class="math inline">\(n\)</span> destroys the state, requiring the sequence to be replayed from <span class="math inline">\(t=1\)</span>. For a time series of length <span class="math inline">\(T\)</span> and shot count <span class="math inline">\(\nu\)</span>, calculate the total number of unitary sequence runs.</p>

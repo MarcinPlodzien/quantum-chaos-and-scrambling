@@ -521,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#operator-averages-using-the-first-moment-formula" id="toc-operator-averages-using-the-first-moment-formula" class="nav-link active" data-scroll-target="#operator-averages-using-the-first-moment-formula">Operator Averages Using the First Moment Formula</a>
   <ul class="collapse">
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
   <li><a href="#step-1-apply-the-first-moment-formula" id="toc-step-1-apply-the-first-moment-formula" class="nav-link" data-scroll-target="#step-1-apply-the-first-moment-formula">Step 1: Apply the first moment formula</a></li>
@@ -562,14 +562,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="operator-averages-using-the-first-moment-formula" class="level1">
 <h1>Operator Averages Using the First Moment Formula</h1>
-<strong>Chapter 3: Haar Ensembles</strong> &nbsp;|&nbsp; <em>Section 3.2: Weingarten Calculus</em>
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>The first-moment identity <span class="math inline">\(\mathbb{E}_U[U A U^\dagger] = \tfrac{\mathrm{Tr}(A)}{D}\, I\)</span> is the <span class="math inline">\(k=1\)</span> case of the Weingarten calculus and the starting point of Haar integration. It says that conjugation by a random unitary erases everything about an operator except its trace, which is Schur’s lemma read through the averaging map and the operator form of complete depolarization. The notebook uses it to evaluate <span class="math inline">\(\mathbb{E}_U[\mathrm{Tr}(U A U^\dagger B)]\)</span>, a contraction that recurs whenever one twirls an observable against a fixed reference.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p>Let <span class="math inline">\(A, B\)</span> be arbitrary <span class="math inline">\(D \times D\)</span> complex matrices. Using the first moment formula, compute</p>
 <p><span class="math display">\[
 \mathbb{E}_U\bigl[\mathrm{Tr}(U A U^\dagger B)\bigr].

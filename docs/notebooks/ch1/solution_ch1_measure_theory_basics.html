@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#physical-motivation" id="toc-physical-motivation" class="nav-link" data-scroll-target="#physical-motivation">1. Physical Motivation</a></li>
   <li><a href="#mathematical-toolbox" id="toc-mathematical-toolbox" class="nav-link" data-scroll-target="#mathematical-toolbox">2. Mathematical Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">3. Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">3. Exercise</a></li>
   <li><a href="#analytical-derivation" id="toc-analytical-derivation" class="nav-link" data-scroll-target="#analytical-derivation">4. Analytical Derivation</a>
   <ul class="collapse">
   <li><a href="#part-a-lambdamathbbq-cap-01-0" id="toc-part-a-lambdamathbbq-cap-01-0" class="nav-link" data-scroll-target="#part-a-lambdamathbbq-cap-01-0">Part (a): <span class="math inline">\(\lambda(\mathbb{Q} \cap [0,1]) = 0\)</span></a></li>
@@ -565,7 +565,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="lebesgue-measure-counting-measure-and-σ-additivity" class="level1">
 <h1>Lebesgue Measure, Counting Measure, and σ-Additivity</h1>
-<strong>Chapter 1: Mathematical Foundations</strong> &nbsp;|&nbsp; <em>Section 1.13: Measures and Integration</em>
 <hr>
 <p>This exercise develops the foundational properties of two measures that serve as stepping stones toward the Haar measure on the unitary group: the <strong>Lebesgue measure</strong> on the real line and the <strong>counting measure</strong> on a finite group. The exercise culminates in the <strong>Vitali argument</strong>, a proof that no translation-invariant, σ-additive measure can be defined on <em>all</em> subsets of the continuum, motivating the need for σ-algebras.</p>
 <section id="background" class="level2">
@@ -603,8 +602,8 @@ The lesson: on continuous spaces, we <em>must</em> restrict to a σ-algebra of w
 <hr>
 <p><strong>Tool 5, Pauli group.</strong> The single-qubit Pauli group is <span class="math inline">\(\mathcal{P}_1 = \{\pm I, \pm iI, \pm X, \pm iX, \pm Y, \pm iY, \pm Z, \pm iZ\}\)</span> with <span class="math inline">\(|\mathcal{P}_1| = 16\)</span>. Being a finite group, it has no Vitali-type obstruction: every subset is measurable under the power-set σ-algebra <span class="math inline">\(\mathcal{F} = 2^{\mathcal{P}_1}\)</span>.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">3. Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">3. Exercise</h2>
 <p><strong>(a) Lebesgue measure of the rationals.</strong> Let <span class="math inline">\(A = \mathbb{Q} \cap [0,1]\)</span>. Using the countability of <span class="math inline">\(\mathbb{Q}\)</span>, write <span class="math inline">\(A = \{q_1, q_2, \ldots\}\)</span>. Show that <span class="math inline">\(\lambda(A) = 0\)</span> via σ-additivity, and conclude <span class="math inline">\(\lambda([0,1] \setminus \mathbb{Q}) = 1\)</span>.</p>
 <p><strong>(b) Counting measure on the Pauli group.</strong> Define <span class="math inline">\(\mu(A) = |A|/16\)</span> on <span class="math inline">\(\mathcal{P}_1\)</span>. Verify: - Finite additivity: <span class="math inline">\(\mu(A \sqcup B) = \mu(A) + \mu(B)\)</span>. - Left-invariance: <span class="math inline">\(\mu(gA) = \mu(A)\)</span> for all <span class="math inline">\(g \in \mathcal{P}_1\)</span> and <span class="math inline">\(A \subseteq \mathcal{P}_1\)</span>.</p>
 <p><strong>(c) The Vitali argument.</strong> Reproduce the proof that no translation-invariant, σ-additive measure on all subsets of <span class="math inline">\([0,1)\)</span> can have <span class="math inline">\(\mu([0,1)) = 1\)</span>. Identify where the axiom of choice is used.</p>
@@ -627,7 +626,7 @@ The lesson: on continuous spaces, we <em>must</em> restrict to a σ-algebra of w
 <p>Here <span class="math inline">\(\Omega = \mathcal{P}_1\)</span> (the 16-element Pauli group), <span class="math inline">\(\mathcal{F} = 2^{\mathcal{P}_1}\)</span> (all subsets are measurable), and <span class="math inline">\(\mu(A) = |A|/16\)</span>.</p>
 <p><strong>Finite additivity:</strong> For disjoint <span class="math inline">\(A, B \subseteq \mathcal{P}_1\)</span>: <span class="math inline">\(|A \sqcup B| = |A| + |B|\)</span> (elementary set theory), so <span class="math inline">\(\mu(A \sqcup B) = (|A| + |B|)/16 = \mu(A) + \mu(B)\)</span>. For a finite set, finite additivity implies σ-additivity (only finitely many nonempty disjoint subsets can exist).</p>
 <p><strong>Left-invariance:</strong> For any fixed <span class="math inline">\(g \in \mathcal{P}_1\)</span>, the map <span class="math inline">\(L_g: h \mapsto gh\)</span> is a bijection on <span class="math inline">\(\mathcal{P}_1\)</span> (with inverse <span class="math inline">\(L_{g^{-1}}\)</span>). Therefore <span class="math inline">\(|gA| = |L_g(A)| = |A|\)</span>, and <span class="math inline">\(\mu(gA) = |A|/16 = \mu(A)\)</span>.</p>
-<p><strong>Physical insight:</strong> This is the Haar measure on <span class="math inline">\(\mathcal{P}_1\)</span>. When we write <span class="math inline">\(\mathbb{E}_{P \in \mathcal{P}}[f(P)] = \frac{1}{4^N}\sum_P f(P)\)</span> in the twirling formulas of Chapter 3, we are integrating against this counting measure.</p>
+<p><strong>Physical insight:</strong> This is the Haar measure on <span class="math inline">\(\mathcal{P}_1\)</span>. When we write <span class="math inline">\(\mathbb{E}_{P \in \mathcal{P}}[f(P)] = \frac{1}{4^N}\sum_P f(P)\)</span> in the twirling formulas of Part 3, we are integrating against this counting measure.</p>
 </section>
 <section id="part-c-the-vitali-argument" class="level3">
 <h3 class="anchored" data-anchor-id="part-c-the-vitali-argument">Part (c): The Vitali argument</h3>

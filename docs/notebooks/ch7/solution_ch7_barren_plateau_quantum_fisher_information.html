@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#the-geometric-picture" id="toc-the-geometric-picture" class="nav-link" data-scroll-target="#the-geometric-picture">1. The Geometric Picture</a></li>
   <li><a href="#mathematical-toolbox" id="toc-mathematical-toolbox" class="nav-link" data-scroll-target="#mathematical-toolbox">2. Mathematical Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">3. Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">3. Exercise</a></li>
   <li><a href="#step-by-step-derivation" id="toc-step-by-step-derivation" class="nav-link" data-scroll-target="#step-by-step-derivation">4. Step-by-Step Derivation</a>
   <ul class="collapse">
   <li><a href="#part-a-qfi-from-the-variance-of-the-generator" id="toc-part-a-qfi-from-the-variance-of-the-generator" class="nav-link" data-scroll-target="#part-a-qfi-from-the-variance-of-the-generator">Part (a): QFI from the variance of the generator</a></li>
@@ -567,7 +567,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="barren-plateaus-through-the-lens-of-quantum-fisher-information" class="level1">
 <h1>Barren Plateaus through the Lens of Quantum Fisher Information</h1>
-<strong>Chapter 7: Quantum Machine Learning</strong> &nbsp;|&nbsp; <em>Section 7.2: Barren Plateaus and Trainability</em>
 <hr>
 <p>This exercise reveals the deep geometric origin of barren plateaus by connecting the trainability of parameterized quantum circuits to the <strong>Quantum Fisher Information (QFI)</strong> with respect to variational parameters. We show that the QFI itself concentrates exponentially for Haar-random circuits, providing a parameter-space geometric explanation for why gradients vanish.</p>
 <section id="background" class="level2">
@@ -603,8 +602,8 @@ F_Q(\theta) = 4\, \mathrm{Var}_{|\psi_0\rangle}(G) = 4\left(\langle G^2 \rangle 
 \mathbb{E}_{U}[U^\dagger A\, U \otimes U^\dagger B\, U] = \alpha(A,B)\, I \otimes I + \beta(A,B)\, \mathrm{SWAP},
 \]</span> where <span class="math inline">\(\alpha = \frac{D\,\mathrm{Tr}(A)\mathrm{Tr}(B) - \mathrm{Tr}(AB)}{D(D^2-1)}\)</span> and <span class="math inline">\(\beta = \frac{D\,\mathrm{Tr}(AB) - \mathrm{Tr}(A)\mathrm{Tr}(B)}{D(D^2-1)}\)</span>.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">3. Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">3. Exercise</h2>
 <p>Consider a circuit <span class="math inline">\(U(\theta) = V_2\, e^{-i\theta G}\, V_1\)</span> where <span class="math inline">\(V_1, V_2\)</span> are Haar-random and <span class="math inline">\(G\)</span> is a fixed Hermitian generator (e.g.&nbsp;a single Pauli).</p>
 <p><strong>(a)</strong> Show that the QFI with respect to <span class="math inline">\(\theta\)</span> is <span class="math inline">\(F_Q(\theta) = 4\,\mathrm{Var}_{|\psi_1\rangle}(G)\)</span> where <span class="math inline">\(|\psi_1\rangle = V_1|0\rangle\)</span>.</p>
 <p><strong>(b)</strong> Show that for Haar-random <span class="math inline">\(V_1\)</span>, the expected QFI is: <span class="math display">\[

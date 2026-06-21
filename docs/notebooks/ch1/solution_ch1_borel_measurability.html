@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#physical-motivation" id="toc-physical-motivation" class="nav-link" data-scroll-target="#physical-motivation">1. Physical Motivation</a></li>
   <li><a href="#mathematical-toolbox" id="toc-mathematical-toolbox" class="nav-link" data-scroll-target="#mathematical-toolbox">2. Mathematical Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">3. Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">3. Exercise</a></li>
   <li><a href="#analytical-derivation" id="toc-analytical-derivation" class="nav-link" data-scroll-target="#analytical-derivation">4. Analytical Derivation</a>
   <ul class="collapse">
   <li><a href="#part-a-fu-u_002-is-continuous" id="toc-part-a-fu-u_002-is-continuous" class="nav-link" data-scroll-target="#part-a-fu-u_002-is-continuous">Part (a): <span class="math inline">\(f(U) = |U_{00}|^2\)</span> is continuous</a></li>
@@ -565,7 +565,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="borel-σ-algebra-and-measurability-on-ud" class="level1">
 <h1>Borel σ-Algebra and Measurability on U(D)</h1>
-<strong>Chapter 1: Mathematical Foundations</strong> &nbsp;|&nbsp; <em>Section 1.13: Measures and Integration</em>
 <hr>
 <p>This exercise bridges the abstract formalism of σ-algebras and measurable functions to the concrete quantum information quantities that we integrate against the Haar measure throughout the book. We verify that familiar functions, the survival probability <span class="math inline">\(|\langle 0|U|0\rangle|^2\)</span> and the entanglement entropy <span class="math inline">\(S(\mathrm{Tr}_B[U|00\rangle\!\langle 00|U^\dagger])\)</span>, are <strong>Borel-measurable</strong> on the unitary group, and hence legitimate integrands for Haar averaging. The exercise also constructs the σ-algebra of the finite Pauli group to ground the abstract axioms in a hands-on computation.</p>
 <section id="background" class="level2">
@@ -606,8 +605,8 @@ We first recall the key definitions (introduced in Section 1.13 and the companio
 <strong>Tool 7, Power-set σ-algebra.</strong> For a finite set <span class="math inline">\(\Omega\)</span> with <span class="math inline">\(|\Omega| = n\)</span>, the power set <span class="math inline">\(2^\Omega\)</span> (the collection of <em>all</em> subsets) is trivially a σ-algebra with <span class="math inline">\(|2^\Omega| = 2^n\)</span> elements. Every subset is measurable, every function is measurable. The nontrivial σ-algebra structure arises only for infinite/continuous spaces.</li>
 </ul>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">3. Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">3. Exercise</h2>
 <p><strong>(a) Survival probability is Borel-measurable.</strong> For <span class="math inline">\(\Omega = U(2)\)</span> and <span class="math inline">\(f(U) = |\langle 0|U|0\rangle|^2\)</span>, prove that <span class="math inline">\(f\)</span> is Borel-measurable by showing it is a composition of continuous functions.</p>
 <p><strong>(b) Entanglement entropy is Borel-measurable.</strong> For <span class="math inline">\(U \in U(4)\)</span>, the entanglement entropy <span class="math inline">\(S(U) = -\mathrm{Tr}[\hat{\rho}_A \log \hat{\rho}_A]\)</span> with <span class="math inline">\(\hat{\rho}_A = \mathrm{Tr}_B[U|00\rangle\!\langle 00|U^\dagger]\)</span> is measurable. Trace through the chain: matrix entries → partial trace → eigenvalues → entropy.</p>
 <p><strong>(c) Power-set σ-algebra of <span class="math inline">\(\mathcal{P}_N\)</span>.</strong> On the Pauli group <span class="math inline">\(\mathcal{P}_N = \{I, X, Y, Z\}^{\otimes N}\)</span> (ignoring phases), verify axioms (S1)-(S3) for <span class="math inline">\(2^{\mathcal{P}_N}\)</span>, and compute <span class="math inline">\(|2^{\mathcal{P}_N}|\)</span> for <span class="math inline">\(N = 1, 2\)</span>.</p>

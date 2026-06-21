@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#physical-motivation" id="toc-physical-motivation" class="nav-link" data-scroll-target="#physical-motivation">1. Physical Motivation</a></li>
   <li><a href="#mathematical-toolbox" id="toc-mathematical-toolbox" class="nav-link" data-scroll-target="#mathematical-toolbox">2. Mathematical Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">3. Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">3. Exercise</a></li>
   <li><a href="#analytical-derivation" id="toc-analytical-derivation" class="nav-link" data-scroll-target="#analytical-derivation">4. Analytical Derivation</a>
   <ul class="collapse">
   <li><a href="#part-a-qgt-on-the-bloch-sphere" id="toc-part-a-qgt-on-the-bloch-sphere" class="nav-link" data-scroll-target="#part-a-qgt-on-the-bloch-sphere">Part (a): QGT on the Bloch Sphere</a></li>
@@ -567,9 +567,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="differential-geometry-of-quantum-state-space" class="level1">
 <h1>Differential Geometry of Quantum State Space</h1>
-<strong>Chapter 1: Mathematical Foundations</strong> &nbsp;|&nbsp; <em>Section 1.4: Geometry of the Hilbert Space</em>
 <hr>
-<p>This exercise develops the Riemannian geometry of quantum state space from first principles, connecting the Fubini-Study metric, Berry phase, and quantum geometric tensor into a unified framework that underpins the trainability analysis of Chapter 7 and the metrology of quantum scrambling.</p>
+<p>This exercise develops the Riemannian geometry of quantum state space from first principles, connecting the Fubini-Study metric, Berry phase, and quantum geometric tensor into a unified framework that underpins the trainability analysis of Part 7 and the metrology of quantum scrambling.</p>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>The physical state space of a qubit is the projective line <span class="math inline">\(\mathbb{CP}^1\)</span>, the Bloch sphere, which carries the Fubini-Study metric once the global phase is quotiented out. The quantum geometric tensor packages this metric together with the Berry curvature in a single Hermitian object, and its real diagonal fixes the quantum Fisher information that governs metrology and trainability later in the book. This exercise computes the tensor for a qubit and extracts the Fubini-Study metric and Berry monopole, then the Fisher information carried by its diagonal part.</p>
@@ -578,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="physical-motivation">1. Physical Motivation</h2>
 <p>A quantum state <span class="math inline">\(|\psi\rangle\)</span> lives in the Hilbert space <span class="math inline">\(\mathcal{H} \cong \mathbb{C}^D\)</span>, but physical observables are blind to the overall phase: <span class="math inline">\(|\psi\rangle\)</span> and <span class="math inline">\(e^{i\alpha}|\psi\rangle\)</span> represent the same physics. The <em>true</em> arena of quantum mechanics is therefore the <strong>projective Hilbert space</strong> <span class="math inline">\(\mathbb{CP}^{D-1}\)</span>, obtained by quotienting out the <span class="math inline">\(U(1)\)</span> phase.</p>
 <p>This quotient endows <span class="math inline">\(\mathbb{CP}^{D-1}\)</span> with a natural Riemannian metric, the <strong>Fubini-Study metric</strong>, that provides a gauge-invariant notion of distance between quantum states. This metric is not merely an abstract mathematical structure: it appears directly as the <strong>Quantum Fisher Information</strong> (QFI) in parameter estimation, as the <strong>Fubini-Study speed</strong> in quantum dynamics, and as the <strong>quantum geometric tensor</strong> controlling Berry phases and adiabatic transport.</p>
-<p>Understanding this geometry is essential for: - <strong>Quantum metrology</strong>: The QFI bounds the precision of parameter estimation via the Cramér-Rao bound. - <strong>Variational algorithms</strong>: The Fubini-Study metric determines the natural gradient on the variational manifold. - <strong>Scrambling diagnostics</strong>: The QFI concentration bounds the trainability of deep circuits (Chapter 7).</p>
+<p>Understanding this geometry is essential for: - <strong>Quantum metrology</strong>: The QFI bounds the precision of parameter estimation via the Cramér-Rao bound. - <strong>Variational algorithms</strong>: The Fubini-Study metric determines the natural gradient on the variational manifold. - <strong>Scrambling diagnostics</strong>: The QFI concentration bounds the trainability of deep circuits (Part 7).</p>
 </section>
 <section id="mathematical-toolbox" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-toolbox">2. Mathematical Toolbox</h2>
@@ -592,8 +591,8 @@ d_{\mathrm{FS}}(|\psi\rangle, |\phi\rangle) = \arccos |\langle \psi | \phi \rang
 <p><strong>Tool 4, Berry connection:</strong> <span class="math inline">\(A_\mu = i\langle \psi | \partial_\mu \psi \rangle\)</span>; the Berry curvature <span class="math inline">\(F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu\)</span> governs geometric phases.</p>
 <p><strong>Tool 5, Sectional curvature:</strong> For <span class="math inline">\(X, Y \in \mathfrak{su}(D)\)</span> with <span class="math inline">\(\langle X, Y \rangle = -\mathrm{Tr}(XY)\)</span>: <span class="math inline">\(K(X,Y) = \frac{1}{4}\|[X,Y]\|^2\)</span>.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">3. Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">3. Exercise</h2>
 <p><strong>(a) Fubini-Study metric for a qubit.</strong> Consider a qubit state <span class="math inline">\(|\psi(\theta, \phi)\rangle = \cos(\theta/2)|0\rangle + e^{i\phi}\sin(\theta/2)|1\rangle\)</span>. Compute the full QGT and show: <span class="math display">\[ds^2_{\mathrm{FS}} = \frac{1}{4}\left(d\theta^2 + \sin^2\theta\, d\phi^2\right).\]</span></p>
 <p><strong>(b) Berry curvature as monopole.</strong> Extract <span class="math inline">\(F_{\theta\phi}\)</span> and show it corresponds to a magnetic monopole. Compute the total Berry flux and Chern number.</p>
 <p><strong>(c) QFI for a rotation.</strong> For <span class="math inline">\(|\psi(\theta)\rangle = e^{-i\theta \sigma_z/2}|+\rangle\)</span>, verify <span class="math inline">\(F_Q = 4\,\mathrm{Var}(\sigma_z/2) = 1\)</span>.</p>

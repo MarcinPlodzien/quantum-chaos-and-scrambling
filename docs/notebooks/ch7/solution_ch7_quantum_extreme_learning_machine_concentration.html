@@ -524,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-physical-setup" id="toc-the-physical-setup" class="nav-link" data-scroll-target="#the-physical-setup">1. The Physical Setup</a></li>
   <li><a href="#the-povm-perspective-naimark-dilation-in-reverse" id="toc-the-povm-perspective-naimark-dilation-in-reverse" class="nav-link" data-scroll-target="#the-povm-perspective-naimark-dilation-in-reverse">2. The POVM Perspective: Naimark Dilation in Reverse</a></li>
   <li><a href="#mathematical-toolbox" id="toc-mathematical-toolbox" class="nav-link" data-scroll-target="#mathematical-toolbox">3. Mathematical Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">4. Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">4. Exercise</a></li>
   <li><a href="#step-by-step-derivation" id="toc-step-by-step-derivation" class="nav-link" data-scroll-target="#step-by-step-derivation">5. Step-by-Step Derivation</a>
   <ul class="collapse">
   <li><a href="#part-a-the-haar-average-trivializes-the-povm" id="toc-part-a-the-haar-average-trivializes-the-povm" class="nav-link" data-scroll-target="#part-a-the-haar-average-trivializes-the-povm">Part (a): The Haar average trivializes the POVM</a></li>
@@ -567,7 +567,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="quantum-extreme-learning-machines-and-the-povm-picture" class="level1">
 <h1>Quantum Extreme Learning Machines and the POVM Picture</h1>
-<strong>Chapter 7: Quantum Machine Learning</strong> &nbsp;|&nbsp; <em>Section 7.4: Quantum Extreme Learning Machines</em>
 <hr>
 <p>This exercise develops the complete theory of why deep quantum circuits destroy the utility of Quantum Extreme Learning Machines. We begin with the physical picture, formalize the POVM structure, and then prove three escalating results about signal death under Haar scrambling.</p>
 <section id="background" class="level2">
@@ -610,8 +609,8 @@ M_b \;=\; \langle 0|_{\mathrm{res}}\, U^\dagger\, |b\rangle\langle b|\, U\, |0\r
 <p><strong>Tool 3, Haar Symmetry:</strong> The Haar measure is invariant under basis permutations: <span class="math inline">\(\mathbb{E}[f_b^2]\)</span> is independent of <span class="math inline">\(b\)</span>, so <span class="math inline">\(\mathbb{E}[f_b^2] = \frac{1}{D} \mathbb{E}[\sum_b f_b^2]\)</span>.</p>
 <p><strong>Tool 4, Shot Noise Statistics:</strong> Estimating a probability <span class="math inline">\(p\)</span> from <span class="math inline">\(\nu\)</span> Bernoulli trials gives a standard error <span class="math inline">\(\sigma_{\mathrm{shot}} = \sqrt{p(1-p)/\nu}\)</span>.</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">4. Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">4. Exercise</h2>
 <p>Assume <span class="math inline">\(U\)</span> is drawn from the Haar measure on <span class="math inline">\(U(D)\)</span> and the input state is pure.</p>
 <p><strong>(a) Signal Death:</strong> Show that the Haar-averaged POVM element is <span class="math inline">\(\mathbb{E}_U[M_b] = \frac{1}{D} I_{\mathrm{in}}\)</span>, and consequently that <span class="math inline">\(\mathbb{E}_U[f_b(x)] = 1/D\)</span> for all inputs <span class="math inline">\(x\)</span>.</p>
 <p><strong>(b) Speckle Variance:</strong> Show that the feature variance is <span class="math inline">\(\mathrm{Var}_U[f_b] = \frac{D-1}{D^2(D+1)}\)</span>.</p>

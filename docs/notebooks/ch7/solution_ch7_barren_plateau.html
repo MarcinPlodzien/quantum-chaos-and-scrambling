@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
-  <li><a href="#exercise-statement" id="toc-exercise-statement" class="nav-link" data-scroll-target="#exercise-statement">Exercise Statement</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
   <ul class="collapse">
   <li><a href="#part-a-computing-mathbbec2-via-weingarten-calculus" id="toc-part-a-computing-mathbbec2-via-weingarten-calculus" class="nav-link" data-scroll-target="#part-a-computing-mathbbec2-via-weingarten-calculus">Part (a): Computing <span class="math inline">\(\mathbb{E}[C^2]\)</span> via Weingarten calculus</a></li>
@@ -564,7 +564,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="barren-plateau-scaling-from-the-weingarten-formula" class="level1">
 <h1>Barren Plateau Scaling from the Weingarten Formula</h1>
-<strong>Chapter 7: Quantum Machine Learning</strong> &nbsp;|&nbsp; <em>Section 7.1: Variational Quantum Circuits</em>
 <hr>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
@@ -572,7 +571,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>The <strong>barren plateau</strong> phenomenon is the central obstruction to training deep parametrized quantum circuits. When a circuit forms a unitary 2-design, the variance of any cost function gradient decays <strong>exponentially</strong> in the number of qubits <span class="math inline">\(N\)</span>. This result follows directly from the <strong>Weingarten calculus</strong> of Chapter 3, the same machinery that computes Haar averages of polynomial expressions in <span class="math inline">\(U\)</span> and <span class="math inline">\(U^\dagger\)</span>.</p>
+<p>The <strong>barren plateau</strong> phenomenon is the central obstruction to training deep parametrized quantum circuits. When a circuit forms a unitary 2-design, the variance of any cost function gradient decays <strong>exponentially</strong> in the number of qubits <span class="math inline">\(N\)</span>. This result follows directly from the <strong>Weingarten calculus</strong> of Part 3, the same machinery that computes Haar averages of polynomial expressions in <span class="math inline">\(U\)</span> and <span class="math inline">\(U^\dagger\)</span>.</p>
 <p>This exercise makes the connection explicit: we compute <span class="math inline">\(\mathbb{E}[C^2]\)</span> by applying the <span class="math inline">\(k=2\)</span> Weingarten formula term by term, showing how the permutation sums, Kronecker deltas, and trace contractions conspire to produce the exponentially small variance <span class="math inline">\(\sim N \cdot 2^{-(N+1)}\)</span>.</p>
 </section>
 <section id="preliminaries-toolbox" class="level2">
@@ -592,8 +591,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>5. Pauli trace rules:</strong> <span class="math inline">\(\mathrm{Tr}(Z_j) = 0\)</span>, <span class="math inline">\(\mathrm{Tr}(Z_j^2) = D\)</span>, <span class="math inline">\(\mathrm{Tr}(Z_j Z_k) = 0\)</span> for <span class="math inline">\(j \neq k\)</span>.</p>
 <p><strong>Notation:</strong> <span class="math inline">\(D = 2^N\)</span> (Hilbert space dimension), <span class="math inline">\(|0\rangle = |0^N\rangle\)</span> (computational zero state), <span class="math inline">\(O\)</span> (cost observable).</p>
 </section>
-<section id="exercise-statement" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-statement">Exercise Statement</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p>A parametrized circuit on <span class="math inline">\(N\)</span> qubits forms a unitary 2-design. The cost function is</p>
 <p><span class="math display">\[
 C(\boldsymbol{\theta}) = \langle 0 | U^\dagger O\, U | 0 \rangle,
