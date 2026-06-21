@@ -89,13 +89,6 @@ See the publishing steps below, or `build.sh` for details.
 If this tutorial helps your work, please cite it (see [`CITATION.cff`](CITATION.cff)).
 You can also use the "Cite this repository" button on GitHub.
 
-## Relation to the book
-
-This is the open, hands-on companion to the monograph *Quantum Chaos and
-Information Scrambling: From Random Matrix Theory to Quantum Machine Learning*.
-The tutorial is designed to stand entirely on its own; the book provides the
-extended narrative and full derivations.
-
 ## Contributing
 
 Found a bug, an unclear explanation, or a result that doesn't reproduce on your
