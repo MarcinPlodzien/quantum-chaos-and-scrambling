@@ -630,7 +630,7 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:37.784645Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:37.784542Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:38.410932Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:38.410561Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:47:48.144115Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:47:48.143990Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:47:48.824654Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:47:48.824242Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -650,11 +650,11 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 <div class="cell-output cell-output-stdout">
 <pre><code>For n≠0, choose α=2π/(3n): e^{inα} − 1 = -1 + exp(2*I*pi/3)
   m=-3: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
-  m=-2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
-  m=-1: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0</code></pre>
+  m=-2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  m=+0: ∫ e^{imθ} = 1, ∫ e^{im(θ+α)} = 1
+<pre><code>  m=-1: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
+  m=+0: ∫ e^{imθ} = 1, ∫ e^{im(θ+α)} = 1
   m=+1: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
   m=+2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
   m=+3: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0</code></pre>
@@ -668,7 +668,7 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 </section>
 <section id="figure-sampled-u1-phase-is-uniform" class="level2">
 <h2 class="anchored" data-anchor-id="figure-sampled-u1-phase-is-uniform">Figure: Sampled <span class="math inline">\(U(1)\)</span> phase is uniform</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:38.412764Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:38.412550Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:40.186034Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:40.185665Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:47:48.826625Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:47:48.826390Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:47:50.774773Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:47:50.774312Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -708,7 +708,7 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>Invariance alone pins down the Haar measure on <span class="math inline">\(U(1)\)</span> as the uniform density <span class="math inline">\(1/(2\pi)\)</span>. The same argument, applied to the determinant, shows that <span class="math inline">\(\det U\)</span> has uniform phase for Haar-random <span class="math inline">\(U \in U(D)\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T14:57:40.187522Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T14:57:40.187320Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T14:57:40.885550Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T14:57:40.884962Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:47:50.776514Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:47:50.776254Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:47:51.522442Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:47:51.522068Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>

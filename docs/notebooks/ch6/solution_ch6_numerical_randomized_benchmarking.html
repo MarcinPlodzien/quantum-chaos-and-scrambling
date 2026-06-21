@@ -656,7 +656,7 @@ F_{\mathrm{avg}} = \int d\psi\, \left[\alpha\, \langle\psi|\psi\rangle^2 + (1-\a
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:39.915800Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:39.915615Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:40.211404Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:40.210989Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:44.036265Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:44.036048Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:44.384751Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:44.384346Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -695,7 +695,7 @@ Single qubit (d=2):
 </section>
 <section id="parts-d-and-e-numerical-implementation" class="level2">
 <h2 class="anchored" data-anchor-id="parts-d-and-e-numerical-implementation">Parts (d) and (e): Numerical Implementation</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:40.212848Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:40.212679Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:40.445813Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:40.445414Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:44.386760Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:44.386376Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:44.650261Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:44.649702Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -732,7 +732,7 @@ Single qubit (d=2):
 <pre><code>Generated 24 single-qubit Cliffords</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:40.447219Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:40.447048Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:41.762139Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:41.761465Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:44.652045Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:44.651860Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:46.204685Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:46.204237Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Noise model: depolarizing channel</span></span>
@@ -779,7 +779,7 @@ m=  64: p̄ = 0.5863
 m= 128: p̄ = 0.5153</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:41.763720Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:41.763444Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:41.776966Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:41.776662Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:46.206488Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:46.206278Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:46.221539Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:46.221216Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit exponential decay</span></span>
@@ -806,7 +806,7 @@ Fit: A=0.4867, α=0.9733, B=0.5000
 F_avg = 0.986667  (theory 0.986667)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:41.778255Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:41.778041Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:41.782813Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:41.782552Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:46.223182Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:46.222918Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:46.228756Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:46.228425Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Part (e): Twirling the amplitude-damping channel</span></span>
@@ -852,7 +852,7 @@ Clifford twirl: any channel → depolarizing.</code></pre>
 </section>
 <section id="visual-pedagogical-proof" class="level2">
 <h2 class="anchored" data-anchor-id="visual-pedagogical-proof">Visual Pedagogical Proof</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:41.783933Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:41.783775Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:42.292102Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:42.291799Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:46.230108Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:46.229893Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:46.844970Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:46.844450Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -884,7 +884,7 @@ Clifford twirl: any channel → depolarizing.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The Clifford twirl reduces an arbitrary CPTP error to a single depolarizing parameter <span class="math inline">\(\alpha\)</span>, so the survival probability follows <span class="math inline">\(F(m)=A\,\alpha^m+B\)</span> and one exponential fit returns <span class="math inline">\(\alpha\)</span> and the average fidelity. State-preparation and measurement errors fall entirely into <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, leaving the fidelity read from the decay rate unbiased.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:42.293453Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:42.293252Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:42.419229Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:42.418919Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:46.847039Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:46.846728Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:46.997166Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:46.996769Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

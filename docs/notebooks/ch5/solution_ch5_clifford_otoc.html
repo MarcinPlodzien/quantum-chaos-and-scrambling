@@ -629,7 +629,7 @@ C(t) = \frac{1}{D}\mathrm{Tr}\bigl(4V^\dagger W(t)^\dagger W(t) V\bigr) = \frac{
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:22.523788Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:22.523598Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:22.680952Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:22.680524Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:22.363550Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:22.363299Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:22.567268Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:22.566680Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -663,7 +663,7 @@ but Clifford dynamics can only produce F in {-1, +1}.</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:22.683024Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:22.682795Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:23.270693Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:23.270290Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:22.569352Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:22.569096Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:23.344918Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:23.344125Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -739,11 +739,12 @@ but Clifford dynamics can only produce F in {-1, +1}.</code></pre>
 <p><img src="solution_ch5_clifford_otoc_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<p><strong>Why a step and not an exponent.</strong> A Clifford circuit keeps <span class="math inline">\(W(t)\)</span> a single Pauli string, and two Pauli strings can only commute or anticommute. The squared commutator therefore jumps straight from <span class="math inline">\(0\)</span> to <span class="math inline">\(4\)</span> the moment the operator front reaches the probe, with no band of intermediate values for an exponential <span class="math inline">\(e^{2\lambda t}\)</span> to populate. A genuine Lyapunov exponent needs <span class="math inline">\(W(t)\)</span> to become a superposition of many Paulis, which requires the nonstabilizerness (magic) that Clifford dynamics lack.</p>
 </section>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>For Clifford dynamics <span class="math inline">\(C(t)\)</span> takes only the values <span class="math inline">\(0\)</span> and <span class="math inline">\(4\)</span>, jumping the instant the operator light cone reaches <span class="math inline">\(V\)</span> with no exponential ramp between. No Lyapunov exponent can be assigned, so matching the first three Haar moments does not by itself imply chaotic operator growth.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T15:01:23.272599Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T15:01:23.272389Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T15:01:23.400193Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T15:01:23.399654Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:23.347097Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:23.346758Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:23.504388Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:23.503770Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
