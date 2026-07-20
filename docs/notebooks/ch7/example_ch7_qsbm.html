@@ -588,7 +588,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>a trainable single-qubit <strong>post-rotation</strong> <span class="math inline">\(R_y\)</span> on every qubit.</li>
 </ol>
 <p><span class="math inline">\(N_A\)</span> ancilla qubits are traced out before measurement, giving a <em>mixed</em> output distribution over the remaining <span class="math inline">\(n=N_Q-N_A\)</span> qubits (mixedness is an extra expressivity resource). Only the rotation angles are trained; <span class="math inline">\(\hat U_S\)</span> is fixed. We use JAX so that the loss gradient comes from automatic differentiation.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:10:12.322337Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:10:12.321925Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:10:12.925542Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:10:12.925027Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:30.189428Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:30.189293Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:30.801951Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:30.801565Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -597,7 +597,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>jax.config.update(<span class="st">"jax_enable_x64"</span>, <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:10:12.927999Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:10:12.927732Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:10:15.988296Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:10:15.987866Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:30.804096Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:30.803856Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:33.092412Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:33.092089Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># System size and single-qubit gates (applied matrix-free on the state tensor)</span></span>
@@ -619,11 +619,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.moveaxis(jnp.tensordot(U, psi, axes<span class="op">=</span>([<span class="dv">1</span>], [q])), <span class="dv">0</span>, q)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>W0720 12:10:15.652097  559434 cuda_executor.cc:1802] GPU interconnect information not available: INTERNAL: NVML doesn't support extracting fabric info or NVLink is not used by the device.
-W0720 12:10:15.656023  559361 cuda_executor.cc:1802] GPU interconnect information not available: INTERNAL: NVML doesn't support extracting fabric info or NVLink is not used by the device.</code></pre>
+<pre><code>W0720 13:35:32.872786  574107 cuda_executor.cc:1802] GPU interconnect information not available: INTERNAL: NVML doesn't support extracting fabric info or NVLink is not used by the device.
+W0720 13:35:32.875277  574031 cuda_executor.cc:1802] GPU interconnect information not available: INTERNAL: NVML doesn't support extracting fabric info or NVLink is not used by the device.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:10:15.989689Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:10:15.989563Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:10:16.017174Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:10:16.016635Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:33.094197Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:33.093927Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:33.122137Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:33.121622Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The fixed scrambler: a Haar-random unitary (never trained).</span></span>
@@ -639,7 +639,7 @@ W0720 12:10:15.656023  559361 cuda_executor.cc:1802] GPU interconnect informatio
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>U_S <span class="op">=</span> haar_unitary(D, seed<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:10:16.021048Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:10:16.020826Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:10:16.025655Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:10:16.025273Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:33.125526Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:33.125301Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:33.130152Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:33.129769Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forward pass: |0...0&gt; -&gt; L layers of [pre Rx,Rz | U_S | post Ry] -&gt; trace ancillas</span></span>
@@ -659,7 +659,7 @@ W0720 12:10:15.656023  559361 cuda_executor.cc:1802] GPU interconnect informatio
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p_full.reshape(<span class="dv">2</span> <span class="op">**</span> N_SYS, <span class="dv">2</span> <span class="op">**</span> N_A).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)       <span class="co"># trace out the N_A ancillas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:10:16.027302Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:10:16.026961Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:10:16.046051Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:10:16.045533Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:33.133505Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:33.133181Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:33.150270Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:33.149868Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Target: a five-peak Gaussian mixture over the 2**N_SYS bins</span></span>
@@ -674,7 +674,7 @@ W0720 12:10:15.656023  559361 cuda_executor.cc:1802] GPU interconnect informatio
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> jnp.array(target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:10:16.047951Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:10:16.047736Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:10:16.054291Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:10:16.053790Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:33.152112Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:33.151511Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:33.157761Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:33.157343Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss = negative log-likelihood; gradient by autodiff; trained with Adam.</span></span>
@@ -701,7 +701,7 @@ W0720 12:10:15.656023  559361 cuda_executor.cc:1802] GPU interconnect informatio
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.<span class="bu">sum</span>(target <span class="op">*</span> np.log(np.clip(target, <span class="fl">1e-12</span>, <span class="va">None</span>) <span class="op">/</span> phat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:10:16.056113Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:10:16.055884Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:10:59.720365Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:10:59.719989Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:33.159308Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:33.159131Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:36:18.831710Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:36:18.831254Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sweep the number of trainable layers L (only single-qubit rotations are trained)</span></span>
@@ -729,7 +729,7 @@ W0720 12:10:15.656023  559361 cuda_executor.cc:1802] GPU interconnect informatio
 <pre><code>L=6:  KLD = 0.009</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:10:59.721879Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:10:59.721629Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:11:00.099350Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:11:00.098928Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:36:18.833575Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:36:18.833251Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:36:19.235185Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:36:19.234686Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">3.6</span>))</span>

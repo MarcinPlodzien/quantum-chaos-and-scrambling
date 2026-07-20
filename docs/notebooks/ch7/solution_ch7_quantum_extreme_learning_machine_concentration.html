@@ -730,7 +730,7 @@ M_b \;=\; \langle 0|_{\mathrm{res}}\, U^\dagger\, |b\rangle\langle b|\, U\, |0\r
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">7. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:09:03.314961Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:09:03.314546Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:09:03.648137Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:09:03.647540Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:33:56.008072Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:33:56.007892Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:33:56.357517Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:33:56.356984Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -784,7 +784,7 @@ Part (c): Shot threshold nu &gt; D*(D + 1)/(D - 1)
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">8. Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:09:03.650045Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:09:03.649853Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:09:04.839427Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:09:04.838870Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:33:56.359759Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:33:56.359487Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:33:57.579442Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:33:57.579046Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -848,7 +848,7 @@ All assertions passed.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>Under full Haar scrambling the features concentrate at <span class="math inline">\(1/D\)</span> with variance of order <span class="math inline">\(1/D^2\)</span>, so resolving the input takes order <span class="math inline">\(D\)</span> shots and the mean POVM element carries no directional information at all. Working reservoirs therefore sit at the edge of scrambling, deep enough to be expressive yet shallow enough to keep input sensitivity above the sampling floor.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:09:04.841329Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:09:04.841090Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:09:05.775301Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:09:05.774940Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:33:57.581507Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:33:57.581047Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:33:58.587844Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:33:58.587475Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

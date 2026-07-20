@@ -684,7 +684,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:08:06.273643Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:08:06.272518Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:08:06.442352Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:08:06.441903Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:32:43.448662Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:32:43.448539Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:32:43.631040Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:32:43.630337Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -721,7 +721,7 @@ Verification: M(M^{-1}(rho)) = rho
 </section>
 <section id="part-e-numerical-implementation" class="level2">
 <h2 class="anchored" data-anchor-id="part-e-numerical-implementation">Part (e): Numerical Implementation</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:08:06.444219Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:08:06.443977Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:08:06.498370Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:08:06.497929Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:32:43.632640Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:32:43.632408Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:32:43.693183Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:32:43.692783Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -756,7 +756,7 @@ trial 4: ||M⁻¹(M(σ)) − σ|| = 2.50e-16
 Channel inversion verified.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:08:06.500281Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:08:06.500045Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:08:06.507794Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:08:06.506257Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:32:43.698412Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:32:43.698135Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:32:43.706855Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:32:43.706394Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify E[ρ̂] = ρ for ρ = |0⟩⟨0| by averaging over all 6 outcomes</span></span>
@@ -794,7 +794,7 @@ Channel inversion verified.</code></pre>
 E[ρ̂] = ρ confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:08:06.509413Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:08:06.509239Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:08:07.723013Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:08:07.722551Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:32:43.708824Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:32:43.708450Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:32:45.059046Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:32:45.058415Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full shadow protocol: 2-qubit Bell state</span></span>
@@ -889,7 +889,7 @@ T= 1000: ⟨XX⟩=+1.071, ⟨ZZ⟩=+0.999, ⟨ZI⟩=+0.012</code></pre>
 Classical shadows: unbiased estimation confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:08:07.724747Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:08:07.724437Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:08:08.822691Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:08:08.822232Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:32:45.060988Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:32:45.060525Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:32:46.270291Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:32:46.269800Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
