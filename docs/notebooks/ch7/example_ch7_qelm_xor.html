@@ -606,7 +606,7 @@ y = \mathrm{sign}(x_1 x_2),
 </ul></li>
 </ol>
 <p>The expected outcome: raw <span class="math inline">\(\approx 50\%\)</span>, bare <span class="math inline">\(\approx 50\%\)</span>, QELM <span class="math inline">\(\approx 100\%\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:23.047914Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:23.047562Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:23.911286Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:23.910757Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:08:42.874270Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:08:42.873828Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:08:44.060937Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:08:44.060419Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -623,7 +623,7 @@ y = \mathrm{sign}(x_1 x_2),
 <section id="the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="the-dataset">The dataset</h2>
 <p>Four isotropic Gaussian clusters, one per quadrant, with label <span class="math inline">\(y=\mathrm{sign}(x_1 x_2)\)</span>. The clusters on the main diagonal are one class; the clusters on the anti-diagonal are the other. This is the continuous XOR / checkerboard.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:23.913142Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:23.912917Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:23.917606Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:23.917225Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:08:44.063423Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:08:44.063079Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:08:44.069234Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:08:44.068497Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_xor(rng, n_per<span class="op">=</span><span class="dv">120</span>, noise<span class="op">=</span><span class="fl">0.35</span>):</span>
@@ -645,7 +645,7 @@ y = \mathrm{sign}(x_1 x_2),
 <pre><code>dataset: (480, 2)  train/test: 288 192</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:23.919079Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:23.918946Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:24.143100Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:24.142810Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:08:44.071321Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:08:44.070981Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:08:44.385831Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:08:44.385243Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>C_POS, C_NEG <span class="op">=</span> <span class="st">"#c1121f"</span>, <span class="st">"#1f6fc4"</span></span>
@@ -676,7 +676,7 @@ R_y(\alpha x)\,|0\rangle = \cos\tfrac{\alpha x}{2}\,|0\rangle
 H = J\sum_i Z_i Z_{i+1} + h_x\sum_i X_i + h_z\sum_i Z_i .
 \]</span> The longitudinal field <span class="math inline">\(h_z\)</span> breaks the Jordan-Wigner integrability of the pure transverse-field model, so <span class="math inline">\(U = e^{-i H t}\)</span> scrambles: it entangles the qubits and spreads each encoded coordinate over the whole register. After <span class="math inline">\(U\)</span>, a single-qubit observable <span class="math inline">\(\langle Z_i\rangle\)</span> is a function of <strong>both</strong> <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>, and its Taylor expansion contains the product <span class="math inline">\(x_1 x_2\)</span>. That product is exactly the feature XOR requires.</p>
 <p><strong>Readout.</strong> We measure the weight-one Pauli bank <span class="math inline">\(\{\langle X_i\rangle, \langle Y_i\rangle, \langle Z_i\rangle\}_{i=0}^{N-1}\)</span>, giving a <span class="math inline">\(3N=12\)</span>-dimensional feature vector <span class="math inline">\(f(x_1, x_2)\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:24.144659Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:24.144467Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:24.148827Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:24.148560Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:08:44.388362Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:08:44.387851Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:08:44.396156Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:08:44.395634Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>I2 <span class="op">=</span> np.eye(<span class="dv">2</span>, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
@@ -710,7 +710,7 @@ H = J\sum_i Z_i Z_{i+1} + h_x\sum_i X_i + h_z\sum_i Z_i .
 </details>
 </div>
 <p>The Pauli bank is precomputed as index/weight arrays: for a pure state <span class="math inline">\(\psi\)</span>, a Pauli <span class="math inline">\(P = i^{p} X^{x} Z^{z}\)</span> has <span class="math inline">\(\langle P\rangle = \mathrm{Re}\sum_b \overline{\psi_b}\, W_b\, \psi_{b\oplus x}\)</span>, an <span class="math inline">\(O(2^N)\)</span> contraction. We check it against the brute-force <span class="math inline">\(\langle\psi|P|\psi\rangle\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:24.149858Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:24.149735Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:24.163599Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:24.163293Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:08:44.398154Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:08:44.397747Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:08:44.426763Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:08:44.426160Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>_POP <span class="op">=</span> np.array([<span class="bu">bin</span>(i).count(<span class="st">"1"</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">16</span>)])</span>
@@ -741,7 +741,7 @@ H = J\sum_i Z_i Z_{i+1} + h_x\sum_i X_i + h_z\sum_i Z_i .
 <pre><code>max |fast - brute| = 1.1102230246251565e-16</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:24.164676Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:24.164561Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:24.174856Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:24.174473Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:08:44.428746Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:08:44.428345Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:08:44.446004Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:08:44.445487Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> qelm_features(XY, N, U, COLS, W, alpha):</span>
@@ -768,7 +768,7 @@ H = J\sum_i Z_i Z_{i+1} + h_x\sum_i X_i + h_z\sum_i Z_i .
 <section id="the-ablation" class="level2">
 <h2 class="anchored" data-anchor-id="the-ablation">The ablation</h2>
 <p>The same logistic-regression classifier is fit three ways. Only the input features change: raw coordinates, bare-encoding Pauli features, and QELM Pauli features. The quantum pipeline is never trained; only the linear readout weights are.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:24.176160Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:24.175941Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:24.249182Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:24.248828Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:08:44.447921Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:08:44.447491Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:08:44.567316Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:08:44.566870Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_score(F_tr, y_tr, F_te, y_te, C<span class="op">=</span><span class="fl">10.0</span>):</span>
@@ -803,7 +803,7 @@ QELM         test accuracy = 0.979</code></pre>
 <section id="decision-regions" class="level2">
 <h2 class="anchored" data-anchor-id="decision-regions">Decision regions</h2>
 <p>We evaluate the trained QELM readout on a dense grid to see the decision regions it carves in the <span class="math inline">\((x_1, x_2)\)</span> plane, and overlay the raw linear boundary, which can only be a straight line.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:35:24.250755Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:35:24.250495Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:35:27.355262Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:35:27.354788Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:08:44.569511Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:08:44.569246Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:08:48.861727Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:08:48.861270Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>GRID_LIM, GRID_N <span class="op">=</span> <span class="fl">2.6</span>, <span class="dv">200</span></span>

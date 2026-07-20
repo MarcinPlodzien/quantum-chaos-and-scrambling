@@ -708,7 +708,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Closed loop</strong> (wire with no open ends) = contributes a factor of <span class="math inline">\(D\)</span></li>
 <li><strong>Cup</strong> (semicircular arc connecting two wires) = Kronecker delta <span class="math inline">\(\delta_{ij}\)</span></li>
 </ul>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:31:38.461074Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:31:38.460941Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:31:39.061850Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:31:39.061403Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:58:39.242177Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:58:39.241975Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:58:39.905393Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:58:39.904894Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports used throughout</span></span>
@@ -794,7 +794,7 @@ S_3 has 6 elements:
 <p><strong>Step 2, Apply <span class="math inline">\(k=1\)</span> Weingarten (<span class="math inline">\(|S_1| = 1\)</span>, only <span class="math inline">\(\pi = \sigma = \mathrm{id}\)</span>):</strong> <span class="math display">\[\mathbb{E}[U_{ij}U^*_{lk}] = \frac{1}{D}\,\delta_{il}\,\delta_{jk}\]</span></p>
 <p><strong>Step 3, Contract deltas:</strong> - <span class="math inline">\(\delta_{jk}\)</span> closes a loop through <span class="math inline">\(\hat{A}\)</span>: <span class="math inline">\(\sum_j A_{jj} = \mathrm{Tr}(\hat{A})\)</span> - <span class="math inline">\(\delta_{il}\)</span> closes a loop through <span class="math inline">\(\hat{B}\)</span>: <span class="math inline">\(\sum_i B_{ii} = \mathrm{Tr}(\hat{B})\)</span></p>
 <p><strong>Result:</strong> <span class="math inline">\(\mathbb{E}[\mathrm{Tr}(UAU^\dagger B)] = \frac{\mathrm{Tr}(\hat{A})\,\mathrm{Tr}(\hat{B})}{D}\)</span></p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:31:39.063883Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:31:39.063663Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:31:39.213143Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:31:39.212536Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:58:39.907241Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:58:39.906894Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:58:40.055289Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:58:40.054840Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (a): SymPy symbolic verification ==='</span>)</span>
@@ -832,7 +832,7 @@ Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
   MATCH</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:31:39.214936Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:31:39.214794Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:31:41.388523Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:31:41.388072Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:58:40.056935Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:58:40.056735Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:58:42.088420Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:58:42.087990Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (a): NumPy Monte Carlo cross-check ==='</span>)</span>
@@ -914,7 +914,7 @@ Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
 </tbody>
 </table>
 <p><strong>Step 5, Assembly:</strong> <span class="math display">\[\mathbb{E}[\mathrm{Tr}(\hat{\rho}_A^2)] = \frac{1}{D(D+1)}(D_A D_B^2 + D_A^2 D_B) = \frac{D_A D_B(D_A + D_B)}{D_A D_B(D_A D_B + 1)} = \frac{D_A + D_B}{D_A D_B + 1}\]</span></p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:31:41.390248Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:31:41.390100Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:31:41.464641Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:31:41.463954Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:58:42.090295Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:58:42.090054Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:58:42.159724Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:58:42.159349Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): Step-by-step purity derivation ==='</span>)</span>
@@ -990,7 +990,7 @@ Step 4: Numerical verification
   DA=2,DB=8: analytic = 0.58823529, formula = 0.58823529, match = True</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:31:41.466551Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:31:41.466378Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:31:43.273268Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:31:43.272726Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:58:42.161272Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:58:42.161121Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:58:43.840234Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:58:43.839729Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): NumPy Monte Carlo cross-check ==='</span>)</span>
@@ -1038,7 +1038,7 @@ Step 4: Numerical verification
 <p>This sets <span class="math inline">\(j_a = i_a\)</span> and <span class="math inline">\(m_a = \ell_a\)</span> (the trace constraint: all indices are “diagonal”).</p>
 <p><strong>Step 2, Weingarten sum:</strong> For each <span class="math inline">\((\pi, \sigma) \in S_3 \times S_3\)</span>, the delta product <span class="math inline">\(\prod_a \delta_{i_a, \ell_{\pi(a)}} \delta_{i_a, \ell_{\sigma(a)}}\)</span> forces <span class="math inline">\(\ell_{\pi(a)} = \ell_{\sigma(a)}\)</span> for all <span class="math inline">\(a\)</span>. The number of free summation indices equals <span class="math inline">\(D^{\#\text{cycles}(\pi^{-1}\sigma)}\)</span>.</p>
 <p><strong>Step 3, Group by cycle type of <span class="math inline">\(\pi^{-1}\sigma\)</span>:</strong> Since <span class="math inline">\(\mathrm{Wg}\)</span> depends only on cycle type, we count how many of the <span class="math inline">\(36\)</span> pairs <span class="math inline">\((\pi, \sigma)\)</span> give each cycle type of <span class="math inline">\(\pi^{-1}\sigma\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:31:43.274956Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:31:43.274807Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:31:43.279565Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:31:43.279247Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:58:43.841984Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:58:43.841750Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:58:43.846880Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:58:43.846549Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (c): Full S₃ Weingarten calculus ==='</span>)</span>
@@ -1089,7 +1089,7 @@ Step 2: Distribution of π⁻¹σ cycle types across all 36 pairs
         (3,) |      12 |        1 | D^1</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:31:43.280993Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:31:43.280856Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:31:43.285424Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:31:43.285055Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:58:43.848305Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:58:43.848103Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:58:43.852532Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:58:43.852192Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Compute E[|Tr(U)|^6] for several D</span></span>
@@ -1146,7 +1146,7 @@ Result: E[|Tr(U)|⁶] = 6 = 3! for all D ≥ 3
 This is the CUE moment theorem: E[|Tr(U)|^{2k}] = k!</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:31:43.286769Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:31:43.286599Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:31:46.159391Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:31:46.158746Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:58:43.853924Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:58:43.853673Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:58:46.595217Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:58:46.594743Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: NumPy Monte Carlo cross-check</span></span>

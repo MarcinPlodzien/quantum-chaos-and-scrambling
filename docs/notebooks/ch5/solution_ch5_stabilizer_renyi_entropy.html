@@ -684,7 +684,7 @@ M_2 = -\log_2(1) = 0.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:32:21.063045Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:32:21.062868Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:32:21.404149Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:32:21.403415Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:59:46.259357Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:59:46.258837Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:59:46.868143Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:59:46.867586Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -712,8 +712,10 @@ M_2 = -\log_2(1) = 0.
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Stabilizer: Xi = D/D = 1, M_2 = -log2(1) = 0'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>E[&lt;A&gt;^4] = 3/((D + 1)*(D + 3))
-E[Xi_P] = 4/(D + 3) = 4/(D+3)  Verified!
+<pre><code>E[&lt;A&gt;^4] = 3/((D + 1)*(D + 3))</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>E[Xi_P] = 4/(D + 3) = 4/(D+3)  Verified!
 M_2 = -log2(4/(D+3))
   N=10: M_2 = 8.0042 (expected ~8)
 
@@ -724,59 +726,59 @@ Stabilizer: Xi = D/D = 1, M_2 = -log2(1) = 0</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:32:21.406004Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:32:21.405788Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:32:30.383467Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:32:30.382748Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:59:46.870868Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:59:46.870322Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:00:04.172980Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:00:04.172236Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)  <span class="co"># reproducible MC</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>paulis <span class="op">=</span> [np.eye(<span class="dv">2</span>), np.array([[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">1</span>,<span class="dv">0</span>]]), np.array([[<span class="dv">0</span>,<span class="op">-</span><span class="ot">1j</span>],[<span class="ot">1j</span>,<span class="dv">0</span>]]), np.array([[<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>]])]</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> all_paulis(N):</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    ops <span class="op">=</span> []</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idxs <span class="kw">in</span> product(<span class="bu">range</span>(<span class="dv">4</span>), repeat<span class="op">=</span>N):</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        P <span class="op">=</span> paulis[idxs[<span class="dv">0</span>]]</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N): P <span class="op">=</span> np.kron(P, paulis[idxs[k]])</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        ops.append(P)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ops</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Stabilizer Rényi Entropy of Haar Random States"</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'N'</span><span class="sc">:&gt;3s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'D'</span><span class="sc">:&gt;4s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'E[⟨P⟩⁴] MC'</span><span class="sc">:&gt;14s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'3/((D+1)(D+3))'</span><span class="sc">:&gt;16s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'E[Ξ] MC'</span><span class="sc">:&gt;12s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'4/(D+3)'</span><span class="sc">:&gt;12s}</span><span class="ss">"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">3</span><span class="sc">:&gt;3s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">4</span><span class="sc">:&gt;4s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">14</span><span class="sc">:&gt;14s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">16</span><span class="sc">:&gt;16s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">12</span><span class="sc">:&gt;12s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">12</span><span class="sc">:&gt;12s}</span><span class="ss">"</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]:</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    P_all <span class="op">=</span> all_paulis(N)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    P_test <span class="op">=</span> P_all[<span class="dv">1</span>] <span class="co"># A single non-identity Pauli</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    P4_list, xi_list <span class="op">=</span> [], []</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20000</span>):</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Part (a)</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        P4_list.append( (psi.conj() <span class="op">@</span> P_test <span class="op">@</span> psi).real<span class="op">**</span><span class="dv">4</span> )</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Part (b)</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        xi <span class="op">=</span> <span class="bu">sum</span>((psi.conj() <span class="op">@</span> P <span class="op">@</span> psi).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all) <span class="op">/</span> D</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        xi_list.append(xi)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    mc_P4 <span class="op">=</span> np.mean(P4_list)</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    th_P4 <span class="op">=</span> <span class="dv">3</span><span class="op">/</span>((D<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>(D<span class="op">+</span><span class="dv">3</span>))</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    mc_xi <span class="op">=</span> np.mean(xi_list)</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    th_xi <span class="op">=</span> <span class="dv">4</span><span class="op">/</span>(D<span class="op">+</span><span class="dv">3</span>)</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">  </span><span class="sc">{</span>D<span class="sc">:4d}</span><span class="ss">  </span><span class="sc">{</span>mc_P4<span class="sc">:14.6f}</span><span class="ss">  </span><span class="sc">{</span>th_P4<span class="sc">:16.6f}</span><span class="ss">  </span><span class="sc">{</span>mc_xi<span class="sc">:12.6f}</span><span class="ss">  </span><span class="sc">{</span>th_xi<span class="sc">:12.6f}</span><span class="ss">"</span>)</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_P4 <span class="op">-</span> th_P4) <span class="op">&lt;</span> <span class="fl">0.01</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_xi <span class="op">-</span> th_xi) <span class="op">&lt;</span> <span class="fl">0.02</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Part (d) Stabilizer state</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>psi_stab <span class="op">=</span> np.zeros(<span class="dv">4</span>)<span class="op">;</span> psi_stab[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># |00&gt;</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>P_all_2 <span class="op">=</span> all_paulis(<span class="dv">2</span>)</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>xi_stab <span class="op">=</span> <span class="bu">sum</span>((psi_stab.conj() <span class="op">@</span> P <span class="op">@</span> psi_stab).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all_2) <span class="op">/</span> <span class="dv">4</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Stabilizer state |00⟩: Ξ = </span><span class="sc">{</span>xi_stab<span class="sc">:.1f}</span><span class="ss">, M₂ = </span><span class="sc">{</span><span class="op">-</span>np<span class="sc">.</span>log2(xi_stab)<span class="sc">:.1f}</span><span class="ss"> (expected 0.0)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)  <span class="co"># reproducible MC</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>paulis <span class="op">=</span> [np.eye(<span class="dv">2</span>), np.array([[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">1</span>,<span class="dv">0</span>]]), np.array([[<span class="dv">0</span>,<span class="op">-</span><span class="ot">1j</span>],[<span class="ot">1j</span>,<span class="dv">0</span>]]), np.array([[<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>]])]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> all_paulis(N):</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    ops <span class="op">=</span> []</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idxs <span class="kw">in</span> product(<span class="bu">range</span>(<span class="dv">4</span>), repeat<span class="op">=</span>N):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        P <span class="op">=</span> paulis[idxs[<span class="dv">0</span>]]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N): P <span class="op">=</span> np.kron(P, paulis[idxs[k]])</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        ops.append(P)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ops</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Stabilizer Rényi Entropy of Haar Random States"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'N'</span><span class="sc">:&gt;3s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'D'</span><span class="sc">:&gt;4s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'E[⟨P⟩⁴] MC'</span><span class="sc">:&gt;14s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'3/((D+1)(D+3))'</span><span class="sc">:&gt;16s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'E[Ξ] MC'</span><span class="sc">:&gt;12s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'4/(D+3)'</span><span class="sc">:&gt;12s}</span><span class="ss">"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">3</span><span class="sc">:&gt;3s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">4</span><span class="sc">:&gt;4s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">14</span><span class="sc">:&gt;14s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">16</span><span class="sc">:&gt;16s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">12</span><span class="sc">:&gt;12s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">12</span><span class="sc">:&gt;12s}</span><span class="ss">"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]:</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    P_all <span class="op">=</span> all_paulis(N)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    P_test <span class="op">=</span> P_all[<span class="dv">1</span>] <span class="co"># A single non-identity Pauli</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    P4_list, xi_list <span class="op">=</span> [], []</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20000</span>):</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Part (a)</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        P4_list.append( (psi.conj() <span class="op">@</span> P_test <span class="op">@</span> psi).real<span class="op">**</span><span class="dv">4</span> )</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Part (b)</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        xi <span class="op">=</span> <span class="bu">sum</span>((psi.conj() <span class="op">@</span> P <span class="op">@</span> psi).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all) <span class="op">/</span> D</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        xi_list.append(xi)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    mc_P4 <span class="op">=</span> np.mean(P4_list)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    th_P4 <span class="op">=</span> <span class="dv">3</span><span class="op">/</span>((D<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>(D<span class="op">+</span><span class="dv">3</span>))</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    mc_xi <span class="op">=</span> np.mean(xi_list)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    th_xi <span class="op">=</span> <span class="dv">4</span><span class="op">/</span>(D<span class="op">+</span><span class="dv">3</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">  </span><span class="sc">{</span>D<span class="sc">:4d}</span><span class="ss">  </span><span class="sc">{</span>mc_P4<span class="sc">:14.6f}</span><span class="ss">  </span><span class="sc">{</span>th_P4<span class="sc">:16.6f}</span><span class="ss">  </span><span class="sc">{</span>mc_xi<span class="sc">:12.6f}</span><span class="ss">  </span><span class="sc">{</span>th_xi<span class="sc">:12.6f}</span><span class="ss">"</span>)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_P4 <span class="op">-</span> th_P4) <span class="op">&lt;</span> <span class="fl">0.01</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_xi <span class="op">-</span> th_xi) <span class="op">&lt;</span> <span class="fl">0.02</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Part (d) Stabilizer state</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>psi_stab <span class="op">=</span> np.zeros(<span class="dv">4</span>)<span class="op">;</span> psi_stab[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># |00&gt;</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>P_all_2 <span class="op">=</span> all_paulis(<span class="dv">2</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>xi_stab <span class="op">=</span> <span class="bu">sum</span>((psi_stab.conj() <span class="op">@</span> P <span class="op">@</span> psi_stab).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all_2) <span class="op">/</span> <span class="dv">4</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Stabilizer state |00⟩: Ξ = </span><span class="sc">{</span>xi_stab<span class="sc">:.1f}</span><span class="ss">, M₂ = </span><span class="sc">{</span><span class="op">-</span>np<span class="sc">.</span>log2(xi_stab)<span class="sc">:.1f}</span><span class="ss"> (expected 0.0)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Stabilizer Rényi Entropy of Haar Random States
@@ -799,70 +801,70 @@ Stabilizer state |00⟩: Ξ = 1.0, M₂ = -0.0 (expected 0.0)</code></pre>
 </section>
 <section id="visual-pedagogical-proof" class="level2">
 <h2 class="anchored" data-anchor-id="visual-pedagogical-proof">Visual Pedagogical Proof</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:32:30.385373Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:32:30.385155Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:32:30.965277Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:32:30.964912Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:00:04.175388Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:00:04.175003Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:00:05.412716Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:00:05.411974Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random state and a stabilizer state for N=2</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> D <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>P_all <span class="op">=</span> all_paulis(N)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>psi_haar <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>psi_stab <span class="op">=</span> np.zeros(D)<span class="op">;</span> psi_stab[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># |00&gt;</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>haar_spectrum <span class="op">=</span> [(psi_haar.conj() <span class="op">@</span> P <span class="op">@</span> psi_haar).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all]</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>stab_spectrum <span class="op">=</span> [(psi_stab.conj() <span class="op">@</span> P <span class="op">@</span> psi_stab).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all]</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">150</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>x_labels <span class="op">=</span> [<span class="ss">f"P_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(P_all))]</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(P_all))</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>ax1.bar(x, stab_spectrum, color<span class="op">=</span><span class="st">'crimson'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"Stabilizer State |00⟩"</span>)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r"Pauli Purity $|\langle P\rangle|^4$"</span>)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>ax1.set_xticks(x[::<span class="dv">2</span>])</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>ax1.set_xticklabels(x_labels[::<span class="dv">2</span>], rotation<span class="op">=</span><span class="dv">45</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>ax2.bar(x, haar_spectrum, color<span class="op">=</span><span class="st">'royalblue'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"Haar-Random State"</span>)</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>ax2.set_xticks(x[::<span class="dv">2</span>])</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>ax2.set_xticklabels(x_labels[::<span class="dv">2</span>], rotation<span class="op">=</span><span class="dv">45</span>)</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Pauli Spectrum Concentration: Magic vs Stabilizerness"</span>, y<span class="op">=</span><span class="fl">1.05</span>)</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random state and a stabilizer state for N=2</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> D <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>P_all <span class="op">=</span> all_paulis(N)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>psi_haar <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>psi_stab <span class="op">=</span> np.zeros(D)<span class="op">;</span> psi_stab[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># |00&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>haar_spectrum <span class="op">=</span> [(psi_haar.conj() <span class="op">@</span> P <span class="op">@</span> psi_haar).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>stab_spectrum <span class="op">=</span> [(psi_stab.conj() <span class="op">@</span> P <span class="op">@</span> psi_stab).real<span class="op">**</span><span class="dv">4</span> <span class="cf">for</span> P <span class="kw">in</span> P_all]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>x_labels <span class="op">=</span> [<span class="ss">f"P_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(P_all))]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(P_all))</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>ax1.bar(x, stab_spectrum, color<span class="op">=</span><span class="st">'crimson'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"Stabilizer State |00⟩"</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r"Pauli Purity $|\langle P\rangle|^4$"</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>ax1.set_xticks(x[::<span class="dv">2</span>])</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>ax1.set_xticklabels(x_labels[::<span class="dv">2</span>], rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>ax2.bar(x, haar_spectrum, color<span class="op">=</span><span class="st">'royalblue'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"Haar-Random State"</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>ax2.set_xticks(x[::<span class="dv">2</span>])</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>ax2.set_xticklabels(x_labels[::<span class="dv">2</span>], rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Pauli Spectrum Concentration: Magic vs Stabilizerness"</span>, y<span class="op">=</span><span class="fl">1.05</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="solution_ch5_stabilizer_renyi_entropy_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T11:32:30.967895Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T11:32:30.966778Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T11:32:31.116022Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T11:32:31.115699Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:00:05.416601Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:00:05.415198Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:00:05.655416Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:00:05.654831Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Average magic of a Haar-random state vs system size, from E[Xi_P] = 4/(D+3).</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Ns <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">13</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>Ds <span class="op">=</span> <span class="fl">2.0</span><span class="op">**</span>Ns</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>M2 <span class="op">=</span> <span class="op">-</span>np.log2(<span class="dv">4</span> <span class="op">/</span> (Ds <span class="op">+</span> <span class="dv">3</span>))            <span class="co"># M_2 = log2((2^N + 3)/4)</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.plot(Ns, M2, <span class="st">'o-'</span>, color<span class="op">=</span><span class="st">'royalblue'</span>,</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="vs">r'$-\log_2\mathbb</span><span class="sc">{E}</span><span class="vs">[\Xi_P]=\log_2\frac{2^N+3}</span><span class="sc">{4}</span><span class="vs">$'</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.plot(Ns, Ns <span class="op">-</span> <span class="dv">2</span>, <span class="st">'k--'</span>, label<span class="op">=</span><span class="vs">r'asymptote $N-2$'</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'system size $N$'</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'stabilizer Rényi entropy $M_2$ (bits)'</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Typical magic grows as $N-2$'</span>)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, ls<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Average magic of a Haar-random state vs system size, from E[Xi_P] = 4/(D+3).</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Ns <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">13</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>Ds <span class="op">=</span> <span class="fl">2.0</span><span class="op">**</span>Ns</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>M2 <span class="op">=</span> <span class="op">-</span>np.log2(<span class="dv">4</span> <span class="op">/</span> (Ds <span class="op">+</span> <span class="dv">3</span>))            <span class="co"># M_2 = log2((2^N + 3)/4)</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.plot(Ns, M2, <span class="st">'o-'</span>, color<span class="op">=</span><span class="st">'royalblue'</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="vs">r'$-\log_2\mathbb</span><span class="sc">{E}</span><span class="vs">[\Xi_P]=\log_2\frac{2^N+3}</span><span class="sc">{4}</span><span class="vs">$'</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.plot(Ns, Ns <span class="op">-</span> <span class="dv">2</span>, <span class="st">'k--'</span>, label<span class="op">=</span><span class="vs">r'asymptote $N-2$'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'system size $N$'</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'stabilizer Rényi entropy $M_2$ (bits)'</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Typical magic grows as $N-2$'</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, ls<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="solution_ch5_stabilizer_renyi_entropy_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
