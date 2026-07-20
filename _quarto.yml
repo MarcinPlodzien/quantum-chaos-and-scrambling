@@ -115,6 +115,11 @@ website:
           - notebooks/ch7/solution_ch7_born_machine.ipynb
           - notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.ipynb
           - notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.ipynb
+          - notebooks/ch7/example_ch7_quantum_kernel_rings.ipynb
+          - notebooks/ch7/example_ch7_qelm_regression.ipynb
+          - notebooks/ch7/example_ch7_qelm_xor.ipynb
+          - notebooks/ch7/example_ch7_qelm_phase_classification.ipynb
+          - notebooks/ch7/example_ch7_qelm_spt_phase.ipynb
       - text: "Exercises & Solutions (PDF)"
         href: exercises.qmd
   page-footer:

@@ -502,6 +502,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">Injection Contractivity and Restarting Overhead in QRC</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -630,7 +655,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:51:38.508998Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:51:38.508858Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:51:39.053813Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:51:39.053187Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:07:05.116291Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:07:05.115274Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:07:05.619886Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:07:05.619428Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -678,7 +703,7 @@ This connects purity to the 2-copy Hilbert space.</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:51:39.055775Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:51:39.055386Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:51:39.279266Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:51:39.278695Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:07:05.621526Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:07:05.621386Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:07:05.824033Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:07:05.823547Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -709,7 +734,7 @@ Bell purity (SWAP):   0.5000
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:51:39.280995Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:51:39.280772Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:51:40.534813Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:51:40.534197Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:07:05.825819Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:07:05.825586Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:07:06.936305Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:07:06.935670Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Part (c): Haar-averaged purity</span></span>

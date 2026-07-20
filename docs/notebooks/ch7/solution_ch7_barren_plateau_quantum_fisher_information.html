@@ -502,6 +502,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">Injection Contractivity and Restarting Overhead in QRC</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -704,7 +729,7 @@ F_Q = 4\left(\langle \psi_1 | G^2 | \psi_1 \rangle - \langle \psi_1 | G | \psi_1
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">6. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:53:22.729594Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:53:22.729435Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:53:23.097756Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:53:23.097211Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:08:34.370480Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:08:34.370086Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:08:34.670974Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:08:34.670393Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -753,7 +778,7 @@ Large D: ~ 0 * Tr(O^2) / D</code></pre>
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">7. Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:53:23.100043Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:53:23.099810Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:53:32.544042Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:53:32.543449Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:08:34.672810Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:08:34.672607Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:08:42.497885Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:08:42.497434Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -852,7 +877,7 @@ The state moves, but the cost can barely detect the motion.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>For a traceless Pauli generator the expected QFI tends to <span class="math inline">\(4\)</span> as <span class="math inline">\(D\to\infty\)</span>, so the state stays sensitive to the parameter even as the cost gradient vanishes as <span class="math inline">\(1/D\)</span>. The observable resolves only an <span class="math inline">\(O(1)\)</span>-dimensional slice of the motion, and recovering trainability means aligning it with the directions the circuit explores through local observables or structured ansätze.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:53:32.548111Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:53:32.546521Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:53:33.393210Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:53:33.392817Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:08:42.500399Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:08:42.500088Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:08:43.232087Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:08:43.231623Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

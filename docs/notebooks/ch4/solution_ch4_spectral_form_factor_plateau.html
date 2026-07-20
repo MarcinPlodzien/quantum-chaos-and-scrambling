@@ -502,6 +502,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">Injection Contractivity and Restarting Overhead in QRC</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -633,7 +658,7 @@ K(\beta, t) = |Z(\beta+it)|^2 = \sum_{m,n} e^{-\beta(E_m+E_n)}\,e^{-it(E_m-E_n)}
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:11.684483Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:11.684193Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:11.881147Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:11.880638Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:07:33.364609Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:07:33.364458Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:07:33.526535Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:07:33.526063Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -670,7 +695,7 @@ K(\beta, t) = |Z(\beta+it)|^2 = \sum_{m,n} e^{-\beta(E_m+E_n)}\,e^{-it(E_m-E_n)}
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:11.883346Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:11.882957Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:12.007569Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:12.006976Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:07:33.528239Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:07:33.528040Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:07:33.657539Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:07:33.657112Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -705,7 +730,7 @@ SFF plateau at K̄ = D confirmed.</code></pre>
 </section>
 <section id="visual-pedagogical-proof" class="level2">
 <h2 class="anchored" data-anchor-id="visual-pedagogical-proof">Visual Pedagogical Proof</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:12.010036Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:12.009725Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:19.300873Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:19.300462Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:07:33.659580Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:07:33.659286Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:07:39.730388Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:07:39.730074Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

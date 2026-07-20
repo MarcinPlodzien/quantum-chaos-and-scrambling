@@ -502,6 +502,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">Injection Contractivity and Restarting Overhead in QRC</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -647,7 +672,7 @@ C_0 = 1, \quad C_1 = 1, \quad C_2 = 2, \quad C_3 = 5, \quad C_4 = 14, \quad \ldo
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:48:19.032650Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:48:19.032513Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:48:32.546318Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:48:32.545866Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:04:21.135179Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:04:21.135018Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:04:32.618218Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:04:32.617711Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -683,7 +708,7 @@ m_3 = 0</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:48:32.548273Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:48:32.548036Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:48:54.586979Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:48:54.586453Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:04:32.620085Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:04:32.619522Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:04:53.524581Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:04:53.523815Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -737,11 +762,11 @@ m_3 = 0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-GUE Monte Carlo (N=400): m₂ = 0.9999, m₄ = 1.9992, m₄/m₂² = 1.9997
+GUE Monte Carlo (N=400): m₂ = 1.0002, m₄ = 2.0010, m₄/m₂² = 2.0003
 Catalan moments confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:48:54.590570Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:48:54.590154Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:49:03.180289Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:49:03.179807Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:04:53.526940Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:04:53.526630Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:05:01.947552Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:05:01.947130Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

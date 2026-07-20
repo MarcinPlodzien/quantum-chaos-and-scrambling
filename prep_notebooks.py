@@ -17,7 +17,7 @@ CH_NAMES = {
 }
 
 def pretty(stem):
-    s = re.sub(r"^solution_ch\d+_", "", stem)
+    s = re.sub(r"^(?:solution|example)_ch\d+_", "", stem)
     return s.replace("_", " ").strip().title()
 
 def first_h1(nb):
@@ -32,9 +32,12 @@ if os.path.isdir(DST):
     shutil.rmtree(DST)
 
 n = 0
-for path in sorted(glob.glob(os.path.join(SRC, "solution_ch*.ipynb"))):
+paths = sorted(glob.glob(os.path.join(SRC, "solution_ch*.ipynb"))
+               + glob.glob(os.path.join(SRC, "example_ch*.ipynb")))
+for path in paths:
     stem = os.path.splitext(os.path.basename(path))[0]
-    ch = re.match(r"solution_(ch\d+)_", stem).group(1)
+    kind = "example" if stem.startswith("example_") else "solution"
+    ch = re.match(r"(?:solution|example)_(ch\d+)_", stem).group(1)
     outdir = os.path.join(DST, ch)
     os.makedirs(outdir, exist_ok=True)
     nb = nbformat.read(path, as_version=4)
@@ -42,7 +45,7 @@ for path in sorted(glob.glob(os.path.join(SRC, "solution_ch*.ipynb"))):
         if c.cell_type == "markdown":
             c.source = re.sub(r"(?m)^\s*---\s*$", "<hr/>", c.source)
     title = first_h1(nb) or pretty(stem)
-    title = re.sub(r"^(Solution|Exercise)[:\s-]+", "", title)
+    title = re.sub(r"^(Solution|Exercise|Example)[:\s-]+", "", title)
     title = re.sub(r"^\d+\.\w+\s*[,.:\-]+\s*", "", title).strip() or pretty(stem)
 
     def yaml_clean(s):
@@ -51,7 +54,7 @@ for path in sorted(glob.glob(os.path.join(SRC, "solution_ch*.ipynb"))):
         s = re.sub(r"\s+", " ", s).strip(" -:")
         return s.replace("'", "''")
     title = yaml_clean(title) or pretty(stem)
-    desc = f"{CH_NAMES[ch]}, numerical solution."
+    desc = f"{CH_NAMES[ch]}, worked example." if kind == "example" else f"{CH_NAMES[ch]}, numerical solution."
     raw = ("---\n"
            f"title: '{title}'\n"
            f"description: '{desc}'\n"

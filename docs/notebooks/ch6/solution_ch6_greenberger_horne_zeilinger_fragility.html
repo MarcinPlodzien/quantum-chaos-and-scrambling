@@ -502,6 +502,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">Injection Contractivity and Restarting Overhead in QRC</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -623,7 +648,7 @@ F_Q = 2\sum_{k,l} \frac{(\lambda_k - \lambda_l)^2}{\lambda_k + \lambda_l} |\lang
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:40.191036Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:40.190940Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:40.360277Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:40.359930Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:07:58.336373Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:07:58.335425Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:07:58.503546Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:07:58.503176Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -654,7 +679,7 @@ Fragility: losing 1 qubit destroys ALL N^2 metrological advantage</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:40.362135Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:40.361966Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:40.424909Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:40.424351Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:07:58.505533Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:07:58.505343Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:07:58.565914Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:07:58.564584Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -721,7 +746,7 @@ Fragility: losing 1 qubit destroys ALL N^2 metrological advantage</code></pre>
 F_Q: N² → 0 upon single-qubit loss. Fragility confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:52:40.428905Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:52:40.428602Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:52:41.095143Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:52:41.094727Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:07:58.567842Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:07:58.567576Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:07:59.185299Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:07:59.184721Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

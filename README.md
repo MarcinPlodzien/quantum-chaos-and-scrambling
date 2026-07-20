@@ -4,7 +4,7 @@
 
 [![Website](https://img.shields.io/badge/website-live-2ea44f)](https://marcinplodzien.github.io/quantum-chaos-and-scrambling/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Notebooks](https://img.shields.io/badge/notebooks-41-orange)](source_notebooks)
+[![Notebooks](https://img.shields.io/badge/notebooks-46-orange)](source_notebooks)
 [![Made with Quarto](https://img.shields.io/badge/made%20with-Quarto-75AADB)](https://quarto.org)
 
 A surprising amount of modern quantum theory rests on one question: **what happens
@@ -13,8 +13,9 @@ toolkit once, the Haar measure and the Weingarten calculus, and follows it
 across random matrix theory, scrambling dynamics, unitary designs, classical
 shadows, and the trainability of quantum machine-learning models.
 
-Everything is **self-contained and runnable**: 41 short Jupyter notebooks, each
-demonstrating one result, plus a complete set of worked exercises. No quantum
+Everything is **self-contained and runnable**: 46 short Jupyter notebooks, each
+demonstrating one result, plus five end-to-end worked examples and a complete set
+of worked exercises. No quantum
 hardware, no special libraries, just `numpy`, `scipy`, and `matplotlib`.
 
 > **Read it online:** <https://marcinplodzien.github.io/quantum-chaos-and-scrambling/>
@@ -31,10 +32,10 @@ hardware, no special libraries, just `numpy`, `scipy`, and `matplotlib`.
 | 4 | Quantum Dynamics & Chaos, OTOCs, the spectral form factor, Krylov complexity | 3 |
 | 5 | Designs & Clifford Ensembles, $t$-designs, magic / stabilizer Rényi entropy | 2 |
 | 6 | Applications of Scrambling, classical shadows, randomized benchmarking, Hayden-Preskill | 5 |
-| 7 | Quantum Machine Learning, barren plateaus, quantum kernels, reservoir computing | 7 |
+| 7 | Quantum Machine Learning, barren plateaus, quantum kernels, reservoir computing, five worked examples | 12 |
 
-- **`source_notebooks/`**, the 41 tutorial notebooks (clean, output-free).
-- **`verify_exercises/`**, standalone Python scripts that numerically check the key results.
+- **`source_notebooks/`**, the 46 tutorial notebooks (clean, output-free).
+- **`solutions_to_exercises/`**, standalone Python scripts that numerically check the key results.
 - **`exercises_and_solutions_complete.pdf`**, all exercises with full step-by-step solutions and short derivations of the key results, interleaved by chapter.
 - **`chapters/`, `index.qmd`, `_quarto.yml`**, the source of the website.
 - **`docs/`**, the pre-built website (served by GitHub Pages).
@@ -51,8 +52,8 @@ jupyter lab          # open any notebook in source_notebooks/
 Want to check the numbers without opening a notebook? The scripts are runnable on their own:
 
 ```bash
-python verify_exercises/solution_ch3_page_formula.py
-python verify_exercises/solution_ch7_barren_plateau.py
+python solutions_to_exercises/solution_ch3_page_formula.py
+python solutions_to_exercises/solution_ch7_barren_plateau.py
 ```
 
 ## How to use it

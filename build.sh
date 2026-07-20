@@ -10,7 +10,7 @@ python3 prep_notebooks.py
 echo "[2/3] Executing notebooks (this can take 15-30 minutes)..."
 EXEC_TIMEOUT="${EXEC_TIMEOUT:-600}"
 fail=0
-for nb in notebooks/ch*/solution_*.ipynb; do
+for nb in notebooks/ch*/solution_*.ipynb notebooks/ch*/example_*.ipynb; do
   if jupyter nbconvert --to notebook --execute --inplace \
        --ExecutePreprocessor.timeout="$EXEC_TIMEOUT" "$nb" > /dev/null 2>&1; then
     echo "    ok   $nb"

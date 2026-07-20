@@ -60,7 +60,7 @@ Seven short parts, each a *concept page* followed by *runnable notebooks*:
 | [4 · Quantum Dynamics & Chaos](chapters/04-dynamics.qmd) | Measure scrambling in real time | 3 |
 | [5 · Designs & Clifford Ensembles](chapters/05-designs.qmd) | Replace Haar randomness with something efficient | 2 |
 | [6 · Applications of Scrambling](chapters/06-applications.qmd) | Turn randomness into protocols | 5 |
-| [7 · Quantum Machine Learning](chapters/07-qml.qmd) | Understand trainability through the same lens | 7 |
+| [7 · Quantum Machine Learning](chapters/07-qml.qmd) | Understand trainability through the same lens, then five worked examples | 12 |
 
 The parts are largely independent and each notebook stands on its own, so you can read in
 order or jump to what you need. The second-moment twirl worked out in Part 3 recurs in the

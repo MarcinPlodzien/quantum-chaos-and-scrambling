@@ -36,6 +36,18 @@ Haar randomness.
 - [QELM feature concentration](../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.ipynb), feature collapse in quantum extreme learning machines.
 - [Quantum reservoir computing](../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.ipynb), injection contractivity and restarting overhead.
 
+## Worked examples
+
+Five end-to-end examples where a fixed scrambling feature map extracts the
+features and only a linear readout is trained. Each one states where it works and
+where it breaks.
+
+- [Quantum-kernel classification of concentric rings](../notebooks/ch7/example_ch7_quantum_kernel_rings.ipynb), a fidelity kernel and a soft-margin classifier, with the onset of kernel concentration.
+- [QELM nonlinear regression](../notebooks/ch7/example_ch7_qelm_regression.ipynb), a trained linear readout on a fixed reservoir, the data re-uploading Fourier ceiling and the over-scrambling downturn.
+- [QELM XOR](../notebooks/ch7/example_ch7_qelm_xor.ipynb), the minimal nonlinear-separation task and its ablation.
+- [QELM phase classification](../notebooks/ch7/example_ch7_qelm_phase_classification.ipynb), ordinary transverse-field Ising order, where local observables already suffice.
+- [QELM for a symmetry-protected phase](../notebooks/ch7/example_ch7_qelm_spt_phase.ipynb), discovering the nonlocal string order that distinguishes an SPT phase, where scrambling is essential.
+
 ::: {.callout-note appearance="simple"}
 **Full circle.** The exponential that obstructs training here is the same
 $1/D$ from the Page formula in Part 3, typicality, viewed from the other side.

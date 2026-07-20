@@ -502,6 +502,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">Injection Contractivity and Restarting Overhead in QRC</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -652,7 +677,7 @@ T_\perp = \frac{\pi}{2 \cdot \omega/2} = \frac{\pi}{\omega}.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:47:57.441165Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:47:57.441056Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:47:57.743199Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:47:57.742636Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:04:03.244441Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:04:03.244247Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:04:03.508652Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:04:03.508131Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -692,7 +717,7 @@ At T_⊥ = π/ω: P = 0</code></pre>
 </section>
 <section id="figure-survival-probability-and-the-orthogonality-time" class="level2">
 <h2 class="anchored" data-anchor-id="figure-survival-probability-and-the-orthogonality-time">Figure: Survival probability and the orthogonality time</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:47:57.744755Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:47:57.744558Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:47:58.601560Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:47:58.600859Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:04:03.510135Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:04:03.509985Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:04:04.200554Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:04:04.200151Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -735,7 +760,7 @@ At T_⊥ = π/ω: P = 0</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>Hamiltonian evolution is a constant-speed geodesic on <span class="math inline">\(U(D)\)</span>, with speed <span class="math inline">\(\sqrt{\mathrm{Tr}(H^2)}\)</span>. For <span class="math inline">\(|0\rangle\)</span> under <span class="math inline">\(H=(\omega/2)\sigma_x\)</span> the survival probability is <span class="math inline">\(\cos^2(\omega t/2)\)</span>, which first vanishes exactly at <span class="math inline">\(T_\perp=\pi/\omega\)</span>, saturating the Mandelstam-Tamm bound.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:47:58.604213Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:47:58.603666Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:47:58.609444Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:47:58.609070Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:04:04.202042Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:04:04.201802Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:04:04.206597Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:04:04.206300Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>

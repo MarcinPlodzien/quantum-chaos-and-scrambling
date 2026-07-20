@@ -93,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../exercises.html" rel="next">
+<link href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" rel="next">
 <link href="../../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -502,6 +502,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link active">Injection Contractivity and Restarting Overhead in QRC</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -639,7 +664,7 @@ K_a = (I_{\bar{1}} \otimes |\psi(x)\rangle_1)(I_{\bar{1}} \otimes \langle a|_1),
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:54:10.513962Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:54:10.513770Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:54:10.746493Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:54:10.745960Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:09:13.579631Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:09:13.579280Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:09:13.765575Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:09:13.765156Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -695,7 +720,7 @@ Part (c): Total runs = nu * T(T+1)/2 = T*nu*(T + 1)/2
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The injection map factorizes into a partial trace and a state preparation, and since the partial trace contracts trace distance, past inputs grow indistinguishable step by step and the reservoir has fading memory with no assumption on the scrambling unitary. Projective readout with restarting costs <span class="math inline">\(\nu\,T(T+1)/2\)</span> runs, an <span class="math inline">\(O(\nu T^2)\)</span> overhead that motivates weak continuous measurement.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-06-21T19:54:10.748568Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-06-21T19:54:10.748279Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-06-21T19:54:10.830312Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-06-21T19:54:10.829779Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T10:09:13.767493Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T10:09:13.767284Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T10:09:13.833619Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T10:09:13.833252Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1082,8 +1107,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../exercises.html" class="pagination-link">
-        <span class="nav-page-text">Exercises &amp; Solutions (PDF)</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="pagination-link">
+        <span class="nav-page-text">Quantum-Kernel Classification of Concentric Rings</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
