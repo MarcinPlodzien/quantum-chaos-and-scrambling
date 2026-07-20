@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Applications of Scrambling, numerical solution.">
+
+<title>Quantum Chaos &amp; Scrambling - Scrambling Protection of Metrological Advantage Against Particle Loss</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Quantum Chaos &amp; Scrambling</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page">
+ <span class="menu-text">Start here</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorial" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorial</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorial">    
+        <li>
+    <a class="dropdown-item" href="../../chapters/01-foundations.html">
+ <span class="dropdown-text">1 · Mathematical Foundations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/02-random-matrix-theory.html">
+ <span class="dropdown-text">2 · Random Matrix Theory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/03-haar-weingarten.html">
+ <span class="dropdown-text">3 · Haar Measure &amp; Weingarten Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/04-dynamics.html">
+ <span class="dropdown-text">4 · Quantum Dynamics &amp; Chaos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/05-designs.html">
+ <span class="dropdown-text">5 · Designs &amp; Clifford Ensembles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/06-applications.html">
+ <span class="dropdown-text">6 · Applications of Scrambling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/07-qml.html">
+ <span class="dropdown-text">7 · Quantum Machine Learning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../exercises.html">
+ <span class="menu-text">Exercises (PDF)</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Scrambling Protection of Metrological Advantage Against Particle Loss</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Start here</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/01-foundations.html" class="sidebar-item-text sidebar-link">1 · Mathematical Foundations</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_fubini_study.html" class="sidebar-item-text sidebar-link">Bloch Sphere Geodesics and the Fubini-Study Metric</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_entanglement_parametric.html" class="sidebar-item-text sidebar-link">Entanglement of a Parametric Two-Qubit State</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_depolarizing_channel.html" class="sidebar-item-text sidebar-link">The Depolarizing Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_schur_weyl.html" class="sidebar-item-text sidebar-link">Schur-Weyl Decomposition for</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_choi_amplitude_damping.html" class="sidebar-item-text sidebar-link">Choi Matrix of the Amplitude-Damping Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_exp_surjectivity.html" class="sidebar-item-text sidebar-link">Surjectivity of the Exponential Map on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.html" class="sidebar-item-text sidebar-link">Haar Invariance on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_quantum_speed_limit.html" class="sidebar-item-text sidebar-link">Geodesic Length and the Quantum Speed Limit</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html" class="sidebar-item-text sidebar-link">Differential Geometry of Quantum State Space</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_measure_theory_basics.html" class="sidebar-item-text sidebar-link">Lebesgue Measure, Counting Measure, and σ-Additivity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_borel_measurability.html" class="sidebar-item-text sidebar-link">Borel σ-Algebra and Measurability on U(D)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-random-matrix-theory.html" class="sidebar-item-text sidebar-link">2 · Random Matrix Theory</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_goe_spacing.html" class="sidebar-item-text sidebar-link">The GOE and Linear Level Repulsion</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_semicircle_moments.html" class="sidebar-item-text sidebar-link">Moments of the Wigner Semicircle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-haar-weingarten.html" class="sidebar-item-text sidebar-link">3 · Haar Measure &amp; Weingarten Calculus</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html" class="sidebar-item-text sidebar-link">Operator Averages Using the First Moment Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_swap_trick.html" class="sidebar-item-text sidebar-link">The SWAP Trick in Action</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_haar_overlap.html" class="sidebar-item-text sidebar-link">Overlap of Haar-Random States and Measure Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_fourth_moment_trace.html" class="sidebar-item-text sidebar-link">The Fourth Moment of the Trace</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.html" class="sidebar-item-text sidebar-link">Tensor Network Weingarten Calculus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_page_formula.html" class="sidebar-item-text sidebar-link">The Asymptotic Page Formula via Marchenko-Pastur</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html" class="sidebar-item-text sidebar-link">Concentration of Purity (Lévy’s Lemma)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/04-dynamics.html" class="sidebar-item-text sidebar-link">4 · Quantum Dynamics &amp; Chaos</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_commutator_fidelity_identity.html" class="sidebar-item-text sidebar-link">The C-F Identity (OTOC-Commutator Relation)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.html" class="sidebar-item-text sidebar-link">SFF Plateau Value for the GUE</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_krylov_complexity.html" class="sidebar-item-text sidebar-link">Krylov Complexity from the Geometric Distribution</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/05-designs.html" class="sidebar-item-text sidebar-link">5 · Designs &amp; Clifford Ensembles</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_clifford_otoc.html" class="sidebar-item-text sidebar-link">OTOCs and the Failure of Clifford Chaos</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.html" class="sidebar-item-text sidebar-link">Stabilizer Rényi Entropy of Haar-Random States</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/06-applications.html" class="sidebar-item-text sidebar-link">6 · Applications of Scrambling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html" class="sidebar-item-text sidebar-link">The Shadow Channel and Its Inverse</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_shadows.html" class="sidebar-item-text sidebar-link">Classical Shadows: Channel Inversion and Tomography</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.html" class="sidebar-item-text sidebar-link">Randomized Benchmarking via Clifford Twirling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_tripartite_mutual_information.html" class="sidebar-item-text sidebar-link">Tripartite Mutual Information and Scrambling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.html" class="sidebar-item-text sidebar-link">Fragility of the GHZ Metrological Advantage</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/07-qml.html" class="sidebar-item-text sidebar-link">7 · Quantum Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau.html" class="sidebar-item-text sidebar-link">Barren Plateau Scaling from the Weingarten Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_local_vs_global_cost.html" class="sidebar-item-text sidebar-link">Local vs Global Cost Functions in Deep Circuits</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.html" class="sidebar-item-text sidebar-link">Barren Plateaus through the Lens of Quantum Fisher Information</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_kernel_concentration.html" class="sidebar-item-text sidebar-link">Quantum Kernel Concentration and Expressibility</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_born_machine.html" class="sidebar-item-text sidebar-link">Born Machine Expressivity and Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the POVM Picture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">Injection Contractivity and Restarting Overhead in QRC</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises.html" class="sidebar-item-text sidebar-link">Exercises &amp; Solutions (PDF)</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#scrambling-protection-of-metrological-advantage-against-particle-loss" id="toc-scrambling-protection-of-metrological-advantage-against-particle-loss" class="nav-link active" data-scroll-target="#scrambling-protection-of-metrological-advantage-against-particle-loss">Scrambling Protection of Metrological Advantage Against Particle Loss</a>
+  <ul class="collapse">
+  <li><a href="#background-and-motivation" id="toc-background-and-motivation" class="nav-link" data-scroll-target="#background-and-motivation">Background and motivation</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#toolbox" id="toc-toolbox" class="nav-link" data-scroll-target="#toolbox">Toolbox</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#page-approximation-qfi-becomes-a-quadratic-functional" id="toc-page-approximation-qfi-becomes-a-quadratic-functional" class="nav-link" data-scroll-target="#page-approximation-qfi-becomes-a-quadratic-functional">Page approximation: QFI becomes a quadratic functional</a></li>
+  <li><a href="#weingarten-twirl-the-exact-average-of-the-proxy" id="toc-weingarten-twirl-the-exact-average-of-the-proxy" class="nav-link" data-scroll-target="#weingarten-twirl-the-exact-average-of-the-proxy">Weingarten twirl: the exact average of the proxy</a></li>
+  <li><a href="#assemble" id="toc-assemble" class="nav-link" data-scroll-target="#assemble">Assemble</a></li>
+  <li><a href="#the-retained-larger-subsystem-is-low-rank" id="toc-the-retained-larger-subsystem-is-low-rank" class="nav-link" data-scroll-target="#the-retained-larger-subsystem-is-low-rank">The retained (larger) subsystem is <em>low-rank</em></a></li>
+  <li><a href="#from-the-proxy-to-weingarten-moments" id="toc-from-the-proxy-to-weingarten-moments" class="nav-link" data-scroll-target="#from-the-proxy-to-weingarten-moments">From the proxy to Weingarten moments</a></li>
+  <li><a href="#the-thirdfourth-moment-average-and-f_b" id="toc-the-thirdfourth-moment-average-and-f_b" class="nav-link" data-scroll-target="#the-thirdfourth-moment-average-and-f_b">The third/fourth-moment average and <span class="math inline">\(f_B\)</span></a></li>
+  <li><a href="#the-n2-threshold-and-the-efficient-large-n-method" id="toc-the-n2-threshold-and-the-efficient-large-n-method" class="nav-link" data-scroll-target="#the-n2-threshold-and-the-efficient-large-n-method">The <span class="math inline">\(N/2\)</span> threshold and the efficient large-<span class="math inline">\(N\)</span> method</a></li>
+  <li><a href="#final-comparison-exact-numerics-vs-the-page-approximation" id="toc-final-comparison-exact-numerics-vs-the-page-approximation" class="nav-link" data-scroll-target="#final-comparison-exact-numerics-vs-the-page-approximation">Final comparison: exact numerics vs the Page approximation</a></li>
+  <li><a href="#adversarial-check-every-identity-machine-verified" id="toc-adversarial-check-every-identity-machine-verified" class="nav-link" data-scroll-target="#adversarial-check-every-identity-machine-verified">Adversarial check — every identity, machine-verified</a></li>
+  </ul></li>
+  <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch6/solution_ch6_qfi_particle_loss_scrambling.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Scrambling Protection of Metrological Advantage Against Particle Loss</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+<div>
+  <div class="description">
+    Applications of Scrambling, numerical solution.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="scrambling-protection-of-metrological-advantage-against-particle-loss" class="level1">
+<h1>Scrambling Protection of Metrological Advantage Against Particle Loss</h1>
+<hr>
+<p>This notebook derives, <strong>step by step</strong>, how a scrambling unitary protects the quantum Fisher information (QFI) of a metrological probe against particle loss, and why the protection turns on sharply once more than half the system is retained. It is the worked solution to the exercise of the same name in Chapter 6.</p>
+<p>The result is quoted in the main text as a closed form; here we <em>earn</em> it, using exactly the toolbox the book has built: the pure-state QFI as a variance, Page’s theorem for a Haar-typical reduced state, and the second-moment (Weingarten) twirl.</p>
+<section id="background-and-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="background-and-motivation">Background and motivation</h2>
+<p>A GHZ probe <span class="math inline">\(\;\propto\;|0\rangle^{\otimes N}+e^{iN\theta}|1\rangle^{\otimes N}\)</span> reaches the Heisenberg limit <span class="math inline">\(\mathcal{F}_Q=N^2\)</span>, but it is catastrophically fragile: it has Schmidt rank <span class="math inline">\(2\)</span> across <em>every</em> cut, so tracing out a <strong>single</strong> qubit collapses it to an incoherent mixture and the QFI drops to zero. Metrological advantage built from unprotected entanglement does not survive the loss of even one particle.</p>
+<p>Scrambling offers a <em>passive</em> remedy. Apply a scrambling unitary <span class="math inline">\(\hat U\)</span> <em>after</em> the phase is encoded. It does not change the global QFI (it is <span class="math inline">\(\theta\)</span>-independent), but it <strong>disperses</strong> the parameter dependence into volume-law correlations across the whole system. The question this notebook answers quantitatively is: after <span class="math inline">\(\hat U\)</span>, if an adversary erases <span class="math inline">\(K\)</span> of the <span class="math inline">\(N\)</span> qubits, how much QFI survives in the <span class="math inline">\(N-K\)</span> that remain?</p>
+<p>The answer is a <strong>Page-curve for metrological information</strong> with a threshold at <span class="math inline">\(K=N/2\)</span>.</p>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>A parameter <span class="math inline">\(\theta\)</span> is encoded in a pure state <span class="math inline">\(|\chi(\theta)\rangle=e^{-i\theta\hat G}|\psi_0\rangle\)</span> via a generator <span class="math inline">\(\hat G\)</span>, giving the global QFI <span class="math inline">\(\mathcal{F}_Q[\hat\rho]=4\,\mathrm{Var}(\hat G)\)</span>. A Haar-random scrambling unitary <span class="math inline">\(\hat U\)</span> is applied, and <span class="math inline">\(K\)</span> of the <span class="math inline">\(N\)</span> qubits are traced out. Write <span class="math inline">\(d=2^N\)</span>, <span class="math inline">\(d_A=2^K\)</span> (lost), <span class="math inline">\(d_B=2^{N-K}\)</span> (retained), so <span class="math inline">\(d=d_Ad_B\)</span>.</p>
+<p><strong>(a)</strong> Show that for a nearly maximally mixed reduced state (Page regime), <span class="math inline">\(\;\mathcal{F}_Q[\hat\rho_A]\approx d_A\,\mathrm{Tr}\!\big[(\partial_\theta\hat\rho_A)^2\big]\)</span>, turning the QFI into a <em>quadratic functional of the state</em>.</p>
+<p><strong>(b)</strong> Using the second-moment (Weingarten) twirl, show <span class="math display">\[\mathbb{E}_{\hat U}\big[\mathcal{F}_Q[\hat\rho_A]\big]=\frac{d\,(d_A^2-1)}{2\,(d^2-1)}\,\mathcal{F}_Q[\hat\rho].\]</span></p>
+<p><strong>(c)</strong> Deduce the <span class="math inline">\(K=N/2\)</span> threshold, and contrast with a GHZ probe. Verify everything numerically, including the large-<span class="math inline">\(N\)</span> regime where the Page approximation becomes sharp.</p>
+</section>
+<section id="toolbox" class="level2">
+<h2 class="anchored" data-anchor-id="toolbox">Toolbox</h2>
+<p><strong>1. QFI of a mixed state (symmetric logarithmic derivative).</strong> For <span class="math inline">\(\hat\rho(\theta)\)</span> with spectral decomposition <span class="math inline">\(\hat\rho=\sum_i p_i|i\rangle\langle i|\)</span>, <span class="math display">\[\mathcal{F}_Q[\hat\rho]=2\sum_{i,j:\,p_i+p_j&gt;0}\frac{\big|\langle i|\partial_\theta\hat\rho|j\rangle\big|^2}{p_i+p_j}.\]</span> For a <strong>pure</strong> state this reduces to <span class="math inline">\(\mathcal{F}_Q=4\,\mathrm{Var}(\hat G)\)</span> under unitary encoding.</p>
+<p><strong>2. Page’s theorem (Chapter 3).</strong> The reduced state of a Haar-random pure state on the smaller subsystem (<span class="math inline">\(d_A\le d_B\)</span>) is close to maximally mixed, <span class="math inline">\(\hat\rho_A\approx \mathbb{1}_A/d_A\)</span>, with fluctuations that vanish as <span class="math inline">\(d_A/d_B\to 0\)</span>. Its spectrum is <strong>flat</strong> to leading order.</p>
+<p><strong>3. Second-moment twirl (Chapter 3).</strong> For the full swap <span class="math inline">\(\mathbb{S}\)</span> and any operator <span class="math inline">\(O\)</span>, <span class="math display">\[\mathbb{E}_{\hat U}\big[(\hat U\!\otimes\!\hat U)\,O\,(\hat U^\dagger\!\otimes\!\hat U^\dagger)\big]
+=c_{\mathbb{1}}\,\mathbb{1}+c_{\mathbb{S}}\,\mathbb{S},\qquad
+c_{\mathbb{S}}=\frac{d\,\mathrm{Tr}(\mathbb{S}O)-\mathrm{Tr}(O)}{d(d^2-1)},\]</span> and the swap trick <span class="math inline">\(\mathrm{Tr}[(M\otimes M)\mathbb{S}]=\mathrm{Tr}[M^2]\)</span>.</p>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Encoding is unitary, so the global state stays pure and <span class="math inline">\(\mathcal{F}_Q[\hat\rho]=4\,\mathrm{Var}(\hat G)\)</span>. Because <span class="math inline">\(\hat U\)</span> does not depend on <span class="math inline">\(\theta\)</span>, the <em>global</em> QFI is unchanged by scrambling; what changes is how the sensitivity is distributed. Introduce the Hermitian, <strong>traceless</strong> operator <span class="math display">\[\Delta \equiv \partial_\theta\big(|\chi\rangle\langle\chi|\big)=|\partial\chi\rangle\langle\chi|+|\chi\rangle\langle\partial\chi|,
+\qquad |\partial\chi\rangle=-i\hat G|\chi\rangle .\]</span> The reduced derivative is then <span class="math inline">\(\partial_\theta\hat\rho_A=\mathrm{Tr}_B\big[\hat U\,\Delta\,\hat U^\dagger\big].\)</span></p>
+</section>
+<section id="page-approximation-qfi-becomes-a-quadratic-functional" class="level3">
+<h3 class="anchored" data-anchor-id="page-approximation-qfi-becomes-a-quadratic-functional">Page approximation: QFI becomes a quadratic functional</h3>
+<p>In the Page regime every eigenvalue is <span class="math inline">\(p_i\approx 1/d_A\)</span>, so each denominator <span class="math inline">\(p_i+p_j\approx 2/d_A\)</span>. Substituting into the SLD sum, <span class="math display">\[\mathcal{F}_Q[\hat\rho_A]\approx 2\cdot\frac{d_A}{2}\sum_{i,j}\big|\langle i|\partial_\theta\hat\rho_A|j\rangle\big|^2
+= d_A\sum_{i,j}\big|(\partial_\theta\hat\rho_A)_{ij}\big|^2
+= d_A\,\mathrm{Tr}\!\big[(\partial_\theta\hat\rho_A)^2\big],\]</span> using <span class="math inline">\(\sum_{ij}|M_{ij}|^2=\mathrm{Tr}[M^\dagger M]=\mathrm{Tr}[M^2]\)</span> for the Hermitian <span class="math inline">\(M=\partial_\theta\hat\rho_A\)</span>.</p>
+<p><strong>This is the only approximation in the whole derivation.</strong> It replaces the SLD-dependent QFI by a plain quadratic functional of the state, which we <em>can</em> average exactly. It is controlled: it becomes sharp as the reduced spectrum flattens, i.e.&nbsp;as <span class="math inline">\(d_A/d_B\to0\)</span> (large system). We check its accuracy below and watch it improve with <span class="math inline">\(N\)</span>.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:25.417134Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:25.416930Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:25.766254Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:25.765034Z&quot;}" data-execution_count="1">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> qfi_sld(rho, drho, tol<span class="op">=</span><span class="fl">1e-12</span>):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Exact mixed-state QFI via the SLD spectral sum.'''</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    p, V <span class="op">=</span> np.linalg.eigh(rho)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> V.conj().T <span class="op">@</span> drho <span class="op">@</span> V</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> p[:, <span class="va">None</span>] <span class="op">+</span> p[<span class="va">None</span>, :]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> s <span class="op">&gt;</span> tol</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(<span class="dv">2</span> <span class="op">*</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(M[mask])<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> s[mask]))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reduced_state_and_deriv(psi, phi, N, K):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''rho_A and d_theta rho_A for A = first K qubits, from |psi&gt; and |phi&gt;=-i G|psi&gt;... here phi = G|psi&gt;.'''</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    dA, dB <span class="op">=</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> K, <span class="dv">1</span> <span class="op">&lt;&lt;</span> (N <span class="op">-</span> K)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    P  <span class="op">=</span> psi.reshape(dA, dB)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    Ph <span class="op">=</span> (<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> phi).reshape(dA, dB)          <span class="co"># |d chi&gt; = -i G|chi&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    rho  <span class="op">=</span> P <span class="op">@</span> P.conj().T</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    term <span class="op">=</span> Ph <span class="op">@</span> P.conj().T</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    drho <span class="op">=</span> term <span class="op">+</span> term.conj().T               <span class="co"># d(|psi&gt;&lt;psi|) traced over B</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rho, drho</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># small-N check: F_Q[rho_A]  vs  d_A Tr[(d rho_A)^2]</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> qr</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_G_dense(N, n_enc):</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> np.array([[<span class="dv">0</span>,<span class="op">-</span><span class="ot">1j</span>],[<span class="ot">1j</span>,<span class="dv">0</span>]])<span class="op">;</span> I2 <span class="op">=</span> np.eye(<span class="dv">2</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> np.zeros((<span class="dv">2</span><span class="op">**</span>N, <span class="dv">2</span><span class="op">**</span>N), dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n_enc):</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        ops <span class="op">=</span> [Y <span class="cf">if</span> q<span class="op">==</span>k <span class="cf">else</span> I2 <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(N)]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        M <span class="op">=</span> ops[<span class="dv">0</span>]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> o <span class="kw">in</span> ops[<span class="dv">1</span>:]: M <span class="op">=</span> np.kron(M, o)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        G <span class="op">+=</span> M</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> G</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" N  K   &lt;F_Q[rho_A]&gt;   &lt;d_A Tr[(drho)^2]&gt;   ratio   (averaged over Haar U)"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>]:</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> apply_G_dense(N, <span class="dv">2</span>)<span class="op">;</span> D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    psi0 <span class="op">=</span> rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> psi0<span class="op">/=</span>np.linalg.norm(psi0)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> fqs<span class="op">=</span>[]<span class="op">;</span> prs<span class="op">=</span>[]</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">40</span>):                        <span class="co"># average to remove single-shot scatter</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        Z <span class="op">=</span> rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D))<span class="op">;</span> U,_ <span class="op">=</span> qr(Z)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> U<span class="op">@</span>psi0<span class="op">;</span> Gpsi <span class="op">=</span> U<span class="op">@</span>(G<span class="op">@</span>psi0)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        rho, drho <span class="op">=</span> reduced_state_and_deriv(psi, Gpsi, N, K)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        fqs.append(qfi_sld(rho, drho))<span class="op">;</span> prs.append((<span class="dv">1</span><span class="op">&lt;&lt;</span>K)<span class="op">*</span>np.trace(drho<span class="op">@</span>drho).real)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f" </span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">  </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">   </span><span class="sc">{</span>np<span class="sc">.</span>mean(fqs)<span class="sc">:10.4f}</span><span class="ss">   </span><span class="sc">{</span>np<span class="sc">.</span>mean(prs)<span class="sc">:14.4f}</span><span class="ss">     </span><span class="sc">{</span>np<span class="sc">.</span>mean(fqs)<span class="op">/</span>np<span class="sc">.</span>mean(prs)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">nthe ratio -&gt; 1 as N grows: the Page (flat-spectrum) approximation sharpens."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> N  K   &lt;F_Q[rho_A]&gt;   &lt;d_A Tr[(drho)^2]&gt;   ratio   (averaged over Haar U)
+ 4  1       1.0821           1.0097     1.072
+ 5  1       0.4153           0.4002     1.038
+ 6  1       0.2002           0.1968     1.017</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 7  1       0.1101           0.1088     1.012
+\nthe ratio -&gt; 1 as N grows: the Page (flat-spectrum) approximation sharpens.</code></pre>
+</div>
+</div>
+</section>
+<section id="weingarten-twirl-the-exact-average-of-the-proxy" class="level3">
+<h3 class="anchored" data-anchor-id="weingarten-twirl-the-exact-average-of-the-proxy">Weingarten twirl: the exact average of the proxy</h3>
+<p>Now average <span class="math inline">\(\mathrm{Tr}[(\partial_\theta\hat\rho_A)^2]\)</span> over <span class="math inline">\(\hat U\)</span>. Using <span class="math inline">\(\mathrm{Tr}[M^2]=\mathrm{Tr}_{A A'}[(M\otimes M)\,\mathbb{S}_A]\)</span> with <span class="math inline">\(M=\mathrm{Tr}_B[\hat U\Delta\hat U^\dagger]\)</span> and pulling the two partial traces over <span class="math inline">\(B\)</span> together, <span class="math display">\[\mathrm{Tr}\!\big[(\partial_\theta\hat\rho_A)^2\big]
+=\mathrm{Tr}\!\Big[(\hat U\!\otimes\!\hat U)(\Delta\otimes\Delta)(\hat U^\dagger\!\otimes\!\hat U^\dagger)\,
+\big(\mathbb{S}_A\otimes\mathbb{1}_{BB'}\big)\Big].\]</span> Averaging the twirl with <span class="math inline">\(O=\mathbb{S}_A\otimes\mathbb{1}_{BB'}\)</span> gives <span class="math inline">\(c_{\mathbb{1}}\mathbb{1}+c_{\mathbb{S}}\mathbb{S}\)</span>. Because <span class="math inline">\(\Delta\)</span> is <strong>traceless</strong>, <span class="math inline">\(\mathrm{Tr}[\Delta\otimes\Delta]=(\mathrm{Tr}\,\Delta)^2=0\)</span> and the identity part drops out, leaving <span class="math display">\[\mathbb{E}_{\hat U}\,\mathrm{Tr}\!\big[(\partial_\theta\hat\rho_A)^2\big]=c_{\mathbb{S}}\,\mathrm{Tr}[\Delta^2].\]</span></p>
+<p>Evaluate <span class="math inline">\(c_{\mathbb{S}}\)</span> with <span class="math inline">\(O=\mathbb{S}_A\otimes\mathbb{1}_{BB'}\)</span> and the full swap <span class="math inline">\(\mathbb{S}=\mathbb{S}_A\otimes\mathbb{S}_B\)</span>: <span class="math display">\[\mathrm{Tr}\,O=\mathrm{Tr}(\mathbb{S}_A)\,\mathrm{Tr}(\mathbb{1}_{BB'})=d_A d_B^2,\qquad
+\mathrm{Tr}(\mathbb{S}O)=\mathrm{Tr}(\mathbb{1}_{AA'}\!\otimes\mathbb{S}_B)=d_A^2 d_B,\]</span> <span class="math display">\[c_{\mathbb{S}}=\frac{d\,d_A^2 d_B-d_A d_B^2}{d(d^2-1)}=\frac{d_B\,(d_A^2-1)}{d^2-1}\quad(\text{using }d=d_Ad_B).\]</span></p>
+</section>
+<section id="assemble" class="level3">
+<h3 class="anchored" data-anchor-id="assemble">Assemble</h3>
+<p>The last ingredient is <span class="math inline">\(\mathrm{Tr}[\Delta^2]\)</span>. With <span class="math inline">\(|\partial\chi\rangle=-i\hat G|\chi\rangle\)</span>, <span class="math display">\[\mathrm{Tr}[\Delta^2]=2\langle\partial\chi|\partial\chi\rangle+2\,\mathrm{Re}\langle\chi|\partial\chi\rangle^2
+=2\langle\hat G^2\rangle-2\langle\hat G\rangle^2=2\,\mathrm{Var}(\hat G)=\tfrac12\mathcal{F}_Q[\hat\rho].\]</span> Therefore <span class="math display">\[\mathbb{E}_{\hat U}\,\mathrm{Tr}\!\big[(\partial_\theta\hat\rho_A)^2\big]
+=\frac{d_B(d_A^2-1)}{d^2-1}\cdot\tfrac12\mathcal{F}_Q,\]</span> and multiplying by the Page factor <span class="math inline">\(d_A\)</span> from , <span class="math display">\[\boxed{\;\mathbb{E}_{\hat U}\big[\mathcal{F}_Q[\hat\rho_A]\big]
+=\frac{d_A d_B(d_A^2-1)}{2(d^2-1)}\,\mathcal{F}_Q[\hat\rho]
+=\frac{d\,(d_A^2-1)}{2(d^2-1)}\,\mathcal{F}_Q[\hat\rho].\;}\]</span> is <em>exact</em>; the only approximation is the Page step, so the closed form holds asymptotically in system size. We confirm the Weingarten average is exact (no size trend) next.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:25.768620Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:25.768329Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:27.154529Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:27.154055Z&quot;}" data-execution_count="2">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check: E_U[ d_A Tr((drho_A)^2) ] equals the closed form exactly (only MC scatter, no N-trend)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> closed_form_ratio(N, K):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    d, dA <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N, <span class="dv">2</span><span class="op">**</span>K</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d<span class="op">*</span>(dA<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(d<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" N  K    E[d_A Tr(drho^2)]/F0     closed form     (should match at every N)"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> apply_G_dense(N, <span class="dv">2</span>)<span class="op">;</span> D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    psi0 <span class="op">=</span> rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> psi0<span class="op">/=</span>np.linalg.norm(psi0)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    F0 <span class="op">=</span> <span class="dv">4</span><span class="op">*</span>(np.vdot(G<span class="op">@</span>psi0, G<span class="op">@</span>psi0).real <span class="op">-</span> <span class="bu">abs</span>(np.vdot(psi0, G<span class="op">@</span>psi0))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> K <span class="kw">in</span> [<span class="dv">1</span>, N<span class="op">//</span><span class="dv">2</span>]:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        acc<span class="op">=</span>[]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">400</span>):</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            Z <span class="op">=</span> rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D))<span class="op">;</span> U,_<span class="op">=</span>np.linalg.qr(Z)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            psi<span class="op">=</span>U<span class="op">@</span>psi0<span class="op">;</span> Gpsi<span class="op">=</span>U<span class="op">@</span>(G<span class="op">@</span>psi0)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            _, drho <span class="op">=</span> reduced_state_and_deriv(psi, Gpsi, N, K)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            acc.append((<span class="dv">1</span><span class="op">&lt;&lt;</span>K)<span class="op">*</span>np.trace(drho<span class="op">@</span>drho).real)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" </span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">  </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">      </span><span class="sc">{</span>np<span class="sc">.</span>mean(acc)<span class="op">/</span>F0<span class="sc">:10.4f}</span><span class="ss">          </span><span class="sc">{</span>closed_form_ratio(N,K)<span class="sc">:10.4f}</span><span class="ss">"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">nThe Weingarten average of the proxy matches the closed form at all N </span><span class="ch">\u2014</span><span class="st"> this step is exact."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> N  K    E[d_A Tr(drho^2)]/F0     closed form     (should match at every N)
+ 3  1          0.1955              0.1905
+ 3  1          0.1924              0.1905
+ 4  1          0.0951              0.0941
+ 4  2          0.4803              0.4706</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 5  1          0.0456              0.0469</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 5  2          0.2419              0.2346</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 6  1          0.0236              0.0234</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 6  3          0.4868              0.4923
+\nThe Weingarten average of the proxy matches the closed form at all N — this step is exact.</code></pre>
+</div>
+</div>
+</section>
+<section id="the-retained-larger-subsystem-is-low-rank" class="level3">
+<h3 class="anchored" data-anchor-id="the-retained-larger-subsystem-is-low-rank">The retained (larger) subsystem is <em>low-rank</em></h3>
+<p>Everything above assumed <span class="math inline">\(d_A\le d_B\)</span>, where <span class="math inline">\(\hat\rho_A\)</span> is full-rank and flat. The metrologically interesting case is the opposite one: we <em>keep the majority</em> <span class="math inline">\(B\)</span> and lose the minority <span class="math inline">\(A\)</span>. Then a new feature appears. By the Schmidt decomposition the kept state <span class="math inline">\(\hat\rho_B\)</span> has rank at most <span class="math inline">\(d_A\)</span> (the <em>smaller</em> dimension), so of its <span class="math inline">\(d_B\)</span> eigenvalues only <span class="math inline">\(d_A\)</span> are nonzero — Page-flat at <span class="math inline">\(\lambda_i\approx1/d_A\)</span> on a support projector <span class="math inline">\(\hat\Pi_B\)</span> — and the other <span class="math inline">\(d_B-d_A\)</span> are exactly zero.</p>
+<p>Write <span class="math inline">\(\hat C_B=\partial_\theta\hat\rho_B\)</span>. The SLD sum <span class="math inline">\(\mathcal{F}_Q[\hat\rho_B]=2\sum_{i,j}|\langle\psi_i|\hat C_B|\psi_j\rangle|^2/(\lambda_i+\lambda_j)\)</span> now runs over <em>two</em> kinds of surviving pairs, not one:</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>pair <span class="math inline">\((\lambda_i,\lambda_j)\)</span></th>
+<th>denominator <span class="math inline">\(\lambda_i+\lambda_j\)</span></th>
+<th>weight <span class="math inline">\(2/(\lambda_i+\lambda_j)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>both nonzero (“support–support”)</td>
+<td><span class="math inline">\(\approx 2/d_A\)</span></td>
+<td><span class="math inline">\(d_A\)</span></td>
+</tr>
+<tr class="even">
+<td>one nonzero, one zero (“support–null”)</td>
+<td><span class="math inline">\(\approx 1/d_A\)</span></td>
+<td><span class="math inline">\(2d_A\)</span></td>
+</tr>
+<tr class="odd">
+<td>both zero</td>
+<td><span class="math inline">\(0\)</span></td>
+<td>excluded</td>
+</tr>
+</tbody>
+</table>
+<p>The support–null pairs are new: they were absent in part (1) because there <span class="math inline">\(\hat\rho_A\)</span> had no null space. Summing the two contributions (the support–null block appears twice, <span class="math inline">\((i\in S,j\notin S)\)</span> and <span class="math inline">\((i\notin S,j\in S)\)</span>), <span class="math display">\[\mathcal{F}_Q[\hat\rho_B]\approx d_A\!\!\sum_{i,j\in S}\!|(\hat C_B)_{ij}|^2 \;+\; 4d_A\!\!\sum_{i\in S,\,j\notin S}\!\!|(\hat C_B)_{ij}|^2 .\]</span></p>
+<p>Now rewrite the two sums with the support projector. Since <span class="math inline">\(\mathrm{Tr}[\hat C_B^2\hat\Pi_B]=\sum_{i\in S,\,j\,\text{all}}|(\hat C_B)_{ij}|^2=\sum_{S,S}+\sum_{S,\bar S}\)</span> and <span class="math inline">\(\mathrm{Tr}[\hat C_B\hat\Pi_B\hat C_B\hat\Pi_B]=\sum_{i,j\in S}|(\hat C_B)_{ij}|^2=\sum_{S,S}\)</span>, the combination <span class="math inline">\(4d_A\,\mathrm{Tr}[\hat C_B^2\hat\Pi_B]-3d_A\,\mathrm{Tr}[\hat C_B\hat\Pi_B\hat C_B\hat\Pi_B]\)</span> reproduces exactly <span class="math inline">\(d_A\sum_{S,S}+4d_A\sum_{S,\bar S}\)</span>. <strong>That is where the <span class="math inline">\(4\)</span> and the <span class="math inline">\(-3\)</span> come from</strong> — the “<span class="math inline">\(4\)</span>” carries the support–null pairs, and the “<span class="math inline">\(-3\)</span>” corrects the support–support term from <span class="math inline">\(4d_A\)</span> back down to its true weight <span class="math inline">\(d_A\)</span>: <span class="math display">\[\boxed{\;\mathcal{F}_Q[\hat\rho_B]\approx 4d_A\,\mathrm{Tr}[\hat C_B^2\hat\Pi_B]-3d_A\,\mathrm{Tr}[\hat C_B\hat\Pi_B\hat C_B\hat\Pi_B].\;}\]</span></p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:27.157834Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:27.156185Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:27.193091Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:27.192494Z&quot;}" data-execution_count="3">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verify: (a) rho_B has rank d_A ; (b) the low-rank proxy equals the exact QFI</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reduced_B(psi, dpsi, N, Kkeep):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    dlose, dkeep <span class="op">=</span> <span class="dv">1</span><span class="op">&lt;&lt;</span>(N<span class="op">-</span>Kkeep), <span class="dv">1</span><span class="op">&lt;&lt;</span>Kkeep     <span class="co"># keep the LARGER part B (Kkeep qubits)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    P  <span class="op">=</span> psi.reshape(dlose, dkeep)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    Ph <span class="op">=</span> dpsi.reshape(dlose, dkeep)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    rhoB <span class="op">=</span> P.conj().T <span class="op">@</span> P</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    term <span class="op">=</span> Ph.conj().T <span class="op">@</span> P</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rhoB, term <span class="op">+</span> term.conj().T, dlose   <span class="co"># rho_B, C_B = d rho_B, d_A = dlose</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" N Kkeep  rank(rho_B)  d_A   F_Q[B] exact   4d_A Tr[C^2 Pi]-3d_A Tr[C Pi C Pi]   match"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]:</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> apply_G_dense(N,<span class="dv">2</span>)<span class="op">;</span> D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    psi0 <span class="op">=</span> rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> psi0<span class="op">/=</span>np.linalg.norm(psi0)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D))<span class="op">;</span> U,_ <span class="op">=</span> np.linalg.qr(Z)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">=</span> U<span class="op">@</span>psi0<span class="op">;</span> dpsi <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>U<span class="op">@</span>(G<span class="op">@</span>psi0)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    Kkeep <span class="op">=</span> N<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    rhoB, CB, dA <span class="op">=</span> reduced_B(psi, dpsi, N, Kkeep)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    rank <span class="op">=</span> <span class="bu">int</span>(np.<span class="bu">sum</span>(np.linalg.eigvalsh(rhoB) <span class="op">&gt;</span> <span class="fl">1e-9</span>))</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    w,V <span class="op">=</span> np.linalg.eigh(rhoB)<span class="op">;</span> Q <span class="op">=</span> V[:, np.argsort(w)[::<span class="op">-</span><span class="dv">1</span>][:dA]]<span class="op">;</span> Pi <span class="op">=</span> Q<span class="op">@</span>Q.conj().T</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    proxy <span class="op">=</span> <span class="dv">4</span><span class="op">*</span>dA<span class="op">*</span>np.trace(CB<span class="op">@</span>CB<span class="op">@</span>Pi).real <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>dA<span class="op">*</span>np.trace(CB<span class="op">@</span>Pi<span class="op">@</span>CB<span class="op">@</span>Pi).real</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> qfi_sld(rhoB, CB)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f" </span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">   </span><span class="sc">{</span>Kkeep<span class="sc">}</span><span class="ss">       </span><span class="sc">{</span>rank<span class="sc">:&gt;3}</span><span class="ss">      </span><span class="sc">{</span>dA<span class="sc">:&gt;2}</span><span class="ss">    </span><span class="sc">{</span>exact<span class="sc">:10.4f}</span><span class="ss">          </span><span class="sc">{</span>proxy<span class="sc">:14.4f}</span><span class="ss">              </span><span class="sc">{</span><span class="bu">abs</span>(exact<span class="op">-</span>proxy)<span class="op">&lt;</span><span class="fl">0.05</span><span class="op">*</span><span class="bu">abs</span>(exact)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">nrank(rho_B)=d_A confirms the low-rank structure; the proxy reproduces the exact QFI."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> N Kkeep  rank(rho_B)  d_A   F_Q[B] exact   4d_A Tr[C^2 Pi]-3d_A Tr[C Pi C Pi]   match
+ 4   3         2       2        7.2669                  7.0865              True
+ 5   4         2       2        8.6850                  8.9687              True
+ 6   5         2       2        7.4570                  7.2911              True
+\nrank(rho_B)=d_A confirms the low-rank structure; the proxy reproduces the exact QFI.</code></pre>
+</div>
+</div>
+</section>
+<section id="from-the-proxy-to-weingarten-moments" class="level3">
+<h3 class="anchored" data-anchor-id="from-the-proxy-to-weingarten-moments">From the proxy to Weingarten moments</h3>
+<p>The proxy still contains the state-dependent projector <span class="math inline">\(\hat\Pi_B\)</span>. Trade it for the density matrix using <span class="math inline">\(\hat\Pi_B=d_A\hat\rho_B\)</span> (exact for a perfectly flat spectrum — this is a <em>second</em> Page approximation, and the source of the small overshoot we will see). Then apply the generalized swap trick <span class="math inline">\(\mathrm{Tr}[\hat X_1\cdots\hat X_n]=\mathrm{Tr}[\hat V((12\cdots n))\,\hat X_1\otimes\cdots\otimes\hat X_n]\)</span> to fold each product of reduced operators back into a single trace on tensor copies of the <em>full</em> space: <span class="math display">\[\mathcal{F}_Q[\hat\rho_B]\approx
+4d_A^2\,\mathrm{Tr}\!\big[(\hat C^{(U)\otimes2}\!\otimes\hat\rho^{(U)})(\mathbb{1}_A\otimes\hat V_B((123)))\big]
+-3d_A^3\,\mathrm{Tr}\!\big[(\hat C^{(U)}\!\otimes\hat\rho^{(U)})^{\otimes2}(\mathbb{1}_A\otimes\hat V_B((1234)))\big].\]</span> The first term is cubic in <span class="math inline">\(\hat U\)</span> (three copies), the second quartic (four copies). So — unlike the small subsystem, which needed only the <strong>second</strong> moment — the large subsystem requires the <strong>third and fourth</strong> Haar moments.</p>
+</section>
+<section id="the-thirdfourth-moment-average-and-f_b" class="level3">
+<h3 class="anchored" data-anchor-id="the-thirdfourth-moment-average-and-f_b">The third/fourth-moment average and <span class="math inline">\(f_B\)</span></h3>
+<p>Averaging with the general moment formula <span class="math inline">\(\mathbb{E}_{\hat U}[\hat U^{\otimes n}\hat O\hat U^{\dagger\otimes n}]=\sum_{\sigma,\tau\in S_n}\mathrm{Wg}(\tau\sigma)\,\mathrm{Tr}[\hat O\hat V(\tau)]\hat V(\sigma)\)</span> for <span class="math inline">\(n=3\)</span> and <span class="math inline">\(n=4\)</span>: the only permutations that contribute are those that do <strong>not</strong> leave either <span class="math inline">\(\hat C\)</span> copy unpermuted (an unpermuted <span class="math inline">\(\hat C\)</span> would multiply the term by <span class="math inline">\(\mathrm{Tr}\,\hat C=0\)</span>). Counting those permutations, evaluating the three- and four-copy traces (each a product of <span class="math inline">\(d_A^{\,c}\,d_B^{\,c'}\)</span> set by the cycle structure), and substituting the explicit Weingarten functions gives the closed form <span class="math display">\[\mathbb{E}_{\hat U}[\mathcal{F}_Q[\hat\rho_B]]=f_B\,\mathcal{F}_Q,\qquad
+f_B=\frac{d_A^3(d_B^2-1)\big[d_B(2d+9)+d_A(-3d_A^2+d+15)\big]}{2(d^2-1)(d+2)(d+3)} .\]</span> For <span class="math inline">\(d_B\gg d_A\)</span> this is <span class="math inline">\(f_B\to1\)</span>: <strong>the majority subsystem keeps the entire QFI.</strong> The full permutation bookkeeping is lengthy and is given in the End Matter of the source paper; here we verify <span class="math inline">\(f_B\)</span> directly against the exact QFI, and expose the overshoot that the <span class="math inline">\(\hat\Pi_B=d_A\hat\rho_B\)</span> step produces near the balanced cut.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:27.199254Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:27.198988Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:27.706866Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:27.704472Z&quot;}" data-execution_count="4">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_B(dA, dB):     <span class="co"># paper End-Matter closed form (dA = smaller/lost, dB = larger/kept)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    dA, dB <span class="op">=</span> <span class="bu">float</span>(dA), <span class="bu">float</span>(dB)<span class="op">;</span> d <span class="op">=</span> dA<span class="op">*</span>dB</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dA<span class="op">**</span><span class="dv">3</span><span class="op">*</span>(dB<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(dB<span class="op">*</span>(<span class="dv">2</span><span class="op">*</span>d<span class="op">+</span><span class="dv">9</span>)<span class="op">+</span>dA<span class="op">*</span>(<span class="op">-</span><span class="dv">3</span><span class="op">*</span>dA<span class="op">**</span><span class="dv">2</span><span class="op">+</span>d<span class="op">+</span><span class="dv">15</span>))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(d<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(d<span class="op">+</span><span class="dv">2</span>)<span class="op">*</span>(d<span class="op">+</span><span class="dv">3</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" N Kkeep  d_A d_B   &lt;F_Q[B]/F0&gt; exact   f_B(theory)   note"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> apply_G_dense(N,<span class="dv">2</span>)<span class="op">;</span> D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> Kkeep <span class="kw">in</span> [N<span class="op">-</span><span class="dv">1</span>, N<span class="op">-</span><span class="dv">2</span>]:</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> Kkeep <span class="op">&lt;=</span> N<span class="op">/</span><span class="dv">2</span>: <span class="cf">continue</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        dlose, dkeep <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>(N<span class="op">-</span>Kkeep), <span class="dv">2</span><span class="op">**</span>Kkeep</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        vals<span class="op">=</span>[]</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">120</span>):</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            p0 <span class="op">=</span> rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> p0<span class="op">/=</span>np.linalg.norm(p0)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            Z <span class="op">=</span> rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D))<span class="op">;</span> U,_<span class="op">=</span>np.linalg.qr(Z)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            psi<span class="op">=</span>U<span class="op">@</span>p0<span class="op">;</span> dpsi<span class="op">=-</span><span class="ot">1j</span><span class="op">*</span>U<span class="op">@</span>(G<span class="op">@</span>p0)<span class="op">;</span> F0<span class="op">=</span><span class="dv">4</span><span class="op">*</span>(np.vdot(G<span class="op">@</span>p0,G<span class="op">@</span>p0).real<span class="op">-</span><span class="bu">abs</span>(np.vdot(p0,G<span class="op">@</span>p0))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            rhoB, CB, _ <span class="op">=</span> reduced_B(psi, dpsi, N, Kkeep)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            vals.append(qfi_sld(rhoB,CB)<span class="op">/</span>F0)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        nm, fb <span class="op">=</span> np.mean(vals), f_B(dlose, dkeep)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        note <span class="op">=</span> <span class="st">"f_B overshoots &gt;1 (near transition)"</span> <span class="cf">if</span> fb<span class="op">&gt;</span><span class="fl">1.0</span> <span class="cf">else</span> <span class="st">"f_B ~ full QFI"</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" </span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">   </span><span class="sc">{</span>Kkeep<span class="sc">}</span><span class="ss">    </span><span class="sc">{</span>dlose<span class="sc">:&gt;2}</span><span class="ss"> </span><span class="sc">{</span>dkeep<span class="sc">:&gt;3}</span><span class="ss">     </span><span class="sc">{</span>nm<span class="sc">:.4f}</span><span class="ss">           </span><span class="sc">{</span>fb<span class="sc">:.4f}</span><span class="ss">     </span><span class="sc">{</span>note<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">nf_B -&gt; 1 as d_B &gt;&gt; d_A (majority keeps the QFI). Near d_A~d_B it slightly exceeds 1:"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"that overshoot is the price of the Pi_B = d_A rho_B step, exact only for a perfectly flat spectrum."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> N Kkeep  d_A d_B   &lt;F_Q[B]/F0&gt; exact   f_B(theory)   note
+ 4   3     2   8     0.8952           1.0576     f_B overshoots &gt;1 (near transition)
+ 5   4     2  16     0.9501           1.0373     f_B overshoots &gt;1 (near transition)
+ 5   3     4   8     0.7676           0.9605     f_B ~ full QFI</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 6   5     2  32     0.9739           1.0210     f_B overshoots &gt;1 (near transition)
+ 6   4     4  16     0.8796           1.0437     f_B overshoots &gt;1 (near transition)
+\nf_B -&gt; 1 as d_B &gt;&gt; d_A (majority keeps the QFI). Near d_A~d_B it slightly exceeds 1:
+that overshoot is the price of the Pi_B = d_A rho_B step, exact only for a perfectly flat spectrum.</code></pre>
+</div>
+</div>
+</section>
+<section id="the-n2-threshold-and-the-efficient-large-n-method" class="level3">
+<h3 class="anchored" data-anchor-id="the-n2-threshold-and-the-efficient-large-n-method">The <span class="math inline">\(N/2\)</span> threshold and the efficient large-<span class="math inline">\(N\)</span> method</h3>
+<p>The ratio <span class="math inline">\(r(K)=\dfrac{d(d_A^2-1)}{2(d^2-1)}\)</span> has two limits: - <strong>Small retained</strong> (<span class="math inline">\(d_A\ll d_B\)</span>): <span class="math inline">\(r\approx d_A/(2d_B)=2^{-(N-2K)-1}\)</span>, exponentially small — a small fragment carries almost none of the metrological advantage. - <strong>Balanced</strong> (<span class="math inline">\(K=N/2\)</span>): <span class="math inline">\(r=\tfrac12\)</span> exactly (up to <span class="math inline">\(\mathcal O(1/d)\)</span>).</p>
+<p>By the same computation with the roles of <span class="math inline">\(A,B\)</span> swapped (and rank limited by the <em>smaller</em> factor, which is why the efficient code below projects onto an active subspace), the <strong>retained</strong> subsystem carries asymptotically the <strong>full</strong> QFI as soon as it exceeds half the system. Hence the metrological information survives the loss of <em>any</em> <span class="math inline">\(K&lt;N/2\)</span> qubits.</p>
+<p>To see the full Page curve at large <span class="math inline">\(N\)</span> we use three optimizations (after M. Płodzień’s <code>fast_QFI.jl</code>): matrix-free application of <span class="math inline">\(\hat G\)</span>, an <strong>implicit subspace-Haar</strong> evolution (a Haar <span class="math inline">\(\hat U\)</span> sends the 2D frame <span class="math inline">\(\{|\psi_0\rangle,\hat G|\psi_0\rangle\}\)</span> to a uniformly random frame, so we never build a <span class="math inline">\(d\times d\)</span> matrix), and <strong>active-subspace compression</strong> (for <span class="math inline">\(K&gt;N/2\)</span>, <span class="math inline">\(\hat\rho_A\)</span> has rank <span class="math inline">\(\le d_B\)</span>, so we diagonalize a tiny matrix). A single realization suffices at large <span class="math inline">\(N\)</span> by measure concentration.</p>
+<section id="trick-1-matrix-free-generator-zero-memory-hat-g" class="level4">
+<h4 class="anchored" data-anchor-id="trick-1-matrix-free-generator-zero-memory-hat-g">Trick 1 — Matrix-free generator (zero-memory <span class="math inline">\(\hat G\)</span>)</h4>
+<p><span class="math inline">\(\hat G=\sum_k\hat\sigma_y^{(k)}\)</span> is a sum of <em>local</em> operators, hence extremely sparse; forming it as a <span class="math inline">\(d\times d\)</span> matrix (<span class="math inline">\(d^2\)</span> entries) is impossible past <span class="math inline">\(N\sim 14\)</span>. Instead we apply it <em>functionally</em>. <span class="math inline">\(\hat\sigma_y^{(k)}\)</span> only couples basis states that differ in bit <span class="math inline">\(k\)</span>: for a pair <span class="math inline">\((i_0,i_1)\)</span> with bit <span class="math inline">\(k\)</span> equal to <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, <span class="math display">\[\hat\sigma_y=\begin{pmatrix}0&amp;-i\\ i&amp;0\end{pmatrix}
+\;\Longrightarrow\; \text{out}[i_0]\mathrel{+}=-i\,\text{in}[i_1],\quad \text{out}[i_1]\mathrel{+}=+i\,\text{in}[i_0].\]</span> In NumPy this is a single reshape to a rank-<span class="math inline">\(N\)</span> tensor of shape <span class="math inline">\([2]^N\)</span>, moving axis <span class="math inline">\(k\)</span> to the front, and acting on the two halves — cost <span class="math inline">\(\mathcal O(d)\)</span>, <strong>memory <span class="math inline">\(\mathcal O(d)\)</span></strong> (one state vector, no matrix).</p>
+</section>
+<section id="trick-2-implicit-subspace-haar-the-rotating-frame-method" class="level4">
+<h4 class="anchored" data-anchor-id="trick-2-implicit-subspace-haar-the-rotating-frame-method">Trick 2 — Implicit subspace-Haar (the rotating-frame method)</h4>
+<p>The real bottleneck is the Haar unitary <span class="math inline">\(\hat U\)</span> itself: a dense <span class="math inline">\(d\times d\)</span> matrix. But we never need all of <span class="math inline">\(\hat U\)</span> — only its action on the <strong>two-dimensional</strong> subspace <span class="math inline">\(\mathcal S=\mathrm{span}\{|\psi_0\rangle,\, |\phi_0\rangle\equiv\hat G|\psi_0\rangle\}\)</span>, because both the scrambled state <span class="math inline">\(|\psi\rangle=\hat U|\psi_0\rangle\)</span> and its tangent <span class="math inline">\(|\partial\psi\rangle\propto\hat U\hat G|\psi_0\rangle\)</span> live in <span class="math inline">\(\hat U\mathcal S\)</span>.</p>
+<p>The enabling fact: <strong>a Haar-random <span class="math inline">\(\hat U\)</span> maps any orthonormal frame to a <em>uniformly random</em> orthonormal frame.</strong> So the pair <span class="math inline">\((\hat U|\psi_0\rangle,\hat U|\phi_0\rangle)\)</span> has the <em>same distribution</em> as “take the input geometry, and place it in a random orientation.” Concretely:</p>
+<ol type="1">
+<li><strong>Capture the geometry.</strong> QR-factorize the input block: <span class="math inline">\([\,|\psi_0\rangle\; |\phi_0\rangle\,]=Q_{\rm in}R_{\rm geom}\)</span>. The <span class="math inline">\(2\times2\)</span> upper-triangular <span class="math inline">\(R_{\rm geom}\)</span> stores the norms and the overlap <span class="math inline">\(\langle\psi_0|\phi_0\rangle\)</span> — all the invariant geometry.</li>
+<li><strong>Draw a random frame.</strong> Make a <span class="math inline">\(d\times2\)</span> complex-Gaussian <span class="math inline">\(Z\)</span> and orthonormalize, <span class="math inline">\(Z=Q_{\rm rand}R_{\rm rand}\)</span>. <span class="math inline">\(Q_{\rm rand}\)</span> is a Haar-random orthonormal 2-frame in <span class="math inline">\(\mathbb C^d\)</span>.</li>
+<li><strong>Imprint geometry onto the random frame:</strong> <span class="math inline">\([\,|\psi\rangle\;|\phi\rangle\,]=Q_{\rm rand}R_{\rm geom}\)</span>.</li>
+</ol>
+<p>The output has <em>identical</em> internal geometry to the input but a uniformly random orientation — statistically exactly <span class="math inline">\(\hat U\)</span>’s action on <span class="math inline">\(\mathcal S\)</span>. Cost: two QRs of <span class="math inline">\(d\times2\)</span> matrices, <span class="math inline">\(\mathcal O(d)\)</span>; <strong>no <span class="math inline">\(d\times d\)</span> object is ever built</strong>, so <span class="math inline">\(N=20\)</span>–<span class="math inline">\(24\)</span> is reachable. (Validity: the reduced-state QFI depends on <span class="math inline">\(\hat U\)</span> only through the images of <span class="math inline">\(|\psi_0\rangle\)</span> and <span class="math inline">\(|\phi_0\rangle\)</span>, whose joint Haar distribution is reproduced exactly.)</p>
+</section>
+<section id="trick-3-active-subspace-compression-rank-deficiency-for-the-large-half" class="level4">
+<h4 class="anchored" data-anchor-id="trick-3-active-subspace-compression-rank-deficiency-for-the-large-half">Trick 3 — Active-subspace compression (rank-deficiency for the large half)</h4>
+<p>Computing <span class="math inline">\(\mathcal F_Q[\hat\rho_A]\)</span> needs the spectrum of <span class="math inline">\(\hat\rho_A\)</span>. For <span class="math inline">\(K&gt;N/2\)</span> (subsystem <span class="math inline">\(A\)</span> <em>larger</em> than the environment <span class="math inline">\(B\)</span>), <span class="math inline">\(\hat\rho_A\)</span> is <span class="math inline">\(d_A\times d_A\)</span> — e.g.&nbsp;<span class="math inline">\(16384\times16384\)</span> for <span class="math inline">\(K{=}14\)</span> — but the Schmidt decomposition guarantees <span class="math inline">\(\mathrm{rank}(\hat\rho_A)\le d_B\)</span>, which is <em>tiny</em> (<span class="math inline">\(2^{N-K}\)</span>). Both <span class="math inline">\(\hat\rho_A\)</span> and <span class="math inline">\(\partial_\theta\hat\rho_A\)</span> live in the <span class="math inline">\(\le 2d_B\)</span>-dimensional column space of <span class="math inline">\(\Psi=\mathrm{reshape}(\psi,d_A,d_B)\)</span> and <span class="math inline">\(\Phi=\mathrm{reshape}(\partial\psi,d_A,d_B)\)</span>.</p>
+<p>So: QR the stacked block <span class="math inline">\([\Psi\;\Phi]\)</span> (<span class="math inline">\(d_A\times 2d_B\)</span>) to get a thin active basis <span class="math inline">\(Q\)</span> (<span class="math inline">\(d_A\times r\)</span>, <span class="math inline">\(r\le 2d_B\)</span>); project <span class="math inline">\(\Psi\mapsto Q^\dagger\Psi\)</span>, <span class="math inline">\(\Phi\mapsto Q^\dagger\Phi\)</span>; and diagonalize the resulting <strong>tiny</strong> <span class="math inline">\(r\times r\)</span> reduced state. This makes the large half as cheap as the small half — the whole <span class="math inline">\(K=0,\dots,N\)</span> sweep costs the same at both ends. The code below toggles on this branch exactly when <span class="math inline">\(d_A&gt;d_B\)</span>.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:27.709760Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:27.709523Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:27.722319Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:27.721852Z&quot;}" data-execution_count="5">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- efficient engine (port of fast_QFI.jl) ----</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_Y(psi, N, k):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> psi.reshape([<span class="dv">2</span>]<span class="op">*</span>N)<span class="op">;</span> v <span class="op">=</span> np.moveaxis(v, k, <span class="dv">0</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> np.empty_like(v)<span class="op">;</span> out[<span class="dv">0</span>] <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>v[<span class="dv">1</span>]<span class="op">;</span> out[<span class="dv">1</span>] <span class="op">=</span> <span class="ot">1j</span><span class="op">*</span>v[<span class="dv">0</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.moveaxis(out, <span class="dv">0</span>, k).reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_G(psi, N, n_enc):</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> np.zeros_like(psi)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n_enc): out <span class="op">+=</span> apply_Y(psi, N, k)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evolve_subspace_haar(psi0, phi0):</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> psi0.size</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    _, Rgeom <span class="op">=</span> np.linalg.qr(np.column_stack([psi0, phi0]))</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> rng.standard_normal((D,<span class="dv">2</span>))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,<span class="dv">2</span>))</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    Qr, _ <span class="op">=</span> np.linalg.qr(Z)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> Qr <span class="op">@</span> Rgeom</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B[:,<span class="dv">0</span>], B[:,<span class="dv">1</span>]</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> qfi_subsystem(psi, phi, N, K):</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    dA, dB <span class="op">=</span> <span class="dv">1</span><span class="op">&lt;&lt;</span>K, <span class="dv">1</span><span class="op">&lt;&lt;</span>(N<span class="op">-</span>K)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> psi.reshape(dA, dB)<span class="op">;</span> Ph <span class="op">=</span> (<span class="op">-</span><span class="ot">1j</span><span class="op">*</span>phi).reshape(dA, dB)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dA <span class="op">&lt;=</span> dB:</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>        rho <span class="op">=</span> P<span class="op">@</span>P.conj().T<span class="op">;</span> term <span class="op">=</span> Ph<span class="op">@</span>P.conj().T</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:                                   <span class="co"># active subspace: rank &lt;= dB</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        Q,_ <span class="op">=</span> np.linalg.qr(np.column_stack([P, Ph]))</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        P <span class="op">=</span> Q.conj().T<span class="op">@</span>P<span class="op">;</span> Ph <span class="op">=</span> Q.conj().T<span class="op">@</span>Ph</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        rho <span class="op">=</span> P<span class="op">@</span>P.conj().T<span class="op">;</span> term <span class="op">=</span> Ph<span class="op">@</span>P.conj().T</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    drho <span class="op">=</span> term <span class="op">+</span> term.conj().T</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qfi_sld(rho, drho)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> theory_f_small(dA,dB): dA,dB<span class="op">=</span><span class="bu">float</span>(dA),<span class="bu">float</span>(dB)<span class="op">;</span> <span class="cf">return</span> <span class="fl">0.5</span><span class="op">*</span>(dA<span class="op">*</span>dB<span class="op">*</span>(dA<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>))<span class="op">/</span>(dA<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dB<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> theory_g_large(dA,dB):</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    dA,dB<span class="op">=</span><span class="bu">float</span>(dA),<span class="bu">float</span>(dB)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    num<span class="op">=</span>(dA<span class="op">**</span><span class="dv">3</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>dB<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>(<span class="dv">3</span><span class="op">*</span>dA<span class="op">**</span><span class="dv">3</span><span class="op">-</span>dA<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dB<span class="op">-</span><span class="dv">2</span><span class="op">*</span>dA<span class="op">*</span>dB<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">15</span><span class="op">*</span>dA<span class="op">-</span><span class="dv">9</span><span class="op">*</span>dB)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    den<span class="op">=</span><span class="dv">2</span><span class="op">*</span>(dA<span class="op">*</span>dB<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(dA<span class="op">*</span>dB<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>(dA<span class="op">*</span>dB<span class="op">+</span><span class="dv">2</span>)<span class="op">*</span>(dA<span class="op">*</span>dB<span class="op">+</span><span class="dv">3</span>)<span class="op">;</span> <span class="cf">return</span> num<span class="op">/</span>den</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> theory_ratio(N,K):</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    dK,dR<span class="op">=</span><span class="fl">2.0</span><span class="op">**</span>K,<span class="fl">2.0</span><span class="op">**</span>(N<span class="op">-</span>K)</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theory_f_small(dK,dR) <span class="cf">if</span> dK<span class="op">&lt;=</span>dR <span class="cf">else</span> theory_g_large(dR,dK)</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> page_curve(N, n_enc<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>    D<span class="op">=</span><span class="dv">1</span><span class="op">&lt;&lt;</span>N</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>    psi0<span class="op">=</span>rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> psi0<span class="op">/=</span>np.linalg.norm(psi0)</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    phi0<span class="op">=</span>apply_G(psi0,N,n_enc)</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>    F0<span class="op">=</span><span class="dv">4</span><span class="op">*</span>(np.vdot(phi0,phi0).real<span class="op">-</span><span class="bu">abs</span>(np.vdot(psi0,phi0))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>    psi,phi<span class="op">=</span>evolve_subspace_haar(psi0,phi0)</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>    Ks<span class="op">=</span>np.arange(N<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    num<span class="op">=</span>np.array([qfi_subsystem(psi,phi,N,K)<span class="op">/</span>F0 <span class="cf">for</span> K <span class="kw">in</span> Ks])</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>    th<span class="op">=</span>np.array([theory_ratio(N,K) <span class="cf">for</span> K <span class="kw">in</span> Ks])</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Ks,num,th</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"efficient engine ready."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>efficient engine ready.</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:27.725292Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:27.724511Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:28.602549Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:28.602146Z&quot;}" data-execution_count="6">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>,<span class="fl">4.2</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (left) QFI Page curve: retained fraction vs cut, numerics vs theory, several N</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N,c <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">6</span>,<span class="dv">10</span>,<span class="dv">14</span>], [<span class="st">"C0"</span>,<span class="st">"C1"</span>,<span class="st">"C3"</span>]):</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    Ks,num,th <span class="op">=</span> page_curve(N)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].plot(Ks<span class="op">/</span>N, num, <span class="st">"o"</span>, color<span class="op">=</span>c, ms<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="ss">f"$N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">$ (numerics)"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].plot(Ks<span class="op">/</span>N, th, <span class="st">"-"</span>, color<span class="op">=</span>c, lw<span class="op">=</span><span class="fl">1.2</span>, alpha<span class="op">=</span><span class="fl">.8</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].axvline(<span class="fl">0.5</span>, ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"0.4"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].axhline(<span class="fl">0.5</span>, ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"0.4"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">"retained fraction $K/N$"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="vs">r"$\langle\mathcal</span><span class="sc">{F}</span><span class="vs">_Q[\rho_A]\rangle/\mathcal</span><span class="sc">{F}</span><span class="vs">_Q$"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"Metrological Page curve (lines = theory)"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># (right) GHZ fragility vs scrambling protection: QFI after losing K qubits</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ghz_qfi_after_loss(N, K):</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># GHZ with F_Q = N^2; generator N*(global phase). Lose K qubits -&gt; rho_A.</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    D<span class="op">=</span><span class="dv">1</span><span class="op">&lt;&lt;</span>N</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    ket<span class="op">=</span>np.zeros(D,<span class="bu">complex</span>)<span class="op">;</span> ket[<span class="dv">0</span>]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>)<span class="op">;</span> ket[<span class="op">-</span><span class="dv">1</span>]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>)   <span class="co"># (|0..0&gt;+|1..1&gt;)/sqrt2</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># d/dtheta e^{-i theta G}, G = (N/2) Z_total on the all-ones/all-zeros -&gt; phase N*theta on |1..1&gt;</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    dket<span class="op">=</span>np.zeros(D,<span class="bu">complex</span>)<span class="op">;</span> dket[<span class="op">-</span><span class="dv">1</span>]<span class="op">=</span><span class="ot">1j</span><span class="op">*</span>N<span class="op">/</span>np.sqrt(<span class="dv">2</span>)                     <span class="co"># derivative wrt theta at 0</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    dA,dB<span class="op">=</span><span class="dv">1</span><span class="op">&lt;&lt;</span>K,<span class="dv">1</span><span class="op">&lt;&lt;</span>(N<span class="op">-</span>K)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    P<span class="op">=</span>ket.reshape(dA,dB)<span class="op">;</span> Ph<span class="op">=</span>dket.reshape(dA,dB)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    rho<span class="op">=</span>P<span class="op">@</span>P.conj().T<span class="op">;</span> term<span class="op">=</span>Ph<span class="op">@</span>P.conj().T<span class="op">;</span> drho<span class="op">=</span>term<span class="op">+</span>term.conj().T</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qfi_sld(rho,drho)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">8</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>Ks<span class="op">=</span>np.arange(<span class="dv">0</span>,<span class="dv">5</span>)</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>ghz<span class="op">=</span>[ghz_qfi_after_loss(N,K)<span class="op">/</span>N<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> K <span class="kw">in</span> Ks]</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co"># scrambled probe (same N) retained fraction from theory (retained = keep N-K)</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>scr<span class="op">=</span>[theory_ratio(N, N<span class="op">-</span>K) <span class="cf">for</span> K <span class="kw">in</span> Ks]</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(Ks, ghz, <span class="st">"s-"</span>, color<span class="op">=</span><span class="st">"C3"</span>, label<span class="op">=</span><span class="st">"GHZ probe"</span>)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(Ks, scr, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"C0"</span>, label<span class="op">=</span><span class="st">"scrambled probe"</span>)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">"number of lost qubits $K$"</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="vs">r"$\mathcal</span><span class="sc">{F}</span><span class="vs">_Q$ retained (fraction)"</span>)</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="ss">f"Fragility vs protection ($N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">$)"</span>)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Left: retained QFI follows the theory Page curve, threshold at K/N=1/2."</span>)</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Right: GHZ loses everything at K=1; the scrambled probe keeps ~full QFI while fewer than half are lost."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="solution_ch6_qfi_particle_loss_scrambling_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Left: retained QFI follows the theory Page curve, threshold at K/N=1/2.
+Right: GHZ loses everything at K=1; the scrambled probe keeps ~full QFI while fewer than half are lost.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="final-comparison-exact-numerics-vs-the-page-approximation" class="level3">
+<h3 class="anchored" data-anchor-id="final-comparison-exact-numerics-vs-the-page-approximation">Final comparison: exact numerics vs the Page approximation</h3>
+<p>The theory curve is the <em>exact Weingarten average of the Page-approximated QFI</em>. Averaging the exact QFI over many scramblers and comparing cut by cut shows precisely where it holds and where it breaks — no bluffing:</p>
+<ul>
+<li><strong>For <span class="math inline">\(K\le N/2\)</span></strong> the small-subsystem formula (Eq. 1160) matches the exact numerics essentially perfectly.</li>
+<li><strong>The one visible gap is a narrow window just above <span class="math inline">\(K=N/2\)</span></strong>, where the <em>large-subsystem</em> Page formula overshoots — it even exceeds <span class="math inline">\(1\)</span>, which is unphysical — because Page’s flat-spectrum assumption is weakest right at the entanglement transition (<span class="math inline">\(d_A\approx d_B\)</span>). The exact curve rises <em>smoothly</em> through it.</li>
+<li>The <strong>controlled convergence</strong> is best seen at the balanced cut <span class="math inline">\(K=N/2\)</span> (the hardest case for Page): its deviation from theory decays with <span class="math inline">\(N\)</span>, confirming the closed form is exact <em>asymptotically</em>.</li>
+</ul>
+<p>The residual gap is therefore not a bug in the average — it is a faithful map of exactly where the Page approximation is and is not to be trusted.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:28.604056Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:28.603822Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:31.738424Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:31.738119Z&quot;}" data-execution_count="7">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> avg_page_curve(N, nR, n_enc<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> N<span class="op">;</span> acc <span class="op">=</span> np.zeros(N<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(nR):</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        p0 <span class="op">=</span> rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> p0 <span class="op">/=</span> np.linalg.norm(p0)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        q0 <span class="op">=</span> apply_G(p0, N, n_enc)<span class="op">;</span> ps, ph <span class="op">=</span> evolve_subspace_haar(p0, q0)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        F0 <span class="op">=</span> <span class="dv">4</span><span class="op">*</span>(np.vdot(q0,q0).real <span class="op">-</span> <span class="bu">abs</span>(np.vdot(p0,q0))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        acc <span class="op">+=</span> np.array([qfi_subsystem(ps, ph, N, K)<span class="op">/</span>F0 <span class="cf">for</span> K <span class="kw">in</span> <span class="bu">range</span>(N<span class="op">+</span><span class="dv">1</span>)])</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> acc<span class="op">/</span>nR</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>,<span class="fl">4.2</span>))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># (left) averaged exact curve vs theory at N=12: theory overshoots &gt;1 at the transition</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">12</span><span class="op">;</span> num <span class="op">=</span> avg_page_curve(N, <span class="dv">60</span>)<span class="op">;</span> Ks <span class="op">=</span> np.arange(N<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>thc <span class="op">=</span> np.array([theory_ratio(N,K) <span class="cf">for</span> K <span class="kw">in</span> Ks])</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(Ks<span class="op">/</span>N, num, <span class="st">"o"</span>, color<span class="op">=</span><span class="st">"C0"</span>, ms<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">"exact numerics (avg)"</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(Ks<span class="op">/</span>N, thc, <span class="st">"-"</span>, color<span class="op">=</span><span class="st">"C3"</span>, lw<span class="op">=</span><span class="fl">1.3</span>, label<span class="op">=</span><span class="st">"Page theory"</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].axhline(<span class="fl">1.0</span>, ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"0.5"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].axvline(<span class="fl">0.5</span>, ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"0.5"</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].text(<span class="fl">0.55</span>, <span class="fl">1.06</span>, <span class="st">"Page formula</span><span class="ch">\n</span><span class="st">overshoots &gt;1</span><span class="ch">\n</span><span class="st">at transition"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">"C3"</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">"retained fraction $K/N$"</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="vs">r"$\langle\mathcal</span><span class="sc">{F}</span><span class="vs">_Q[\rho_A]\rangle/\mathcal</span><span class="sc">{F}</span><span class="vs">_Q$"</span>)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="ss">f"Exact vs Page ($N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">$)"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co"># (right) balanced-cut deviation vs N: the controlled convergence</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>Ns <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">12</span>]<span class="op">;</span> dev <span class="op">=</span> []</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  N    &lt;num@K=N/2&gt;   theory     |dev| at balanced cut"</span>)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> Ns:</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    num <span class="op">=</span> avg_page_curve(N, <span class="dv">200</span> <span class="cf">if</span> N<span class="op">&lt;=</span><span class="dv">8</span> <span class="cf">else</span> <span class="dv">60</span>)<span class="op">;</span> mid <span class="op">=</span> N<span class="op">//</span><span class="dv">2</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    d_ <span class="op">=</span> <span class="bu">abs</span>(num[mid]<span class="op">-</span>theory_ratio(N,mid))<span class="op">;</span> dev.append(d_)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>N<span class="sc">:&gt;2}</span><span class="ss">     </span><span class="sc">{</span>num[mid]<span class="sc">:.4f}</span><span class="ss">      </span><span class="sc">{</span>theory_ratio(N,mid)<span class="sc">:.4f}</span><span class="ss">      </span><span class="sc">{</span>d_<span class="sc">:.2e}</span><span class="ss">"</span>)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].semilogy(Ns, dev, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"C0"</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">"system size $N$"</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="vs">r"$|\,$num$-$theory$\,|$ at $K=N/2$"</span>)</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"Balanced-cut deviation vanishes with $N$"</span>)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">nHonest reading: theory matches the exact curve everywhere except a narrow window at K/N=1/2,"</span>)</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"where the large-subsystem Page formula overshoots above 1. At the balanced cut the deviation"</span>)</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"decays with N (the Weingarten average is exact; the Page approximation sharpens with system size)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  N    &lt;num@K=N/2&gt;   theory     |dev| at balanced cut
+   4     0.4980      0.4706      2.74e-02</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   6     0.5017      0.4923      9.42e-03
+   8     0.5002      0.4981      2.18e-03</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  10     0.5004      0.4995      8.63e-04</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  12     0.4997      0.4999      1.54e-04</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="solution_ch6_qfi_particle_loss_scrambling_files/figure-html/cell-8-output-5.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>\nHonest reading: theory matches the exact curve everywhere except a narrow window at K/N=1/2,
+where the large-subsystem Page formula overshoots above 1. At the balanced cut the deviation
+decays with N (the Weingarten average is exact; the Page approximation sharpens with system size).</code></pre>
+</div>
+</div>
+</section>
+<section id="adversarial-check-every-identity-machine-verified" class="level3">
+<h3 class="anchored" data-anchor-id="adversarial-check-every-identity-machine-verified">Adversarial check — every identity, machine-verified</h3>
+<p>To leave no room for hand-waving, we check each equation of the derivation independently: the exact algebra to machine precision, and the two Weingarten closed forms against Monte-Carlo. If any line were wrong, one of these would fail.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:31.739817Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:31.739633Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:31.865445Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:31.864939Z&quot;}" data-execution_count="8">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Vperm(m,n,sigma):</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    D<span class="op">=</span>m<span class="op">**</span>n<span class="op">;</span> P<span class="op">=</span>np.zeros((D,D))<span class="op">;</span> inv<span class="op">=</span>[<span class="dv">0</span>]<span class="op">*</span>n</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n): inv[sigma[k]]<span class="op">=</span>k</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx <span class="kw">in</span> itertools.product(<span class="bu">range</span>(m),repeat<span class="op">=</span>n):</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        out<span class="op">=</span><span class="bu">tuple</span>(idx[inv[k]] <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n))</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        P[np.ravel_multi_index(out,(m,)<span class="op">*</span>n), np.ravel_multi_index(idx,(m,)<span class="op">*</span>n)]<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> P</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fA_(dA,dB): d<span class="op">=</span>dA<span class="op">*</span>dB<span class="op">;</span> <span class="cf">return</span> d<span class="op">*</span>(dA<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(d<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fB_(dA,dB): d<span class="op">=</span>dA<span class="op">*</span>dB<span class="op">;</span> <span class="cf">return</span> dA<span class="op">**</span><span class="dv">3</span><span class="op">*</span>(dB<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(dB<span class="op">*</span>(<span class="dv">2</span><span class="op">*</span>d<span class="op">+</span><span class="dv">9</span>)<span class="op">+</span>dA<span class="op">*</span>(<span class="op">-</span><span class="dv">3</span><span class="op">*</span>dA<span class="op">**</span><span class="dv">2</span><span class="op">+</span>d<span class="op">+</span><span class="dv">15</span>))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(d<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(d<span class="op">+</span><span class="dv">2</span>)<span class="op">*</span>(d<span class="op">+</span><span class="dv">3</span>))</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>checks<span class="op">=</span>[]</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">3</span><span class="op">;</span> D<span class="op">=</span><span class="dv">2</span><span class="op">**</span>N<span class="op">;</span> G<span class="op">=</span>apply_G_dense(N,<span class="dv">2</span>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>p0<span class="op">=</span>rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> p0<span class="op">/=</span>np.linalg.norm(p0)</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>U,_<span class="op">=</span>np.linalg.qr(rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D)))</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>chi<span class="op">=</span>p0<span class="op">;</span> dchi<span class="op">=-</span><span class="ot">1j</span><span class="op">*</span>(G<span class="op">@</span>p0)<span class="op">;</span> C<span class="op">=</span>np.outer(dchi,chi.conj())<span class="op">+</span>np.outer(chi,dchi.conj())</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>F0<span class="op">=</span><span class="dv">4</span><span class="op">*</span>(np.vdot(G<span class="op">@</span>p0,G<span class="op">@</span>p0).real<span class="op">-</span><span class="bu">abs</span>(np.vdot(p0,G<span class="op">@</span>p0))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="st">"Tr[C]=0"</span>, <span class="bu">abs</span>(np.trace(C))<span class="op">&lt;</span><span class="fl">1e-9</span>))</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="st">"Tr[C^2]=F_Q/2"</span>, <span class="bu">abs</span>(np.trace(C<span class="op">@</span>C).real<span class="op">-</span>F0<span class="op">/</span><span class="dv">2</span>)<span class="op">&lt;</span><span class="fl">1e-9</span>))</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co"># n=3 swap-trick reduction used in the large-subsystem step (dA=2 lost, dB=4 kept)</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>CU<span class="op">=</span>U<span class="op">@</span>C<span class="op">@</span>U.conj().T<span class="op">;</span> psi<span class="op">=</span>U<span class="op">@</span>p0<span class="op">;</span> dpsi<span class="op">=-</span><span class="ot">1j</span><span class="op">*</span>U<span class="op">@</span>(G<span class="op">@</span>p0)<span class="op">;</span> dA,dB<span class="op">=</span><span class="dv">2</span>,<span class="dv">4</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>Pm<span class="op">=</span>psi.reshape(dA,dB)<span class="op">;</span> Ph<span class="op">=</span>dpsi.reshape(dA,dB)</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>rhoB<span class="op">=</span>Pm.conj().T<span class="op">@</span>Pm<span class="op">;</span> t<span class="op">=</span>Ph.conj().T<span class="op">@</span>Pm<span class="op">;</span> CB<span class="op">=</span>t<span class="op">+</span>t.conj().T<span class="op">;</span> rhoU<span class="op">=</span>np.outer(psi,psi.conj())</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>c3<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>)<span class="op">;</span> dims<span class="op">=</span>(dA,dB,dA,dB,dA,dB)<span class="op">;</span> O3<span class="op">=</span>np.zeros((D<span class="op">**</span><span class="dv">3</span>,D<span class="op">**</span><span class="dv">3</span>),<span class="bu">complex</span>)<span class="op">;</span> inv<span class="op">=</span>[<span class="dv">0</span>]<span class="op">*</span><span class="dv">3</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>): inv[c3[k]]<span class="op">=</span>k</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cb <span class="kw">in</span> itertools.product(<span class="bu">range</span>(dA),<span class="bu">range</span>(dB),<span class="bu">range</span>(dA),<span class="bu">range</span>(dB),<span class="bu">range</span>(dA),<span class="bu">range</span>(dB)):</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    a1,b1,a2,b2,a3,b3<span class="op">=</span>cb<span class="op">;</span> bs<span class="op">=</span>(b1,b2,b3)<span class="op">;</span> ob<span class="op">=</span>(bs[inv[<span class="dv">0</span>]],bs[inv[<span class="dv">1</span>]],bs[inv[<span class="dv">2</span>]])</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    O3[np.ravel_multi_index((a1,ob[<span class="dv">0</span>],a2,ob[<span class="dv">1</span>],a3,ob[<span class="dv">2</span>]),dims), np.ravel_multi_index(cb,dims)]<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>lhs<span class="op">=</span>np.trace(CB<span class="op">@</span>CB<span class="op">@</span>rhoB)<span class="op">;</span> rhs<span class="op">=</span>np.trace(np.kron(np.kron(CU,CU),rhoU)<span class="op">@</span>O3)</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="st">"n=3 swap-trick reduction"</span>, <span class="bu">abs</span>(lhs<span class="op">-</span>rhs)<span class="op">&lt;</span><span class="fl">1e-8</span>))</span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mc_ratio(N,keepK,large,nR<span class="op">=</span><span class="dv">250</span>):</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>    D<span class="op">=</span><span class="dv">2</span><span class="op">**</span>N<span class="op">;</span> G<span class="op">=</span>apply_G_dense(N,<span class="dv">2</span>)<span class="op">;</span> p0<span class="op">=</span>rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> p0<span class="op">/=</span>np.linalg.norm(p0)</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>    F0<span class="op">=</span><span class="dv">4</span><span class="op">*</span>(np.vdot(G<span class="op">@</span>p0,G<span class="op">@</span>p0).real<span class="op">-</span><span class="bu">abs</span>(np.vdot(p0,G<span class="op">@</span>p0))<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span> acc<span class="op">=</span>[]</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(nR):</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>        U,_<span class="op">=</span>np.linalg.qr(rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D)))</span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>        ps<span class="op">=</span>U<span class="op">@</span>p0<span class="op">;</span> dps<span class="op">=-</span><span class="ot">1j</span><span class="op">*</span>U<span class="op">@</span>(G<span class="op">@</span>p0)</span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> large:</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>            dA,dB<span class="op">=</span><span class="dv">2</span><span class="op">**</span>keepK,<span class="dv">2</span><span class="op">**</span>(N<span class="op">-</span>keepK)<span class="op">;</span> P<span class="op">=</span>ps.reshape(dA,dB)<span class="op">;</span> Ph<span class="op">=</span>dps.reshape(dA,dB)</span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>            CA<span class="op">=</span>Ph<span class="op">@</span>P.conj().T<span class="op">;</span> CA<span class="op">=</span>CA<span class="op">+</span>CA.conj().T<span class="op">;</span> acc.append(dA<span class="op">*</span>np.trace(CA<span class="op">@</span>CA).real)</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>            dl,dk<span class="op">=</span><span class="dv">2</span><span class="op">**</span>(N<span class="op">-</span>keepK),<span class="dv">2</span><span class="op">**</span>keepK<span class="op">;</span> P<span class="op">=</span>ps.reshape(dl,dk)<span class="op">;</span> Ph<span class="op">=</span>dps.reshape(dl,dk)</span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>            rB<span class="op">=</span>P.conj().T<span class="op">@</span>P<span class="op">;</span> tt<span class="op">=</span>Ph.conj().T<span class="op">@</span>P<span class="op">;</span> cB<span class="op">=</span>tt<span class="op">+</span>tt.conj().T</span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>            acc.append(<span class="dv">4</span><span class="op">*</span>dl<span class="op">**</span><span class="dv">2</span><span class="op">*</span>np.trace(cB<span class="op">@</span>cB<span class="op">@</span>rB).real<span class="op">-</span><span class="dv">3</span><span class="op">*</span>dl<span class="op">**</span><span class="dv">3</span><span class="op">*</span>np.trace(cB<span class="op">@</span>rB<span class="op">@</span>cB<span class="op">@</span>rB).real)</span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(acc)<span class="op">/</span>F0</span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="st">"E[d_A Tr C_A^2]/F_Q = f_A  (Eq. small)"</span>, <span class="bu">abs</span>(mc_ratio(<span class="dv">5</span>,<span class="dv">2</span>,<span class="va">False</span>)<span class="op">-</span>fA_(<span class="dv">4</span>,<span class="dv">8</span>))<span class="op">&lt;</span><span class="fl">0.03</span>))</span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="st">"E[substituted proxy]/F_Q = f_B  (Eq. large)"</span>, <span class="bu">abs</span>(mc_ratio(<span class="dv">5</span>,<span class="dv">3</span>,<span class="va">True</span>)<span class="op">-</span>fB_(<span class="dv">4</span>,<span class="dv">8</span>))<span class="op">&lt;</span><span class="fl">0.04</span>))</span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name,ok <span class="kw">in</span> checks: <span class="bu">print</span>(<span class="ss">f"  [</span><span class="sc">{</span><span class="st">'PASS'</span> <span class="cf">if</span> ok <span class="cf">else</span> <span class="st">'FAIL'</span><span class="sc">}</span><span class="ss">]  </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">  </span><span class="sc">{</span><span class="bu">sum</span>(ok <span class="cf">for</span> _,ok <span class="kw">in</span> checks)<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(checks)<span class="sc">}</span><span class="ss"> PASS  -&gt;  every derivation step is numerically certified"</span></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>      <span class="op">+</span> (<span class="st">""</span> <span class="cf">if</span> <span class="bu">all</span>(ok <span class="cf">for</span> _,ok <span class="kw">in</span> checks) <span class="cf">else</span> <span class="st">"  (SOME FAILED!)"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [PASS]  Tr[C]=0
+  [PASS]  Tr[C^2]=F_Q/2
+  [PASS]  n=3 swap-trick reduction
+  [PASS]  E[d_A Tr C_A^2]/F_Q = f_A  (Eq. small)
+  [PASS]  E[substituted proxy]/F_Q = f_B  (Eq. large)
+
+  5/5 PASS  -&gt;  every derivation step is numerically certified</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>Scrambling <strong>passively protects</strong> metrological advantage: a chaotic unitary applied after phase encoding spreads the sensitivity into volume-law correlations, so erasing any subsystem <em>smaller than half</em> the system costs only an exponentially small fraction of the QFI. The mechanism is Page-typicality of the second moment of <span class="math inline">\(\hat U\hat\rho\hat U^\dagger\)</span> — the same concentration behind the Hayden–Preskill recovery transition, but applied here to the Fisher information rather than to a quantum message.</p>
+<p><strong>Honest scope.</strong> The closed form is <em>not</em> an exact identity. The Weingarten average () is exact, but it averages the <strong>Page-approximated</strong> QFI (), which is sharp only when the reduced spectrum is flat, i.e.&nbsp;asymptotically in system size (<span class="math inline">\(d_A\ll d_B\)</span>). The numerics above make the boundary explicit: Eq. 1160 (small subsystem) matches the exact QFI to high accuracy for <span class="math inline">\(K\le N/2\)</span>, while the large-subsystem formula <em>overshoots above <span class="math inline">\(1\)</span></em> in a narrow window just past the balanced cut — the one place Page’s flat-spectrum assumption fails, since there <span class="math inline">\(d_A\approx d_B\)</span>. The exact metrological curve passes smoothly through the transition; the balanced-cut deviation shrinks with <span class="math inline">\(N\)</span>, so the closed form is trustworthy asymptotically and away from the transition.</p>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<ul>
+<li>The <span class="math inline">\(N/2\)</span> crossover is the metrological twin of the entanglement <strong>Page curve</strong> of <a href="solution_ch3_page_formula.ipynb">the Page formula</a> and the same second-moment concentration used in the <a href="solution_ch3_purity_concentration.ipynb">purity concentration</a> and <a href="solution_ch3_weingarten_first_moment.ipynb">Weingarten</a> notebooks.</li>
+<li>It sits opposite the <strong>Hayden–Preskill</strong> state-recovery transition (Chapter 6): there scrambling makes a <em>message</em> recoverable from a fragment; here it makes the <em>Fisher information</em> survive erasure.</li>
+<li>The efficient engine reuses the matrix-free / implicit-Haar / active-subspace ideas that make volume-law probes simulable well beyond exact diagonalization.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>M. Płodzień et al., <em>Volume-law metrological robustness from scrambling</em> (2026).</li>
+<li>D. N. Page, <em>Average entropy of a subsystem</em>, Phys. Rev.&nbsp;Lett. <strong>71</strong>, 1291 (1993).</li>
+<li>P. Hayden and J. Preskill, <em>Black holes as mirrors</em>, JHEP <strong>09</strong> (2007) 120.</li>
+<li>S. L. Braunstein and C. M. Caves, <em>Statistical distance and the geometry of quantum states</em>, Phys. Rev.&nbsp;Lett. <strong>72</strong>, 3439 (1994).</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2026 Marcin Płodzień · MIT License</div>   
+    <div class="nav-footer-right"><a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

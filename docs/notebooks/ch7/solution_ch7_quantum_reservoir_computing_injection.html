@@ -664,7 +664,7 @@ K_a = (I_{\bar{1}} \otimes |\psi(x)\rangle_1)(I_{\bar{1}} \otimes \langle a|_1),
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:06:27.779506Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:06:27.778840Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:06:28.062822Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:06:28.062372Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:55:38.801951Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:55:38.801845Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:55:39.008278Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:55:39.007807Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -720,7 +720,7 @@ Part (c): Total runs = nu * T(T+1)/2 = T*nu*(T + 1)/2
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The injection map factorizes into a partial trace and a state preparation, and since the partial trace contracts trace distance, past inputs grow indistinguishable step by step and the reservoir has fading memory with no assumption on the scrambling unitary. Projective readout with restarting costs <span class="math inline">\(\nu\,T(T+1)/2\)</span> runs, an <span class="math inline">\(O(\nu T^2)\)</span> overhead that motivates weak continuous measurement.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:06:28.064665Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:06:28.064439Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:06:28.251027Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:06:28.250237Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:55:39.009894Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:55:39.009689Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:55:39.079397Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:55:39.078910Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -774,10 +774,8 @@ Part (c): Total runs = nu * T(T+1)/2 = T*nu*(T + 1)/2
 <pre><code>Part (a): Completeness
   sum K^dag K = I: True
 
-Part (b): Contractivity</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Tested 100 random state pairs.
+Part (b): Contractivity
+  Tested 100 random state pairs.
   Strictly contractive: 100/100
   Physical mechanism for fading memory confirmed.
 
@@ -787,49 +785,49 @@ Part (c): Readout Overhead
   T=100, nu=1000: Total Runs = 5,050,000 shots</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:06:28.254452Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:06:28.253858Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:06:29.853756Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:06:29.853058Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:55:39.085648Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:55:39.085398Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:55:39.983372Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:55:39.983030Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Visualization: fading memory — two reservoirs forget their initial state ---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">4</span><span class="op">;</span> D <span class="op">=</span> <span class="dv">2</span> <span class="op">**</span> N<span class="op">;</span> Dbar <span class="op">=</span> <span class="dv">2</span> <span class="op">**</span> (N <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> random_dm():</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> rng.standard_normal((D, D)) <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> rng.standard_normal((D, D))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    rho <span class="op">=</span> A <span class="op">@</span> A.conj().T</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rho <span class="op">/</span> np.trace(rho)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inject(rho, x):</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># injection qubit is the LAST factor: trace it out, then write in |psi(x)&gt;</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    red <span class="op">=</span> np.einsum(<span class="st">"iaja-&gt;ij"</span>, rho.reshape(Dbar, <span class="dv">2</span>, Dbar, <span class="dv">2</span>))</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">=</span> np.array([np.cos(x), np.sin(x)], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.kron(red, np.outer(psi, psi.conj()))</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> td(a, b):</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(np.linalg.eigvalsh(a <span class="op">-</span> b)))</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> unitary_group.rvs(D, random_state<span class="op">=</span>rng)          <span class="co"># one fixed scrambling unitary</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>rho, sigma <span class="op">=</span> random_dm(), random_dm()               <span class="co"># two DIFFERENT initial states</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> rng.uniform(<span class="dv">0</span>, np.pi, size<span class="op">=</span><span class="dv">25</span>)             <span class="co"># identical input stream to both</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> [td(rho, sigma)]</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> inputs:</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    rho <span class="op">=</span> U <span class="op">@</span> inject(rho, x) <span class="op">@</span> U.conj().T</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> U <span class="op">@</span> inject(sigma, x) <span class="op">@</span> U.conj().T</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    dist.append(td(rho, sigma))</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.6</span>, <span class="dv">4</span>))</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>ax.semilogy(dist, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"C0"</span>, lw<span class="op">=</span><span class="fl">1.5</span>, ms<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"injection step $n$"</span>)</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r"trace distance $D_{\rm tr}(\rho_n,\sigma_n)$"</span>)</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Fading memory: two initial states become indistinguishable"</span>)</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">"both"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Visualization: fading memory — two reservoirs forget their initial state ---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">4</span><span class="op">;</span> D <span class="op">=</span> <span class="dv">2</span> <span class="op">**</span> N<span class="op">;</span> Dbar <span class="op">=</span> <span class="dv">2</span> <span class="op">**</span> (N <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> random_dm():</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> rng.standard_normal((D, D)) <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> rng.standard_normal((D, D))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    rho <span class="op">=</span> A <span class="op">@</span> A.conj().T</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rho <span class="op">/</span> np.trace(rho)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inject(rho, x):</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># injection qubit is the LAST factor: trace it out, then write in |psi(x)&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    red <span class="op">=</span> np.einsum(<span class="st">"iaja-&gt;ij"</span>, rho.reshape(Dbar, <span class="dv">2</span>, Dbar, <span class="dv">2</span>))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">=</span> np.array([np.cos(x), np.sin(x)], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.kron(red, np.outer(psi, psi.conj()))</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> td(a, b):</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(np.linalg.eigvalsh(a <span class="op">-</span> b)))</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> unitary_group.rvs(D, random_state<span class="op">=</span>rng)          <span class="co"># one fixed scrambling unitary</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>rho, sigma <span class="op">=</span> random_dm(), random_dm()               <span class="co"># two DIFFERENT initial states</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> rng.uniform(<span class="dv">0</span>, np.pi, size<span class="op">=</span><span class="dv">25</span>)             <span class="co"># identical input stream to both</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> [td(rho, sigma)]</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> inputs:</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    rho <span class="op">=</span> U <span class="op">@</span> inject(rho, x) <span class="op">@</span> U.conj().T</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> U <span class="op">@</span> inject(sigma, x) <span class="op">@</span> U.conj().T</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    dist.append(td(rho, sigma))</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.6</span>, <span class="dv">4</span>))</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>ax.semilogy(dist, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"C0"</span>, lw<span class="op">=</span><span class="fl">1.5</span>, ms<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"injection step $n$"</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r"trace distance $D_{\rm tr}(\rho_n,\sigma_n)$"</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Fading memory: two initial states become indistinguishable"</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">"both"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="solution_ch7_quantum_reservoir_computing_injection_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>

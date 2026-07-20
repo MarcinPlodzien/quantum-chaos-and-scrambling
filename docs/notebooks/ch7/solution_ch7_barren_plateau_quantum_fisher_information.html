@@ -729,7 +729,7 @@ F_Q = 4\left(\langle \psi_1 | G^2 | \psi_1 \rangle - \langle \psi_1 | G | \psi_1
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">6. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:03:02.899802Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:03:02.899315Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:03:03.467221Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:03:03.466711Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:54:36.289587Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:54:36.289461Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:54:36.613073Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:54:36.612685Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -778,7 +778,7 @@ Large D: ~ 0 * Tr(O^2) / D</code></pre>
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">7. Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:03:03.469450Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:03:03.469137Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:04:07.426419Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:04:07.423921Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:54:36.614847Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:54:36.614489Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:54:47.400904Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:54:47.400455Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -877,7 +877,7 @@ The state moves, but the cost can barely detect the motion.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>For a traceless Pauli generator the expected QFI tends to <span class="math inline">\(4\)</span> as <span class="math inline">\(D\to\infty\)</span>, so the state stays sensitive to the parameter even as the cost gradient vanishes as <span class="math inline">\(1/D\)</span>. The observable resolves only an <span class="math inline">\(O(1)\)</span>-dimensional slice of the motion, and recovering trainability means aligning it with the directions the circuit explores through local observables or structured ansätze.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:04:07.431738Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:04:07.430632Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:04:08.461320Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:04:08.460793Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:54:47.404501Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:54:47.404193Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:54:48.204168Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:54:48.203809Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

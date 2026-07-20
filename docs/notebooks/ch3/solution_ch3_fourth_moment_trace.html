@@ -686,7 +686,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="step-3-combine" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-combine">Step 3: Combine</h3>
 <p><span class="math display">\[\mathbb{E}[|\mathrm{Tr}(U)|^4] = \frac{2D^2}{D^2-1} - \frac{2}{D^2-1} = \frac{2(D^2-1)}{D^2-1} = \boxed{2}\]</span></p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:54:32.024841Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:54:32.024435Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:54:32.331475Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:54:32.330977Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:49:25.806780Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:49:25.806567Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:49:26.097687Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:49:26.097056Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -743,7 +743,7 @@ Sum = 2
 VERIFIED: E[|Tr(U)|⁴] = 2 for all D ≥ 2 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:54:32.334922Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:54:32.334595Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:54:32.347758Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:54:32.347047Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:49:26.099647Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:49:26.099391Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:49:26.105071Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:49:26.104710Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Brute-force index contraction verification</span></span>
@@ -800,7 +800,7 @@ D = 4:
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:54:32.349737Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:54:32.349375Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:54:40.544195Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:54:40.543850Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:49:26.106534Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:49:26.106235Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:49:32.889604Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:49:32.889218Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: NumPy Monte Carlo cross-check</span></span>
@@ -851,7 +851,7 @@ Dimension-independent fourth moment = 2 confirmed</code></pre>
 <h2 class="anchored" data-anchor-id="physical-interpretation">4. Physical Interpretation</h2>
 <p><strong>Tensor network perspective:</strong> Each of the four <span class="math inline">\((\pi,\sigma)\)</span> terms corresponds to a distinct wiring of the tensor diagram: - <strong>Planar pairings</strong> (<span class="math inline">\(\pi^{-1}\sigma = \mathrm{id}\)</span>): uncrossed wires, producing 2 independent loops → <span class="math inline">\(D^2\)</span> per term - <strong>Non-planar pairings</strong> (<span class="math inline">\(\pi^{-1}\sigma = (12)\)</span>): crossed wires, forcing all indices to collapse to 1 loop → <span class="math inline">\(D\)</span> per term</p>
 <p>The exact cancellation <span class="math inline">\(\frac{2D^2}{D^2-1} - \frac{2}{D^2-1} = 2\)</span> is the algebraic manifestation of a <strong>topological</strong> fact: the number of independent wiring topologies, not the dimension of the group, controls the moments. This universality is why <span class="math inline">\(|\mathrm{Tr}(U)|^4 = 2\)</span> serves as the benchmark test for 2-design convergence.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:54:40.546035Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:54:40.545684Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:54:42.915793Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:54:42.915434Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:49:32.891173Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:49:32.890973Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:49:34.946323Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:49:34.945939Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

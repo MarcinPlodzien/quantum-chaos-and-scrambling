@@ -692,7 +692,7 @@ B = \begin{pmatrix} 1 &amp; \sqrt{1-\gamma} \\ \sqrt{1-\gamma} &amp; 1-\gamma \e
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:52:39.629915Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:52:39.629536Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:52:39.905416Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:52:39.904892Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:17.011184Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:17.011035Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:17.169573Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:17.169305Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -712,7 +712,7 @@ B = \begin{pmatrix} 1 &amp; \sqrt{1-\gamma} \\ \sqrt{1-\gamma} &amp; 1-\gamma \e
 Trace preservation</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:52:39.907363Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:52:39.907086Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:52:40.027666Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:52:40.027040Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:17.170984Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:17.170839Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:17.240543Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:17.240283Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2x2 block eigenvalues: trace = 2-γ, det = 0</span></span>
@@ -733,7 +733,7 @@ Full spectrum: {2 - gamma, γ, 0, 0}</code></pre>
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:52:40.029800Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:52:40.029575Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:52:40.175203Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:52:40.174737Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:17.241806Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:17.241678Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:17.285900Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:17.285511Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -772,7 +772,7 @@ Full spectrum: {2 - gamma, γ, 0, 0}</code></pre>
 All eigenvalues ≥ 0 for γ ∈ [0,1]: complete positivity confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:52:40.177860Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:52:40.177345Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:52:41.009533Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:52:41.009109Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:17.287934Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:17.287704Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:17.870545Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:17.870237Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Visualization: amplitude damping pulls the Bloch ball toward |0&gt; ---</span></span>

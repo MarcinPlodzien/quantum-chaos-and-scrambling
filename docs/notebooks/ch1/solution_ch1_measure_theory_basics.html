@@ -677,7 +677,7 @@ The lesson: on continuous spaces, we <em>must</em> restrict to a σ-algebra of w
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">5. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:53:19.234744Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:53:19.234380Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:53:19.424929Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:53:19.424479Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:47.376520Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:47.376320Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:47.540458Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:47.540104Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -711,7 +711,7 @@ The lesson: on continuous spaces, we <em>must</em> restrict to a σ-algebra of w
 λ([0,1] \ Q) = 1 - 0 = 1 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:53:19.448915Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:53:19.448622Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:53:19.454977Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:53:19.454617Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:47.561555Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:47.561330Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:47.566481Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:47.566232Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (c): Vitali argument - symbolic contradiction ────────────</span></span>
@@ -748,7 +748,7 @@ No c ≥ 0 satisfies Σ c = 1.  Vitali argument complete. </code></pre>
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">6. Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:53:19.456109Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:53:19.455925Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:53:19.505082Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:53:19.504605Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:47.567559Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:47.567414Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:47.613647Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:47.613164Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -791,7 +791,7 @@ As ε → 0, the total cover → 0.
 Therefore λ(Q ∩ [0,1]) = 0, and λ([0,1] \ Q) = 1. </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:53:19.507189Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:53:19.506939Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:53:19.517859Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:53:19.517356Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:47.616608Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:47.615953Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:47.624539Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:47.624180Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (b): Counting measure on the 1-qubit Pauli group ────────</span></span>
@@ -855,7 +855,7 @@ Finite additivity test:
   Equal</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:53:19.523759Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:53:19.523291Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:53:19.593121Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:53:19.592631Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:47.626175Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:47.625796Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:47.699623Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:47.699052Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Left-invariance: μ(gA) = μ(A) for ALL g ∈ Ω = P₁ ---</span></span>
@@ -912,7 +912,7 @@ Finite additivity test:
 Left-invariance verified for all test subsets. </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:53:19.595001Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:53:19.594676Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:53:19.600879Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:53:19.600442Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:47.701246Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:47.701021Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:47.705172Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:47.704840Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (c): Vitali argument - numerical illustration ────────────</span></span>

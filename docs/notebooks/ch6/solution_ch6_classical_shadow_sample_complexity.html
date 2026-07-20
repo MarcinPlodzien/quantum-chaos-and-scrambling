@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Applications of Scrambling, numerical solution.">
+
+<title>Quantum Chaos &amp; Scrambling - Classical Shadows: How Many Measurements to Predict Many Observables</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Quantum Chaos &amp; Scrambling</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page">
+ <span class="menu-text">Start here</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorial" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorial</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorial">    
+        <li>
+    <a class="dropdown-item" href="../../chapters/01-foundations.html">
+ <span class="dropdown-text">1 · Mathematical Foundations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/02-random-matrix-theory.html">
+ <span class="dropdown-text">2 · Random Matrix Theory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/03-haar-weingarten.html">
+ <span class="dropdown-text">3 · Haar Measure &amp; Weingarten Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/04-dynamics.html">
+ <span class="dropdown-text">4 · Quantum Dynamics &amp; Chaos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/05-designs.html">
+ <span class="dropdown-text">5 · Designs &amp; Clifford Ensembles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/06-applications.html">
+ <span class="dropdown-text">6 · Applications of Scrambling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/07-qml.html">
+ <span class="dropdown-text">7 · Quantum Machine Learning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../exercises.html">
+ <span class="menu-text">Exercises (PDF)</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Classical Shadows: How Many Measurements to Predict Many Observables</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Start here</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/01-foundations.html" class="sidebar-item-text sidebar-link">1 · Mathematical Foundations</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_fubini_study.html" class="sidebar-item-text sidebar-link">Bloch Sphere Geodesics and the Fubini-Study Metric</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_entanglement_parametric.html" class="sidebar-item-text sidebar-link">Entanglement of a Parametric Two-Qubit State</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_depolarizing_channel.html" class="sidebar-item-text sidebar-link">The Depolarizing Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_schur_weyl.html" class="sidebar-item-text sidebar-link">Schur-Weyl Decomposition for</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_choi_amplitude_damping.html" class="sidebar-item-text sidebar-link">Choi Matrix of the Amplitude-Damping Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_exp_surjectivity.html" class="sidebar-item-text sidebar-link">Surjectivity of the Exponential Map on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.html" class="sidebar-item-text sidebar-link">Haar Invariance on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_quantum_speed_limit.html" class="sidebar-item-text sidebar-link">Geodesic Length and the Quantum Speed Limit</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html" class="sidebar-item-text sidebar-link">Differential Geometry of Quantum State Space</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_measure_theory_basics.html" class="sidebar-item-text sidebar-link">Lebesgue Measure, Counting Measure, and σ-Additivity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_borel_measurability.html" class="sidebar-item-text sidebar-link">Borel σ-Algebra and Measurability on U(D)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-random-matrix-theory.html" class="sidebar-item-text sidebar-link">2 · Random Matrix Theory</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_goe_spacing.html" class="sidebar-item-text sidebar-link">The GOE and Linear Level Repulsion</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_semicircle_moments.html" class="sidebar-item-text sidebar-link">Moments of the Wigner Semicircle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-haar-weingarten.html" class="sidebar-item-text sidebar-link">3 · Haar Measure &amp; Weingarten Calculus</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html" class="sidebar-item-text sidebar-link">Operator Averages Using the First Moment Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_swap_trick.html" class="sidebar-item-text sidebar-link">The SWAP Trick in Action</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_haar_overlap.html" class="sidebar-item-text sidebar-link">Overlap of Haar-Random States and Measure Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_fourth_moment_trace.html" class="sidebar-item-text sidebar-link">The Fourth Moment of the Trace</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.html" class="sidebar-item-text sidebar-link">Tensor Network Weingarten Calculus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_page_formula.html" class="sidebar-item-text sidebar-link">The Asymptotic Page Formula via Marchenko-Pastur</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html" class="sidebar-item-text sidebar-link">Concentration of Purity (Lévy’s Lemma)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/04-dynamics.html" class="sidebar-item-text sidebar-link">4 · Quantum Dynamics &amp; Chaos</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_commutator_fidelity_identity.html" class="sidebar-item-text sidebar-link">The C-F Identity (OTOC-Commutator Relation)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.html" class="sidebar-item-text sidebar-link">SFF Plateau Value for the GUE</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_krylov_complexity.html" class="sidebar-item-text sidebar-link">Krylov Complexity from the Geometric Distribution</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/05-designs.html" class="sidebar-item-text sidebar-link">5 · Designs &amp; Clifford Ensembles</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_clifford_otoc.html" class="sidebar-item-text sidebar-link">OTOCs and the Failure of Clifford Chaos</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.html" class="sidebar-item-text sidebar-link">Stabilizer Rényi Entropy of Haar-Random States</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/06-applications.html" class="sidebar-item-text sidebar-link">6 · Applications of Scrambling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html" class="sidebar-item-text sidebar-link">The Shadow Channel and Its Inverse</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_shadows.html" class="sidebar-item-text sidebar-link">Classical Shadows: Channel Inversion and Tomography</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.html" class="sidebar-item-text sidebar-link">Randomized Benchmarking via Clifford Twirling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_tripartite_mutual_information.html" class="sidebar-item-text sidebar-link">Tripartite Mutual Information and Scrambling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.html" class="sidebar-item-text sidebar-link">Fragility of the GHZ Metrological Advantage</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/07-qml.html" class="sidebar-item-text sidebar-link">7 · Quantum Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau.html" class="sidebar-item-text sidebar-link">Barren Plateau Scaling from the Weingarten Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_local_vs_global_cost.html" class="sidebar-item-text sidebar-link">Local vs Global Cost Functions in Deep Circuits</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.html" class="sidebar-item-text sidebar-link">Barren Plateaus through the Lens of Quantum Fisher Information</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_kernel_concentration.html" class="sidebar-item-text sidebar-link">Quantum Kernel Concentration and Expressibility</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_born_machine.html" class="sidebar-item-text sidebar-link">Born Machine Expressivity and Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the POVM Picture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">Injection Contractivity and Restarting Overhead in QRC</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises.html" class="sidebar-item-text sidebar-link">Exercises &amp; Solutions (PDF)</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#classical-shadows-how-many-measurements-to-predict-many-observables" id="toc-classical-shadows-how-many-measurements-to-predict-many-observables" class="nav-link active" data-scroll-target="#classical-shadows-how-many-measurements-to-predict-many-observables">Classical Shadows: How Many Measurements to Predict Many Observables</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#toolbox" id="toc-toolbox" class="nav-link" data-scroll-target="#toolbox">Toolbox</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
+  <ul class="collapse">
+  <li><a href="#unbiasedness-from-the-second-moment" id="toc-unbiasedness-from-the-second-moment" class="nav-link" data-scroll-target="#unbiasedness-from-the-second-moment">Unbiasedness, from the second moment</a></li>
+  <li><a href="#the-variance-from-the-third-moment" id="toc-the-variance-from-the-third-moment" class="nav-link" data-scroll-target="#the-variance-from-the-third-moment">The variance, from the third moment</a></li>
+  <li><a href="#from-variance-to-sample-complexity" id="toc-from-variance-to-sample-complexity" class="nav-link" data-scroll-target="#from-variance-to-sample-complexity">From variance to sample complexity</a></li>
+  <li><a href="#which-shadows-for-which-observables" id="toc-which-shadows-for-which-observables" class="nav-link" data-scroll-target="#which-shadows-for-which-observables">Which shadows for which observables</a></li>
+  <li><a href="#the-local-advantage-shadow-norm-independent-of-n" id="toc-the-local-advantage-shadow-norm-independent-of-n" class="nav-link" data-scroll-target="#the-local-advantage-shadow-norm-independent-of-n">The local advantage: shadow norm independent of <span class="math inline">\(N\)</span></a></li>
+  <li><a href="#adversarial-check-every-identity-machine-verified" id="toc-adversarial-check-every-identity-machine-verified" class="nav-link" data-scroll-target="#adversarial-check-every-identity-machine-verified">Adversarial check — every identity, machine-verified</a></li>
+  </ul></li>
+  <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch6/solution_ch6_classical_shadow_sample_complexity.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Classical Shadows: How Many Measurements to Predict Many Observables</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+<div>
+  <div class="description">
+    Applications of Scrambling, numerical solution.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="classical-shadows-how-many-measurements-to-predict-many-observables" class="level1">
+<h1>Classical Shadows: How Many Measurements to Predict Many Observables</h1>
+<hr>
+<p>The classical-shadow <em>channel</em> (Chapter 6) tells us how to invert the random-measurement map. This notebook answers the question that makes shadows <em>useful</em>: given a budget of measurements, <strong>how many observables can we predict, and to what accuracy?</strong> The answer — <span class="math inline">\(M\)</span> observables from only <span class="math inline">\(\mathcal{O}(\log M)\)</span> measurements for bounded-shadow-norm observables — comes from the second Haar moment (unbiasedness) and the third (the variance, i.e.&nbsp;the <em>shadow norm</em>).</p>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>A classical shadow protocol repeats a simple loop: apply a random unitary <span class="math inline">\(\hat U\)</span> drawn from an ensemble, measure in the computational basis to get outcome <span class="math inline">\(|b\rangle\)</span>, and store the classical description <span class="math inline">\((\hat U,b)\)</span>. From each snapshot one builds an unbiased estimator <span class="math inline">\(\hat\rho\)</span> of the state; the mean of <span class="math inline">\(\mathrm{Tr}[\hat O\hat\rho]\)</span> over snapshots estimates <span class="math inline">\(\mathrm{Tr}[\hat O\rho]\)</span>. Two moments control everything: the <strong>second</strong> guarantees the estimator is unbiased (it inverts the measurement channel), and the <strong>third</strong> sets its variance and hence the number of shots.</p>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>Use <strong>global</strong> random Clifford measurements (a 3-design, so Haar to third order). Let <span class="math inline">\(\rho\)</span> be the unknown <span class="math inline">\(N\)</span>-qubit state, <span class="math inline">\(D=2^N\)</span>, and <span class="math inline">\(\hat O\)</span> an observable with traceless part <span class="math inline">\(\hat O_0\)</span>. 1. Show the snapshot <span class="math inline">\(\hat\rho=(D+1)\,\hat U^\dagger|b\rangle\langle b|\hat U-\mathbb{1}\)</span> is <strong>unbiased</strong>, <span class="math inline">\(\mathbb{E}[\hat\rho]=\rho\)</span>, by inverting the depolarizing shadow channel (second moment). 2. Show the single-shot variance obeys <span class="math inline">\(\mathrm{Var}[\hat o]\le 3\,\mathrm{Tr}(\hat O_0^2)\equiv\|\hat O_0\|_{\mathrm{shadow}}^2\)</span> (third moment). 3. Deduce the sample complexity: median-of-means with <span class="math inline">\(\mathcal{O}\!\big(\log(M/\delta)\,\|\hat O\|_{\mathrm{shadow}}^2/\varepsilon^2\big)\)</span> shots estimates all of <span class="math inline">\(M\)</span> observables to error <span class="math inline">\(\varepsilon\)</span>. Contrast global with <strong>local (random-Pauli)</strong> shadows, where <span class="math inline">\(\|\hat O_0\|_{\mathrm{shadow}}^2\!\sim\!4^{k}\)</span> for a <span class="math inline">\(k\)</span>-local <span class="math inline">\(\hat O\)</span>, independent of <span class="math inline">\(N\)</span>.</p>
+</section>
+<section id="toolbox" class="level2">
+<h2 class="anchored" data-anchor-id="toolbox">Toolbox</h2>
+<p><strong>Second moment (the channel).</strong> Averaging the snapshot map over a global 2-design gives a depolarizing channel <span class="math inline">\(\mathcal{M}(\rho)=\mathbb{E}_{\hat U,b}[\hat U^\dagger|b\rangle\langle b|\hat U]=\frac{\rho+\mathrm{Tr}(\rho)\mathbb{1}}{D+1}\)</span>, whose inverse is <span class="math inline">\(\mathcal{M}^{-1}(X)=(D+1)X-\mathrm{Tr}(X)\mathbb{1}\)</span> (Chapter 6).</p>
+<p><strong>Third moment (the variance).</strong> The variance needs <span class="math inline">\(\mathbb{E}_{\hat U}[(\hat U^\dagger|b\rangle\langle b|\hat U)^{\otimes3}]\)</span>, which for a 3-design equals the Haar average over the symmetric subspace of three copies — the source of the factor <span class="math inline">\(3\)</span> in the shadow norm.</p>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<section id="unbiasedness-from-the-second-moment" class="level3">
+<h3 class="anchored" data-anchor-id="unbiasedness-from-the-second-moment">Unbiasedness, from the second moment</h3>
+<p>Fix <span class="math inline">\(\hat U\)</span>; the outcome <span class="math inline">\(b\)</span> appears with probability <span class="math inline">\(\langle b|\hat U\rho\hat U^\dagger|b\rangle\)</span>. Averaging the raw snapshot <span class="math inline">\(\hat U^\dagger|b\rangle\langle b|\hat U\)</span> over both <span class="math inline">\(\hat U\)</span> and <span class="math inline">\(b\)</span> is the shadow channel; on a <span class="math inline">\(2\)</span>-design it is depolarizing, <span class="math inline">\(\mathcal{M}(\rho)=\frac{\rho+\mathrm{Tr}(\rho)\mathbb{1}}{D+1}\)</span>, so applying its inverse <span class="math inline">\(\mathcal{M}^{-1}(X)=(D{+}1)X-\mathrm{Tr}(X)\mathbb{1}\)</span> to each snapshot undoes the averaging exactly: <span class="math display">\[\hat\rho=(D+1)\,\hat U^\dagger|b\rangle\langle b|\hat U-\mathbb{1},\qquad \mathbb{E}[\hat\rho]=\rho .\]</span> Hence <span class="math inline">\(\hat o=\mathrm{Tr}[\hat O\hat\rho]\)</span> is unbiased, <span class="math inline">\(\mathbb{E}[\hat o]=\mathrm{Tr}[\hat O\rho]\)</span>. Only the second moment was needed; the identity part of <span class="math inline">\(\hat O\)</span> contributes a constant, so from here we keep only its traceless part <span class="math inline">\(\hat O_0\)</span> and write <span class="math inline">\(\hat o=(D{+}1)\langle b|\hat U\hat O_0\hat U^\dagger|b\rangle\)</span>.</p>
+</section>
+<section id="the-variance-from-the-third-moment" class="level3">
+<h3 class="anchored" data-anchor-id="the-variance-from-the-third-moment">The variance, from the third moment</h3>
+<p>The variance is where the work is, because <span class="math inline">\(\hat o^2\)</span> carries three factors of <span class="math inline">\(\langle b|\hat U(\cdot)\hat U^\dagger|b\rangle\)</span> — one from the outcome probability and two from <span class="math inline">\(\hat o^2\)</span> — so it is a <em>third</em>-order object in <span class="math inline">\(\hat U\)</span>. Collect the three diagonal matrix elements into a single trace with the computational-basis triple projector <span class="math inline">\(\Delta_3=\sum_b|bbb\rangle\langle bbb|\)</span>: <span class="math display">\[\mathbb{E}[\hat o^2]=(D{+}1)^2\sum_b\langle b|\hat U\rho\hat U^\dagger|b\rangle\,\langle b|\hat U\hat O_0\hat U^\dagger|b\rangle^2
+=(D{+}1)^2\,\mathrm{Tr}\!\Big[\Delta_3\,\mathbb{E}_{\hat U}\big[\hat U^{\otimes3}(\rho\otimes\hat O_0\otimes\hat O_0)\hat U^{\dagger\otimes3}\big]\Big].\]</span> Two facts do all the work. First, because <span class="math inline">\(|bbb\rangle\)</span> is permutation-symmetric, every permutation operator fixes it, so <span class="math inline">\(\mathrm{Tr}[\Delta_3\,V(\sigma)]=\sum_b\langle bbb|V(\sigma)|bbb\rangle=D\)</span> for <em>every</em> <span class="math inline">\(\sigma\in S_3\)</span>. Second, the third moment of a <span class="math inline">\(3\)</span>-design (global Clifford) equals the Haar one, <span class="math inline">\(\mathbb{E}_{\hat U}[\hat U^{\otimes3}X\hat U^{\dagger\otimes3}]=\sum_{\sigma,\tau\in S_3}\mathrm{Wg}(\tau\sigma^{-1})\,\mathrm{Tr}[XV(\tau)]\,V(\sigma)\)</span>. Inserting both and using the design identity <span class="math inline">\(\sum_{\sigma}\mathrm{Wg}(\tau\sigma^{-1})=\tfrac{1}{D(D+1)(D+2)}\)</span> (independent of <span class="math inline">\(\tau\)</span>), <span class="math display">\[\mathbb{E}[\hat o^2]=(D{+}1)^2\,D\!\sum_{\sigma,\tau}\mathrm{Wg}(\tau\sigma^{-1})\,\mathrm{Tr}[(\rho\otimes\hat O_0\otimes\hat O_0)V(\tau)]
+=\frac{D+1}{D+2}\sum_{\tau\in S_3}\mathrm{Tr}\big[(\rho\otimes\hat O_0\otimes\hat O_0)V(\tau)\big].\]</span> Now evaluate the six permutations. Each <span class="math inline">\(\mathrm{Tr}[(\rho\otimes\hat O_0\otimes\hat O_0)V(\tau)]\)</span> factorizes over the cycles of <span class="math inline">\(\tau\)</span>, and <span class="math inline">\(\mathrm{Tr}\,\hat O_0=0\)</span> <strong>kills every permutation that leaves an <span class="math inline">\(\hat O_0\)</span> in a cycle by itself</strong>: the identity gives <span class="math inline">\(\mathrm{Tr}(\rho)(\mathrm{Tr}\hat O_0)^2=0\)</span>, and <span class="math inline">\((12),(13)\)</span> give <span class="math inline">\(\mathrm{Tr}(\rho\hat O_0)\,\mathrm{Tr}\hat O_0=0\)</span>. Only three survive — <span class="math inline">\((23)\)</span> pairs the two <span class="math inline">\(\hat O_0\)</span>’s, <span class="math inline">\(\mathrm{Tr}(\rho)\mathrm{Tr}(\hat O_0^2)=\mathrm{Tr}(\hat O_0^2)\)</span>, and the two <span class="math inline">\(3\)</span>-cycles each give <span class="math inline">\(\mathrm{Tr}(\rho\hat O_0^2)\)</span> — so <span class="math display">\[\boxed{\;\mathbb{E}[\hat o^2]=\frac{D+1}{D+2}\Big[\mathrm{Tr}(\hat O_0^2)+2\,\mathrm{Tr}(\rho\hat O_0^2)\Big].\;}\]</span> Subtracting <span class="math inline">\(\mathbb{E}[\hat o]^2=\mathrm{Tr}(\hat O_0\rho)^2\ge0\)</span> and bounding <span class="math inline">\(\tfrac{D+1}{D+2}\le1\)</span> and <span class="math inline">\(\mathrm{Tr}(\rho\hat O_0^2)\le\max_\rho\mathrm{Tr}(\rho\hat O_0^2)=\|\hat O_0^2\|_\infty\le\mathrm{Tr}(\hat O_0^2)\)</span>, <span class="math display">\[\mathrm{Var}[\hat o]\le\mathrm{Tr}(\hat O_0^2)+2\max_\rho\mathrm{Tr}(\rho\hat O_0^2)\le 3\,\mathrm{Tr}(\hat O_0^2)\equiv\|\hat O_0\|_{\mathrm{shadow}}^2 .\]</span> This <strong>derives</strong> the global shadow norm the main text quotes: the factor <span class="math inline">\(3\)</span> is one part from the two <span class="math inline">\(\hat O_0\)</span>’s meeting under <span class="math inline">\((23)\)</span> and two parts from the <span class="math inline">\(3\)</span>-cycles, all riding on the third-moment identity above.</p>
+</section>
+<section id="from-variance-to-sample-complexity" class="level3">
+<h3 class="anchored" data-anchor-id="from-variance-to-sample-complexity">From variance to sample complexity</h3>
+<p>Averaging <span class="math inline">\(M\)</span> independent snapshots divides the variance by <span class="math inline">\(M\)</span>, so <span class="math inline">\(\mathcal{O}(\|\hat O_0\|_{\mathrm{shadow}}^2/\varepsilon^2)\)</span> snapshots estimate one observable to error <span class="math inline">\(\varepsilon\)</span>. To control <span class="math inline">\(M\)</span> observables <em>simultaneously</em> one replaces the sample mean by a median of means: split the data into <span class="math inline">\(\mathcal{O}(\log(M/\delta))\)</span> batches, average within each, take the median. Chebyshev on each batch plus a median boost give, for all <span class="math inline">\(M\)</span> observables to error <span class="math inline">\(\varepsilon\)</span> with failure probability <span class="math inline">\(\delta\)</span>, <span class="math display">\[M_{\mathrm{shots}}=\mathcal{O}\!\left(\frac{\log(M/\delta)}{\varepsilon^2}\,\max_i\|\hat O_{0,i}\|_{\mathrm{shadow}}^2\right).\]</span> The dependence on the number of targets is only <span class="math inline">\(\log M\)</span>: exponentially many observables from a logarithmic number of measurements — <em>provided the shadow norm stays bounded</em>.</p>
+</section>
+<section id="which-shadows-for-which-observables" class="level3">
+<h3 class="anchored" data-anchor-id="which-shadows-for-which-observables">Which shadows for which observables</h3>
+<p>The shadow norm decides feasibility. For <strong>global</strong> Clifford shadows <span class="math inline">\(\|\hat O_0\|_{\mathrm{shadow}}^2=3\,\mathrm{Tr}(\hat O_0^2)\)</span> is <span class="math inline">\(\mathcal{O}(1)\)</span> for a rank-one observable (fidelity estimation) but <span class="math inline">\(\sim3D\)</span> for a single global Pauli — cheap for low-rank targets, hopeless for local ones. <strong>Local</strong> (single-qubit random Pauli) shadows invert a <em>factorized</em> channel <span class="math inline">\((\mathcal{M}^{(1)})^{-1}(\hat\sigma)=3\hat\sigma-\mathrm{Tr}(\hat\sigma)\mathbb{1}\)</span>, and a <span class="math inline">\(k\)</span>-local Pauli then has shadow norm <span class="math inline">\(\sim4^{k}\)</span> (the <span class="math inline">\(3^k\)</span> single-qubit factors times a normalization), set by its <em>weight</em> and <strong>independent of <span class="math inline">\(N\)</span></strong> — the property that makes local shadows scale.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:50.304621Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:50.304420Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:54.624602Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:54.624225Z&quot;}" data-execution_count="1">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np, matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng<span class="op">=</span>np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> haar(D):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Z<span class="op">=</span>rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D))<span class="op">;</span> Q,R<span class="op">=</span>np.linalg.qr(Z)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Q<span class="op">@</span>np.diag(np.diag(R)<span class="op">/</span>np.<span class="bu">abs</span>(np.diag(R)))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> snapshot(U,b,D):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    col<span class="op">=</span>U.conj().T[:,b:b<span class="op">+</span><span class="dv">1</span>]<span class="op">;</span> <span class="cf">return</span> (D<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>(col<span class="op">@</span>col.conj().T) <span class="op">-</span> np.eye(D)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Checking: unbiasedness, the derived E[o^2], and the shadow-norm bound (global Haar/Clifford)"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" N   E[o] vs Tr(Orho)   E[o^2] vs (D+1)/(D+2)[Tr O0^2+2Tr(rho O0^2)]   Var &lt;= 3 Tr(O0^2)"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    D<span class="op">=</span><span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    v<span class="op">=</span>rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> v<span class="op">/=</span>np.linalg.norm(v)<span class="op">;</span> rho<span class="op">=</span>np.outer(v,v.conj())</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    Oh<span class="op">=</span>rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D))<span class="op">;</span> O<span class="op">=</span>(Oh<span class="op">+</span>Oh.conj().T)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    O0<span class="op">=</span>O<span class="op">-</span>np.trace(O).real<span class="op">/</span>D<span class="op">*</span>np.eye(D)<span class="op">;</span> exact<span class="op">=</span>np.trace(O<span class="op">@</span>rho).real</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    oh<span class="op">=</span>[]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15000</span>):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        U<span class="op">=</span>haar(D)<span class="op">;</span> p<span class="op">=</span>np.clip(np.diag(U<span class="op">@</span>rho<span class="op">@</span>U.conj().T).real,<span class="dv">0</span>,<span class="va">None</span>)<span class="op">;</span> p<span class="op">/=</span>p.<span class="bu">sum</span>()</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        b<span class="op">=</span>rng.choice(D,p<span class="op">=</span>p)<span class="op">;</span> oh.append(np.trace(O<span class="op">@</span>snapshot(U,b,D)).real)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    oh<span class="op">=</span>np.array(oh)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    Eo2_pred<span class="op">=</span>(D<span class="op">+</span><span class="dv">1</span>)<span class="op">/</span>(D<span class="op">+</span><span class="dv">2</span>)<span class="op">*</span>(np.trace(O0<span class="op">@</span>O0).real<span class="op">+</span><span class="dv">2</span><span class="op">*</span>np.trace(rho<span class="op">@</span>O0<span class="op">@</span>O0).real)  <span class="co"># the derived intermediate</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    bound<span class="op">=</span><span class="dv">3</span><span class="op">*</span>np.trace(O0<span class="op">@</span>O0).real</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f" </span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">   </span><span class="sc">{</span>np<span class="sc">.</span>mean(oh)<span class="sc">:+.4f}</span><span class="ss"> vs </span><span class="sc">{</span>exact<span class="sc">:+.4f}</span><span class="ss">     </span><span class="sc">{</span>np<span class="sc">.</span>mean(oh<span class="op">**</span><span class="dv">2</span>)<span class="sc">:8.3f}</span><span class="ss"> vs </span><span class="sc">{</span>Eo2_pred<span class="sc">:8.3f}</span><span class="ss">                </span><span class="sc">{</span>np<span class="sc">.</span>var(oh)<span class="sc">:8.3f}</span><span class="ss"> &lt;= </span><span class="sc">{</span>bound<span class="sc">:8.3f}</span><span class="ss">"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">nUnbiased; the third-moment E[o^2] matches the derived closed form; Var stays under 3 Tr(O0^2)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Checking: unbiasedness, the derived E[o^2], and the shadow-norm bound (global Haar/Clifford)
+ N   E[o] vs Tr(Orho)   E[o^2] vs (D+1)/(D+2)[Tr O0^2+2Tr(rho O0^2)]   Var &lt;= 3 Tr(O0^2)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 1   -0.1486 vs -0.1193        3.950 vs    4.039                   3.928 &lt;=    8.078</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 2   -0.1576 vs -0.1170       13.360 vs   13.620                  13.335 &lt;=   30.326</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 3   +0.4153 vs +0.4886       63.643 vs   63.664                  63.470 &lt;=  181.422
+\nUnbiased; the third-moment E[o^2] matches the derived closed form; Var stays under 3 Tr(O0^2).</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:54.626216Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:54.626017Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:58.527267Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:58.526948Z&quot;}" data-execution_count="2">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample-complexity scaling: estimation error falls as 1/sqrt(M_shots) at the shadow-norm rate</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">2</span><span class="op">;</span> D<span class="op">=</span><span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>v<span class="op">=</span>rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> v<span class="op">/=</span>np.linalg.norm(v)<span class="op">;</span> rho<span class="op">=</span>np.outer(v,v.conj())</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>Oh<span class="op">=</span>rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D))<span class="op">;</span> O<span class="op">=</span>(Oh<span class="op">+</span>Oh.conj().T)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>O0<span class="op">=</span>O<span class="op">-</span>np.trace(O).real<span class="op">/</span>D<span class="op">*</span>np.eye(D)<span class="op">;</span> exact<span class="op">=</span>np.trace(O<span class="op">@</span>rho).real<span class="op">;</span> bound<span class="op">=</span><span class="dv">3</span><span class="op">*</span>np.trace(O0<span class="op">@</span>O0).real</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># precompute a pool of single-shot estimates</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>pool<span class="op">=</span>[]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">40000</span>):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    U<span class="op">=</span>haar(D)<span class="op">;</span> p<span class="op">=</span>np.clip(np.diag(U<span class="op">@</span>rho<span class="op">@</span>U.conj().T).real,<span class="dv">0</span>,<span class="va">None</span>)<span class="op">;</span> p<span class="op">/=</span>p.<span class="bu">sum</span>()<span class="op">;</span> b<span class="op">=</span>rng.choice(D,p<span class="op">=</span>p)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    pool.append(np.trace(O<span class="op">@</span>snapshot(U,b,D)).real)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>pool<span class="op">=</span>np.array(pool)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>Ms<span class="op">=</span>[<span class="dv">10</span>,<span class="dv">30</span>,<span class="dv">100</span>,<span class="dv">300</span>,<span class="dv">1000</span>]<span class="op">;</span> err<span class="op">=</span>[]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> M <span class="kw">in</span> Ms:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    e<span class="op">=</span>[<span class="bu">abs</span>(np.mean(rng.choice(pool,M))<span class="op">-</span>exact) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">400</span>)]</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    err.append(np.mean(e))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.2</span>,<span class="dv">4</span>))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>ax.loglog(Ms,err,<span class="st">"o-"</span>,label<span class="op">=</span><span class="st">"mean |estimate-exact|"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>ax.loglog(Ms,[np.sqrt(bound<span class="op">/</span>M) <span class="cf">for</span> M <span class="kw">in</span> Ms],<span class="st">"k--"</span>,label<span class="op">=</span><span class="vs">r"$\sqrt{\|O_0\|^2_{\rm shadow}/M}$"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"measurements $M$"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"estimation error"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Error falls as the shadow norm over $</span><span class="ch">\\</span><span class="st">sqrt</span><span class="sc">{M}</span><span class="st">$"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Error ~ shadow-norm / sqrt(M): M ~ ||O||^2_shadow / eps^2 shots per observable; log M for many via median-of-means."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="solution_ch6_classical_shadow_sample_complexity_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error ~ shadow-norm / sqrt(M): M ~ ||O||^2_shadow / eps^2 shots per observable; log M for many via median-of-means.</code></pre>
+</div>
+</div>
+</section>
+<section id="the-local-advantage-shadow-norm-independent-of-n" class="level3">
+<h3 class="anchored" data-anchor-id="the-local-advantage-shadow-norm-independent-of-n">The local advantage: shadow norm independent of <span class="math inline">\(N\)</span></h3>
+<p>For local (single-qubit random-Pauli) shadows, a <span class="math inline">\(k\)</span>-local Pauli observable has shadow norm <span class="math inline">\(\sim 4^k\)</span>, set by its <em>weight</em>, not the system size. We check that the estimation cost of a fixed 1-local Pauli does <strong>not</strong> grow with <span class="math inline">\(N\)</span>.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:58.528640Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:58.528492Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:05.497825Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:05.497270Z&quot;}" data-execution_count="3">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># random single-qubit Pauli shadows; shadow norm of a 1-local Pauli is 3 (=4^1 up to the traceless convention), N-independent</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>paulis<span class="op">=</span>{<span class="st">'X'</span>:np.array([[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">1</span>,<span class="dv">0</span>]],<span class="bu">complex</span>),<span class="st">'Y'</span>:np.array([[<span class="dv">0</span>,<span class="op">-</span><span class="ot">1j</span>],[<span class="ot">1j</span>,<span class="dv">0</span>]]),<span class="st">'Z'</span>:np.array([[<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>]],<span class="bu">complex</span>)}</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>I2<span class="op">=</span>np.eye(<span class="dv">2</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> local_pauli_shadow_var(N,target_site,nshot<span class="op">=</span><span class="dv">8000</span>):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    D<span class="op">=</span><span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    v<span class="op">=</span>rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> v<span class="op">/=</span>np.linalg.norm(v)<span class="op">;</span> rho<span class="op">=</span>np.outer(v,v.conj())</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    O<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(N): O<span class="op">=</span>np.kron(O, paulis[<span class="st">'Z'</span>] <span class="cf">if</span> q<span class="op">==</span>target_site <span class="cf">else</span> I2)   <span class="co"># 1-local Z on target_site</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    oh<span class="op">=</span>[]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(nshot):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># per qubit choose random Pauli basis, measure</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        est<span class="op">=</span>np.ones(<span class="dv">1</span>,<span class="bu">complex</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        Us<span class="op">=</span>[]<span class="op">;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        Ufull<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>            P<span class="op">=</span>rng.choice([<span class="st">'X'</span>,<span class="st">'Y'</span>,<span class="st">'Z'</span>])<span class="op">;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>            <span class="co"># eigenbasis of P as measurement U (rows = eigenvectors)</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>            w,U1<span class="op">=</span>np.linalg.eigh(paulis[P])<span class="op">;</span> Ufull<span class="op">=</span>np.kron(Ufull,U1.conj().T)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>            Us.append((P,U1))</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        p<span class="op">=</span>np.clip(np.diag(Ufull<span class="op">@</span>rho<span class="op">@</span>Ufull.conj().T).real,<span class="dv">0</span>,<span class="va">None</span>)<span class="op">;</span> p<span class="op">/=</span>p.<span class="bu">sum</span>()<span class="op">;</span> b<span class="op">=</span>rng.choice(D,p<span class="op">=</span>p)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        bits<span class="op">=</span>[(b<span class="op">&gt;&gt;</span>(N<span class="op">-</span><span class="dv">1</span><span class="op">-</span>q))<span class="op">&amp;</span><span class="dv">1</span> <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(N)]</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># single-qubit inverse: 3 U^d|b&gt;&lt;b|U - I per qubit</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        snap<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>            P,U1<span class="op">=</span>Us[q]<span class="op">;</span> col<span class="op">=</span>U1[:,bits[q]:bits[q]<span class="op">+</span><span class="dv">1</span>]<span class="op">;</span> s<span class="op">=</span><span class="dv">3</span><span class="op">*</span>(col<span class="op">@</span>col.conj().T)<span class="op">-</span>I2<span class="op">;</span> snap<span class="op">=</span>np.kron(snap,s)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        oh.append(np.trace(O<span class="op">@</span>snap).real)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.var(oh)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" 1-local Z observable, random-Pauli shadows: variance vs N (should be ~N-independent, ~3)"</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]:</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">: Var[o-hat] = </span><span class="sc">{</span>local_pauli_shadow_var(N,<span class="dv">0</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">nThe shadow-norm cost of a local observable is set by its weight, not N: local shadows scale to large systems."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> 1-local Z observable, random-Pauli shadows: variance vs N (should be ~N-independent, ~3)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  N=1: Var[o-hat] = 2.932</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  N=2: Var[o-hat] = 2.962</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  N=3: Var[o-hat] = 2.741</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  N=4: Var[o-hat] = 3.022
+\nThe shadow-norm cost of a local observable is set by its weight, not N: local shadows scale to large systems.</code></pre>
+</div>
+</div>
+</section>
+<section id="adversarial-check-every-identity-machine-verified" class="level3">
+<h3 class="anchored" data-anchor-id="adversarial-check-every-identity-machine-verified">Adversarial check — every identity, machine-verified</h3>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:05.499336Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:05.499182Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:08.956233Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:08.955865Z&quot;}" data-execution_count="4">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>checks<span class="op">=</span>[]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>]:</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    D<span class="op">=</span><span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    v<span class="op">=</span>rng.standard_normal(D)<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal(D)<span class="op">;</span> v<span class="op">/=</span>np.linalg.norm(v)<span class="op">;</span> rho<span class="op">=</span>np.outer(v,v.conj())</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (a) shadow channel M(rho) = (rho + Tr(rho) I)/(D+1)  [second moment]</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    acc<span class="op">=</span>np.zeros((D,D),<span class="bu">complex</span>)<span class="op">;</span> M<span class="op">=</span><span class="dv">8000</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(M):</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        U<span class="op">=</span>haar(D)<span class="op">;</span> p<span class="op">=</span>np.clip(np.diag(U<span class="op">@</span>rho<span class="op">@</span>U.conj().T).real,<span class="dv">0</span>,<span class="va">None</span>)<span class="op">;</span> p<span class="op">/=</span>p.<span class="bu">sum</span>()<span class="op">;</span> b<span class="op">=</span>rng.choice(D,p<span class="op">=</span>p)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        col<span class="op">=</span>U.conj().T[:,b:b<span class="op">+</span><span class="dv">1</span>]<span class="op">;</span> acc<span class="op">+=</span>col<span class="op">@</span>col.conj().T</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    acc<span class="op">/=</span>M</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    checks.append((<span class="ss">f"M(rho)=(rho+Tr(rho)I)/(D+1)  (N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">)"</span>, np.linalg.norm(acc<span class="op">-</span>(rho<span class="op">+</span>np.trace(rho).real<span class="op">*</span>np.eye(D))<span class="op">/</span>(D<span class="op">+</span><span class="dv">1</span>))<span class="op">&lt;</span><span class="fl">0.03</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (b) unbiasedness and (c) variance bound</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    Oh<span class="op">=</span>rng.standard_normal((D,D))<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>rng.standard_normal((D,D))<span class="op">;</span> O<span class="op">=</span>(Oh<span class="op">+</span>Oh.conj().T)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    O0<span class="op">=</span>O<span class="op">-</span>np.trace(O).real<span class="op">/</span>D<span class="op">*</span>np.eye(D)<span class="op">;</span> exact<span class="op">=</span>np.trace(O<span class="op">@</span>rho).real<span class="op">;</span> oh<span class="op">=</span>[]</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">12000</span>):</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        U<span class="op">=</span>haar(D)<span class="op">;</span> p<span class="op">=</span>np.clip(np.diag(U<span class="op">@</span>rho<span class="op">@</span>U.conj().T).real,<span class="dv">0</span>,<span class="va">None</span>)<span class="op">;</span> p<span class="op">/=</span>p.<span class="bu">sum</span>()<span class="op">;</span> b<span class="op">=</span>rng.choice(D,p<span class="op">=</span>p)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        col<span class="op">=</span>U.conj().T[:,b:b<span class="op">+</span><span class="dv">1</span>]<span class="op">;</span> oh.append(np.trace(O<span class="op">@</span>((D<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>(col<span class="op">@</span>col.conj().T)<span class="op">-</span>np.eye(D))).real)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    checks.append((<span class="ss">f"unbiased E[o]=Tr(Orho)  (N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">)"</span>, <span class="bu">abs</span>(np.mean(oh)<span class="op">-</span>exact)<span class="op">&lt;</span><span class="fl">0.05</span><span class="op">*</span><span class="bu">max</span>(<span class="dv">1</span>,<span class="bu">abs</span>(exact))<span class="op">+</span><span class="fl">0.05</span>))</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    checks.append((<span class="ss">f"Var[o] &lt;= 3 Tr(O_0^2)  (N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">)"</span>, np.var(oh) <span class="op">&lt;=</span> <span class="dv">3</span><span class="op">*</span>np.trace(O0<span class="op">@</span>O0).real<span class="op">*</span><span class="fl">1.05</span>))</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n,ok <span class="kw">in</span> checks: <span class="bu">print</span>(<span class="ss">f"  [</span><span class="sc">{</span><span class="st">'PASS'</span> <span class="cf">if</span> ok <span class="cf">else</span> <span class="st">'FAIL'</span><span class="sc">}</span><span class="ss">]  </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\\</span><span class="ss">n  </span><span class="sc">{</span><span class="bu">sum</span>(ok <span class="cf">for</span> _,ok <span class="kw">in</span> checks)<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(checks)<span class="sc">}</span><span class="ss"> PASS  -&gt;  classical-shadow derivation numerically certified"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [PASS]  M(rho)=(rho+Tr(rho)I)/(D+1)  (N=1)
+  [PASS]  unbiased E[o]=Tr(Orho)  (N=1)
+  [PASS]  Var[o] &lt;= 3 Tr(O_0^2)  (N=1)
+  [PASS]  M(rho)=(rho+Tr(rho)I)/(D+1)  (N=2)
+  [PASS]  unbiased E[o]=Tr(Orho)  (N=2)
+  [PASS]  Var[o] &lt;= 3 Tr(O_0^2)  (N=2)
+\n  6/6 PASS  -&gt;  classical-shadow derivation numerically certified</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>Classical shadows turn low-order Haar randomness into a measurement primitive with a provable, and often <em>mild</em>, cost. The second moment makes the estimator unbiased; the third moment sets its variance through the <strong>shadow norm</strong>, and median-of-means converts a per-observable cost into <span class="math inline">\(\mathcal{O}(\log M)\)</span> scaling in the number of observables. Global shadows are cheap for low-rank observables; local shadows are cheap for local ones, with a cost fixed by weight rather than system size — the property that makes them practical on real processors.</p>
+<p><strong>Honest scope.</strong> The clean <span class="math inline">\(\mathrm{Var}\le 3\,\mathrm{Tr}(\hat O_0^2)\)</span> and <span class="math inline">\(4^k\)</span> local norm assume <em>exact</em> <span class="math inline">\(2\)</span>- and <span class="math inline">\(3\)</span>-designs (random Clifford / single-qubit Cliffords). An approximate design leaves the shadow channel slightly non-depolarizing, so the exact inverse is the wrong inverse and biases the estimate — a bias that does not average away (Chapter 6). Shadows need designs to be <em>inverted</em>, not merely averaged.</p>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<ul>
+<li>Built on the <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html">shadow channel</a> (its inverse) and the same <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html">Weingarten second moment</a> as the QFI and barren-plateau flagships — here pushed to the <strong>third</strong> moment for the variance.</li>
+<li>The shadow norm is the tomographic counterpart of the metrological QFI: both quantify how much a <em>random</em> measurement frame reveals about a fixed target.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2026 Marcin Płodzień · MIT License</div>   
+    <div class="nav-footer-right"><a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

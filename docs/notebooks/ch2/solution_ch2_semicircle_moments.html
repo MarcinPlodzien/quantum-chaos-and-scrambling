@@ -672,7 +672,7 @@ C_0 = 1, \quad C_1 = 1, \quad C_2 = 2, \quad C_3 = 5, \quad C_4 = 14, \quad \ldo
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:53:43.134951Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:53:43.134708Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:53:55.683350Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:53:55.682932Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:49:08.654249Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:49:08.654083Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:49:19.403366Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:49:19.403064Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -708,7 +708,7 @@ m_3 = 0</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:53:55.685250Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:53:55.685013Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:54:19.434976Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:54:19.431861Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:49:19.404938Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:49:19.404786Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:49:21.434550Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:49:21.434141Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -730,8 +730,8 @@ m_3 = 0</code></pre>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Monte Carlo: sample GUE eigenvalues.</span></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Off-diagonal variance 1/N places the spectrum on [-2, 2], so the empirical</span></span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># moments match the analytic m_2 = 1, m_4 = 2.</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">400</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">150</span></span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>all_evals <span class="op">=</span> []</span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_samples):</span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> np.random.randn(N, N) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(N, N)</span>
@@ -762,11 +762,11 @@ m_3 = 0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-GUE Monte Carlo (N=400): m₂ = 0.9997, m₄ = 1.9985, m₄/m₂² = 1.9997
+GUE Monte Carlo (N=200): m₂ = 0.9990, m₄ = 1.9956, m₄/m₂² = 1.9995
 Catalan moments confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T13:54:19.437346Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T13:54:19.436930Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T13:54:29.000368Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T13:54:28.999989Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:49:21.436594Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:49:21.436310Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:49:23.056132Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:49:23.055728Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -774,7 +774,7 @@ Catalan moments confirmed.</code></pre>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># GUE eigenvalues with the normalization that places the spectrum on [-2, 2].</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>N_fig, n_mat <span class="op">=</span> <span class="dv">400</span>, <span class="dv">150</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>N_fig, n_mat <span class="op">=</span> <span class="dv">200</span>, <span class="dv">100</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>fig_evals <span class="op">=</span> []</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_mat):</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> rng.standard_normal((N_fig, N_fig)) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>rng.standard_normal((N_fig, N_fig))</span>

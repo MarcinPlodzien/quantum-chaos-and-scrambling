@@ -687,7 +687,7 @@ K_{ij} \approx \delta_{ij} + \frac{1}{D}(1 - \delta_{ij}) + \mathcal{O}(1/D),
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">7. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:06:19.330435Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:06:19.329990Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:06:19.899498Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:06:19.898927Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:55:29.298464Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:55:29.298216Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:55:29.630898Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:55:29.630545Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -723,10 +723,8 @@ Var[kappa] = (D - 1)/(D**2*(D + 1))
 Verified: Var = (D-1) / [D^2(D+1)]
 
 Asymptotic expansion:
-  E[kappa] ~ 1/D</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Var[kappa] ~ -2/D**3 + D**(-2) + O(D**(-4), (D, oo))
+  E[kappa] ~ 1/D
+  Var[kappa] ~ -2/D**3 + D**(-2) + O(D**(-4), (D, oo))
   sigma[kappa] / E[kappa] ~ sqrt(D - 1)/sqrt(D + 1)</code></pre>
 </div>
 </div>
@@ -738,75 +736,75 @@ Asymptotic expansion:
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>For a Haar-random encoding the expected off-diagonal kernel is <span class="math inline">\(1/D\)</span> with variance <span class="math inline">\((D-1)/[D^2(D+1)]\sim1/D^2\)</span>, so the signal and its fluctuation are the same order and distinguishing two inputs takes order <span class="math inline">\(D\)</span> shots. Useful quantum kernels live between rigid and fully scrambling encodings, where the feature map sends data into a structured subspace.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T14:06:19.902423Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T14:06:19.902113Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T14:06:23.561832Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T14:06:23.555811Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:55:29.632587Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:55:29.632396Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:55:32.255722Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:55:32.255281Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">150</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="fl">4.5</span>))</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, N <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]):</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> <span class="dv">30</span>  <span class="co"># number of feature states</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate M Haar-random feature states</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    states <span class="op">=</span> [unitary_group.rvs(D)[:, <span class="dv">0</span>] <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(M)]</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build kernel matrix</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> np.zeros((M, M))</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(M):</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(M):</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            K[i, j] <span class="op">=</span> <span class="bu">abs</span>(states[i].conj() <span class="op">@</span> states[j])<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract off-diagonal elements</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> <span class="op">~</span>np.eye(M, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    off_diag <span class="op">=</span> K[mask]</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[idx]</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    ax.hist(off_diag, bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">'royalblue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, density<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>            edgecolor<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    ax.axvline(<span class="dv">1</span><span class="op">/</span>D, color<span class="op">=</span><span class="st">'crimson'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>               label<span class="op">=</span><span class="ss">f'$1/D = </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>D<span class="sc">:.3f}</span><span class="ss">$'</span>)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Overlay the exact Porter-Thomas-like distribution</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    x_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="bu">max</span>(off_diag)<span class="op">*</span><span class="fl">1.1</span>, <span class="dv">200</span>)</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For large D, kappa ~ Exp(D)</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    ax.plot(x_grid, D <span class="op">*</span> np.exp(<span class="op">-</span>D <span class="op">*</span> x_grid), <span class="st">'k-'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>,</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="vs">r'$De^{-D\kappa}$'</span>)</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f'N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss"> qubits (D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="vs">r'Kernel value $\kappa(x, x\prime)$'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> idx <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        ax.set_ylabel(<span class="st">'Probability density'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, ls<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">'Quantum Kernel Concentration: Off-Diagonal Elements'</span>,</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">13</span>, y<span class="op">=</span><span class="fl">1.02</span>)</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantitative verification table</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Quantitative Verification:"</span>)</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'N'</span><span class="sc">:&gt;3s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'D'</span><span class="sc">:&gt;5s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'E[kappa] MC'</span><span class="sc">:&gt;12s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'1/D'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'Var MC'</span><span class="sc">:&gt;10s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'Exact'</span><span class="sc">:&gt;10s}</span><span class="ss">"</span>)</span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">55</span>)</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]:</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    kappas <span class="op">=</span> []</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2000</span>):</span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> unitary_group.rvs(D)</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>        kappas.append(<span class="bu">abs</span>(V[<span class="dv">0</span>, <span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    mc_mean <span class="op">=</span> np.mean(kappas)</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>    mc_var <span class="op">=</span> np.var(kappas)</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    exact_var <span class="op">=</span> (D<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (D<span class="op">+</span><span class="dv">1</span>))</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">  </span><span class="sc">{</span>D<span class="sc">:5d}</span><span class="ss">  </span><span class="sc">{</span>mc_mean<span class="sc">:12.6f}</span><span class="ss">  </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>D<span class="sc">:8.6f}</span><span class="ss">  </span><span class="sc">{</span>mc_var<span class="sc">:10.2e}</span><span class="ss">  </span><span class="sc">{</span>exact_var<span class="sc">:10.2e}</span><span class="ss">"</span>)</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Kernel concentration confirmed: deep circuits kill kernel discriminability."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="fl">4.5</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, N <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> <span class="dv">30</span>  <span class="co"># number of feature states</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate M Haar-random feature states</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    states <span class="op">=</span> [unitary_group.rvs(D)[:, <span class="dv">0</span>] <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(M)]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build kernel matrix</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> np.zeros((M, M))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(M):</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(M):</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            K[i, j] <span class="op">=</span> <span class="bu">abs</span>(states[i].conj() <span class="op">@</span> states[j])<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract off-diagonal elements</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> <span class="op">~</span>np.eye(M, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    off_diag <span class="op">=</span> K[mask]</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[idx]</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    ax.hist(off_diag, bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">'royalblue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, density<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            edgecolor<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    ax.axvline(<span class="dv">1</span><span class="op">/</span>D, color<span class="op">=</span><span class="st">'crimson'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>               label<span class="op">=</span><span class="ss">f'$1/D = </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>D<span class="sc">:.3f}</span><span class="ss">$'</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Overlay the exact Porter-Thomas-like distribution</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    x_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="bu">max</span>(off_diag)<span class="op">*</span><span class="fl">1.1</span>, <span class="dv">200</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For large D, kappa ~ Exp(D)</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    ax.plot(x_grid, D <span class="op">*</span> np.exp(<span class="op">-</span>D <span class="op">*</span> x_grid), <span class="st">'k-'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="vs">r'$De^{-D\kappa}$'</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f'N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss"> qubits (D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="vs">r'Kernel value $\kappa(x, x\prime)$'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> idx <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        ax.set_ylabel(<span class="st">'Probability density'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, ls<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">'Quantum Kernel Concentration: Off-Diagonal Elements'</span>,</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">13</span>, y<span class="op">=</span><span class="fl">1.02</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantitative verification table</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Quantitative Verification:"</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'N'</span><span class="sc">:&gt;3s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'D'</span><span class="sc">:&gt;5s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'E[kappa] MC'</span><span class="sc">:&gt;12s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'1/D'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'Var MC'</span><span class="sc">:&gt;10s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'Exact'</span><span class="sc">:&gt;10s}</span><span class="ss">"</span>)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">55</span>)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]:</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    kappas <span class="op">=</span> []</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2000</span>):</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> unitary_group.rvs(D)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        kappas.append(<span class="bu">abs</span>(V[<span class="dv">0</span>, <span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    mc_mean <span class="op">=</span> np.mean(kappas)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    mc_var <span class="op">=</span> np.var(kappas)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    exact_var <span class="op">=</span> (D<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (D<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">  </span><span class="sc">{</span>D<span class="sc">:5d}</span><span class="ss">  </span><span class="sc">{</span>mc_mean<span class="sc">:12.6f}</span><span class="ss">  </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>D<span class="sc">:8.6f}</span><span class="ss">  </span><span class="sc">{</span>mc_var<span class="sc">:10.2e}</span><span class="ss">  </span><span class="sc">{</span>exact_var<span class="sc">:10.2e}</span><span class="ss">"</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Kernel concentration confirmed: deep circuits kill kernel discriminability."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="solution_ch7_quantum_kernel_concentration_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
@@ -816,11 +814,11 @@ Asymptotic expansion:
 Quantitative Verification:
   N      D   E[kappa] MC       1/D      Var MC       Exact
 -------------------------------------------------------
-  2      4      0.243789  0.250000    3.62e-02    3.75e-02</code></pre>
+  2      4      0.243789  0.250000    3.62e-02    3.75e-02
+  3      8      0.125058  0.125000    1.26e-02    1.22e-02</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  3      8      0.125058  0.125000    1.26e-02    1.22e-02
-  4     16      0.062532  0.062500    3.36e-03    3.45e-03</code></pre>
+<pre><code>  4     16      0.062532  0.062500    3.36e-03    3.45e-03</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  5     32      0.032247  0.031250    1.03e-03    9.17e-04</code></pre>
