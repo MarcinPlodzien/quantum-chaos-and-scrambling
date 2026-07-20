@@ -1,22 +1,22 @@
 name: Publish website
 
-# OPTIONAL automatic rebuild. You do NOT need this to get the site online the
-# first time (the pre-built ./docs folder is already included). This workflow
-# re-executes all notebooks and re-renders the site whenever you push changes.
+# Publishes the PRE-BUILT ./docs folder to GitHub Pages.
 #
-# To use it: Settings -> Pages -> Source: "GitHub Actions".
-# (If instead you serve from the /docs folder, you can delete this file.)
+# IMPORTANT: this workflow does NOT rebuild the site. The site (including all
+# executed notebooks and their figures) is built locally by build.sh /
+# update_site.sh, which have the full environment (NumPy + JAX). A previous
+# version of this workflow re-ran build.sh in CI *without JAX installed*, so the
+# JAX notebooks failed to execute and the site deployed with missing figures.
+# We therefore just upload the committed ./docs and deploy it verbatim.
+#
+# Requires: Settings -> Pages -> Source = "GitHub Actions".
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - "source_notebooks/**"
-      - "*.qmd"
-      - "chapters/**"
-      - "_quarto.yml"
-      - "exercises_and_solutions_complete.pdf"
+      - "docs/**"
       - ".github/workflows/deploy.yml"
 
 permissions:
@@ -29,27 +29,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: pip install numpy scipy matplotlib jupyter nbformat nbconvert ipykernel
-      - uses: quarto-dev/quarto-actions/setup@v2
-      - name: Build site
-        run: EXEC_TIMEOUT=600 bash build.sh
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Upload pre-built ./docs (figures already rendered locally)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
       - id: deployment
         uses: actions/deploy-pages@v4
