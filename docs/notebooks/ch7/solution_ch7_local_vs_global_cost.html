@@ -605,7 +605,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="preliminaries-toolbox" class="level2">
 <h2 class="anchored" data-anchor-id="preliminaries-toolbox">Preliminaries / Toolbox</h2>
-<p>Before diving into the solution, recall the following concepts:</p>
 <p><strong>1. Cost Functions in VQAs:</strong> The objective is <span class="math inline">\(C(\boldsymbol{\theta}) = \langle 0| U^\dagger(\boldsymbol{\theta}) O U(\boldsymbol{\theta}) |0\rangle\)</span>.</p>
 <p><strong>2. Global vs.&nbsp;Local Observables:</strong> A global cost relies on an observable that acts non-trivially on all qubits, e.g., the traceless global projector <span class="math inline">\(O_G = |0\rangle\langle 0|^{\otimes N} - I/D\)</span>. A local cost is a sum of local terms, e.g., <span class="math inline">\(O_L = \frac{1}{N}\sum_j Z_j\)</span>.</p>
 <p><strong>3. Barren Plateaus (2-design):</strong> If <span class="math inline">\(U(\boldsymbol{\theta})\)</span> forms a 2-design, the variance of the cost function is <span class="math inline">\(\mathrm{Var}[C] = \frac{\mathrm{Tr}(O^2)}{D(D+1)}\)</span> where <span class="math inline">\(D=2^N\)</span>.</p>

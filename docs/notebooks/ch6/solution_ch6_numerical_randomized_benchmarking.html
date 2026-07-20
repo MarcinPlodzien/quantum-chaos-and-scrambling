@@ -607,7 +607,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="preliminaries-toolbox" class="level2">
 <h2 class="anchored" data-anchor-id="preliminaries-toolbox">Preliminaries / Toolbox</h2>
-<p>Before diving into the solution, recall the following concepts:</p>
 <p><strong>1. Standard Randomized Benchmarking (RB):</strong> A protocol to estimate the average gate fidelity. Sequences of length <span class="math inline">\(m\)</span> random Clifford gates <span class="math inline">\(C_i\)</span> are followed by an exact inverse <span class="math inline">\(C_m^{-1} \cdots C_1^{-1}\)</span> to yield an identity operation. Survival probability decays as <span class="math inline">\(A p^m + B\)</span>.</p>
 <p><strong>2. Twirling over the Clifford Group:</strong> By Schur’s lemma, averaging a channel <span class="math inline">\(\mathcal{E}\)</span> over the Clifford group produces a depolarizing channel: <span class="math inline">\(\frac{1}{|\mathcal{C}|} \sum_{C \in \mathcal{C}} C^\dagger \mathcal{E}(C \rho C^\dagger) C = \mathcal{E}_{\mathrm{depol}}(\rho) = p \rho + (1-p) \frac{I}{d}\)</span>.</p>
 <p><strong>3. Depolarizing Parameter <span class="math inline">\(p\)</span> vs Fidelity:</strong> The average gate fidelity is related to <span class="math inline">\(p\)</span> (also written as <span class="math inline">\(\alpha\)</span>) by <span class="math inline">\(\bar{F} = p + \frac{1-p}{d}\)</span>.</p>
