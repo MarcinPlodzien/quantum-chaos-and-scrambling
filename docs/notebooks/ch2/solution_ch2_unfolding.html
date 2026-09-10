@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Random Matrix Theory, numerical solution.">
+
+<title>Quantum Chaos &amp; Scrambling - Unfolding a Many-Body Spectrum</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/03-haar-weingarten.html" rel="next">
+<link href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Quantum Chaos &amp; Scrambling</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page">
+ <span class="menu-text">Start here</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorial" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorial</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorial">    
+        <li>
+    <a class="dropdown-item" href="../../chapters/01-foundations.html">
+ <span class="dropdown-text">1 · Mathematical Foundations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/02-random-matrix-theory.html">
+ <span class="dropdown-text">2 · Random Matrix Theory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/03-haar-weingarten.html">
+ <span class="dropdown-text">3 · Haar Measure &amp; Weingarten Calculus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/04-dynamics.html">
+ <span class="dropdown-text">4 · Quantum Dynamics &amp; Chaos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/05-designs.html">
+ <span class="dropdown-text">5 · Designs &amp; Clifford Ensembles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/06-applications.html">
+ <span class="dropdown-text">6 · Applications of Scrambling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../chapters/07-qml.html">
+ <span class="dropdown-text">7 · Quantum Machine Learning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../exercises.html">
+ <span class="menu-text">Exercises (PDF)</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Unfolding a Many-Body Spectrum</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Start here</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/01-foundations.html" class="sidebar-item-text sidebar-link">1 · Mathematical Foundations</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_fubini_study.html" class="sidebar-item-text sidebar-link">Bloch Sphere Geodesics and the Fubini-Study Metric</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_entanglement_parametric.html" class="sidebar-item-text sidebar-link">Entanglement of a Parametric Two-Qubit State</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_depolarizing_channel.html" class="sidebar-item-text sidebar-link">The Depolarizing Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_schur_weyl.html" class="sidebar-item-text sidebar-link">Schur-Weyl Decomposition for</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_choi_amplitude_damping.html" class="sidebar-item-text sidebar-link">Choi Matrix of the Amplitude-Damping Channel</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_exp_surjectivity.html" class="sidebar-item-text sidebar-link">Surjectivity of the Exponential Map on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.html" class="sidebar-item-text sidebar-link">Haar Invariance on</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_quantum_speed_limit.html" class="sidebar-item-text sidebar-link">Geodesic Length and the Quantum Speed Limit</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html" class="sidebar-item-text sidebar-link">Differential Geometry of Quantum State Space</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_measure_theory_basics.html" class="sidebar-item-text sidebar-link">Lebesgue Measure, Counting Measure, and σ-Additivity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch1/solution_ch1_borel_measurability.html" class="sidebar-item-text sidebar-link">Borel σ-Algebra and Measurability on U(D)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-random-matrix-theory.html" class="sidebar-item-text sidebar-link">2 · Random Matrix Theory</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_goe_spacing.html" class="sidebar-item-text sidebar-link">The GOE and Linear Level Repulsion</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_semicircle_moments.html" class="sidebar-item-text sidebar-link">Moments of the Wigner Semicircle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link active">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-haar-weingarten.html" class="sidebar-item-text sidebar-link">3 · Haar Measure &amp; Weingarten Calculus</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html" class="sidebar-item-text sidebar-link">Operator Averages Using the First Moment Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_swap_trick.html" class="sidebar-item-text sidebar-link">The SWAP Trick in Action</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_haar_overlap.html" class="sidebar-item-text sidebar-link">Overlap of Haar-Random States and Measure Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_fourth_moment_trace.html" class="sidebar-item-text sidebar-link">The Fourth Moment of the Trace</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.html" class="sidebar-item-text sidebar-link">Tensor Network Weingarten Calculus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_page_formula.html" class="sidebar-item-text sidebar-link">The Asymptotic Page Formula via Marchenko-Pastur</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html" class="sidebar-item-text sidebar-link">Concentration of Purity (Lévy’s Lemma)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/04-dynamics.html" class="sidebar-item-text sidebar-link">4 · Quantum Dynamics &amp; Chaos</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_commutator_fidelity_identity.html" class="sidebar-item-text sidebar-link">The C-F Identity (OTOC-Commutator Relation)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.html" class="sidebar-item-text sidebar-link">SFF Plateau Value for the GUE</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch4/solution_ch4_krylov_complexity.html" class="sidebar-item-text sidebar-link">Krylov Complexity from the Geometric Distribution</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/05-designs.html" class="sidebar-item-text sidebar-link">5 · Designs &amp; Clifford Ensembles</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_clifford_otoc.html" class="sidebar-item-text sidebar-link">OTOCs and the Failure of Clifford Chaos</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.html" class="sidebar-item-text sidebar-link">Stabilizer Rényi Entropy of Haar-Random States</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/06-applications.html" class="sidebar-item-text sidebar-link">6 · Applications of Scrambling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_shadow_channel.html" class="sidebar-item-text sidebar-link">The Shadow Channel and Its Inverse</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_shadows.html" class="sidebar-item-text sidebar-link">Classical Shadows: Channel Inversion and Tomography</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.html" class="sidebar-item-text sidebar-link">Randomized Benchmarking via Clifford Twirling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_tripartite_mutual_information.html" class="sidebar-item-text sidebar-link">Tripartite Mutual Information and Scrambling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.html" class="sidebar-item-text sidebar-link">Fragility of the GHZ Metrological Advantage</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/07-qml.html" class="sidebar-item-text sidebar-link">7 · Quantum Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau.html" class="sidebar-item-text sidebar-link">Barren Plateau Scaling from the Weingarten Formula</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_local_vs_global_cost.html" class="sidebar-item-text sidebar-link">Local vs Global Cost Functions in Deep Circuits</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.html" class="sidebar-item-text sidebar-link">Barren Plateaus through the Lens of Quantum Fisher Information</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_kernel_concentration.html" class="sidebar-item-text sidebar-link">Quantum Kernel Concentration and Expressibility</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_born_machine.html" class="sidebar-item-text sidebar-link">Born Machine Expressivity and Concentration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the POVM Picture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.html" class="sidebar-item-text sidebar-link">Injection Contractivity and Restarting Overhead in QRC</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_quantum_kernel_rings.html" class="sidebar-item-text sidebar-link">Quantum-Kernel Classification of Concentric Rings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_regression.html" class="sidebar-item-text sidebar-link">Nonlinear regression with a quantum extreme learning machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_xor.html" class="sidebar-item-text sidebar-link">Quantum Extreme Learning Machines and the XOR Problem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_phase_classification.html" class="sidebar-item-text sidebar-link">Classifying Quantum Phases with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch7/example_ch7_qelm_spt_phase.html" class="sidebar-item-text sidebar-link">Classifying a Topological (SPT) Phase with a Quantum Extreme Learning Machine</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises.html" class="sidebar-item-text sidebar-link">Exercises &amp; Solutions (PDF)</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#unfolding-a-many-body-spectrum" id="toc-unfolding-a-many-body-spectrum" class="nav-link active" data-scroll-target="#unfolding-a-many-body-spectrum">Unfolding a Many-Body Spectrum</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#toolbox" id="toc-toolbox" class="nav-link" data-scroll-target="#toolbox">Toolbox</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
+  <ul class="collapse">
+  <li><a href="#part-a-the-raw-spacings-measure-the-density-of-states-not-the-correlations" id="toc-part-a-the-raw-spacings-measure-the-density-of-states-not-the-correlations" class="nav-link" data-scroll-target="#part-a-the-raw-spacings-measure-the-density-of-states-not-the-correlations">Part (a): the raw spacings measure the density of states, not the correlations</a></li>
+  <li><a href="#part-b-resolve-the-reflection-symmetry-before-anything-else" id="toc-part-b-resolve-the-reflection-symmetry-before-anything-else" class="nav-link" data-scroll-target="#part-b-resolve-the-reflection-symmetry-before-anything-else">Part (b): resolve the reflection symmetry before anything else</a></li>
+  <li><a href="#part-c-the-unfolding-map" id="toc-part-c-the-unfolding-map" class="nav-link" data-scroll-target="#part-c-the-unfolding-map">Part (c): the unfolding map</a></li>
+  <li><a href="#part-d-the-payoff-and-the-two-failure-modes" id="toc-part-d-the-payoff-and-the-two-failure-modes" class="nav-link" data-scroll-target="#part-d-the-payoff-and-the-two-failure-modes">Part (d): the payoff, and the two failure modes</a></li>
+  </ul></li>
+  <li><a href="#adversarial-check-every-quoted-number-machine-verified" id="toc-adversarial-check-every-quoted-number-machine-verified" class="nav-link" data-scroll-target="#adversarial-check-every-quoted-number-machine-verified">Adversarial check — every quoted number, machine-verified</a></li>
+  <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch2/solution_ch2_unfolding.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Unfolding a Many-Body Spectrum</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+<div>
+  <div class="description">
+    Random Matrix Theory, numerical solution.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="unfolding-a-many-body-spectrum" class="level1">
+<h1>Unfolding a Many-Body Spectrum</h1>
+<hr>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Every level-statistics diagnostic except the gap ratio compares the spacing between neighbouring levels with the <em>local</em> mean spacing. In a many-body spectrum that local mean varies by orders of magnitude across the band: the density of states is close to a Gaussian, exponentially dense in the middle and sparse at the edges. A histogram of raw spacings therefore measures the shape of the density of states, not the correlations between levels. Unfolding is the change of variable that removes the global density and leaves a sequence with unit mean spacing everywhere, so that the universal random-matrix laws can be seen.</p>
+<p>Unfolding is also the step that most often goes wrong. This notebook carries it out end to end for the chaotic mixed-field Ising chain of Chapter 2, shows the symmetry trap that precedes it, and exhibits the two ways in which the smooth fit can fail.</p>
+</section>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>Let <span class="math inline">\(E_1\le E_2\le\dots\le E_D\)</span> be the sorted levels of one symmetry sector and <span class="math inline">\(N(E)=\#\{n : E_n\le E\}\)</span> the integrated density of states (the <em>staircase</em>). Write it as a smooth part plus a fluctuating part, <span class="math inline">\(N(E)=\bar N(E)+N_{\rm fl}(E)\)</span>. The unfolded levels are</p>
+<p><span class="math display">\[\epsilon_n=\bar N(E_n),\]</span></p>
+<p>so that <span class="math inline">\(\epsilon_{n+1}-\epsilon_n\approx \bar N'(E_n)\,(E_{n+1}-E_n)\)</span> is the raw spacing measured in units of the local mean spacing <span class="math inline">\(1/\bar N'(E_n)=1/\bar\rho(E_n)\)</span>. By construction the unfolded spacings <span class="math inline">\(s_n=\epsilon_{n+1}-\epsilon_n\)</span> have unit mean, and for a chaotic Hamiltonian with time-reversal symmetry their distribution follows the Wigner surmise of the Gaussian orthogonal ensemble,</p>
+<p><span class="math display">\[P(s)=\frac{\pi}{2}\,s\,e^{-\pi s^2/4},\qquad \langle s\rangle=1,\qquad \mathrm{Var}(s)=\frac{4}{\pi}-1\approx0.273 .\]</span></p>
+<p>The gap ratio <span class="math inline">\(r_n=\min(s_n,s_{n+1})/\max(s_n,s_{n+1})\)</span> needs no unfolding because the local density cancels in the ratio; its large-<span class="math inline">\(D\)</span> GOE mean is <span class="math inline">\(\langle r\rangle\approx0.531\)</span> and its Poisson mean is <span class="math inline">\(2\ln2-1\approx0.386\)</span>.</p>
+<p>Two things can go wrong. If <span class="math inline">\(\bar N\)</span> is fit too rigidly (a low-degree polynomial that cannot follow the Gaussian bulk of the staircase), residual global density survives in <span class="math inline">\(s_n\)</span> and inflates its variance. If <span class="math inline">\(\bar N\)</span> is fit so flexibly that it follows individual steps of the staircase, the fit absorbs the fluctuations <span class="math inline">\(N_{\rm fl}\)</span> themselves, forces <span class="math inline">\(s_n\approx1\)</span> everywhere, and erases the very repulsion the diagnostic exists to see.</p>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>Consider the mixed-field Ising chain</p>
+<p><span class="math display">\[\hat H=J\sum_{i}\hat Z_i\hat Z_{i+1}+h_x\sum_i\hat X_i+h_z\sum_i\hat Z_i,\qquad J=1,\; h_x=1.05,\; h_z=0.5,\]</span></p>
+<p>with open boundaries and <span class="math inline">\(N=12\)</span> sites.</p>
+<p><strong>(a) The obstacle.</strong> Diagonalize the chain and form the raw nearest-neighbour spacings <span class="math inline">\(s_n=E_{n+1}-E_n\)</span>. Show that their distribution is dominated by the varying density of states and does not resemble any universal law, and explain why comparing <span class="math inline">\(s_n\)</span> from the dense middle of the spectrum with <span class="math inline">\(s_n\)</span> from the sparse edges is meaningless.</p>
+<p><strong>(b) Symmetry first.</strong> The chain has a reflection symmetry <span class="math inline">\(i\mapsto N-1-i\)</span>. Show that the gap ratio <span class="math inline">\(\langle r\rangle\)</span> computed on the full spectrum is close to <span class="math inline">\(0.42\)</span>, below the GOE value, and that projecting onto one reflection-parity sector restores <span class="math inline">\(\langle r\rangle\approx0.54\)</span>. Explain the contamination.</p>
+<p><strong>(c) The unfolding map.</strong> Within one sector build the integrated density <span class="math inline">\(N(E)\)</span>, fit a smooth <span class="math inline">\(\bar N(E)\)</span> by a low-order polynomial over the central portion of the band, and define <span class="math inline">\(\epsilon_n=\bar N(E_n)\)</span>. Verify that the mean spacing of the <span class="math inline">\(\epsilon_n\)</span> is unity.</p>
+<p><strong>(d) The payoff and the two failure modes.</strong> Show that the unfolded spacing distribution follows the Wigner surmise, with variance close to <span class="math inline">\(4/\pi-1\approx0.273\)</span>. Then exhibit the two ways the fit can fail: a polynomial of degree <span class="math inline">\(2\)</span> that is too rigid, and a cubic spline with too little smoothing that chases the staircase. Explain why a low-order global polynomial sits safely between the two, and how over-fitting sets in as the degree of a global polynomial is raised.</p>
+</section>
+<section id="toolbox" class="level2">
+<h2 class="anchored" data-anchor-id="toolbox">Toolbox</h2>
+<p><strong>Building the Hamiltonian.</strong> With <span class="math inline">\(D=2^N=4096\)</span> the dense matrix is small enough to diagonalize directly. The <span class="math inline">\(\hat Z\hat Z\)</span> and <span class="math inline">\(\hat Z\)</span> terms are diagonal in the computational basis, and <span class="math inline">\(\hat X_i\)</span> flips bit <span class="math inline">\(i\)</span>, so each row has <span class="math inline">\(N\)</span> off-diagonal entries equal to <span class="math inline">\(h_x\)</span>.</p>
+<p><strong>Reflection sectors.</strong> The reflection <span class="math inline">\(\hat P\)</span> maps the basis state with bit string <span class="math inline">\(b_0b_1\cdots b_{N-1}\)</span> to the string read backwards. Pairs of distinct strings <span class="math inline">\(\{b,\hat Pb\}\)</span> give one symmetric and one antisymmetric combination; palindromic strings are symmetric on their own. The symmetric sector therefore has dimension <span class="math inline">\((2^N+2^{N/2})/2=2080\)</span> and the antisymmetric sector <span class="math inline">\(2016\)</span>.</p>
+<p><strong>Fitting the staircase.</strong> <code>numpy.polynomial.Chebyshev.fit</code> fits in an orthogonal basis on a rescaled domain and stays well conditioned up to very high degree, so it shows honestly how a global polynomial starts to over-fit as its degree grows; a monomial fit on the unscaled energy axis (<code>numpy.polyfit</code>) becomes ill conditioned beyond degree twenty or so, and from degree forty the solver truncates the smallest singular values, warns, and returns a curve of far lower effective degree than the nominal one. <code>scipy.interpolate.UnivariateSpline</code> with smoothing parameter <span class="math inline">\(s\)</span> is the flexible local fit whose over-fit is abrupt.</p>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<section id="part-a-the-raw-spacings-measure-the-density-of-states-not-the-correlations" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-the-raw-spacings-measure-the-density-of-states-not-the-correlations">Part (a): the raw spacings measure the density of states, not the correlations</h3>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:25:19.069101Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:25:19.068776Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:25:43.026474Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:25:43.023118Z&quot;}" data-execution_count="1">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.polynomial <span class="im">import</span> Chebyshev</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> UnivariateSpline</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>, category<span class="op">=</span>np.exceptions.RankWarning)   <span class="co"># only the deliberate monomial fit below triggers this</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>, category<span class="op">=</span><span class="pp">RuntimeWarning</span>)              <span class="co"># overflow inside that same rank-deficient monomial fit</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>N, J, hx, hz <span class="op">=</span> <span class="dv">12</span>, <span class="fl">1.0</span>, <span class="fl">1.05</span>, <span class="fl">0.5</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>N</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> np.arange(D)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>bits <span class="op">=</span> (idx[:, <span class="va">None</span>] <span class="op">&gt;&gt;</span> np.arange(N)[<span class="va">None</span>, :]) <span class="op">&amp;</span> <span class="dv">1</span>        <span class="co"># bit j of basis state = site j</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>bits                                              <span class="co"># Z eigenvalues (+1 for bit 0)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> np.diag(J<span class="op">*</span>np.<span class="bu">sum</span>(z[:, :<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>z[:, <span class="dv">1</span>:], axis<span class="op">=</span><span class="dv">1</span>) <span class="op">+</span> hz<span class="op">*</span>np.<span class="bu">sum</span>(z, axis<span class="op">=</span><span class="dv">1</span>)).astype(<span class="bu">float</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    H[idx, idx <span class="op">^</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> j)] <span class="op">+=</span> hx                            <span class="co"># X_j flips bit j</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>E_full <span class="op">=</span> np.linalg.eigvalsh(H)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>s_raw <span class="op">=</span> np.diff(E_full)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"D = </span><span class="sc">{</span>D<span class="sc">}</span><span class="ss"> levels, band from </span><span class="sc">{</span>E_full[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>E_full[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"raw spacings: mean </span><span class="sc">{</span>s_raw<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">, min </span><span class="sc">{</span>s_raw<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2e}</span><span class="ss">, max </span><span class="sc">{</span>s_raw<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"raw spacing variance / mean^2 = </span><span class="sc">{</span>s_raw<span class="sc">.</span>var()<span class="op">/</span>s_raw<span class="sc">.</span>mean()<span class="op">**</span><span class="dv">2</span><span class="sc">:.1f}</span><span class="ss">   (Wigner surmise: 0.273)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>D = 4096 levels, band from -15.71 to 19.95
+raw spacings: mean 0.0087, min 1.53e-06, max 2.920
+raw spacing variance / mean^2 = 35.8   (Wigner surmise: 0.273)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:25:43.031306Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:25:43.030840Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:25:44.687243Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:25:44.682805Z&quot;}" data-execution_count="2">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="fl">3.8</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].hist(E_full, bins<span class="op">=</span><span class="dv">80</span>, color<span class="op">=</span><span class="st">"steelblue"</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">"$E$"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_ylabel(<span class="st">"levels per bin"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">"density of states (Gaussian bulk)"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].semilogy(E_full[:<span class="op">-</span><span class="dv">1</span>], s_raw, <span class="st">"."</span>, ms<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">"0.3"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">"$E_n$"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_ylabel(<span class="st">"$E_{n+1}-E_n$"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">"raw spacing along the band"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].hist(s_raw<span class="op">/</span>s_raw.mean(), bins<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">60</span>), density<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">"indianred"</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="st">"raw $s_n/</span><span class="ch">\\</span><span class="st">langle s</span><span class="ch">\\</span><span class="st">rangle$"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>sg <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">300</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(sg, np.pi<span class="op">/</span><span class="dv">2</span><span class="op">*</span>sg<span class="op">*</span>np.exp(<span class="op">-</span>np.pi<span class="op">*</span>sg<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">4</span>), <span class="st">"k-"</span>, lw<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">"Wigner surmise (GOE)"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_xlabel(<span class="st">"$s$"</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_ylabel(<span class="st">"$P(s)$"</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">"raw spacings: no universal law"</span>)<span class="op">;</span> ax[<span class="dv">2</span>].legend()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="solution_ch2_unfolding_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The middle panel is the whole story: the spacing varies by four orders of magnitude across the band, tracking the inverse of the density of states in the left panel. A raw spacing of <span class="math inline">\(10^{-3}\)</span> from the centre and one of <span class="math inline">\(10^{-1}\)</span> from an edge may both be “typical” relative to their local mean, so pooling them into one histogram (right panel) mixes incomparable quantities. The pooled histogram is a spike at zero with a long tail, nothing like the Wigner surmise.</p>
+</section>
+<section id="part-b-resolve-the-reflection-symmetry-before-anything-else" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-resolve-the-reflection-symmetry-before-anything-else">Part (b): resolve the reflection symmetry before anything else</h3>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:25:44.693295Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:25:44.692934Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:05.683575Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:05.682710Z&quot;}" data-execution_count="3">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gap_ratio(E):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.diff(E)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.minimum(s[:<span class="op">-</span><span class="dv">1</span>], s[<span class="dv">1</span>:]) <span class="op">/</span> np.maximum(s[:<span class="op">-</span><span class="dv">1</span>], s[<span class="dv">1</span>:])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r.mean()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># reflection i -&gt; N-1-i acting on bit strings</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>refl <span class="op">=</span> np.zeros(D, dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    refl <span class="op">|=</span> ((idx <span class="op">&gt;&gt;</span> j) <span class="op">&amp;</span> <span class="dv">1</span>) <span class="op">&lt;&lt;</span> (N <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> j)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>sym, asym, seen <span class="op">=</span> [], [], np.zeros(D, <span class="bu">bool</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(D):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> seen[i]:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> refl[i]<span class="op">;</span> seen[i] <span class="op">=</span> seen[j] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> np.zeros(D)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> j:                       <span class="co"># palindrome: symmetric on its own</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        v[i] <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span> sym.append(v)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        v[i] <span class="op">=</span> v[j] <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>)<span class="op">;</span> sym.append(v)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> np.zeros(D)<span class="op">;</span> w[i] <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>)<span class="op">;</span> w[j] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>)<span class="op">;</span> asym.append(w)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>B_plus, B_minus <span class="op">=</span> np.array(sym).T, np.array(asym).T</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>E_plus  <span class="op">=</span> np.linalg.eigvalsh(B_plus.T  <span class="op">@</span> H <span class="op">@</span> B_plus)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>E_minus <span class="op">=</span> np.linalg.eigvalsh(B_minus.T <span class="op">@</span> H <span class="op">@</span> B_minus)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"sector dimensions: +1 -&gt; </span><span class="sc">{</span><span class="bu">len</span>(E_plus)<span class="sc">}</span><span class="ss">,  -1 -&gt; </span><span class="sc">{</span><span class="bu">len</span>(E_minus)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"&lt;r&gt; full spectrum   = </span><span class="sc">{</span>gap_ratio(E_full)<span class="sc">:.3f}</span><span class="ss">   (Poisson 0.386, GOE 0.531)"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"&lt;r&gt; +1 sector       = </span><span class="sc">{</span>gap_ratio(E_plus)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"&lt;r&gt; -1 sector       = </span><span class="sc">{</span>gap_ratio(E_minus)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>sector dimensions: +1 -&gt; 2080,  -1 -&gt; 2016
+&lt;r&gt; full spectrum   = 0.420   (Poisson 0.386, GOE 0.531)
+&lt;r&gt; +1 sector       = 0.543
+&lt;r&gt; -1 sector       = 0.521</code></pre>
+</div>
+</div>
+<p>The full spectrum interleaves two statistically independent sequences. A level of the <span class="math inline">\(+1\)</span> sector feels no repulsion from a level of the <span class="math inline">\(-1\)</span> sector, so near-degeneracies between the two sectors are as common as for uncorrelated levels; this superposition pulls <span class="math inline">\(\langle r\rangle\)</span> down from the GOE value toward the Poisson value (Rosenzweig and Porter, 1960). Within one sector the sequence is a single correlated one and the gap ratio returns to the GOE value, up to a scatter of order <span class="math inline">\(0.01\)</span> for a sample of about two thousand levels. All further steps use the <span class="math inline">\(+1\)</span> sector.</p>
+</section>
+<section id="part-c-the-unfolding-map" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-the-unfolding-map">Part (c): the unfolding map</h3>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:05.688210Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:05.687837Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:05.703143Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:05.702325Z&quot;}" data-execution_count="4">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> central(E, keep<span class="op">=</span><span class="fl">0.8</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># keep the central fraction of the sorted sector spectrum; return energies and staircase values N(E_n) = n</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(E)<span class="op">;</span> lo <span class="op">=</span> <span class="bu">int</span>(<span class="bu">round</span>(n<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>keep)<span class="op">/</span><span class="dv">2</span>))<span class="op">;</span> hi <span class="op">=</span> n <span class="op">-</span> lo</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> E[lo:hi], np.arange(lo<span class="op">+</span><span class="dv">1</span>, hi<span class="op">+</span><span class="dv">1</span>, dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unfold_poly(E, deg, keep<span class="op">=</span><span class="fl">0.8</span>):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    Ec, Nc <span class="op">=</span> central(E, keep)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    Nbar <span class="op">=</span> Chebyshev.fit(Ec, Nc, deg)          <span class="co"># orthogonal basis on a rescaled domain: well conditioned at any degree</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Nbar(Ec), Nbar, Ec, Nc</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>eps, Nbar, Ec, Nc <span class="op">=</span> unfold_poly(E_plus, deg<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>s_unf <span class="op">=</span> np.diff(eps)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"levels kept: </span><span class="sc">{</span><span class="bu">len</span>(Ec)<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span><span class="bu">len</span>(E_plus)<span class="sc">}</span><span class="ss"> (central 80%)"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mean unfolded spacing = </span><span class="sc">{</span>s_unf<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">   (must be 1)"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"variance of unfolded spacing = </span><span class="sc">{</span>s_unf<span class="sc">.</span>var()<span class="sc">:.4f}</span><span class="ss">   (Wigner surmise 4/pi - 1 = </span><span class="sc">{</span><span class="dv">4</span><span class="op">/</span>np<span class="sc">.</span>pi<span class="op">-</span><span class="dv">1</span><span class="sc">:.4f}</span><span class="ss">, exact GOE 0.286)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>levels kept: 1664 of 2080 (central 80%)
+mean unfolded spacing = 1.0012   (must be 1)
+variance of unfolded spacing = 0.2753   (Wigner surmise 4/pi - 1 = 0.2732, exact GOE 0.286)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:05.709370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:05.708959Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:06.294974Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:06.294234Z&quot;}" data-execution_count="5">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">3.8</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].step(E_plus, np.arange(<span class="dv">1</span>, <span class="bu">len</span>(E_plus)<span class="op">+</span><span class="dv">1</span>), where<span class="op">=</span><span class="st">"post"</span>, color<span class="op">=</span><span class="st">"0.3"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"staircase $N(E)$"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Eg <span class="op">=</span> np.linspace(Ec[<span class="dv">0</span>], Ec[<span class="op">-</span><span class="dv">1</span>], <span class="dv">400</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(Eg, Nbar(Eg), <span class="st">"r-"</span>, lw<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">"degree-9 fit $</span><span class="ch">\\</span><span class="st">bar N(E)$ (central 80%)"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">"$E$"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_ylabel(<span class="st">"$N(E)$"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].legend()<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">"integrated density and its smooth part"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(Ec, Nc <span class="op">-</span> Nbar(Ec), <span class="st">"."</span>, ms<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">"0.3"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">"$E$"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_ylabel(<span class="st">"$N(E_n)-</span><span class="ch">\\</span><span class="st">bar N(E_n)$"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">"residual: the fluctuating part $N_{</span><span class="ch">\\</span><span class="st">rm fl}$"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="solution_ch2_unfolding_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The residual in the right panel is what unfolding is supposed to leave behind: a fluctuating part of order one with no visible trend. Its size is what spectral rigidity measures (the number variance of Chapter 2 grows only logarithmically with the window), and it is exactly the part a good fit must <em>not</em> absorb.</p>
+</section>
+<section id="part-d-the-payoff-and-the-two-failure-modes" class="level3">
+<h3 class="anchored" data-anchor-id="part-d-the-payoff-and-the-two-failure-modes">Part (d): the payoff, and the two failure modes</h3>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:06.300361Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:06.299986Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:14.791222Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:14.788798Z&quot;}" data-execution_count="6">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> var_unit_mean(s):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># variance of the spacings after normalising them to unit mean (removes any residual scale error)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> s <span class="op">/</span> s.mean()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s.var()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>ax.hist(s_unf, bins<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">50</span>), density<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">"steelblue"</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>, label<span class="op">=</span><span class="st">"unfolded, degree-9 fit"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>ax.plot(sg, np.pi<span class="op">/</span><span class="dv">2</span><span class="op">*</span>sg<span class="op">*</span>np.exp(<span class="op">-</span>np.pi<span class="op">*</span>sg<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">4</span>), <span class="st">"k-"</span>, lw<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">"Wigner surmise (GOE)"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>ax.plot(sg, np.exp(<span class="op">-</span>sg), <span class="st">"k--"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"Poisson"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"$s$"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"$P(s)$"</span>)<span class="op">;</span> ax.legend()<span class="op">;</span> ax.set_title(<span class="st">"unfolded spacings of the $+1$ sector"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Chebyshev degree   Var(s)   (surmise 0.273)"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> deg <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">15</span>, <span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">800</span>]:</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    e, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, deg)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"      </span><span class="sc">{</span>deg<span class="sc">:4d}</span><span class="ss">          </span><span class="sc">{</span>var_unit_mean(np.diff(e))<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># the same nominal degrees with monomials on the unscaled energy axis: from degree forty the solver truncates</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># the fit, so the variance appears not to move; the returned curve has effective degree of order fifty</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"nominal monomial degree (np.polyfit)   Var(s)   singular values kept by the solver"</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> deg <span class="kw">in</span> [<span class="dv">9</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">300</span>]:</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    c, _, rk, _, _ <span class="op">=</span> np.polyfit(Ec, Nc, deg, full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"      </span><span class="sc">{</span>deg<span class="sc">:4d}</span><span class="ss">                            </span><span class="sc">{</span>var_unit_mean(np.diff(np.polyval(c, Ec)))<span class="sc">:.3f}</span><span class="ss">        </span><span class="sc">{</span>rk<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span>deg <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="solution_ch2_unfolding_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chebyshev degree   Var(s)   (surmise 0.273)
+         2          0.358
+         5          0.275
+         9          0.275
+        15          0.275</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        30          0.277
+        50          0.273</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       100          0.269</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       300          0.250</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       800          0.183
+
+nominal monomial degree (np.polyfit)   Var(s)   singular values kept by the solver
+         9                            0.275        10 of 10
+        30                            0.277        31 of 31
+        40                            0.273        37 of 41</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       100                            0.272        48 of 101</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       300                            0.271        54 of 301</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:14.794947Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:14.794661Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:16.966437Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:16.965681Z&quot;}" data-execution_count="7">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the abrupt over-fit: a LOCAL fit (cubic smoothing spline) that follows the staircase step by step</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Ec, Nc <span class="op">=</span> central(E_plus, <span class="fl">0.8</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"spline smoothing s     Var(s)"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sm <span class="kw">in</span> [<span class="fl">1e3</span>, <span class="fl">1e2</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>]:</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    spl <span class="op">=</span> UnivariateSpline(Ec, Nc, k<span class="op">=</span><span class="dv">3</span>, s<span class="op">=</span>sm)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"      </span><span class="sc">{</span>sm<span class="sc">:8.0f}</span><span class="ss">         </span><span class="sc">{</span>var_unit_mean(np.diff(spl(Ec)))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="fl">3.8</span>))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, (label, e) <span class="kw">in</span> <span class="bu">zip</span>(ax, [(<span class="st">"degree 2 (under-fit)"</span>, unfold_poly(E_plus, <span class="dv">2</span>)[<span class="dv">0</span>]),</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                               (<span class="st">"degree 9 (good)"</span>, unfold_poly(E_plus, <span class="dv">9</span>)[<span class="dv">0</span>]),</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                               (<span class="st">"spline, s = 1 (over-fit)"</span>, UnivariateSpline(Ec, Nc, k<span class="op">=</span><span class="dv">3</span>, s<span class="op">=</span><span class="dv">1</span>)(Ec))]):</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.diff(e)<span class="op">;</span> s <span class="op">=</span> s<span class="op">/</span>s.mean()</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    a.hist(s, bins<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">50</span>), density<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">"steelblue"</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    a.plot(sg, np.pi<span class="op">/</span><span class="dv">2</span><span class="op">*</span>sg<span class="op">*</span>np.exp(<span class="op">-</span>np.pi<span class="op">*</span>sg<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">4</span>), <span class="st">"k-"</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    a.set_title(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">: Var = </span><span class="sc">{</span>s<span class="sc">.</span>var()<span class="sc">:.3f}</span><span class="ss">"</span>)<span class="op">;</span> a.set_xlabel(<span class="st">"$s$"</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"$P(s)$"</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>spline smoothing s     Var(s)
+          1000         0.2744
+           100         0.1674</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            10         0.0204</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             1         0.0021
+             0         0.0000</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="solution_ch2_unfolding_files/figure-html/cell-8-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>Under-fitting.</strong> A quadratic cannot follow the Gaussian bulk of the staircase. The residual <span class="math inline">\(N-\bar N\)</span> then still contains a slow trend, the unfolded spacings inherit a slowly varying scale, and the variance is inflated to about <span class="math inline">\(0.36\)</span>. The histogram is a Wigner-like shape smeared by that residual density.</p>
+<p><strong>Over-fitting sets in gradually with the degree of a global polynomial.</strong> A polynomial of degree <span class="math inline">\(p\)</span> fitted to <span class="math inline">\(n\)</span> levels can bend on the scale of <span class="math inline">\(n/p\)</span> spacings, so once <span class="math inline">\(n/p\)</span> drops to a few tens of spacings, where the number variance is already of order one, the fit starts to absorb the fluctuations it should leave alone. On the <span class="math inline">\(1664\)</span> central levels a Chebyshev fit gives <span class="math inline">\(\mathrm{Var}(s)=0.275,\,0.273,\,0.269,\,0.250,\,0.18\)</span> at degree <span class="math inline">\(9,\,50,\,100,\,300,\,800\)</span>: a slow drift, not a cliff. The monomial fit on the unscaled energy axis seems immune, returning about <span class="math inline">\(0.27\)</span> even at nominal degree <span class="math inline">\(300\)</span>, but only because the system is ill conditioned beyond degree twenty and from degree forty the solver truncates it, keeping about fifty singular values at nominal degree <span class="math inline">\(300\)</span> and warning that the fit is poorly conditioned. The value <span class="math inline">\(0.271\)</span> is indistinguishable at this sample size (standard error about <span class="math inline">\(0.01\)</span>) from the well-conditioned fits of degree nine to one hundred, so the apparent robustness is a property of the truncated solver, not of the polynomial.</p>
+<p><strong>Over-fitting is abrupt with a local fit.</strong> A cubic smoothing spline with the smoothing turned down follows the staircase level by level, so <span class="math inline">\(\epsilon_{n+1}-\epsilon_n\approx1\)</span> for every <span class="math inline">\(n\)</span>, and the variance collapses toward zero (about <span class="math inline">\(0.002\)</span> at <span class="math inline">\(s=1\)</span>, exactly <span class="math inline">\(0\)</span> for the interpolating spline). The histogram becomes a spike at <span class="math inline">\(s=1\)</span>: all correlations, including the repulsion the diagnostic exists to see, have been absorbed into <span class="math inline">\(\bar N\)</span>.</p>
+<p><strong>The safe recipe</strong> is therefore a global polynomial of degree between about five and fifteen, fitted in a rescaled or orthogonal basis to the central part of the band, with the check that the variance does not move when the degree is varied within that range.</p>
+<hr>
+</section>
+</section>
+<section id="adversarial-check-every-quoted-number-machine-verified" class="level2">
+<h2 class="anchored" data-anchor-id="adversarial-check-every-quoted-number-machine-verified">Adversarial check — every quoted number, machine-verified</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:16.970015Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:16.969470Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:24.812694Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:24.812055Z&quot;}" data-execution_count="8">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>checks <span class="op">=</span> []</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>r_full, r_plus, r_minus <span class="op">=</span> gap_ratio(E_full), gap_ratio(E_plus), gap_ratio(E_minus)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="st">"sector dimensions 2080 / 2016"</span>, (<span class="bu">len</span>(E_plus), <span class="bu">len</span>(E_minus)) <span class="op">==</span> (<span class="dv">2080</span>, <span class="dv">2016</span>)))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"full-spectrum &lt;r&gt; = </span><span class="sc">{</span>r_full<span class="sc">:.3f}</span><span class="ss"> is close to 0.42"</span>, <span class="bu">abs</span>(r_full <span class="op">-</span> <span class="fl">0.42</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"+1 sector &lt;r&gt; = </span><span class="sc">{</span>r_plus<span class="sc">:.3f}</span><span class="ss"> is close to 0.54"</span>, <span class="bu">abs</span>(r_plus <span class="op">-</span> <span class="fl">0.54</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"-1 sector &lt;r&gt; = </span><span class="sc">{</span>r_minus<span class="sc">:.3f}</span><span class="ss"> is close to 0.52"</span>, <span class="bu">abs</span>(r_minus <span class="op">-</span> <span class="fl">0.52</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>e9, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">9</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-9 unfolding: mean spacing = </span><span class="sc">{</span>np<span class="sc">.</span>diff(e9)<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss"> (unity)"</span>, <span class="bu">abs</span>(np.diff(e9).mean() <span class="op">-</span> <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">5e-3</span>))</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-9 unfolding: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e9))<span class="sc">:.3f}</span><span class="ss"> (0.275)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e9)) <span class="op">-</span> <span class="fl">0.275</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>e2, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">2</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-2 under-fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e2))<span class="sc">:.3f}</span><span class="ss"> (0.36)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e2)) <span class="op">-</span> <span class="fl">0.36</span>) <span class="op">&lt;</span> <span class="fl">0.02</span>))</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>e300, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">300</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-300 Chebyshev fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e300))<span class="sc">:.3f}</span><span class="ss"> (0.250, gradual over-fit)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e300)) <span class="op">-</span> <span class="fl">0.250</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>e800, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">800</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-800 Chebyshev fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e800))<span class="sc">:.3f}</span><span class="ss"> (0.18)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e800)) <span class="op">-</span> <span class="fl">0.18</span>) <span class="op">&lt;</span> <span class="fl">0.02</span>))</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>c300, _, rank300, _, _ <span class="op">=</span> np.polyfit(Ec, Nc, <span class="dv">300</span>, full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"nominal degree-300 monomial fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(np.polyval(c300, Ec)))<span class="sc">:.3f}</span><span class="ss">, solver keeps </span><span class="sc">{</span>rank300<span class="sc">}</span><span class="ss"> of 301 singular values (truncated fit)"</span>, rank300 <span class="op">&lt;</span> <span class="dv">100</span>))</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>spl <span class="op">=</span> UnivariateSpline(Ec, Nc, k<span class="op">=</span><span class="dv">3</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"spline s=1 over-fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(spl(Ec)))<span class="sc">:.4f}</span><span class="ss"> (0.002)"</span>, var_unit_mean(np.diff(spl(Ec))) <span class="op">&lt;</span> <span class="fl">0.005</span>))</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"levels in the central 80% of the +1 sector = </span><span class="sc">{</span><span class="bu">len</span>(Ec)<span class="sc">}</span><span class="ss"> (1664)"</span>, <span class="bu">len</span>(Ec) <span class="op">==</span> <span class="dv">1664</span>))</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"Wigner-surmise variance 4/pi - 1 = </span><span class="sc">{</span><span class="dv">4</span><span class="op">/</span>np<span class="sc">.</span>pi<span class="op">-</span><span class="dv">1</span><span class="sc">:.4f}</span><span class="ss">"</span>, <span class="bu">abs</span>(<span class="dv">4</span><span class="op">/</span>np.pi <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> <span class="fl">0.2732</span>) <span class="op">&lt;</span> <span class="fl">1e-3</span>))</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, ok <span class="kw">in</span> checks:</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>((<span class="st">"PASS "</span> <span class="cf">if</span> ok <span class="cf">else</span> <span class="st">"FAIL "</span>) <span class="op">+</span> name)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">all</span>(ok <span class="cf">for</span> _, ok <span class="kw">in</span> checks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>PASS sector dimensions 2080 / 2016
+PASS full-spectrum &lt;r&gt; = 0.420 is close to 0.42
+PASS +1 sector &lt;r&gt; = 0.543 is close to 0.54
+PASS -1 sector &lt;r&gt; = 0.521 is close to 0.52
+PASS degree-9 unfolding: mean spacing = 1.0012 (unity)
+PASS degree-9 unfolding: Var(s) = 0.275 (0.275)
+PASS degree-2 under-fit: Var(s) = 0.358 (0.36)
+PASS degree-300 Chebyshev fit: Var(s) = 0.250 (0.250, gradual over-fit)
+PASS degree-800 Chebyshev fit: Var(s) = 0.183 (0.18)
+PASS nominal degree-300 monomial fit: Var(s) = 0.271, solver keeps 54 of 301 singular values (truncated fit)
+PASS spline s=1 over-fit: Var(s) = 0.0021 (0.002)
+PASS levels in the central 80% of the +1 sector = 1664 (1664)
+PASS Wigner-surmise variance 4/pi - 1 = 0.2732</code></pre>
+</div>
+</div>
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>Unfolding removes the global density of states by mapping each level to the smooth staircase value <span class="math inline">\(\epsilon_n=\bar N(E_n)\)</span>, after which spacings from every part of the band are comparable and the Wigner surmise appears. Two errors dominate practice. Forgetting to resolve a symmetry superposes independent sequences and pulls the statistics toward Poisson; here the reflection symmetry alone drags <span class="math inline">\(\langle r\rangle\)</span> from <span class="math inline">\(0.54\)</span> to <span class="math inline">\(0.42\)</span>. Fitting the staircase too rigidly leaves residual density and inflates the spacing variance; raising the degree of a global polynomial over-fits gradually, and a local fit that follows individual levels erases the correlations abruptly. A monomial fit at high nominal degree only looks harmless because the solver truncates it to an effective degree of order fifty.</p>
+</section>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<ul>
+<li>The gap ratio used in part (b) is the unfolding-free diagnostic of Chapter 2; the Wigner surmise it is compared with is derived in <a href="../../notebooks/ch2/solution_ch2_goe_spacing.html">the <span class="math inline">\(2\times2\)</span> GOE notebook</a>.</li>
+<li>The residual <span class="math inline">\(N_{\rm fl}\)</span> of part (c) is the object whose variance over a window is the number variance <span class="math inline">\(\Sigma^2\)</span>, the static measure of spectral rigidity whose dynamical face is the ramp of the spectral form factor (Chapter 4).</li>
+<li>The same mixed-field Ising chain, in the same reflection sector, is the many-body example whose spectral form factor is computed in Chapter 4.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>Bohigas, Giannoni and Schmit, <em>Characterization of chaotic quantum spectra and universality of level fluctuation laws</em>, Phys. Rev.&nbsp;Lett. 52, 1 (1984).</li>
+<li>Rosenzweig and Porter, <em>“Repulsion of energy levels” in complex atomic spectra</em>, Phys. Rev.&nbsp;120, 1698 (1960).</li>
+<li>Atas, Bogomolny, Giraud and Roux, <em>Distribution of the ratio of consecutive level spacings in random matrix ensembles</em>, Phys. Rev.&nbsp;Lett. 110, 084101 (2013).</li>
+<li>Haake, <em>Quantum Signatures of Chaos</em>, Springer (2010).</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Eigenphase Repulsion in the CUE</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/03-haar-weingarten.html" class="pagination-link">
+        <span class="nav-page-text">3 · Haar Measure &amp; Weingarten Calculus</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2026 Marcin Płodzień · MIT License</div>   
+    <div class="nav-footer-right"><a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

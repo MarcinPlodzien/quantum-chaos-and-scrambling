@@ -330,6 +330,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -623,7 +628,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="fading-memory-the-echo-state-property" class="level3">
 <h3 class="anchored" data-anchor-id="fading-memory-the-echo-state-property">Fading memory (the echo-state property)</h3>
 <p>Memory of the <em>inputs</em> is useful; memory of the <em>initial condition</em> is not — a forecaster must give the same answer regardless of how it was started. The injection map guarantees this. For any two states <span class="math inline">\(\hat\rho,\hat\sigma\)</span>, <span class="math display">\[\mathcal{E}_s(\hat\rho)-\mathcal{E}_s(\hat\sigma)=\big(\mathrm{Tr}_{\rm node}[\hat\rho]-\mathrm{Tr}_{\rm node}[\hat\sigma]\big)\otimes\hat\rho_{\rm in}(s),\]</span> because the freshly written node is identical for both. Taking the trace norm and using that it factorizes over the tensor product (<span class="math inline">\(\|\hat\rho_{\rm in}(s)\|_1=1\)</span>), <span class="math display">\[\|\mathcal{E}_s(\hat\rho)-\mathcal{E}_s(\hat\sigma)\|_1=\big\|\mathrm{Tr}_{\rm node}[\hat\rho-\hat\sigma]\big\|_1\le\|\hat\rho-\hat\sigma\|_1,\]</span> the last step being contractivity of the partial trace. The unitary <span class="math inline">\(\mathcal{U}_\tau\)</span> preserves the trace distance, so a full step is non-expansive, <span class="math inline">\(\|\hat\rho_n-\hat\sigma_n\|_1\le\|\hat\rho_{n-1}-\hat\sigma_{n-1}\|_1\)</span>. The bound is <em>strict</em> whenever the mixing spreads the body difference back onto the node, which the next injection then erases: generic <span class="math inline">\(\hat H\)</span> therefore drives <span class="math inline">\(\|\hat\rho_n-\hat\sigma_n\|_1\to0\)</span> geometrically. That convergence is the fading-memory / echo-state property, and it is what a reversible (unitary) reservoir alone could never provide — the irreversible partial trace is essential.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:55:35.304190Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:55:35.303960Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:55:35.513589Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:55:35.513225Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:17:04.835044Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:17:04.834672Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:17:05.372249Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:17:05.369848Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -673,7 +678,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   N=5 (Hilbert dim  32):  max|numeric-formula| = 2.2e-16</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:55:35.515587Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:55:35.515178Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:55:35.519411Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:55:35.519086Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:17:05.378078Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:17:05.377715Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:17:05.393838Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:17:05.393222Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) two-step feature depends on BOTH s1 and s2 (memory): show d/ds1 of &lt;Z3&gt;_{rho2} != 0</span></span>
@@ -699,7 +704,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Nonzero gaps =&gt; the feature remembers s1 one step later.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:55:35.520758Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:55:35.520493Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:55:36.164876Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:55:36.164542Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:17:05.402159Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:17:05.401864Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:17:07.214091Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:17:07.213508Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -730,7 +735,7 @@ the reservoir forgets its initial condition -&gt; echo-state property holds.</co
 </section>
 <section id="adversarial-check-every-claim-machine-verified" class="level3">
 <h3 class="anchored" data-anchor-id="adversarial-check-every-claim-machine-verified">Adversarial check — every claim, machine-verified</h3>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:55:36.166490Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:55:36.166244Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:55:36.173881Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:55:36.173570Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:17:07.222351Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:17:07.221743Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:17:07.245730Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:17:07.245154Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>checks<span class="op">=</span>[]</span>

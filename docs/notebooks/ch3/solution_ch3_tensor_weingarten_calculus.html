@@ -332,6 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -708,7 +713,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Closed loop</strong> (wire with no open ends) = contributes a factor of <span class="math inline">\(D\)</span></li>
 <li><strong>Cup</strong> (semicircular arc connecting two wires) = Kronecker delta <span class="math inline">\(\delta_{ij}\)</span></li>
 </ul>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:51:57.996239Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:51:57.996051Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:51:58.638640Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:51:58.638127Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:21.756017Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:21.755673Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:23.086614Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:23.085858Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports used throughout</span></span>
@@ -794,7 +799,7 @@ S_3 has 6 elements:
 <p><strong>Step 2, Apply <span class="math inline">\(k=1\)</span> Weingarten (<span class="math inline">\(|S_1| = 1\)</span>, only <span class="math inline">\(\pi = \sigma = \mathrm{id}\)</span>):</strong> <span class="math display">\[\mathbb{E}[U_{ij}U^*_{lk}] = \frac{1}{D}\,\delta_{il}\,\delta_{jk}\]</span></p>
 <p><strong>Step 3, Contract deltas:</strong> - <span class="math inline">\(\delta_{jk}\)</span> closes a loop through <span class="math inline">\(\hat{A}\)</span>: <span class="math inline">\(\sum_j A_{jj} = \mathrm{Tr}(\hat{A})\)</span> - <span class="math inline">\(\delta_{il}\)</span> closes a loop through <span class="math inline">\(\hat{B}\)</span>: <span class="math inline">\(\sum_i B_{ii} = \mathrm{Tr}(\hat{B})\)</span></p>
 <p><strong>Result:</strong> <span class="math inline">\(\mathbb{E}[\mathrm{Tr}(UAU^\dagger B)] = \frac{\mathrm{Tr}(\hat{A})\,\mathrm{Tr}(\hat{B})}{D}\)</span></p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:51:58.640354Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:51:58.640155Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:51:58.788588Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:51:58.787919Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:23.091419Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:23.090875Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:23.465023Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:23.463045Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (a): SymPy symbolic verification ==='</span>)</span>
@@ -826,36 +831,38 @@ S_3 has 6 elements:
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Part (a): SymPy symbolic verification ===
 
-Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
-  Index contraction: a00*b00/3 + a00*b11/3 + a00*b22/3 + a11*b00/3 + a11*b11/3 + a11*b22/3 + a22*b00/3 + a22*b11/3 + a22*b22/3
+Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Index contraction: a00*b00/3 + a00*b11/3 + a00*b22/3 + a11*b00/3 + a11*b11/3 + a11*b22/3 + a22*b00/3 + a22*b11/3 + a22*b22/3
   Formula Tr(A)Tr(B)/D: (a00 + a11 + a22)*(b00 + b11 + b22)/3
   MATCH</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:51:58.790301Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:51:58.790156Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:00.829548Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:00.829135Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:23.468902Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:23.468303Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:28.735511Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:28.734777Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (a): NumPy Monte Carlo cross-check ==='</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D_val <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>]:</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Random complex matrices</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    A_n <span class="op">=</span> np.random.randn(D_val, D_val) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D_val, D_val)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    B_n <span class="op">=</span> np.random.randn(D_val, D_val) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D_val, D_val)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Monte Carlo: sample Haar-random U, compute Tr(UAU†B)</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    mc_vals <span class="op">=</span> [np.trace(U <span class="op">@</span> A_n <span class="op">@</span> U.conj().T <span class="op">@</span> B_n)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> U <span class="kw">in</span> [unitary_group.rvs(D_val) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15000</span>)]]</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    mc_mean <span class="op">=</span> np.mean(mc_vals)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Analytical</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> np.trace(A_n) <span class="op">*</span> np.trace(B_n) <span class="op">/</span> D_val</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  D=</span><span class="sc">{</span>D_val<span class="sc">}</span><span class="ss">: MC = </span><span class="sc">{</span>mc_mean<span class="sc">:.4f}</span><span class="ss">, analytic = </span><span class="sc">{</span>exact<span class="sc">:.4f}</span><span class="ss">, '</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'|err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc_mean <span class="op">-</span> exact)<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_mean <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="fl">0.3</span> <span class="op">*</span> <span class="bu">max</span>(<span class="bu">abs</span>(exact), <span class="fl">1.0</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All first-moment checks PASS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (a): NumPy Monte Carlo cross-check ==='</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D_val <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>]:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Random complex matrices</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    A_n <span class="op">=</span> np.random.randn(D_val, D_val) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D_val, D_val)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    B_n <span class="op">=</span> np.random.randn(D_val, D_val) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D_val, D_val)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Monte Carlo: sample Haar-random U, compute Tr(UAU†B)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    mc_vals <span class="op">=</span> [np.trace(U <span class="op">@</span> A_n <span class="op">@</span> U.conj().T <span class="op">@</span> B_n)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> U <span class="kw">in</span> [unitary_group.rvs(D_val) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15000</span>)]]</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    mc_mean <span class="op">=</span> np.mean(mc_vals)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Analytical</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> np.trace(A_n) <span class="op">*</span> np.trace(B_n) <span class="op">/</span> D_val</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  D=</span><span class="sc">{</span>D_val<span class="sc">}</span><span class="ss">: MC = </span><span class="sc">{</span>mc_mean<span class="sc">:.4f}</span><span class="ss">, analytic = </span><span class="sc">{</span>exact<span class="sc">:.4f}</span><span class="ss">, '</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'|err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc_mean <span class="op">-</span> exact)<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_mean <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="fl">0.3</span> <span class="op">*</span> <span class="bu">max</span>(<span class="bu">abs</span>(exact), <span class="fl">1.0</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All first-moment checks PASS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Part (a): NumPy Monte Carlo cross-check ===</code></pre>
@@ -914,60 +921,60 @@ Step 2: Applying E[U_{ij}U*_{lk}] = δ_{il}δ_{jk}/D index by index...
 </tbody>
 </table>
 <p><strong>Step 5, Assembly:</strong> <span class="math display">\[\mathbb{E}[\mathrm{Tr}(\hat{\rho}_A^2)] = \frac{1}{D(D+1)}(D_A D_B^2 + D_A^2 D_B) = \frac{D_A D_B(D_A + D_B)}{D_A D_B(D_A D_B + 1)} = \frac{D_A + D_B}{D_A D_B + 1}\]</span></p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:00.831334Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:00.831128Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:00.899983Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:00.899523Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:28.742046Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:28.741304Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:28.907595Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:28.906873Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): Step-by-step purity derivation ==='</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define permutation composition</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>perm_id <span class="op">=</span> {<span class="dv">0</span>:<span class="dv">0</span>, <span class="dv">1</span>:<span class="dv">1</span>}</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>perm_12 <span class="op">=</span> {<span class="dv">0</span>:<span class="dv">1</span>, <span class="dv">1</span>:<span class="dv">0</span>}</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compose_d(p1, p2): <span class="cf">return</span> {k: p1[p2[k]] <span class="cf">for</span> k <span class="kw">in</span> p2}</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ncyc_d(p):</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    visited, c <span class="op">=</span> <span class="bu">set</span>(), <span class="dv">0</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> p:</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">not</span> <span class="kw">in</span> visited:</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            c <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">=</span> s</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> k <span class="kw">not</span> <span class="kw">in</span> visited: visited.add(k)<span class="op">;</span> k <span class="op">=</span> p[k]</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Show the sigma sum</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 2: Sigma sum (free because reference state fixes all inputs)'</span>)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>D_sym <span class="op">=</span> Symbol(<span class="st">'D'</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>wg_sum <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(D_sym<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> (<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(D_sym<span class="op">*</span>(D_sym<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>))</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Wg(id) + Wg((12)) = </span><span class="sc">{</span>simplify(wg_sum)<span class="sc">}</span><span class="ss"> = 1/[D(D+1)]'</span>)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> simplify(wg_sum <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>(D_sym<span class="op">*</span>(D_sym<span class="op">+</span><span class="dv">1</span>))) <span class="op">==</span> <span class="dv">0</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  Confirmed'</span>)</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Loop counting table</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>ext_A <span class="op">=</span> perm_12  <span class="co"># SWAP</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>ext_B <span class="op">=</span> perm_id  <span class="co"># identity</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 3: Cycle counting table'</span>)</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'     π | Eff on A (π∘SWAP) | Eff on B (π∘id) | Loop factor'</span>)</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">60</span>)</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>total_loops <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, pi <span class="kw">in</span> [(<span class="st">'id'</span>, perm_id), (<span class="st">'(12)'</span>, perm_12)]:</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    eA <span class="op">=</span> compose_d(pi, ext_A)</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    eB <span class="op">=</span> compose_d(pi, ext_B)</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    cA, cB <span class="op">=</span> ncyc_d(eA), ncyc_d(eB)</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>name<span class="sc">:&gt;6}</span><span class="ss"> | </span><span class="sc">{</span>cA<span class="sc">}</span><span class="ss"> cycle(s) → D_A^</span><span class="sc">{</span>cA<span class="sc">}</span><span class="ss">    | </span><span class="sc">{</span>cB<span class="sc">}</span><span class="ss"> cycle(s) → D_B^</span><span class="sc">{</span>cB<span class="sc">}</span><span class="ss">  | D_A^</span><span class="sc">{</span>cA<span class="sc">}</span><span class="ss">·D_B^</span><span class="sc">{</span>cB<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Numerical cross-check</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 4: Numerical verification'</span>)</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dA, dB <span class="kw">in</span> [(<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">4</span>), (<span class="dv">3</span>,<span class="dv">3</span>), (<span class="dv">4</span>,<span class="dv">4</span>), (<span class="dv">2</span>,<span class="dv">8</span>)]:</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> dA <span class="op">*</span> dB</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    wg_s <span class="op">=</span> <span class="fl">1.0</span><span class="op">/</span>(D<span class="op">*</span>(D<span class="op">+</span><span class="dv">1</span>))  <span class="co"># sum_tau Wg(tau)</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    loops <span class="op">=</span> dA<span class="op">*</span>dB<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> dA<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dB</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    purity <span class="op">=</span> wg_s <span class="op">*</span> loops</span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> (dA<span class="op">+</span>dB) <span class="op">/</span> (dA<span class="op">*</span>dB <span class="op">+</span> <span class="fl">1.0</span>)</span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  DA=</span><span class="sc">{</span>dA<span class="sc">}</span><span class="ss">,DB=</span><span class="sc">{</span>dB<span class="sc">}</span><span class="ss">: analytic = </span><span class="sc">{</span>purity<span class="sc">:.8f}</span><span class="ss">, formula = </span><span class="sc">{</span>exact<span class="sc">:.8f}</span><span class="ss">, '</span></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'match = </span><span class="sc">{</span><span class="bu">abs</span>(purity<span class="op">-</span>exact) <span class="op">&lt;</span> <span class="fl">1e-12</span><span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(purity <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="fl">1e-12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): Step-by-step purity derivation ==='</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define permutation composition</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>perm_id <span class="op">=</span> {<span class="dv">0</span>:<span class="dv">0</span>, <span class="dv">1</span>:<span class="dv">1</span>}</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>perm_12 <span class="op">=</span> {<span class="dv">0</span>:<span class="dv">1</span>, <span class="dv">1</span>:<span class="dv">0</span>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compose_d(p1, p2): <span class="cf">return</span> {k: p1[p2[k]] <span class="cf">for</span> k <span class="kw">in</span> p2}</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ncyc_d(p):</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    visited, c <span class="op">=</span> <span class="bu">set</span>(), <span class="dv">0</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> p:</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">not</span> <span class="kw">in</span> visited:</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>            c <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">=</span> s</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> k <span class="kw">not</span> <span class="kw">in</span> visited: visited.add(k)<span class="op">;</span> k <span class="op">=</span> p[k]</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Show the sigma sum</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 2: Sigma sum (free because reference state fixes all inputs)'</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>D_sym <span class="op">=</span> Symbol(<span class="st">'D'</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>wg_sum <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(D_sym<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> (<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(D_sym<span class="op">*</span>(D_sym<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Wg(id) + Wg((12)) = </span><span class="sc">{</span>simplify(wg_sum)<span class="sc">}</span><span class="ss"> = 1/[D(D+1)]'</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> simplify(wg_sum <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>(D_sym<span class="op">*</span>(D_sym<span class="op">+</span><span class="dv">1</span>))) <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  Confirmed'</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Loop counting table</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>ext_A <span class="op">=</span> perm_12  <span class="co"># SWAP</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>ext_B <span class="op">=</span> perm_id  <span class="co"># identity</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 3: Cycle counting table'</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'     π | Eff on A (π∘SWAP) | Eff on B (π∘id) | Loop factor'</span>)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>total_loops <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, pi <span class="kw">in</span> [(<span class="st">'id'</span>, perm_id), (<span class="st">'(12)'</span>, perm_12)]:</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    eA <span class="op">=</span> compose_d(pi, ext_A)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    eB <span class="op">=</span> compose_d(pi, ext_B)</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    cA, cB <span class="op">=</span> ncyc_d(eA), ncyc_d(eB)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>name<span class="sc">:&gt;6}</span><span class="ss"> | </span><span class="sc">{</span>cA<span class="sc">}</span><span class="ss"> cycle(s) → D_A^</span><span class="sc">{</span>cA<span class="sc">}</span><span class="ss">    | </span><span class="sc">{</span>cB<span class="sc">}</span><span class="ss"> cycle(s) → D_B^</span><span class="sc">{</span>cB<span class="sc">}</span><span class="ss">  | D_A^</span><span class="sc">{</span>cA<span class="sc">}</span><span class="ss">·D_B^</span><span class="sc">{</span>cB<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Numerical cross-check</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 4: Numerical verification'</span>)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dA, dB <span class="kw">in</span> [(<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">4</span>), (<span class="dv">3</span>,<span class="dv">3</span>), (<span class="dv">4</span>,<span class="dv">4</span>), (<span class="dv">2</span>,<span class="dv">8</span>)]:</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> dA <span class="op">*</span> dB</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>    wg_s <span class="op">=</span> <span class="fl">1.0</span><span class="op">/</span>(D<span class="op">*</span>(D<span class="op">+</span><span class="dv">1</span>))  <span class="co"># sum_tau Wg(tau)</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    loops <span class="op">=</span> dA<span class="op">*</span>dB<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> dA<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dB</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>    purity <span class="op">=</span> wg_s <span class="op">*</span> loops</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> (dA<span class="op">+</span>dB) <span class="op">/</span> (dA<span class="op">*</span>dB <span class="op">+</span> <span class="fl">1.0</span>)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  DA=</span><span class="sc">{</span>dA<span class="sc">}</span><span class="ss">,DB=</span><span class="sc">{</span>dB<span class="sc">}</span><span class="ss">: analytic = </span><span class="sc">{</span>purity<span class="sc">:.8f}</span><span class="ss">, formula = </span><span class="sc">{</span>exact<span class="sc">:.8f}</span><span class="ss">, '</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'match = </span><span class="sc">{</span><span class="bu">abs</span>(purity<span class="op">-</span>exact) <span class="op">&lt;</span> <span class="fl">1e-12</span><span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(purity <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="fl">1e-12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Part (b): Step-by-step purity derivation ===
@@ -990,27 +997,27 @@ Step 4: Numerical verification
   DA=2,DB=8: analytic = 0.58823529, formula = 0.58823529, match = True</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:00.901568Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:00.901367Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:02.573233Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:02.572836Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:28.911181Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:28.910575Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:32.912073Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:32.911218Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): NumPy Monte Carlo cross-check ==='</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dA, dB <span class="kw">in</span> [(<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">4</span>), (<span class="dv">3</span>,<span class="dv">3</span>)]:</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> dA <span class="op">*</span> dB</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    purities <span class="op">=</span> []</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>):</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]  <span class="co"># Haar-random |ψ⟩ = U|0⟩</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        rho_A <span class="op">=</span> psi.reshape(dA, dB) <span class="op">@</span> psi.reshape(dA, dB).conj().T</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        purities.append(np.real(np.trace(rho_A <span class="op">@</span> rho_A)))</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    mc <span class="op">=</span> np.mean(purities)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    mc_err <span class="op">=</span> np.std(purities) <span class="op">/</span> np.sqrt(<span class="bu">len</span>(purities))</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> (dA <span class="op">+</span> dB) <span class="op">/</span> (dA<span class="op">*</span>dB <span class="op">+</span> <span class="fl">1.0</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  DA=</span><span class="sc">{</span>dA<span class="sc">}</span><span class="ss">,DB=</span><span class="sc">{</span>dB<span class="sc">}</span><span class="ss">: MC = </span><span class="sc">{</span>mc<span class="sc">:.4f}</span><span class="ss"> ± </span><span class="sc">{</span>mc_err<span class="sc">:.4f}</span><span class="ss">, '</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'analytic = </span><span class="sc">{</span>exact<span class="sc">:.4f}</span><span class="ss">, |err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc <span class="op">-</span> exact)<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="dv">3</span> <span class="op">*</span> mc_err <span class="op">+</span> <span class="fl">0.01</span>  <span class="co"># within ~3σ</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All purity checks PASS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (b): NumPy Monte Carlo cross-check ==='</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dA, dB <span class="kw">in</span> [(<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">4</span>), (<span class="dv">3</span>,<span class="dv">3</span>)]:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> dA <span class="op">*</span> dB</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    purities <span class="op">=</span> []</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>):</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> unitary_group.rvs(D)[:, <span class="dv">0</span>]  <span class="co"># Haar-random |ψ⟩ = U|0⟩</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        rho_A <span class="op">=</span> psi.reshape(dA, dB) <span class="op">@</span> psi.reshape(dA, dB).conj().T</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        purities.append(np.real(np.trace(rho_A <span class="op">@</span> rho_A)))</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    mc <span class="op">=</span> np.mean(purities)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    mc_err <span class="op">=</span> np.std(purities) <span class="op">/</span> np.sqrt(<span class="bu">len</span>(purities))</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    exact <span class="op">=</span> (dA <span class="op">+</span> dB) <span class="op">/</span> (dA<span class="op">*</span>dB <span class="op">+</span> <span class="fl">1.0</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  DA=</span><span class="sc">{</span>dA<span class="sc">}</span><span class="ss">,DB=</span><span class="sc">{</span>dB<span class="sc">}</span><span class="ss">: MC = </span><span class="sc">{</span>mc<span class="sc">:.4f}</span><span class="ss"> ± </span><span class="sc">{</span>mc_err<span class="sc">:.4f}</span><span class="ss">, '</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'analytic = </span><span class="sc">{</span>exact<span class="sc">:.4f}</span><span class="ss">, |err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc <span class="op">-</span> exact)<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc <span class="op">-</span> exact) <span class="op">&lt;</span> <span class="dv">3</span> <span class="op">*</span> mc_err <span class="op">+</span> <span class="fl">0.01</span>  <span class="co"># within ~3σ</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All purity checks PASS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Part (b): NumPy Monte Carlo cross-check ===</code></pre>
@@ -1038,39 +1045,39 @@ Step 4: Numerical verification
 <p>This sets <span class="math inline">\(j_a = i_a\)</span> and <span class="math inline">\(m_a = \ell_a\)</span> (the trace constraint: all indices are “diagonal”).</p>
 <p><strong>Step 2, Weingarten sum:</strong> For each <span class="math inline">\((\pi, \sigma) \in S_3 \times S_3\)</span>, the delta product <span class="math inline">\(\prod_a \delta_{i_a, \ell_{\pi(a)}} \delta_{i_a, \ell_{\sigma(a)}}\)</span> forces <span class="math inline">\(\ell_{\pi(a)} = \ell_{\sigma(a)}\)</span> for all <span class="math inline">\(a\)</span>. The number of free summation indices equals <span class="math inline">\(D^{\#\text{cycles}(\pi^{-1}\sigma)}\)</span>.</p>
 <p><strong>Step 3, Group by cycle type of <span class="math inline">\(\pi^{-1}\sigma\)</span>:</strong> Since <span class="math inline">\(\mathrm{Wg}\)</span> depends only on cycle type, we count how many of the <span class="math inline">\(36\)</span> pairs <span class="math inline">\((\pi, \sigma)\)</span> give each cycle type of <span class="math inline">\(\pi^{-1}\sigma\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:02.574827Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:02.574607Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:02.579184Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:02.578877Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:32.916456Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:32.916140Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:32.927316Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:32.926225Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (c): Full S₃ Weingarten calculus ==='</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Enumerate S_3 and show cycle types</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>S3 <span class="op">=</span> <span class="bu">list</span>(permutations(<span class="bu">range</span>(<span class="dv">3</span>)))</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Step 1: S₃ has </span><span class="sc">{</span><span class="bu">len</span>(S3)<span class="sc">}</span><span class="ss"> elements, giving </span><span class="sc">{</span><span class="bu">len</span>(S3)<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss"> pairs (π,σ)'</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ct_count <span class="op">=</span> Counter(cycle_type(p) <span class="cf">for</span> p <span class="kw">in</span> S3)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ct, n <span class="kw">in</span> <span class="bu">sorted</span>(ct_count.items()):</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  Cycle type </span><span class="sc">{</span>ct<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> permutations'</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Count (π,σ) pairs by cycle type of π^{-1}σ</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 2: Distribution of π⁻¹σ cycle types across all 36 pairs'</span>)</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>pair_types <span class="op">=</span> defaultdict(<span class="kw">lambda</span>: {<span class="st">'count'</span>: <span class="dv">0</span>, <span class="st">'ncyc'</span>: <span class="dv">0</span>})</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pi <span class="kw">in</span> S3:</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sig <span class="kw">in</span> S3:</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        prod <span class="op">=</span> compose(inverse(pi), sig)</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        ct <span class="op">=</span> cycle_type(prod)</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        pair_types[ct][<span class="st">'count'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        pair_types[ct][<span class="st">'ncyc'</span>] <span class="op">=</span> num_cycles(prod)</span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  cycle type | # pairs | # cycles | loop factor'</span>)</span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ct <span class="kw">in</span> <span class="bu">sorted</span>(pair_types.keys()):</span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> pair_types[ct]</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    cnt <span class="op">=</span> d[<span class="st">"count"</span>]</span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    ncyc <span class="op">=</span> d[<span class="st">"ncyc"</span>]</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="bu">str</span>(ct)<span class="sc">:&gt;12}</span><span class="ss"> | </span><span class="sc">{</span>cnt<span class="sc">:7d}</span><span class="ss"> | </span><span class="sc">{</span>ncyc<span class="sc">:8d}</span><span class="ss"> | D^</span><span class="sc">{</span>ncyc<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'=== Part (c): Full S₃ Weingarten calculus ==='</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Enumerate S_3 and show cycle types</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>S3 <span class="op">=</span> <span class="bu">list</span>(permutations(<span class="bu">range</span>(<span class="dv">3</span>)))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Step 1: S₃ has </span><span class="sc">{</span><span class="bu">len</span>(S3)<span class="sc">}</span><span class="ss"> elements, giving </span><span class="sc">{</span><span class="bu">len</span>(S3)<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss"> pairs (π,σ)'</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>ct_count <span class="op">=</span> Counter(cycle_type(p) <span class="cf">for</span> p <span class="kw">in</span> S3)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ct, n <span class="kw">in</span> <span class="bu">sorted</span>(ct_count.items()):</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  Cycle type </span><span class="sc">{</span>ct<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> permutations'</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Count (π,σ) pairs by cycle type of π^{-1}σ</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 2: Distribution of π⁻¹σ cycle types across all 36 pairs'</span>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>pair_types <span class="op">=</span> defaultdict(<span class="kw">lambda</span>: {<span class="st">'count'</span>: <span class="dv">0</span>, <span class="st">'ncyc'</span>: <span class="dv">0</span>})</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pi <span class="kw">in</span> S3:</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sig <span class="kw">in</span> S3:</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>        prod <span class="op">=</span> compose(inverse(pi), sig)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        ct <span class="op">=</span> cycle_type(prod)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        pair_types[ct][<span class="st">'count'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        pair_types[ct][<span class="st">'ncyc'</span>] <span class="op">=</span> num_cycles(prod)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  cycle type | # pairs | # cycles | loop factor'</span>)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ct <span class="kw">in</span> <span class="bu">sorted</span>(pair_types.keys()):</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> pair_types[ct]</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    cnt <span class="op">=</span> d[<span class="st">"count"</span>]</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    ncyc <span class="op">=</span> d[<span class="st">"ncyc"</span>]</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="bu">str</span>(ct)<span class="sc">:&gt;12}</span><span class="ss"> | </span><span class="sc">{</span>cnt<span class="sc">:7d}</span><span class="ss"> | </span><span class="sc">{</span>ncyc<span class="sc">:8d}</span><span class="ss"> | D^</span><span class="sc">{</span>ncyc<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Part (c): Full S₃ Weingarten calculus ===
@@ -1089,46 +1096,46 @@ Step 2: Distribution of π⁻¹σ cycle types across all 36 pairs
         (3,) |      12 |        1 | D^1</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:02.580531Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:02.580315Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:02.584458Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:02.584099Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:32.931432Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:32.931088Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:32.942967Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:32.942017Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Compute E[|Tr(U)|^6] for several D</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 3: Explicit evaluation of the Weingarten sum'</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> wg3_values(D):</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return k=3 Weingarten function values by cycle type."""</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    dn <span class="op">=</span> D <span class="op">*</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>): (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">2</span>) <span class="op">/</span> dn,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">2</span>,<span class="dv">1</span>): <span class="op">-</span><span class="fl">1.0</span> <span class="op">/</span> ((D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span>)),</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">3</span>,): <span class="fl">2.0</span> <span class="op">/</span> dn</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'   D | '</span>, end<span class="op">=</span><span class="st">''</span>)</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ct <span class="kw">in</span> <span class="bu">sorted</span>(pair_types.keys()):</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> pair_types[ct][<span class="st">'count'</span>]</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> pair_types[ct][<span class="st">'ncyc'</span>]</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    ct_str <span class="op">=</span> <span class="bu">str</span>(ct)</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> x Wg(</span><span class="sc">{</span>ct_str<span class="sc">}</span><span class="ss">) x D^</span><span class="sc">{</span>nc<span class="sc">}</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">' | '</span>)</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total'</span>)</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">200</span>]:</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> wg3_values(D)</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    terms <span class="op">=</span> []</span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ct <span class="kw">in</span> <span class="bu">sorted</span>(pair_types.keys()):</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pair_types[ct][<span class="st">'count'</span>]</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>        nc <span class="op">=</span> pair_types[ct][<span class="st">'ncyc'</span>]</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>        contrib <span class="op">=</span> count <span class="op">*</span> W[ct] <span class="op">*</span> D<span class="op">**</span>nc</span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>        terms.append(<span class="ss">f'</span><span class="sc">{</span>contrib<span class="sc">:+10.4f}</span><span class="ss">'</span>)</span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> contrib</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>D<span class="sc">:4d}</span><span class="ss"> | '</span> <span class="op">+</span> <span class="st">' | '</span>.join(terms) <span class="op">+</span> <span class="ss">f' | </span><span class="sc">{</span>total<span class="sc">:6.1f}</span><span class="ss">'</span>)</span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Result: E[|Tr(U)|⁶] = 6 = 3! for all D ≥ 3'</span>)</span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'This is the CUE moment theorem: E[|Tr(U)|^</span><span class="sc">{2k}</span><span class="st">] = k!'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Compute E[|Tr(U)|^6] for several D</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 3: Explicit evaluation of the Weingarten sum'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> wg3_values(D):</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return k=3 Weingarten function values by cycle type."""</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    dn <span class="op">=</span> D <span class="op">*</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>): (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">2</span>) <span class="op">/</span> dn,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">2</span>,<span class="dv">1</span>): <span class="op">-</span><span class="fl">1.0</span> <span class="op">/</span> ((D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span>)),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">3</span>,): <span class="fl">2.0</span> <span class="op">/</span> dn</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'   D | '</span>, end<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ct <span class="kw">in</span> <span class="bu">sorted</span>(pair_types.keys()):</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> pair_types[ct][<span class="st">'count'</span>]</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> pair_types[ct][<span class="st">'ncyc'</span>]</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    ct_str <span class="op">=</span> <span class="bu">str</span>(ct)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> x Wg(</span><span class="sc">{</span>ct_str<span class="sc">}</span><span class="ss">) x D^</span><span class="sc">{</span>nc<span class="sc">}</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">' | '</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total'</span>)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">200</span>]:</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> wg3_values(D)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    terms <span class="op">=</span> []</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ct <span class="kw">in</span> <span class="bu">sorted</span>(pair_types.keys()):</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pair_types[ct][<span class="st">'count'</span>]</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>        nc <span class="op">=</span> pair_types[ct][<span class="st">'ncyc'</span>]</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>        contrib <span class="op">=</span> count <span class="op">*</span> W[ct] <span class="op">*</span> D<span class="op">**</span>nc</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>        terms.append(<span class="ss">f'</span><span class="sc">{</span>contrib<span class="sc">:+10.4f}</span><span class="ss">'</span>)</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> contrib</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>D<span class="sc">:4d}</span><span class="ss"> | '</span> <span class="op">+</span> <span class="st">' | '</span>.join(terms) <span class="op">+</span> <span class="ss">f' | </span><span class="sc">{</span>total<span class="sc">:6.1f}</span><span class="ss">'</span>)</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Result: E[|Tr(U)|⁶] = 6 = 3! for all D ≥ 3'</span>)</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'This is the CUE moment theorem: E[|Tr(U)|^</span><span class="sc">{2k}</span><span class="st">] = k!'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Step 3: Explicit evaluation of the Weingarten sum
@@ -1146,22 +1153,22 @@ Result: E[|Tr(U)|⁶] = 6 = 3! for all D ≥ 3
 This is the CUE moment theorem: E[|Tr(U)|^{2k}] = k!</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:02.585939Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:02.585703Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:05.226347Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:05.225980Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:32.947068Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:32.946033Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:39.666791Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:39.666008Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: NumPy Monte Carlo cross-check</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 4: NumPy Monte Carlo cross-check'</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>]:</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> [<span class="bu">abs</span>(np.trace(unitary_group.rvs(D)))<span class="op">**</span><span class="dv">6</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20000</span>)]</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    mc <span class="op">=</span> np.mean(vals)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    mc_err <span class="op">=</span> np.std(vals) <span class="op">/</span> np.sqrt(<span class="bu">len</span>(vals))</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  D=</span><span class="sc">{</span>D<span class="sc">:3d}</span><span class="ss">: MC = </span><span class="sc">{</span>mc<span class="sc">:.3f}</span><span class="ss"> ± </span><span class="sc">{</span>mc_err<span class="sc">:.3f}</span><span class="ss">, analytic = 6.000, '</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'|err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc <span class="op">-</span> <span class="dv">6</span>)<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc <span class="op">-</span> <span class="fl">6.0</span>) <span class="op">&lt;</span> <span class="dv">3</span><span class="op">*</span>mc_err <span class="op">+</span> <span class="fl">0.2</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All sixth-moment checks PASS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: NumPy Monte Carlo cross-check</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Step 4: NumPy Monte Carlo cross-check'</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>]:</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> [<span class="bu">abs</span>(np.trace(unitary_group.rvs(D)))<span class="op">**</span><span class="dv">6</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20000</span>)]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    mc <span class="op">=</span> np.mean(vals)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    mc_err <span class="op">=</span> np.std(vals) <span class="op">/</span> np.sqrt(<span class="bu">len</span>(vals))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  D=</span><span class="sc">{</span>D<span class="sc">:3d}</span><span class="ss">: MC = </span><span class="sc">{</span>mc<span class="sc">:.3f}</span><span class="ss"> ± </span><span class="sc">{</span>mc_err<span class="sc">:.3f}</span><span class="ss">, analytic = 6.000, '</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'|err| = </span><span class="sc">{</span><span class="bu">abs</span>(mc <span class="op">-</span> <span class="dv">6</span>)<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc <span class="op">-</span> <span class="fl">6.0</span>) <span class="op">&lt;</span> <span class="dv">3</span><span class="op">*</span>mc_err <span class="op">+</span> <span class="fl">0.2</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  All sixth-moment checks PASS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Step 4: NumPy Monte Carlo cross-check</code></pre>

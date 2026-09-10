@@ -332,6 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -684,7 +689,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:20.005917Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:20.005781Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:20.172934Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:20.172483Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:53:37.891299Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:53:37.890782Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:38.317464Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:38.316167Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -721,7 +726,7 @@ Verification: M(M^{-1}(rho)) = rho
 </section>
 <section id="part-e-numerical-implementation" class="level2">
 <h2 class="anchored" data-anchor-id="part-e-numerical-implementation">Part (e): Numerical Implementation</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:20.174346Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:20.174155Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:20.278004Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:20.277548Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:53:38.324247Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:53:38.323868Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:38.484223Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:38.483587Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -756,7 +761,7 @@ trial 4: ||M⁻¹(M(σ)) − σ|| = 2.50e-16
 Channel inversion verified.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:20.280343Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:20.280091Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:20.288760Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:20.288395Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:53:38.487848Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:53:38.487486Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:38.503471Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:38.502594Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify E[ρ̂] = ρ for ρ = |0⟩⟨0| by averaging over all 6 outcomes</span></span>
@@ -794,7 +799,7 @@ Channel inversion verified.</code></pre>
 E[ρ̂] = ρ confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:20.292124Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:20.291370Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:21.592315Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:21.591903Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:53:38.508201Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:53:38.507825Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:41.583866Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:41.580821Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full shadow protocol: 2-qubit Bell state</span></span>
@@ -891,7 +896,7 @@ T=  500: ⟨XX⟩=+0.918, ⟨ZZ⟩=+1.242, ⟨ZI⟩=+0.090</code></pre>
 Classical shadows: unbiased estimation confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:21.593857Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:21.593608Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:22.742512Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:22.742097Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:53:41.588052Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:53:41.587607Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:44.482472Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:44.479618Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

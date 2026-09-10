@@ -332,6 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -643,7 +648,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:08.064306Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:08.064180Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:08.432464Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:08.431913Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:45.581492Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:45.581223Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:46.366512Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:46.364985Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -680,37 +685,39 @@ Trace consistency: Tr(Tr(A)/D * I) = Tr(A)/D * D = Tr(A)  PASS
 
 k=2 Weingarten functions:
   Wg(id, D) = 1/(D**2 - 1)
-  Wg((12), D) = -1/(D*(D**2 - 1))
-  Sum: 1/(D*(D + 1)) = 1/(D(D+1))</code></pre>
+  Wg((12), D) = -1/(D*(D**2 - 1))</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sum: 1/(D*(D + 1)) = 1/(D(D+1))</code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:08.434379Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:08.434153Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:12.820293Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:12.819690Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:46.370710Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:46.370262Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:56.693367Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:56.692038Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>]:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.random.randn(D, D) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D, D)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> np.random.randn(D, D) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D, D)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> np.trace(A) <span class="op">*</span> np.trace(B) <span class="op">/</span> D</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    mc_vals <span class="op">=</span> []</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20000</span>):</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> unitary_group.rvs(D)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        mc_vals.append(np.trace(U <span class="op">@</span> A <span class="op">@</span> U.conj().T <span class="op">@</span> B))</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    mc_est <span class="op">=</span> np.mean(mc_vals)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">: E[Tr(UAU†B)] = </span><span class="sc">{</span>mc_est<span class="sc">:.4f}</span><span class="ss">  (pred Tr(A)Tr(B)/D = </span><span class="sc">{</span>prediction<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_est <span class="op">-</span> prediction) <span class="op">&lt;</span> <span class="fl">0.15</span><span class="op">*</span><span class="bu">abs</span>(prediction) <span class="op">+</span> <span class="fl">0.1</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First moment formula: trace factorization confirmed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>]:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.random.randn(D, D) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D, D)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> np.random.randn(D, D) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D, D)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> np.trace(A) <span class="op">*</span> np.trace(B) <span class="op">/</span> D</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    mc_vals <span class="op">=</span> []</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20000</span>):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> unitary_group.rvs(D)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        mc_vals.append(np.trace(U <span class="op">@</span> A <span class="op">@</span> U.conj().T <span class="op">@</span> B))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    mc_est <span class="op">=</span> np.mean(mc_vals)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">: E[Tr(UAU†B)] = </span><span class="sc">{</span>mc_est<span class="sc">:.4f}</span><span class="ss">  (pred Tr(A)Tr(B)/D = </span><span class="sc">{</span>prediction<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(mc_est <span class="op">-</span> prediction) <span class="op">&lt;</span> <span class="fl">0.15</span><span class="op">*</span><span class="bu">abs</span>(prediction) <span class="op">+</span> <span class="fl">0.1</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First moment formula: trace factorization confirmed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>D=2: E[Tr(UAU†B)] = -0.8845-0.5433j  (pred Tr(A)Tr(B)/D = -0.8590-0.5729j)</code></pre>
@@ -727,34 +734,34 @@ k=2 Weingarten functions:
 First moment formula: trace factorization confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:12.822139Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:12.821883Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:13.750339Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:13.749943Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:56.697655Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:56.696961Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:58.897722Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:58.896824Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Visualization: the Monte-Carlo Haar average converges to Tr(A)Tr(B)/D ---</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.6</span>, <span class="dv">4</span>))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D, c <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>], [<span class="st">"C0"</span>, <span class="st">"C1"</span>, <span class="st">"C3"</span>]):</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> rng.standard_normal((D, D)) <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> rng.standard_normal((D, D))</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> rng.standard_normal((D, D)) <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> rng.standard_normal((D, D))</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> np.trace(A) <span class="op">*</span> np.trace(B) <span class="op">/</span> D</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    Us <span class="op">=</span> unitary_group.rvs(D, size<span class="op">=</span><span class="dv">4000</span>, random_state<span class="op">=</span>rng)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> np.array([np.trace(U <span class="op">@</span> A <span class="op">@</span> U.conj().T <span class="op">@</span> B) <span class="cf">for</span> U <span class="kw">in</span> Us])</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    run <span class="op">=</span> np.cumsum(vals) <span class="op">/</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(vals) <span class="op">+</span> <span class="dv">1</span>)      <span class="co"># running Haar average</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    ax.plot(np.<span class="bu">abs</span>(run <span class="op">-</span> pred) <span class="op">/</span> <span class="bu">max</span>(<span class="bu">abs</span>(pred), <span class="fl">1e-9</span>), color<span class="op">=</span>c, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="ss">f"$D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">$"</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax.plot(np.arange(<span class="dv">1</span>, <span class="dv">4001</span>), <span class="fl">1.0</span> <span class="op">/</span> np.sqrt(np.arange(<span class="dv">1</span>, <span class="dv">4001</span>)), <span class="st">"k--"</span>, lw<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="vs">r"$1/\sqrt</span><span class="sc">{N}</span><span class="vs">$"</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">"log"</span>)<span class="op">;</span> ax.set_yscale(<span class="st">"log"</span>)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"number of Haar samples $N$"</span>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r"relative error to $\mathrm</span><span class="sc">{Tr}</span><span class="vs">(A)\,\mathrm</span><span class="sc">{Tr}</span><span class="vs">(B)/D$"</span>)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Monte-Carlo average converges to the first-moment prediction"</span>)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Visualization: the Monte-Carlo Haar average converges to Tr(A)Tr(B)/D ---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.6</span>, <span class="dv">4</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D, c <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>], [<span class="st">"C0"</span>, <span class="st">"C1"</span>, <span class="st">"C3"</span>]):</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> rng.standard_normal((D, D)) <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> rng.standard_normal((D, D))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> rng.standard_normal((D, D)) <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> rng.standard_normal((D, D))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> np.trace(A) <span class="op">*</span> np.trace(B) <span class="op">/</span> D</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    Us <span class="op">=</span> unitary_group.rvs(D, size<span class="op">=</span><span class="dv">4000</span>, random_state<span class="op">=</span>rng)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> np.array([np.trace(U <span class="op">@</span> A <span class="op">@</span> U.conj().T <span class="op">@</span> B) <span class="cf">for</span> U <span class="kw">in</span> Us])</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    run <span class="op">=</span> np.cumsum(vals) <span class="op">/</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(vals) <span class="op">+</span> <span class="dv">1</span>)      <span class="co"># running Haar average</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    ax.plot(np.<span class="bu">abs</span>(run <span class="op">-</span> pred) <span class="op">/</span> <span class="bu">max</span>(<span class="bu">abs</span>(pred), <span class="fl">1e-9</span>), color<span class="op">=</span>c, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="ss">f"$D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">$"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>ax.plot(np.arange(<span class="dv">1</span>, <span class="dv">4001</span>), <span class="fl">1.0</span> <span class="op">/</span> np.sqrt(np.arange(<span class="dv">1</span>, <span class="dv">4001</span>)), <span class="st">"k--"</span>, lw<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="vs">r"$1/\sqrt</span><span class="sc">{N}</span><span class="vs">$"</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">"log"</span>)<span class="op">;</span> ax.set_yscale(<span class="st">"log"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"number of Haar samples $N$"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r"relative error to $\mathrm</span><span class="sc">{Tr}</span><span class="vs">(A)\,\mathrm</span><span class="sc">{Tr}</span><span class="vs">(B)/D$"</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Monte-Carlo average converges to the first-moment prediction"</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="solution_ch3_weingarten_first_moment_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>

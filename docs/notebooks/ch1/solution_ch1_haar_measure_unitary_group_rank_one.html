@@ -332,6 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -655,7 +660,7 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:42.007106Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:42.006997Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:42.594254Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:42.593937Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:48.625904Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:48.625568Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:50.415282Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:50.409934Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -673,16 +678,22 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  m=</span><span class="sc">{</span>m<span class="sc">:+d}</span><span class="ss">: ∫ e^</span><span class="ch">{{</span><span class="ss">imθ</span><span class="ch">}}</span><span class="ss"> = </span><span class="sc">{</span>sp<span class="sc">.</span>simplify(orig)<span class="sc">}</span><span class="ss">, ∫ e^</span><span class="ch">{{</span><span class="ss">im(θ+α)</span><span class="ch">}}</span><span class="ss"> = </span><span class="sc">{</span>sp<span class="sc">.</span>simplify(shifted)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>For n≠0, choose α=2π/(3n): e^{inα} − 1 = -1 + exp(2*I*pi/3)
-  m=-3: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
-  m=-2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
+<pre><code>For n≠0, choose α=2π/(3n): e^{inα} − 1 = -1 + exp(2*I*pi/3)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  m=-3: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  m=-2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
   m=-1: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
   m=+0: ∫ e^{imθ} = 1, ∫ e^{im(θ+α)} = 1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  m=+1: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
-  m=+2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0
-  m=+3: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0</code></pre>
+  m=+2: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  m=+3: ∫ e^{imθ} = 0, ∫ e^{im(θ+α)} = 0</code></pre>
 </div>
 </div>
 <hr>
@@ -693,37 +704,37 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 </section>
 <section id="figure-sampled-u1-phase-is-uniform" class="level2">
 <h2 class="anchored" data-anchor-id="figure-sampled-u1-phase-is-uniform">Figure: Sampled <span class="math inline">\(U(1)\)</span> phase is uniform</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:42.595837Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:42.595674Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:44.365732Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:44.365421Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:50.420422Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:50.419993Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:54.969011Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:54.968240Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">20000</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>phases <span class="op">=</span> np.array([</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    np.angle(np.linalg.det(unitary_group.rvs(D, random_state<span class="op">=</span>rng))) <span class="op">%</span> (<span class="dv">2</span> <span class="op">*</span> np.pi)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_samples)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.4</span>, <span class="fl">4.0</span>))</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>ax.hist(phases, bins<span class="op">=</span><span class="dv">40</span>, <span class="bu">range</span><span class="op">=</span>(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi), density<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'steelblue'</span>, edgecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.85</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">'sampled phases'</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi), color<span class="op">=</span><span class="st">'crimson'</span>, lw<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="vs">r'Haar density $1/2\pi$'</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'phase of $\det U \in [0, 2\pi)$'</span>)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'probability density'</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'Determinant phase of Haar-random $U(4)$ is uniform'</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">0</span>, np.pi <span class="op">/</span> <span class="dv">2</span>, np.pi, <span class="dv">3</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="op">*</span> np.pi])</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="st">'0'</span>, <span class="vs">r'$\pi/2$'</span>, <span class="vs">r'$\pi$'</span>, <span class="vs">r'$3\pi/2$'</span>, <span class="vs">r'$2\pi$'</span>])</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="fl">0.25</span>)</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">20000</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>phases <span class="op">=</span> np.array([</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    np.angle(np.linalg.det(unitary_group.rvs(D, random_state<span class="op">=</span>rng))) <span class="op">%</span> (<span class="dv">2</span> <span class="op">*</span> np.pi)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_samples)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.4</span>, <span class="fl">4.0</span>))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>ax.hist(phases, bins<span class="op">=</span><span class="dv">40</span>, <span class="bu">range</span><span class="op">=</span>(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi), density<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'steelblue'</span>, edgecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.85</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">'sampled phases'</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi), color<span class="op">=</span><span class="st">'crimson'</span>, lw<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="vs">r'Haar density $1/2\pi$'</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'phase of $\det U \in [0, 2\pi)$'</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'probability density'</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'Determinant phase of Haar-random $U(4)$ is uniform'</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">0</span>, np.pi <span class="op">/</span> <span class="dv">2</span>, np.pi, <span class="dv">3</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="op">*</span> np.pi])</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="st">'0'</span>, <span class="vs">r'$\pi/2$'</span>, <span class="vs">r'$\pi$'</span>, <span class="vs">r'$3\pi/2$'</span>, <span class="vs">r'$2\pi$'</span>])</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="fl">0.25</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="solution_ch1_haar_measure_unitary_group_rank_one_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
@@ -733,29 +744,29 @@ e^{in\alpha}\, c_n = c_n \qquad \forall\, \alpha.
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>Invariance alone pins down the Haar measure on <span class="math inline">\(U(1)\)</span> as the uniform density <span class="math inline">\(1/(2\pi)\)</span>. The same argument, applied to the determinant, shows that <span class="math inline">\(\det U\)</span> has uniform phase for Haar-random <span class="math inline">\(U \in U(D)\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:44.367326Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:44.367122Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:45.023375Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:45.023044Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:54.974232Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:54.973781Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:56.787984Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:56.787217Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group, kstest</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify det(U) phase is uniform for several D</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>]:</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    phases <span class="op">=</span> []</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> unitary_group.rvs(D)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        det_phase <span class="op">=</span> np.angle(np.linalg.det(U)) <span class="op">%</span> (<span class="dv">2</span><span class="op">*</span>np.pi)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        phases.append(det_phase <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>np.pi))  <span class="co"># normalize to [0,1)</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># KS test against uniform[0,1]</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    stat, pval <span class="op">=</span> kstest(phases, <span class="st">'uniform'</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">: KS statistic = </span><span class="sc">{</span>stat<span class="sc">:.4f}</span><span class="ss">, p-value = </span><span class="sc">{</span>pval<span class="sc">:.4f}</span><span class="ss"> "</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"[</span><span class="sc">{</span><span class="st">'uniform'</span> <span class="cf">if</span> pval <span class="op">&gt;</span> <span class="fl">0.01</span> <span class="cf">else</span> <span class="st">'REJECT'</span><span class="sc">}</span><span class="ss">]"</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> pval <span class="op">&gt;</span> <span class="fl">0.01</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Determinant phase is uniform for all D."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> unitary_group, kstest</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify det(U) phase is uniform for several D</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>]:</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    phases <span class="op">=</span> []</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> unitary_group.rvs(D)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        det_phase <span class="op">=</span> np.angle(np.linalg.det(U)) <span class="op">%</span> (<span class="dv">2</span><span class="op">*</span>np.pi)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        phases.append(det_phase <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>np.pi))  <span class="co"># normalize to [0,1)</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># KS test against uniform[0,1]</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    stat, pval <span class="op">=</span> kstest(phases, <span class="st">'uniform'</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D<span class="sc">}</span><span class="ss">: KS statistic = </span><span class="sc">{</span>stat<span class="sc">:.4f}</span><span class="ss">, p-value = </span><span class="sc">{</span>pval<span class="sc">:.4f}</span><span class="ss"> "</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"[</span><span class="sc">{</span><span class="st">'uniform'</span> <span class="cf">if</span> pval <span class="op">&gt;</span> <span class="fl">0.01</span> <span class="cf">else</span> <span class="st">'REJECT'</span><span class="sc">}</span><span class="ss">]"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> pval <span class="op">&gt;</span> <span class="fl">0.01</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Determinant phase is uniform for all D."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>D=2: KS statistic = 0.0155, p-value = 0.1817 [uniform]</code></pre>

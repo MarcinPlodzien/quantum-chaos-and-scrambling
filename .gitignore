@@ -10,3 +10,7 @@ __pycache__/
 # NOTE: docs/ is intentionally committed (GitHub Pages serves it).
 
 /.quarto/
+
+# dated scratch backups
+*.bak_*
+.*.bak_*

@@ -332,6 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -655,7 +660,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:51:53.543147Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:51:53.542637Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:51:54.093872Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:51:54.093223Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:11.761219Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:11.760831Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:12.877505Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:12.876484Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -703,7 +708,7 @@ This connects purity to the 2-copy Hilbert space.</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:51:54.095782Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:51:54.095540Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:51:54.307080Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:51:54.306599Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:12.880370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:12.880012Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:13.348615Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:13.347946Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -734,7 +739,7 @@ Bell purity (SWAP):   0.5000
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:51:54.308781Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:51:54.308522Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:51:55.420325Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:51:55.419777Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:13.352524Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:13.351786Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:16.043681Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:16.042965Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Part (c): Haar-averaged purity</span></span>

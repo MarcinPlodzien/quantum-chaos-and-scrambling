@@ -44,6 +44,7 @@ statements). A few that sample large Haar-random unitaries
 | `solution_ch2_goe_spacing.py` | GOE nearest-neighbour spacings follow the Wigner surmise ($\langle s\rangle=\sqrt\pi$) |
 | `solution_ch2_semicircle_moments.py` | Even moments of the Wigner semicircle are Catalan numbers ($m_2{=}1,m_4{=}2,\dots$) |
 | `solution_ch2_cue_eigenphase.py` | $2\times2$ CUE eigenphase-spacing density peaks at $\pi$ with value $1/\pi$ |
+| `solution_ch2_unfolding.py` | Unfolding the mixed-field Ising spectrum: symmetry sectors, unit mean spacing, Wigner-surmise variance, under- and over-fitting |
 
 ### Chapter 3 — Haar Measure & Weingarten Calculus
 | Script | Verifies |

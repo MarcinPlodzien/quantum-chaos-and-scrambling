@@ -332,6 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -671,7 +676,7 @@ S = -\cos^2\!\theta\,\ln(\cos^2\!\theta) - \sin^2\!\theta\,\ln(\sin^2\!\theta).
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:32.484028Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:32.483813Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:32.847104Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:32.846721Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:23.542352Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:23.541789Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:24.557679Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:24.556810Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -697,8 +702,10 @@ S = -\cos^2\!\theta\,\ln(\cos^2\!\theta) - \sin^2\!\theta\,\ln(\sin^2\!\theta).
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> sp.simplify(S_max_ent <span class="op">-</span> sp.log(<span class="dv">2</span>)) <span class="op">==</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>γ = sin(theta)**4 + cos(theta)**4
-S = -log(sin(theta)**2)*sin(theta)**2 - log(cos(theta)**2)*cos(theta)**2
+<pre><code>γ = sin(theta)**4 + cos(theta)**4</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>S = -log(sin(theta)**2)*sin(theta)**2 - log(cos(theta)**2)*cos(theta)**2
 θ=π/4: γ = 1/2, S = log(2)</code></pre>
 </div>
 </div>
@@ -706,25 +713,25 @@ S = -log(sin(theta)**2)*sin(theta)**2 - log(cos(theta)**2)*cos(theta)**2
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:32.848722Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:32.848438Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:32.941670Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:32.941239Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:24.561538Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:24.561140Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:24.646935Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:24.646235Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>thetas <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">9</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'θ/π'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'γ'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'S'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'S/ln2'</span><span class="sc">:&gt;8s}</span><span class="ss">"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> theta <span class="kw">in</span> thetas:</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    c2 <span class="op">=</span> np.cos(theta)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    s2 <span class="op">=</span> np.sin(theta)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    gamma <span class="op">=</span> c2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> s2<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    eigs <span class="op">=</span> np.array([c2, s2])</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    eigs_pos <span class="op">=</span> eigs[eigs <span class="op">&gt;</span> <span class="fl">1e-15</span>]</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> <span class="op">-</span>np.<span class="bu">sum</span>(eigs_pos <span class="op">*</span> np.log(eigs_pos))</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>theta<span class="op">/</span>np<span class="sc">.</span>pi<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>gamma<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>S<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>S<span class="op">/</span>np<span class="sc">.</span>log(<span class="dv">2</span>)<span class="sc">:8.4f}</span><span class="ss">"</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Maximal entanglement at θ = π/4 (S = ln2)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>thetas <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">9</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'θ/π'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'γ'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'S'</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'S/ln2'</span><span class="sc">:&gt;8s}</span><span class="ss">"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'─'</span><span class="op">*</span><span class="dv">8</span><span class="sc">:&gt;8s}</span><span class="ss">"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> theta <span class="kw">in</span> thetas:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    c2 <span class="op">=</span> np.cos(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    s2 <span class="op">=</span> np.sin(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    gamma <span class="op">=</span> c2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> s2<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    eigs <span class="op">=</span> np.array([c2, s2])</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    eigs_pos <span class="op">=</span> eigs[eigs <span class="op">&gt;</span> <span class="fl">1e-15</span>]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> <span class="op">-</span>np.<span class="bu">sum</span>(eigs_pos <span class="op">*</span> np.log(eigs_pos))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>theta<span class="op">/</span>np<span class="sc">.</span>pi<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>gamma<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>S<span class="sc">:8.4f}</span><span class="ss">  </span><span class="sc">{</span>S<span class="op">/</span>np<span class="sc">.</span>log(<span class="dv">2</span>)<span class="sc">:8.4f}</span><span class="ss">"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Maximal entanglement at θ = π/4 (S = ln2)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     θ/π         γ         S     S/ln2
@@ -746,39 +753,39 @@ Maximal entanglement at θ = π/4 (S = ln2).</code></pre>
 </section>
 <section id="entanglement-entropy-versus-the-mixing-angle" class="level2">
 <h2 class="anchored" data-anchor-id="entanglement-entropy-versus-the-mixing-angle">Entanglement Entropy versus the Mixing Angle</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:48:32.946709Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:48:32.946379Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:48:33.467568Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:48:33.467274Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:24.650098Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:24.649757Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:26.177269Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:26.174487Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">400</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> np.cos(theta)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> np.sin(theta)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Von Neumann entropy of the reduced state (natural log)</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np.errstate(divide<span class="op">=</span><span class="st">'ignore'</span>, invalid<span class="op">=</span><span class="st">'ignore'</span>):</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    terms <span class="op">=</span> <span class="op">-</span>np.where(c2 <span class="op">&gt;</span> <span class="dv">0</span>, c2<span class="op">*</span>np.log(c2), <span class="fl">0.0</span>) <span class="op">-</span> np.where(s2 <span class="op">&gt;</span> <span class="dv">0</span>, s2<span class="op">*</span>np.log(s2), <span class="fl">0.0</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> terms</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">4.5</span>))</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, S, color<span class="op">=</span><span class="st">'C0'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="vs">r'$S(\theta) = -\cos^2\theta\,\ln\cos^2\theta - \sin^2\theta\,\ln\sin^2\theta$'</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>ax.axhline(np.log(<span class="dv">2</span>), color<span class="op">=</span><span class="st">'gray'</span>, ls<span class="op">=</span><span class="st">'--'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r'$S = \ln 2$'</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>ax.plot(np.pi<span class="op">/</span><span class="dv">4</span>, np.log(<span class="dv">2</span>), <span class="st">'o'</span>, color<span class="op">=</span><span class="st">'C3'</span>, ms<span class="op">=</span><span class="dv">8</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="vs">r'maximum at $\theta=\pi/4$'</span>, xy<span class="op">=</span>(np.pi<span class="op">/</span><span class="dv">4</span>, np.log(<span class="dv">2</span>)),</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            xytext<span class="op">=</span>(np.pi<span class="op">/</span><span class="dv">4</span>, np.log(<span class="dv">2</span>)<span class="op">*</span><span class="fl">0.55</span>), ha<span class="op">=</span><span class="st">'center'</span>,</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'C3'</span>))</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'mixing angle $\theta$'</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'entanglement entropy $S$ (nats)'</span>)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Entanglement entropy of the parametric two-qubit state'</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">8</span>, np.pi<span class="op">/</span><span class="dv">4</span>, <span class="dv">3</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">8</span>, np.pi<span class="op">/</span><span class="dv">2</span>])</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="st">'0'</span>, <span class="vs">r'$\pi/8$'</span>, <span class="vs">r'$\pi/4$'</span>, <span class="vs">r'$3\pi/8$'</span>, <span class="vs">r'$\pi/2$'</span>])</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">0.02</span>, np.log(<span class="dv">2</span>)<span class="op">*</span><span class="fl">1.15</span>)</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower center'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">400</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> np.cos(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> np.sin(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Von Neumann entropy of the reduced state (natural log)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np.errstate(divide<span class="op">=</span><span class="st">'ignore'</span>, invalid<span class="op">=</span><span class="st">'ignore'</span>):</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    terms <span class="op">=</span> <span class="op">-</span>np.where(c2 <span class="op">&gt;</span> <span class="dv">0</span>, c2<span class="op">*</span>np.log(c2), <span class="fl">0.0</span>) <span class="op">-</span> np.where(s2 <span class="op">&gt;</span> <span class="dv">0</span>, s2<span class="op">*</span>np.log(s2), <span class="fl">0.0</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> terms</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">4.5</span>))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, S, color<span class="op">=</span><span class="st">'C0'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="vs">r'$S(\theta) = -\cos^2\theta\,\ln\cos^2\theta - \sin^2\theta\,\ln\sin^2\theta$'</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>ax.axhline(np.log(<span class="dv">2</span>), color<span class="op">=</span><span class="st">'gray'</span>, ls<span class="op">=</span><span class="st">'--'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r'$S = \ln 2$'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>ax.plot(np.pi<span class="op">/</span><span class="dv">4</span>, np.log(<span class="dv">2</span>), <span class="st">'o'</span>, color<span class="op">=</span><span class="st">'C3'</span>, ms<span class="op">=</span><span class="dv">8</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="vs">r'maximum at $\theta=\pi/4$'</span>, xy<span class="op">=</span>(np.pi<span class="op">/</span><span class="dv">4</span>, np.log(<span class="dv">2</span>)),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>            xytext<span class="op">=</span>(np.pi<span class="op">/</span><span class="dv">4</span>, np.log(<span class="dv">2</span>)<span class="op">*</span><span class="fl">0.55</span>), ha<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'C3'</span>))</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'mixing angle $\theta$'</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'entanglement entropy $S$ (nats)'</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Entanglement entropy of the parametric two-qubit state'</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">8</span>, np.pi<span class="op">/</span><span class="dv">4</span>, <span class="dv">3</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">8</span>, np.pi<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="st">'0'</span>, <span class="vs">r'$\pi/8$'</span>, <span class="vs">r'$\pi/4$'</span>, <span class="vs">r'$3\pi/8$'</span>, <span class="vs">r'$\pi/2$'</span>])</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">0.02</span>, np.log(<span class="dv">2</span>)<span class="op">*</span><span class="fl">1.15</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower center'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="solution_ch1_entanglement_parametric_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>

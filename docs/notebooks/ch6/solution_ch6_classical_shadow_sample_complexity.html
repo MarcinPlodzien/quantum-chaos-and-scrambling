@@ -330,6 +330,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -622,7 +627,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="which-shadows-for-which-observables" class="level3">
 <h3 class="anchored" data-anchor-id="which-shadows-for-which-observables">Which shadows for which observables</h3>
 <p>The shadow norm decides feasibility. For <strong>global</strong> Clifford shadows <span class="math inline">\(\|\hat O_0\|_{\mathrm{shadow}}^2=3\,\mathrm{Tr}(\hat O_0^2)\)</span> is <span class="math inline">\(\mathcal{O}(1)\)</span> for a rank-one observable (fidelity estimation) but <span class="math inline">\(\sim3D\)</span> for a single global Pauli — cheap for low-rank targets, hopeless for local ones. <strong>Local</strong> (single-qubit random Pauli) shadows invert a <em>factorized</em> channel <span class="math inline">\((\mathcal{M}^{(1)})^{-1}(\hat\sigma)=3\hat\sigma-\mathrm{Tr}(\hat\sigma)\mathbb{1}\)</span>, and a <span class="math inline">\(k\)</span>-local Pauli then has shadow norm <span class="math inline">\(\sim4^{k}\)</span> (the <span class="math inline">\(3^k\)</span> single-qubit factors times a normalization), set by its <em>weight</em> and <strong>independent of <span class="math inline">\(N\)</span></strong> — the property that makes local shadows scale.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:50.304621Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:50.304420Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:54.624602Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:54.624225Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:52:22.949002Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:52:22.948697Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:52:33.989282Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:52:33.984235Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np, matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -665,7 +670,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \nUnbiased; the third-moment E[o^2] matches the derived closed form; Var stays under 3 Tr(O0^2).</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:54.626216Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:54.626017Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:58.527267Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:58.526948Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:52:33.993401Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:52:33.992884Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:52:44.093937Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:52:44.093145Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample-complexity scaling: estimation error falls as 1/sqrt(M_shots) at the shadow-norm rate</span></span>
@@ -702,7 +707,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="the-local-advantage-shadow-norm-independent-of-n" class="level3">
 <h3 class="anchored" data-anchor-id="the-local-advantage-shadow-norm-independent-of-n">The local advantage: shadow norm independent of <span class="math inline">\(N\)</span></h3>
 <p>For local (single-qubit random-Pauli) shadows, a <span class="math inline">\(k\)</span>-local Pauli observable has shadow norm <span class="math inline">\(\sim 4^k\)</span>, set by its <em>weight</em>, not the system size. We check that the estimation cost of a fixed 1-local Pauli does <strong>not</strong> grow with <span class="math inline">\(N\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:58.528640Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:58.528492Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:05.497825Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:05.497270Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:52:44.097737Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:52:44.096965Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:02.304386Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:02.301792Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># random single-qubit Pauli shadows; shadow norm of a 1-local Pauli is 3 (=4^1 up to the traceless convention), N-independent</span></span>
@@ -757,7 +762,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="adversarial-check-every-identity-machine-verified" class="level3">
 <h3 class="anchored" data-anchor-id="adversarial-check-every-identity-machine-verified">Adversarial check — every identity, machine-verified</h3>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:05.499336Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:05.499182Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:08.956233Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:08.955865Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:53:02.308478Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:53:02.308080Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:10.915613Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:10.912802Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>checks<span class="op">=</span>[]</span>

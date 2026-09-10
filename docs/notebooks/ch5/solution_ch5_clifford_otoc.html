@@ -332,6 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -653,7 +658,7 @@ C(t) = \frac{1}{D}\mathrm{Tr}\bigl(4V^\dagger W(t)^\dagger W(t) V\bigr) = \frac{
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:34.605091Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:34.604897Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:34.758274Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:34.757981Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:51:39.974823Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:51:39.974507Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:51:40.395345Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:51:40.394728Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -687,7 +692,7 @@ but Clifford dynamics can only produce F in {-1, +1}.</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:34.759685Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:34.759535Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:35.328670Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:35.328373Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:51:40.399118Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:51:40.398599Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:51:41.863724Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:51:41.862105Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -768,7 +773,7 @@ but Clifford dynamics can only produce F in {-1, +1}.</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>For Clifford dynamics <span class="math inline">\(C(t)\)</span> takes only the values <span class="math inline">\(0\)</span> and <span class="math inline">\(4\)</span>, jumping the instant the operator light cone reaches <span class="math inline">\(V\)</span> with no exponential ramp between. No Lyapunov exponent can be assigned, so matching the first three Haar moments does not by itself imply chaotic operator growth.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:52:35.330406Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:52:35.330184Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:52:35.449038Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:52:35.448633Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:51:41.869308Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:51:41.868855Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:51:42.195628Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:51:42.194762Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -812,8 +817,10 @@ but Clifford dynamics can only produce F in {-1, +1}.</code></pre>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  C(t) ∈ {0, 4} confirmed: no Lyapunov exponent."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>C(t) values for 200 random 2-qubit Cliffords:
-  Distinct C values: [np.float64(0.0), np.float64(4.0)]
+<pre><code>C(t) values for 200 random 2-qubit Cliffords:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Distinct C values: [np.float64(0.0), np.float64(4.0)]
   C(t) ∈ {0, 4} confirmed: no Lyapunov exponent.</code></pre>
 </div>
 </div>

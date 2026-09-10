@@ -332,6 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -647,7 +652,7 @@ F_Q = 2\sum_{k,l} \frac{(\lambda_k - \lambda_l)^2}{\lambda_k + \lambda_l} |\lang
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:11.588961Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:11.588775Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:11.751927Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:11.751463Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:53:16.865223Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:53:16.864782Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:17.292597Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:17.291715Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -678,7 +683,7 @@ Fragility: losing 1 qubit destroys ALL N^2 metrological advantage</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:11.753646Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:11.753447Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:11.811979Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:11.811565Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:53:17.295870Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:53:17.295478Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:17.503224Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:17.500800Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -745,7 +750,7 @@ Fragility: losing 1 qubit destroys ALL N^2 metrological advantage</code></pre>
 F_Q: N² → 0 upon single-qubit loss. Fragility confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:53:11.817768Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:53:11.817507Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:53:12.458665Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:53:12.458248Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:53:17.509065Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:53:17.508712Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:53:19.265746Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:53:19.264448Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

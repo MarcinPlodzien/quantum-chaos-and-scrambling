@@ -330,6 +330,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" class="sidebar-item-text sidebar-link">Eigenphase Repulsion in the CUE</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -588,7 +593,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>a trainable single-qubit <strong>post-rotation</strong> <span class="math inline">\(R_y\)</span> on every qubit.</li>
 </ol>
 <p><span class="math inline">\(N_A\)</span> ancilla qubits are traced out before measurement, giving a <em>mixed</em> output distribution over the remaining <span class="math inline">\(n=N_Q-N_A\)</span> qubits (mixedness is an extra expressivity resource). Only the rotation angles are trained; <span class="math inline">\(\hat U_S\)</span> is fixed. We use JAX so that the loss gradient comes from automatic differentiation.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:56:58.966564Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:56:58.966347Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:56:59.598375Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:56:59.597911Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:24:21.276438Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:24:21.275062Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:24:24.448470Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:24:24.445386Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -597,7 +602,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>jax.config.update(<span class="st">"jax_enable_x64"</span>, <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:56:59.600147Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:56:59.599920Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:57:01.888097Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:57:01.887672Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:24:24.455771Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:24:24.455259Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:24:32.016471Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:24:32.015739Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># System size and single-qubit gates (applied matrix-free on the state tensor)</span></span>
@@ -618,100 +623,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Apply a 2x2 gate U to qubit q of a state reshaped as (2,)*N_Q."</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.moveaxis(jnp.tensordot(U, psi, axes<span class="op">=</span>([<span class="dv">1</span>], [q])), <span class="dv">0</span>, q)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>W0720 23:57:01.658071  682982 cuda_executor.cc:1802] GPU interconnect information not available: INTERNAL: NVML doesn't support extracting fabric info or NVLink is not used by the device.
-W0720 23:57:01.660562  682909 cuda_executor.cc:1802] GPU interconnect information not available: INTERNAL: NVML doesn't support extracting fabric info or NVLink is not used by the device.</code></pre>
 </div>
-</div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:57:01.889626Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:57:01.889474Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:57:01.920043Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:57:01.917782Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:24:32.021618Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:24:32.021226Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:24:40.532630Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:24:40.531845Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The fixed scrambler: a Haar-random unitary (never trained).</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A finite-depth random circuit or analog Hamiltonian evolution would work equally well,</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># as long as it reaches Haar-typical (Page-value) entanglement.</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> haar_unitary(dim, seed):</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.random.default_rng(seed)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> (r.standard_normal((dim, dim)) <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> r.standard_normal((dim, dim))) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    q, rr <span class="op">=</span> np.linalg.qr(z)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> np.diagonal(rr)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.array(q <span class="op">*</span> (d <span class="op">/</span> np.<span class="bu">abs</span>(d)))</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>U_S <span class="op">=</span> haar_unitary(D, seed<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The fixed scrambler: a Haar-random unitary (never trained).</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A finite-depth random circuit or analog Hamiltonian evolution would work equally well,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># as long as it reaches Haar-typical (Page-value) entanglement.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> haar_unitary(dim, seed):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.random.default_rng(seed)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> (r.standard_normal((dim, dim)) <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> r.standard_normal((dim, dim))) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    q, rr <span class="op">=</span> np.linalg.qr(z)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> np.diagonal(rr)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.array(q <span class="op">*</span> (d <span class="op">/</span> np.<span class="bu">abs</span>(d)))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>U_S <span class="op">=</span> haar_unitary(D, seed<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:57:01.923900Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:57:01.923682Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:57:01.928799Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:57:01.928296Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:24:40.537825Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:24:40.537526Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:24:40.567568Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:24:40.562284Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forward pass: |0...0&gt; -&gt; L layers of [pre Rx,Rz | U_S | post Ry] -&gt; trace ancillas</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> output_dist(theta, L):</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">=</span> jnp.zeros((D,), jnp.complex128).at[<span class="dv">0</span>].<span class="bu">set</span>(<span class="fl">1.0</span>)          <span class="co"># |0...0&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(L):</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> psi.reshape((<span class="dv">2</span>,) <span class="op">*</span> N_Q)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(N_Q):                                      <span class="co"># trainable pre-rotations</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> apply_1q(t, Rx(theta[l, q, <span class="dv">0</span>]), q)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> apply_1q(t, Rz(theta[l, q, <span class="dv">1</span>]), q)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> U_S <span class="op">@</span> t.ravel()                                     <span class="co"># fixed scrambler</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> psi.reshape((<span class="dv">2</span>,) <span class="op">*</span> N_Q)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(N_Q):                                      <span class="co"># trainable post-rotation</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> apply_1q(t, Ry(theta[l, q, <span class="dv">2</span>]), q)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> t.ravel()</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    p_full <span class="op">=</span> jnp.<span class="bu">abs</span>(psi) <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p_full.reshape(<span class="dv">2</span> <span class="op">**</span> N_SYS, <span class="dv">2</span> <span class="op">**</span> N_A).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)       <span class="co"># trace out the N_A ancillas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forward pass: |0...0&gt; -&gt; L layers of [pre Rx,Rz | U_S | post Ry] -&gt; trace ancillas</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> output_dist(theta, L):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    psi <span class="op">=</span> jnp.zeros((D,), jnp.complex128).at[<span class="dv">0</span>].<span class="bu">set</span>(<span class="fl">1.0</span>)          <span class="co"># |0...0&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(L):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> psi.reshape((<span class="dv">2</span>,) <span class="op">*</span> N_Q)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(N_Q):                                      <span class="co"># trainable pre-rotations</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> apply_1q(t, Rx(theta[l, q, <span class="dv">0</span>]), q)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> apply_1q(t, Rz(theta[l, q, <span class="dv">1</span>]), q)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> U_S <span class="op">@</span> t.ravel()                                     <span class="co"># fixed scrambler</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> psi.reshape((<span class="dv">2</span>,) <span class="op">*</span> N_Q)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(N_Q):                                      <span class="co"># trainable post-rotation</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> apply_1q(t, Ry(theta[l, q, <span class="dv">2</span>]), q)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        psi <span class="op">=</span> t.ravel()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    p_full <span class="op">=</span> jnp.<span class="bu">abs</span>(psi) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p_full.reshape(<span class="dv">2</span> <span class="op">**</span> N_SYS, <span class="dv">2</span> <span class="op">**</span> N_A).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)       <span class="co"># trace out the N_A ancillas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:57:01.930521Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:57:01.930151Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:57:01.951967Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:57:01.951393Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:24:40.580135Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:24:40.579844Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:24:40.689023Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:24:40.688279Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Target: a five-peak Gaussian mixture over the 2**N_SYS bins</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_target(n_bins, seed<span class="op">=</span><span class="dv">123</span>):</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.arange(n_bins)<span class="op">;</span> r <span class="op">=</span> np.random.RandomState(seed)<span class="op">;</span> p <span class="op">=</span> np.zeros(n_bins)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> (i <span class="op">+</span> <span class="fl">0.5</span>) <span class="op">*</span> n_bins <span class="op">/</span> <span class="dv">5</span><span class="op">;</span> s <span class="op">=</span> n_bins <span class="op">/</span> <span class="dv">20</span><span class="op">;</span> h <span class="op">=</span> r.rand() <span class="op">+</span> <span class="fl">0.5</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        p <span class="op">+=</span> h <span class="op">*</span> np.exp(<span class="op">-</span>((x <span class="op">-</span> c) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> s <span class="op">**</span> <span class="dv">2</span>))</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p <span class="op">/</span> p.<span class="bu">sum</span>()</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> make_target(<span class="dv">2</span> <span class="op">**</span> N_SYS)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> jnp.array(target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Target: a five-peak Gaussian mixture over the 2**N_SYS bins</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_target(n_bins, seed<span class="op">=</span><span class="dv">123</span>):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.arange(n_bins)<span class="op">;</span> r <span class="op">=</span> np.random.RandomState(seed)<span class="op">;</span> p <span class="op">=</span> np.zeros(n_bins)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> (i <span class="op">+</span> <span class="fl">0.5</span>) <span class="op">*</span> n_bins <span class="op">/</span> <span class="dv">5</span><span class="op">;</span> s <span class="op">=</span> n_bins <span class="op">/</span> <span class="dv">20</span><span class="op">;</span> h <span class="op">=</span> r.rand() <span class="op">+</span> <span class="fl">0.5</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        p <span class="op">+=</span> h <span class="op">*</span> np.exp(<span class="op">-</span>((x <span class="op">-</span> c) <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> s <span class="op">**</span> <span class="dv">2</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p <span class="op">/</span> p.<span class="bu">sum</span>()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> make_target(<span class="dv">2</span> <span class="op">**</span> N_SYS)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> jnp.array(target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:57:01.953904Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:57:01.953703Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:57:01.961074Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:57:01.960538Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:24:40.697394Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:24:40.694167Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:24:40.721547Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:24:40.718812Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss = negative log-likelihood; gradient by autodiff; trained with Adam.</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nll(theta, L):</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> output_dist(theta, L)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>jnp.<span class="bu">sum</span>(q <span class="op">*</span> jnp.log(jnp.clip(p, <span class="fl">1e-12</span>, <span class="va">None</span>)))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train(L, steps<span class="op">=</span><span class="dv">300</span>, lr<span class="op">=</span><span class="fl">0.02</span>, seed<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    grad <span class="op">=</span> jax.jit(jax.grad(nll), static_argnums<span class="op">=</span><span class="dv">1</span>)               <span class="co"># d/dtheta ; L is static</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.random.default_rng(seed)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> jnp.array(r.uniform(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi, (L, N_Q, <span class="dv">3</span>)))</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> jnp.zeros_like(theta)<span class="op">;</span> v <span class="op">=</span> jnp.zeros_like(theta)<span class="op">;</span> b1, b2, eps <span class="op">=</span> <span class="fl">0.9</span>, <span class="fl">0.999</span>, <span class="fl">1e-8</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, steps <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> grad(theta, L)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> b1 <span class="op">*</span> m <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> b1) <span class="op">*</span> g<span class="op">;</span> v <span class="op">=</span> b2 <span class="op">*</span> v <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> b2) <span class="op">*</span> g <span class="op">*</span> g</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> lr <span class="op">*</span> (m <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> b1 <span class="op">**</span> t)) <span class="op">/</span> (jnp.sqrt(v <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> b2 <span class="op">**</span> t)) <span class="op">+</span> eps)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># KLD is evaluated from a finite number of measurement shots (as on real hardware),</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># which sets a floor on the achievable value.</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sampled_kld(p, n_shots<span class="op">=</span><span class="dv">5000</span>, seed<span class="op">=</span><span class="dv">0</span>):</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.random.default_rng(seed)<span class="op">;</span> p <span class="op">=</span> np.asarray(p)<span class="op">;</span> p <span class="op">=</span> p <span class="op">/</span> p.<span class="bu">sum</span>()</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    phat <span class="op">=</span> (r.multinomial(n_shots, p) <span class="op">+</span> <span class="fl">1.0</span>) <span class="op">/</span> (n_shots <span class="op">+</span> p.size)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.<span class="bu">sum</span>(target <span class="op">*</span> np.log(np.clip(target, <span class="fl">1e-12</span>, <span class="va">None</span>) <span class="op">/</span> phat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss = negative log-likelihood; gradient by autodiff; trained with Adam.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nll(theta, L):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> output_dist(theta, L)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>jnp.<span class="bu">sum</span>(q <span class="op">*</span> jnp.log(jnp.clip(p, <span class="fl">1e-12</span>, <span class="va">None</span>)))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train(L, steps<span class="op">=</span><span class="dv">300</span>, lr<span class="op">=</span><span class="fl">0.02</span>, seed<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    grad <span class="op">=</span> jax.jit(jax.grad(nll), static_argnums<span class="op">=</span><span class="dv">1</span>)               <span class="co"># d/dtheta ; L is static</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.random.default_rng(seed)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> jnp.array(r.uniform(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi, (L, N_Q, <span class="dv">3</span>)))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> jnp.zeros_like(theta)<span class="op">;</span> v <span class="op">=</span> jnp.zeros_like(theta)<span class="op">;</span> b1, b2, eps <span class="op">=</span> <span class="fl">0.9</span>, <span class="fl">0.999</span>, <span class="fl">1e-8</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> grad(theta, L)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> b1 <span class="op">*</span> m <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> b1) <span class="op">*</span> g<span class="op">;</span> v <span class="op">=</span> b2 <span class="op">*</span> v <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> b2) <span class="op">*</span> g <span class="op">*</span> g</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> lr <span class="op">*</span> (m <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> b1 <span class="op">**</span> t)) <span class="op">/</span> (jnp.sqrt(v <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> b2 <span class="op">**</span> t)) <span class="op">+</span> eps)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># KLD is evaluated from a finite number of measurement shots (as on real hardware),</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># which sets a floor on the achievable value.</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sampled_kld(p, n_shots<span class="op">=</span><span class="dv">5000</span>, seed<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.random.default_rng(seed)<span class="op">;</span> p <span class="op">=</span> np.asarray(p)<span class="op">;</span> p <span class="op">=</span> p <span class="op">/</span> p.<span class="bu">sum</span>()</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    phat <span class="op">=</span> (r.multinomial(n_shots, p) <span class="op">+</span> <span class="fl">1.0</span>) <span class="op">/</span> (n_shots <span class="op">+</span> p.size)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.<span class="bu">sum</span>(target <span class="op">*</span> np.log(np.clip(target, <span class="fl">1e-12</span>, <span class="va">None</span>) <span class="op">/</span> phat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:57:01.964360Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:57:01.964152Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:57:46.931587Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:57:46.931186Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:24:40.725843Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:24:40.725418Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:28:14.298040Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:28:14.295989Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sweep the number of trainable layers L (only single-qubit rotations are trained)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Ls <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>klds, dists <span class="op">=</span> [], {}</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> L <span class="kw">in</span> Ls:</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> train(L)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.array(output_dist(theta, L))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    klds.append(sampled_kld(p))<span class="op">;</span> dists[L] <span class="op">=</span> p</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L=</span><span class="sc">{</span>L<span class="sc">}</span><span class="ss">:  KLD = </span><span class="sc">{</span>klds[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sweep the number of trainable layers L (only single-qubit rotations are trained)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Ls <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>klds, dists <span class="op">=</span> [], {}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> L <span class="kw">in</span> Ls:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> train(L)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.array(output_dist(theta, L))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    klds.append(sampled_kld(p))<span class="op">;</span> dists[L] <span class="op">=</span> p</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L=</span><span class="sc">{</span>L<span class="sc">}</span><span class="ss">:  KLD = </span><span class="sc">{</span>klds[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>L=1:  KLD = 0.057</code></pre>
@@ -729,21 +730,21 @@ W0720 23:57:01.660562  682909 cuda_executor.cc:1802] GPU interconnect informatio
 <pre><code>L=6:  KLD = 0.009</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-07-20T21:57:46.933200Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-20T21:57:46.932979Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-20T21:57:47.391238Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-20T21:57:47.390690Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:28:14.309940Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:28:14.309125Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:28:17.823604Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:28:17.818959Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">3.6</span>))</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(Ls, klds, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"#1f6f8b"</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_yscale(<span class="st">"log"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_xlabel(<span class="st">"trainable layers $L$"</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="vs">r"$D_{\mathrm</span><span class="sc">{KL}</span><span class="vs">}(q\,\|\,p_\theta)$"</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"KLD falls with $L$ (fixed Haar scrambler)"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>xb <span class="op">=</span> np.arange(<span class="dv">2</span> <span class="op">**</span> N_SYS)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].fill_between(xb, target, color<span class="op">=</span><span class="st">"0.8"</span>, label<span class="op">=</span><span class="st">"target"</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(xb, dists[<span class="bu">max</span>(Ls)], color<span class="op">=</span><span class="st">"#2166ac"</span>, lw<span class="op">=</span><span class="fl">1.4</span>, label<span class="op">=</span><span class="ss">f"QSBM ($L=</span><span class="sc">{</span><span class="bu">max</span>(Ls)<span class="sc">}</span><span class="ss">$)"</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">"$x$"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_yticks([])<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">"learned vs target"</span>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">3.6</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(Ls, klds, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"#1f6f8b"</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_yscale(<span class="st">"log"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_xlabel(<span class="st">"trainable layers $L$"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="vs">r"$D_{\mathrm</span><span class="sc">{KL}</span><span class="vs">}(q\,\|\,p_\theta)$"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"KLD falls with $L$ (fixed Haar scrambler)"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>xb <span class="op">=</span> np.arange(<span class="dv">2</span> <span class="op">**</span> N_SYS)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].fill_between(xb, target, color<span class="op">=</span><span class="st">"0.8"</span>, label<span class="op">=</span><span class="st">"target"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(xb, dists[<span class="bu">max</span>(Ls)], color<span class="op">=</span><span class="st">"#2166ac"</span>, lw<span class="op">=</span><span class="fl">1.4</span>, label<span class="op">=</span><span class="ss">f"QSBM ($L=</span><span class="sc">{</span><span class="bu">max</span>(Ls)<span class="sc">}</span><span class="ss">$)"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">"$x$"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_yticks([])<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">"learned vs target"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="example_ch7_qsbm_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>

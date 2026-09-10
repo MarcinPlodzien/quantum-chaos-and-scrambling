@@ -76,6 +76,7 @@ website:
           - notebooks/ch2/solution_ch2_goe_spacing.ipynb
           - notebooks/ch2/solution_ch2_semicircle_moments.ipynb
           - notebooks/ch2/solution_ch2_cue_eigenphase.ipynb
+          - notebooks/ch2/solution_ch2_unfolding.ipynb
       - section: "3 · Haar Measure & Weingarten Calculus"
         href: chapters/03-haar-weingarten.qmd
         contents:
