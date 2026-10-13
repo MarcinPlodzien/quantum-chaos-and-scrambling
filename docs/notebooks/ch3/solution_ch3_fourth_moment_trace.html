@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">Dynamical Lie Algebra of a Three-Qubit Ising Chain</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Unitaries That Commute with a Hamiltonian</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature on SU(3)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -349,6 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="sidebar-item-text sidebar-link">Time Reversal for Two Spins and in a Field</a>
   </div>
 </li>
       </ul>
@@ -705,7 +710,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="step-3-combine" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-combine">Step 3: Combine</h3>
 <p><span class="math display">\[\mathbb{E}[|\mathrm{Tr}(U)|^4] = \frac{2D^2}{D^2-1} - \frac{2}{D^2-1} = \frac{2(D^2-1)}{D^2-1} = \boxed{2}\]</span></p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:30.919575Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:30.919204Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:31.605974Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:31.605139Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:18.432708Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:18.432442Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:18.772416Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:18.771953Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -762,7 +767,7 @@ Sum = 2
 VERIFIED: E[|Tr(U)|⁴] = 2 for all D ≥ 2 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:31.610781Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:31.610383Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:31.627035Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:31.626479Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:18.774348Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:18.774067Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:18.780657Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:18.780253Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Brute-force index contraction verification</span></span>
@@ -819,7 +824,7 @@ D = 4:
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:31.630464Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:31.630129Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:50.263682Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:50.262810Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:18.782612Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:18.782389Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:26.977239Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:26.976616Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: NumPy Monte Carlo cross-check</span></span>
@@ -870,7 +875,7 @@ Dimension-independent fourth moment = 2 confirmed</code></pre>
 <h2 class="anchored" data-anchor-id="physical-interpretation">4. Physical Interpretation</h2>
 <p><strong>Tensor network perspective:</strong> Each of the four <span class="math inline">\((\pi,\sigma)\)</span> terms corresponds to a distinct wiring of the tensor diagram: - <strong>Planar pairings</strong> (<span class="math inline">\(\pi^{-1}\sigma = \mathrm{id}\)</span>): uncrossed wires, producing 2 independent loops → <span class="math inline">\(D^2\)</span> per term - <strong>Non-planar pairings</strong> (<span class="math inline">\(\pi^{-1}\sigma = (12)\)</span>): crossed wires, forcing all indices to collapse to 1 loop → <span class="math inline">\(D\)</span> per term</p>
 <p>The exact cancellation <span class="math inline">\(\frac{2D^2}{D^2-1} - \frac{2}{D^2-1} = 2\)</span> is the algebraic manifestation of a <strong>topological</strong> fact: the number of independent wiring topologies, not the dimension of the group, controls the moments. This universality is why <span class="math inline">\(|\mathrm{Tr}(U)|^4 = 2\)</span> serves as the benchmark test for 2-design convergence.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:50.268314Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:50.267594Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:55.747324Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:55.746587Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:26.979116Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:26.978696Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:29.287746Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:29.287276Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

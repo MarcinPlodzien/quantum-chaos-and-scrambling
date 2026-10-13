@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">Dynamical Lie Algebra of a Three-Qubit Ising Chain</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Unitaries That Commute with a Hamiltonian</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature on SU(3)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -349,6 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="sidebar-item-text sidebar-link">Time Reversal for Two Spins and in a Field</a>
   </div>
 </li>
       </ul>
@@ -674,7 +679,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:11.761219Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:11.760831Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:12.877505Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:12.876484Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:13:28.931916Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:13:28.931694Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:13:29.465935Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:13:29.465449Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -722,7 +727,7 @@ This connects purity to the 2-copy Hilbert space.</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:12.880370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:12.880012Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:13.348615Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:13.347946Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:13:29.467427Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:13:29.467255Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:13:29.651119Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:13:29.650820Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -753,7 +758,7 @@ Bell purity (SWAP):   0.5000
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:48:13.352524Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:48:13.351786Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:48:16.043681Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:48:16.042965Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:13:29.652634Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:13:29.652438Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:13:30.656192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:13:30.655801Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Part (c): Haar-averaged purity</span></span>

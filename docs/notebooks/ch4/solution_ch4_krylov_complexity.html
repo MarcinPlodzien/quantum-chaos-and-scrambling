@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">Dynamical Lie Algebra of a Three-Qubit Ising Chain</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Unitaries That Commute with a Hamiltonian</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature on SU(3)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -349,6 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="sidebar-item-text sidebar-link">Time Reversal for Two Spins and in a Field</a>
   </div>
 </li>
       </ul>
@@ -695,7 +700,7 @@ C_K = \tanh^2(\alpha t) \cdot \cosh^2(\alpha t) = \sinh^2(\alpha t).
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:49:14.961136Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:49:14.960615Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:49:15.829834Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:49:15.829243Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:13:55.585048Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:13:55.584857Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:13:55.905927Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:13:55.905621Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -730,7 +735,7 @@ Verified: C_K(t) = sinh^2(alpha*t)</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:49:15.832922Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:49:15.832543Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:49:15.995772Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:49:15.993603Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:13:55.907465Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:13:55.907294Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:13:55.993001Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:13:55.992384Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -777,7 +782,7 @@ Krylov complexity = sinh²(αt) confirmed.</code></pre>
 </section>
 <section id="visual-pedagogical-proof" class="level2">
 <h2 class="anchored" data-anchor-id="visual-pedagogical-proof">Visual Pedagogical Proof</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:49:15.999400Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:49:15.998967Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:49:18.345537Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:49:18.344586Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:13:55.997278Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:13:55.996981Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:13:56.982790Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:13:56.982441Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

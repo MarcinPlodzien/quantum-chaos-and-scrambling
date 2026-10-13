@@ -53,3 +53,9 @@ The same physics for unitaries on the circle.
 
 The mixed-field Ising chain end to end: symmetry sectors, the unfolding map, and the two ways the fit can fail.
 :::
+
+::: {.nb-item}
+[Time reversal for two spins and in a field](../notebooks/ch2/solution_ch2_kramers.ipynb)
+
+A real basis when $\hat T^2=+1$, Kramers degeneracy lifted by a field, and the gap ratio of a GSE spectrum with both partners kept.
+:::

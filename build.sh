@@ -23,4 +23,11 @@ done
 echo "[3/3] Rendering site into ./docs ..."
 quarto render
 
+if [ "$fail" -ne 0 ]; then
+  echo "FAILED: $fail notebook(s) did not execute; their pages have no outputs."
+  echo "The site in ./docs is for inspection only. Do not publish it."
+  exit 1
+fi
+# Marks ./notebooks as a complete set of executed copies (update_site.sh --text-only needs it).
+touch notebooks/.build_ok
 echo "Done. The website is in ./docs (open ./docs/index.html)."

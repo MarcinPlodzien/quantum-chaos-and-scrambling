@@ -8,7 +8,7 @@
 
 <meta name="description" content="Mathematical Foundations, numerical solution.">
 
-<title>Quantum Chaos &amp; Scrambling - Dimension of the Lie Algebras and</title>
+<title>Quantum Chaos &amp; Scrambling - Unitaries That Commute with a Hamiltonian</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -215,7 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Dimension of the Lie Algebras and</h1>
+      <h1 class="quarto-secondary-nav-title">Unitaries That Commute with a Hamiltonian</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">Dynamical Lie Algebra of a Three-Qubit Ising Chain</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link active">Dimension of the Lie Algebras and</a>
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link active">Unitaries That Commute with a Hamiltonian</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature on SU(3)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -349,6 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="sidebar-item-text sidebar-link">Time Reversal for Two Spins and in a Field</a>
   </div>
 </li>
       </ul>
@@ -562,21 +567,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud" id="toc-dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud" class="nav-link active" data-scroll-target="#dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud">Dimension of the Lie Algebras <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span></a>
+  <li><a href="#unitaries-that-commute-with-a-hamiltonian" id="toc-unitaries-that-commute-with-a-hamiltonian" class="nav-link active" data-scroll-target="#unitaries-that-commute-with-a-hamiltonian">Unitaries That Commute with a Hamiltonian</a>
   <ul class="collapse">
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
-  <ul class="collapse">
-  <li><a href="#part-a-dimension-of-mathfrakud" id="toc-part-a-dimension-of-mathfrakud" class="nav-link" data-scroll-target="#part-a-dimension-of-mathfrakud">Part (a): Dimension of <span class="math inline">\(\mathfrak{u}(D)\)</span></a></li>
-  <li><a href="#part-b-dimension-of-mathfraksud" id="toc-part-b-dimension-of-mathfraksud" class="nav-link" data-scroll-target="#part-b-dimension-of-mathfraksud">Part (b): Dimension of <span class="math inline">\(\mathfrak{su}(D)\)</span></a></li>
-  <li><a href="#part-c-exponential-scaling-and-barren-plateaus" id="toc-part-c-exponential-scaling-and-barren-plateaus" class="nav-link" data-scroll-target="#part-c-exponential-scaling-and-barren-plateaus">Part (c): Exponential scaling and barren plateaus</a></li>
-  </ul></li>
-  <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
-  <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical verification</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch1/solution_ch1_dim_lie_algebra.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -586,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Dimension of the Lie Algebras and</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Unitaries That Commute with a Hamiltonian</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 <div>
@@ -606,149 +602,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="dimension-of-the-lie-algebras-mathfrakud-and-mathfraksud" class="level1">
-<h1>Dimension of the Lie Algebras <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span></h1>
+<section id="unitaries-that-commute-with-a-hamiltonian" class="level1">
+<h1>Unitaries That Commute with a Hamiltonian</h1>
 <hr>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Every continuous evolution of a <span class="math inline">\(D\)</span>-dimensional quantum system is generated by a Hermitian Hamiltonian, and pulling out the factor of <span class="math inline">\(i\)</span> turns these generators into skew-Hermitian matrices, the elements of the Lie algebra <span class="math inline">\(\mathfrak{u}(D)\)</span>. Keeping only the traceless ones gives <span class="math inline">\(\mathfrak{su}(D)\)</span>, the algebra attached to the special unitary group, whose elements generate the unitaries of unit determinant. Asking how large this algebra is amounts to asking how many independent generators it holds, which comes down to counting the real parameters left once the defining constraints are imposed.</p>
-<p>The counting is direct. Skew-Hermiticity ties each below-diagonal entry to its mirror image above and forces every diagonal entry to be purely imaginary, so the free real parameters number <span class="math inline">\(D^2\)</span>. Requiring the trace to vanish removes exactly one more, since that is a single condition on the imaginary diagonal, leaving <span class="math inline">\(D^2 - 1\)</span> generators for <span class="math inline">\(\mathfrak{su}(D)\)</span>. For a single qubit this recovers the three Pauli generators, as it should.</p>
-<p>What matters is how the count grows with system size. For <span class="math inline">\(N\)</span> qubits the dimension is <span class="math inline">\(D = 2^N\)</span>, and the generator count becomes <span class="math inline">\(4^N - 1\)</span>, an exponential in the number of qubits. The space of directions a generic circuit can move in is therefore enormous, and that very abundance is what dilutes the signal in variational optimization. When a circuit randomizes enough to imitate the first two moments of the unitary group, the variance of a cost-function gradient shrinks like <span class="math inline">\(4^{-N}\)</span>, and the training landscape flattens into a barren plateau where the gradients are too small to follow.</p>
-<p>This exercise carries out the parameter count for <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span>, confirms the <span class="math inline">\(4^N - 1\)</span> scaling for qubits, and connects it to the barren plateau.</p>
-</section>
-<section id="mathematical-background" class="level2">
-<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
-<p>The dimensions follow from counting independent generators. The algebra <span class="math inline">\(\mathfrak{u}(D)\)</span> consists of skew-Hermitian matrices <span class="math inline">\(X^\dagger = -X\)</span>. A complex <span class="math inline">\(D\times D\)</span> matrix carries <span class="math inline">\(2D^2\)</span> real parameters, and the skew-Hermitian condition is a real-linear constraint that halves them,</p>
-<p><span class="math display">\[
-\dim_{\mathbb{R}}\mathfrak{u}(D) = D^2 .
-\]</span></p>
-<p>The diagonal entries are pure imaginary (<span class="math inline">\(D\)</span> real parameters) and the <span class="math inline">\(\binom{D}{2}\)</span> off-diagonal pairs each carry two (<span class="math inline">\(D^2 - D\)</span> parameters), summing to <span class="math inline">\(D^2\)</span>. Imposing tracelessness <span class="math inline">\(\mathrm{Tr}\,X = 0\)</span> removes one direction,</p>
-<p><span class="math display">\[
-\dim_{\mathbb{R}}\mathfrak{su}(D) = D^2 - 1 .
-\]</span></p>
-<p>For a single qubit this gives <span class="math inline">\(\dim\mathfrak{su}(2) = 3\)</span>, the three Pauli generators. These counts set the size of the space a universal gate set must fill, and they reappear directly in the dimension factors of Weingarten averages and barren-plateau gradient variances.</p>
-</section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p><strong>(a)</strong> Count the real degrees of freedom in a <span class="math inline">\(D \times D\)</span> skew-Hermitian matrix and show <span class="math inline">\(\dim_\mathbb{R}\, \mathfrak{u}(D) = D^2\)</span>.</p>
-<p><strong>(b)</strong> The tracelessness constraint <span class="math inline">\(\mathrm{Tr}(X) = 0\)</span> defines <span class="math inline">\(\mathfrak{su}(D) \subset \mathfrak{u}(D)\)</span>. Show <span class="math inline">\(\dim_\mathbb{R}\, \mathfrak{su}(D) = D^2 - 1\)</span>.</p>
-<p><strong>(c)</strong> For <span class="math inline">\(N\)</span> qubits (<span class="math inline">\(D = 2^N\)</span>), how does <span class="math inline">\(\dim\,\mathfrak{su}(D)\)</span> scale with <span class="math inline">\(N\)</span>? Relate to the barren plateau phenomenon.</p>
+<p><strong>(a)</strong> If <span class="math inline">\(\hat H\)</span> has <span class="math inline">\(D\)</span> distinct eigenvalues, show that the unitaries commuting with <span class="math inline">\(\hat H\)</span> are those diagonal in its eigenbasis, a torus of dimension <span class="math inline">\(D\)</span>. <strong>(b)</strong> With degeneracies <span class="math inline">\(d_1,\dots,d_m\)</span>, show they form <span class="math inline">\(U(d_1)\times\cdots\times U(d_m)\)</span>, of dimension <span class="math inline">\(\sum_k d_k^2\)</span>. <strong>(c)</strong> For <span class="math inline">\(D=4\)</span> evaluate the patterns <span class="math inline">\((1,1,1,1),(2,1,1),(2,2),(3,1),(4)\)</span> and compare with <span class="math inline">\(\dim U(4)=16\)</span>. What fraction of <span class="math inline">\(U(2^N)\)</span> does the non-degenerate family fill?</p>
 </section>
 <section id="solution" class="level2">
 <h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<section id="part-a-dimension-of-mathfrakud" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-dimension-of-mathfrakud">Part (a): Dimension of <span class="math inline">\(\mathfrak{u}(D)\)</span></h3>
-<p>The Lie algebra <span class="math inline">\(\mathfrak{u}(D)\)</span> consists of all skew-Hermitian matrices: <span class="math inline">\(X = -X^\dagger\)</span>. This constraint relates entries pairwise.</p>
-<p><strong>Diagonal entries</strong> (<span class="math inline">\(X_{jj}\)</span>): The constraint <span class="math inline">\(X_{jj} = -\overline{X_{jj}}\)</span> forces each diagonal entry to be purely imaginary: <span class="math inline">\(X_{jj} = i\theta_j\)</span> with <span class="math inline">\(\theta_j \in \mathbb{R}\)</span>. This gives <strong><span class="math inline">\(D\)</span> real parameters</strong>.</p>
-<p><strong>Off-diagonal entries</strong> (<span class="math inline">\(j &lt; k\)</span>): The upper triangle has <span class="math inline">\(D(D-1)/2\)</span> complex entries, each with 2 real parameters. The lower triangle is determined by <span class="math inline">\(X_{kj} = -\overline{X_{jk}}\)</span>. This gives <strong><span class="math inline">\(D(D-1)\)</span> real parameters</strong>.</p>
-<p><strong>Total:</strong></p>
-<p><span class="math display">\[
-\boxed{\dim_\mathbb{R}\,\mathfrak{u}(D) = D + D(D-1) = D^2.}
-\]</span></p>
-</section>
-<section id="part-b-dimension-of-mathfraksud" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-dimension-of-mathfraksud">Part (b): Dimension of <span class="math inline">\(\mathfrak{su}(D)\)</span></h3>
-<p>The special unitary algebra <span class="math inline">\(\mathfrak{su}(D)\)</span> imposes the additional constraint <span class="math inline">\(\mathrm{Tr}(X) = 0\)</span>. Since</p>
-<p><span class="math display">\[
-\mathrm{Tr}(X) = \sum_{j=1}^D X_{jj} = i\sum_{j=1}^D \theta_j,
-\]</span></p>
-<p>the trace vanishes if and only if <span class="math inline">\(\sum_j \theta_j = 0\)</span>. This is a <strong>single real constraint</strong> on the <span class="math inline">\(D\)</span> imaginary diagonal parameters. The off-diagonal entries are unaffected.</p>
-<p><span class="math display">\[
-\boxed{\dim_\mathbb{R}\,\mathfrak{su}(D) = D^2 - 1.}
-\]</span></p>
-<p>This matches the familiar count: <span class="math inline">\(\mathrm{SU}(2)\)</span> has <span class="math inline">\(4 - 1 = 3\)</span> generators (the Pauli matrices).</p>
-</section>
-<section id="part-c-exponential-scaling-and-barren-plateaus" class="level3">
-<h3 class="anchored" data-anchor-id="part-c-exponential-scaling-and-barren-plateaus">Part (c): Exponential scaling and barren plateaus</h3>
-<p>For <span class="math inline">\(N\)</span> qubits, <span class="math inline">\(D = 2^N\)</span> and</p>
-<p><span class="math display">\[
-\dim\,\mathfrak{su}(2^N) = 4^N - 1.
-\]</span></p>
-<p>This exponential growth has a direct physical consequence: the <strong>gradient variance</strong> in a variational quantum circuit that forms a 2-design scales as</p>
-<p><span class="math display">\[
-\mathrm{Var}\!\left[\frac{\partial C}{\partial\theta}\right] = O\!\left(\frac{1}{4^N}\right).
-\]</span></p>
-<p>The gradient is exponentially small because the cost function “lives” on a manifold with <span class="math inline">\(4^N - 1\)</span> dimensions, the gradient signal is spread over an exponentially large space. This is the <strong>barren plateau</strong> phenomenon.</p>
-<hr>
-</section>
-</section>
-<section id="symbolic-verification-sympy" class="level2">
-<h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:09.937501Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:09.936984Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:10.470394Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:10.469665Z&quot;}" data-execution_count="1">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> sp.Symbol(<span class="st">'D'</span>, positive<span class="op">=</span><span class="va">True</span>, integer<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dim_uD <span class="op">=</span> D<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>dim_suD <span class="op">=</span> D<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify by components</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>diag_params <span class="op">=</span> D</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>off_diag_params <span class="op">=</span> D<span class="op">*</span>(D<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> sp.expand(diag_params <span class="op">+</span> off_diag_params)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Diagonal: </span><span class="sc">{</span>diag_params<span class="sc">}</span><span class="ss">, Off-diagonal: </span><span class="sc">{</span>off_diag_params<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total: </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> = D² = </span><span class="sc">{</span>sp<span class="sc">.</span>expand(D<span class="op">**</span><span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> total <span class="op">==</span> D<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"dim u(D) = </span><span class="sc">{</span>dim_uD<span class="sc">}</span><span class="ss">, dim su(D) = </span><span class="sc">{</span>dim_suD<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Diagonal: D, Off-diagonal: D*(D - 1)
-Total: D**2 = D² = D**2
-dim u(D) = D**2, dim su(D) = D**2 - 1</code></pre>
-</div>
-</div>
+<p><strong>(a)</strong> <span class="math inline">\([\hat U,\hat H]=0\)</span> means <span class="math inline">\(\hat U\)</span> maps each eigenspace into itself; a one-dimensional eigenspace only by a phase, so <span class="math inline">\(\hat U\)</span> is diagonal with <span class="math inline">\(D\)</span> free phases. <strong>(b)</strong> On a <span class="math inline">\(d_k\)</span>-dimensional eigenspace <span class="math inline">\(\hat U\)</span> may act as any element of <span class="math inline">\(U(d_k)\)</span>, of dimension <span class="math inline">\(d_k^2\)</span>. <strong>(c)</strong> <span class="math inline">\(4, 6, 8, 10, 16\)</span>. For <span class="math inline">\(N\)</span> qubits: <span class="math inline">\(2^N\)</span> of <span class="math inline">\(4^N\)</span>, a fraction <span class="math inline">\(2^{-N}\)</span>.</p>
 <hr>
 </section>
 <section id="numerical-verification" class="level2">
-<h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:10.476577Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:10.475992Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:10.633801Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:10.633108Z&quot;}" data-execution_count="2">
+<h2 class="anchored" data-anchor-id="numerical-verification">Numerical verification</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:07:57.646651Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:07:57.646447Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:07:57.691576Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:07:57.691213Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> D_val <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>]:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a random skew-Hermitian matrix</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.random.randn(D_val, D_val) <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>np.random.randn(D_val, D_val)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> (A <span class="op">-</span> A.conj().T) <span class="op">/</span> <span class="dv">2</span>  <span class="co"># Project to skew-Hermitian</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Verify skew-Hermiticity</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.allclose(X, <span class="op">-</span>X.conj().T)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Count real parameters</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    dim_u <span class="op">=</span> D_val<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    dim_su <span class="op">=</span> D_val<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    N_qubits <span class="op">=</span> <span class="bu">int</span>(np.log2(D_val))</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"D=</span><span class="sc">{</span>D_val<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>N_qubits<span class="sc">}</span><span class="ss">q): dim u(D) = </span><span class="sc">{</span>dim_u<span class="sc">:6d}</span><span class="ss">, "</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"dim su(D) = </span><span class="sc">{</span>dim_su<span class="sc">:6d}</span><span class="ss"> = 4^</span><span class="sc">{</span>N_qubits<span class="sc">}</span><span class="ss">−1 = </span><span class="sc">{</span><span class="dv">4</span><span class="op">**</span>N_qubits <span class="op">-</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> dim_su <span class="op">==</span> <span class="dv">4</span><span class="op">**</span>N_qubits <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Exponential growth: dim su(2^N) = 4^N − 1."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> commutant_dim(eigs):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Real dimension of {X skew-Hermitian : [X, H] = 0} for H = diag(eigs)."""</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="bu">len</span>(eigs)<span class="op">;</span> H <span class="op">=</span> np.diag(eigs).astype(<span class="bu">complex</span>)<span class="op">;</span> basis <span class="op">=</span> []</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(D):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.zeros((D, D), <span class="bu">complex</span>)<span class="op">;</span> A[i, i] <span class="op">=</span> <span class="ot">1j</span><span class="op">;</span> basis.append(A)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">+</span><span class="dv">1</span>, D):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            A <span class="op">=</span> np.zeros((D, D), <span class="bu">complex</span>)<span class="op">;</span> A[i, j], A[j, i] <span class="op">=</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span><span class="op">;</span> basis.append(A)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            A <span class="op">=</span> np.zeros((D, D), <span class="bu">complex</span>)<span class="op">;</span> A[i, j], A[j, i] <span class="op">=</span> <span class="ot">1j</span>, <span class="ot">1j</span><span class="op">;</span> basis.append(A)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> np.array([(B <span class="op">@</span> H <span class="op">-</span> H <span class="op">@</span> B).ravel() <span class="cf">for</span> B <span class="kw">in</span> basis]).T</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(basis) <span class="op">-</span> np.linalg.matrix_rank(np.vstack([M.real, M.imag]))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pattern <span class="kw">in</span> [(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">3</span>,<span class="dv">1</span>), (<span class="dv">4</span>,)]:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    eigs <span class="op">=</span> <span class="bu">sum</span>([[k]<span class="op">*</span>m <span class="cf">for</span> k, m <span class="kw">in</span> <span class="bu">enumerate</span>(pattern)], [])</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> commutant_dim(np.array(eigs, <span class="bu">float</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pattern, <span class="st">"dim ="</span>, d, <span class="st">" sum d_k^2 ="</span>, <span class="bu">sum</span>(m<span class="op">*</span>m <span class="cf">for</span> m <span class="kw">in</span> pattern))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> d <span class="op">==</span> <span class="bu">sum</span>(m<span class="op">*</span>m <span class="cf">for</span> m <span class="kw">in</span> pattern)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">: non-degenerate family dimension 2^N = </span><span class="sc">{</span><span class="dv">2</span><span class="op">**</span>N<span class="sc">}</span><span class="ss"> of 4^N = </span><span class="sc">{</span><span class="dv">4</span><span class="op">**</span>N<span class="sc">}</span><span class="ss">, fraction </span><span class="sc">{</span><span class="dv">2</span><span class="op">**</span>N<span class="op">/</span><span class="dv">4</span><span class="op">**</span>N<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sum d_k^2 VERIFIED"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>D=  2 (1q): dim u(D) =      4, dim su(D) =      3 = 4^1−1 = 3
-D=  4 (2q): dim u(D) =     16, dim su(D) =     15 = 4^2−1 = 15
-D=  8 (3q): dim u(D) =     64, dim su(D) =     63 = 4^3−1 = 63
-D= 16 (4q): dim u(D) =    256, dim su(D) =    255 = 4^4−1 = 255
-
-Exponential growth: dim su(2^N) = 4^N − 1.</code></pre>
+<pre><code>(1, 1, 1, 1) dim = 4  sum d_k^2 = 4
+(2, 1, 1) dim = 6  sum d_k^2 = 6
+(2, 2) dim = 8  sum d_k^2 = 8
+(3, 1) dim = 10  sum d_k^2 = 10
+(4,) dim = 16  sum d_k^2 = 16
+N=1: non-degenerate family dimension 2^N = 2 of 4^N = 4, fraction 0.5000
+N=2: non-degenerate family dimension 2^N = 4 of 4^N = 16, fraction 0.2500
+N=3: non-degenerate family dimension 2^N = 8 of 4^N = 64, fraction 0.1250
+N=4: non-degenerate family dimension 2^N = 16 of 4^N = 256, fraction 0.0625
+N=5: non-degenerate family dimension 2^N = 32 of 4^N = 1024, fraction 0.0312
+sum d_k^2 VERIFIED</code></pre>
 </div>
 </div>
-<hr>
 </section>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
-<p>Skew-Hermiticity gives <span class="math inline">\(\dim_\mathbb{R}\,\mathfrak{u}(D) = D^2\)</span>, and the single tracelessness constraint gives <span class="math inline">\(\dim_\mathbb{R}\,\mathfrak{su}(D) = D^2 - 1\)</span>. For <span class="math inline">\(N\)</span> qubits this is <span class="math inline">\(4^N - 1\)</span>, the exponentially large manifold over which variational gradients are spread in a barren plateau.</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li>Goodman and Wallach, <em>Symmetry, Representations, and Invariants</em>, Springer (2009).</li>
-<li>Larocca et al., <em>Barren plateaus in variational quantum computing</em>, Nature Reviews Physics (2025).</li>
-<li>Płodzień, <em>Information Scrambling, Quantum Chaos, and Haar-Random States</em>, lecture notes (2025). <a href="https://arxiv.org/abs/2511.14397">arXiv:2511.14397</a></li>
-</ul>
+<p>A Hamiltonian evolution explores only the commutant of <span class="math inline">\(\hat H\)</span>, of dimension <span class="math inline">\(\sum_k d_k^2\)</span>, which for a non-degenerate spectrum is an exponentially small slice of <span class="math inline">\(U(2^N)\)</span>.</p>
 
 
 </section>

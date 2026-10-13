@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">Dynamical Lie Algebra of a Three-Qubit Ising Chain</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Unitaries That Commute with a Hamiltonian</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature on SU(3)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -349,6 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="sidebar-item-text sidebar-link">Time Reversal for Two Spins and in a Field</a>
   </div>
 </li>
       </ul>
@@ -635,7 +640,7 @@ H(h) = -J\sum_{i} Z_{i-1} X_i Z_{i+1} \;-\; h \sum_i X_i .
 <p><strong>Protecting symmetry.</strong> <span class="math inline">\(H(h)\)</span> commutes with the two sublattice parities <span class="math inline">\(P_{\rm even} = \prod_{i\ {\rm even}} X_i\)</span> and <span class="math inline">\(P_{\rm odd} = \prod_{i\ {\rm odd}} X_i\)</span>, generating a <span class="math inline">\(\mathbb{Z}_2 \times \mathbb{Z}_2\)</span> symmetry that protects the SPT phase.</p>
 <p><strong>Task.</strong> Given only the ground state at a field <span class="math inline">\(h\)</span>, decide which phase it is in, training only far from criticality and never using an order parameter.</p>
 <p><strong>QELM protocol (per input <span class="math inline">\(h\)</span>).</strong> 1. Diagonalize <span class="math inline">\(H(h)\)</span> (in the symmetry sector) and take the ground state. 2. Evolve under a <strong>fixed</strong> nonintegrable scrambling unitary <span class="math inline">\(U = e^{-i H_{\rm res} t}\)</span>. 3. Read a fixed bank of low-weight Pauli expectations <span class="math inline">\(f_\alpha = \langle \psi_{\rm gs}| U^\dagger O_\alpha U |\psi_{\rm gs}\rangle\)</span>. 4. Fit a linear (logistic) readout on <span class="math inline">\(f\)</span> to predict the phase label.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:45.394257Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:45.393913Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:47.544793Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:47.542684Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:07.875057Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:07.874127Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:08.886301Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:08.885894Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -670,7 +675,7 @@ H(h) = -J\sum_{i} Z_{i-1} X_i Z_{i+1} \;-\; h \sum_i X_i .
 <p>We build <span class="math inline">\(H(h)\)</span> densely (for <span class="math inline">\(N=8\)</span> the Hilbert space is only <span class="math inline">\(2^8 = 256\)</span> dimensional). Two subtleties make the SPT chain different from the transverse-field Ising case.</p>
 <p><strong>Edge modes.</strong> On an <em>open</em> chain the cluster term only runs over the <span class="math inline">\(N-2\)</span> interior sites, so the pure cluster Hamiltonian has a four-fold degenerate ground space (the hallmark of the SPT phase: protected edge modes). A bare diagonalizer would return an arbitrary mixture inside this near-degenerate space, washing out the string order. We remove the ambiguity by <strong>projecting onto the <span class="math inline">\((P_{\rm even}, P_{\rm odd}) = (+1,+1)\)</span> symmetry sector</strong> (the sector that also contains the trivial all-<span class="math inline">\(|+\rangle\)</span> state), which selects one unique, symmetric ground state.</p>
 <p><strong>No local order parameter.</strong> In the symmetric ground state the single-site magnetizations <span class="math inline">\(\langle Z_i\rangle, \langle Y_i\rangle\)</span> and the nearest-neighbour correlators <span class="math inline">\(\langle Z_iZ_{i+1}\rangle, \langle Y_iY_{i+1}\rangle\)</span> are <strong>zero in both phases</strong>, forbidden by the protecting symmetry. We verify this below.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:47.549690Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:47.548863Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:48.789701Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:48.789128Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:08.888589Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:08.888279Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:09.765447Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:09.763015Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cluster_ising(N, J, h):</span>
@@ -721,7 +726,7 @@ H(h) = -J\sum_{i} Z_{i-1} X_i Z_{i+1} \;-\; h \sum_i X_i .
 <p>The order that <em>does</em> distinguish the phases is the product of the bulk cluster stabilizers <span class="math inline">\(K_i = Z_{i-1} X_i Z_{i+1}\)</span>. Multiplying them along the chain telescopes the <span class="math inline">\(Z\)</span>’s and leaves <span class="math display">\[
 S = \big\langle\, Z_1\, Y_2\, X_3 \cdots X_{N-2}\, Y_{N-1}\, Z_N \,\big\rangle ,
 \]</span> a <strong>weight-<span class="math inline">\(N\)</span></strong> string: <span class="math inline">\(Z\)</span> on the two ends, <span class="math inline">\(Y\)</span> just inside, <span class="math inline">\(X\)</span> across the bulk. (The field-along-<span class="math inline">\(X\)</span> convention puts <span class="math inline">\(Y\)</span>’s next to the <span class="math inline">\(Z\)</span> endpoints; a naive <span class="math inline">\(Z\!\cdots\!Z\)</span> string is identically zero here.) <span class="math inline">\(S \approx 1\)</span> on the ideal cluster state and decays to <span class="math inline">\(0\)</span> in the trivial phase. Crucially <span class="math inline">\(S\)</span> is <strong>nonlocal</strong>: it is in no low-weight bank and cannot be read from local measurements on the bare state.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:48.797273Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:48.796706Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:50.539381Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:50.532230Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:09.769561Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:09.768805Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:10.798327Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:10.797934Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> string_operator(N):</span>
@@ -750,7 +755,7 @@ S = \big\langle\, Z_1\, Y_2\, X_3 \cdots X_{N-2}\, Y_{N-1}\, Z_N \,\big\rangle ,
 <h3 class="anchored" data-anchor-id="the-fixed-reservoir-a-symmetry-breaking-scrambler">The fixed reservoir: a symmetry-breaking scrambler</h3>
 <p>For the input to be usefully re-expressed in low-weight observables the reservoir must <strong>scramble</strong>. A pure transverse-field Ising model is Jordan-Wigner integrable and does not scramble; adding a <strong>longitudinal</strong> field breaks integrability. A second requirement appears here: the reservoir must also <strong>break the protecting <span class="math inline">\(\mathbb{Z}_2\times\mathbb{Z}_2\)</span> symmetry</strong>. If it did not, <span class="math inline">\(U^\dagger O U\)</span> would stay in the symmetry-forbidden sector and its expectation would remain exactly zero, no matter how strongly the reservoir mixed the state.</p>
 <p>The mixed-field Ising chain <span class="math inline">\(H_{\rm res} = J_r \sum_i Z_i Z_{i+1} + h_x \sum_i X_i + h_z \sum_i Z_i\)</span> does both: the longitudinal <span class="math inline">\(h_z\)</span> breaks integrability <em>and</em> the cluster symmetry. We fix its parameters and the evolution time once; nothing in the reservoir is trained.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:50.546019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:50.545736Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:51.477207Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:51.473797Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:10.802995Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:10.802731Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:11.189796Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:11.189141Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mixed_field_ising(N, Jr, hx, hz):</span>
@@ -778,7 +783,7 @@ reservoir breaks the cluster symmetry? True</code></pre>
 <section id="the-fixed-measurement-bank-symmetry-forbidden-local-observables" class="level3">
 <h3 class="anchored" data-anchor-id="the-fixed-measurement-bank-symmetry-forbidden-local-observables">The fixed measurement bank: symmetry-forbidden local observables</h3>
 <p>We read a bank of <strong>low-weight</strong> observables that are exactly the conventional local order-parameter candidates: single-site <span class="math inline">\(\{Y_i, Z_i\}\)</span> and nearest-neighbour <span class="math inline">\(\{Y_iY_{i+1}, Z_iZ_{i+1}\}\)</span>. Every one of them is <strong>forbidden by the protecting symmetry</strong>, so on the bare ground state it vanishes in both phases. For a pure state <span class="math inline">\(\psi\)</span>, a Pauli string <span class="math inline">\(P = i^{p} X^{x} Z^{z}\)</span> has <span class="math inline">\(\langle P\rangle = \mathrm{Re}\sum_b \overline{\psi_b}\, W_b\, \psi_{b\oplus x}\)</span>, an <span class="math inline">\(O(2^N)\)</span> contraction we vectorize over the whole bank at once.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:51.481020Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:51.480727Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:51.552245Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:51.548800Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:11.192876Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:11.192227Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:11.264460Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:11.260456Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>_POP <span class="op">=</span> np.array([<span class="bu">bin</span>(i).count(<span class="st">'1'</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">16</span>)])</span>
@@ -811,7 +816,7 @@ reservoir breaks the cluster symmetry? True</code></pre>
 <section id="the-feature-map-and-why-the-bare-readout-is-blind" class="level3">
 <h3 class="anchored" data-anchor-id="the-feature-map-and-why-the-bare-readout-is-blind">The feature map, and why the bare readout is blind</h3>
 <p>For each input <span class="math inline">\(h\)</span> we form the symmetric ground state and read the bank either on the <strong>bare</strong> state or on the <strong>scrambled</strong> state <span class="math inline">\(\phi = U\psi\)</span>. The bare features vanish to machine precision; the scrambled features are <span class="math inline">\(O(0.1)\)</span> and carry the string order.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:51.555991Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:51.555701Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:52.812904Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:52.812238Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:11.270976Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:11.270675Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:11.469112Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:11.468651Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> qelm_features(psi_list, U, COLS, W):</span>
@@ -838,7 +843,7 @@ reservoir breaks the cluster symmetry? True</code></pre>
 <section id="train-far-from-criticality-test-across-the-transition" class="level3">
 <h3 class="anchored" data-anchor-id="train-far-from-criticality-test-across-the-transition">Train far from criticality, test across the transition</h3>
 <p>We draw training fields <strong>only</strong> from the clearly-SPT (<span class="math inline">\(h \in [0.05, 0.55]\)</span>) and clearly-trivial (<span class="math inline">\(h \in [1.45, 2.5]\)</span>) windows, label them <span class="math inline">\(0/1\)</span>, hold out a separate set of clear-region fields for honest accuracy, and use a dense sweep to probe the critical region the readout never trained on.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:52.817304Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:52.816862Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:23:04.956348Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:23:04.955451Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:11.475738Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:11.471298Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:41.978821Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:41.978317Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>H_TR_SPT <span class="op">=</span> np.linspace(<span class="fl">0.05</span>, <span class="fl">0.55</span>, <span class="dv">10</span>)<span class="op">;</span> H_TR_TRIV <span class="op">=</span> np.linspace(<span class="fl">1.45</span>, <span class="fl">2.50</span>, <span class="dv">10</span>)</span>
@@ -866,7 +871,7 @@ reservoir breaks the cluster symmetry? True</code></pre>
 <section id="train-the-linear-readout-on-the-scrambled-features" class="level3">
 <h3 class="anchored" data-anchor-id="train-the-linear-readout-on-the-scrambled-features">Train the linear readout on the scrambled features</h3>
 <p>The only trainable object is a logistic-regression readout on the standardized <em>scrambled</em> features. Because each feature <span class="math inline">\(f_\alpha = \mathrm{Tr}(\rho\,U^\dagger O_\alpha U)\)</span> is <strong>linear in the state</strong> <span class="math inline">\(\rho\)</span>, a linear readout is the well-posed choice.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:23:04.962452Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:23:04.961772Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:23:05.046158Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:23:05.044667Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:41.981990Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:41.981748Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:41.996586Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:41.995953Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler().fit(F_train)</span>
@@ -891,7 +896,7 @@ decision crossing = 0.813   (true h_c = 1; finite size shifts it below 1)</code>
 <section id="the-ablation-bare-vs-scrambled-under-finite-shots" class="level3">
 <h3 class="anchored" data-anchor-id="the-ablation-bare-vs-scrambled-under-finite-shots">The ablation: bare vs scrambled, under finite shots</h3>
 <p>A real device estimates each expectation from a finite number of measurement shots, with variance <span class="math inline">\((1-\langle O\rangle^2)/M\)</span>. On the <strong>bare</strong> forbidden features (true value zero) this is pure noise, so the readout is at chance no matter how many shots are taken. On the <strong>scrambled</strong> features the <span class="math inline">\(O(0.1)\)</span> signal survives easily. We average the accuracy over shot-noise realizations for a fair, identical comparison.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:23:05.058947Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:23:05.058419Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:23:08.071037Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:23:08.070362Z&quot;}" data-execution_count="9">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:41.999118Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:41.998874Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:42.353926Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:42.353330Z&quot;}" data-execution_count="9">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_shot_noise(F, shots, rng):</span>
@@ -921,7 +926,7 @@ SCRAM readout accuracy = 1.000 +/- 0.000</code></pre>
 <section id="visualize-manifold-decision-boundary-and-the-physics-behind-the-ablation" class="level3">
 <h3 class="anchored" data-anchor-id="visualize-manifold-decision-boundary-and-the-physics-behind-the-ablation">Visualize: manifold, decision boundary, and the physics behind the ablation</h3>
 <p>Panel (a): a 2D PCA of the scrambled feature vectors, a smooth arc parametrized by <span class="math inline">\(h\)</span>, with the SPT and trivial training states apart. Panel (b): the readout’s predicted trivial probability, crossing near <span class="math inline">\(h_c\)</span>. Panel (c): the nonlocal string order <span class="math inline">\(S(h)\)</span> dropping across <span class="math inline">\(h_c\)</span> while the local order parameter stays at zero, plus the bare-vs-scrambled accuracies.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:23:08.077822Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:23:08.077531Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:23:16.635897Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:23:16.635086Z&quot;}" data-execution_count="10">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:42.355686Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:42.355544Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:42.984098Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:42.983614Z&quot;}" data-execution_count="10">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>S_sweep <span class="op">=</span> np.array([np.vdot(p, Sop <span class="op">@</span> p).real <span class="cf">for</span> p <span class="kw">in</span> psi_sweep])</span>

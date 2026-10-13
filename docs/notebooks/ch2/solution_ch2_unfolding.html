@@ -93,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/03-haar-weingarten.html" rel="next">
+<link href="../../notebooks/ch2/solution_ch2_kramers.html" rel="next">
 <link href="../../notebooks/ch2/solution_ch2_cue_eigenphase.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">Dynamical Lie Algebra of a Three-Qubit Ising Chain</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Unitaries That Commute with a Hamiltonian</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature on SU(3)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -349,6 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link active">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="sidebar-item-text sidebar-link">Time Reversal for Two Spins and in a Field</a>
   </div>
 </li>
       </ul>
@@ -633,19 +638,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>(a) The obstacle.</strong> Diagonalize the chain and form the raw nearest-neighbour spacings <span class="math inline">\(s_n=E_{n+1}-E_n\)</span>. Show that their distribution is dominated by the varying density of states and does not resemble any universal law, and explain why comparing <span class="math inline">\(s_n\)</span> from the dense middle of the spectrum with <span class="math inline">\(s_n\)</span> from the sparse edges is meaningless.</p>
 <p><strong>(b) Symmetry first.</strong> The chain has a reflection symmetry <span class="math inline">\(i\mapsto N-1-i\)</span>. Show that the gap ratio <span class="math inline">\(\langle r\rangle\)</span> computed on the full spectrum is close to <span class="math inline">\(0.42\)</span>, below the GOE value, and that projecting onto one reflection-parity sector restores <span class="math inline">\(\langle r\rangle\approx0.54\)</span>. Explain the contamination.</p>
 <p><strong>(c) The unfolding map.</strong> Within one sector build the integrated density <span class="math inline">\(N(E)\)</span>, fit a smooth <span class="math inline">\(\bar N(E)\)</span> by a low-order polynomial over the central portion of the band, and define <span class="math inline">\(\epsilon_n=\bar N(E_n)\)</span>. Verify that the mean spacing of the <span class="math inline">\(\epsilon_n\)</span> is unity.</p>
-<p><strong>(d) The payoff and the two failure modes.</strong> Show that the unfolded spacing distribution follows the Wigner surmise, with variance close to <span class="math inline">\(4/\pi-1\approx0.273\)</span>. Then exhibit the two ways the fit can fail: a polynomial of degree <span class="math inline">\(2\)</span> that is too rigid, and a cubic spline with too little smoothing that chases the staircase. Explain why a low-order global polynomial sits safely between the two, and how over-fitting sets in as the degree of a global polynomial is raised.</p>
+<p><strong>(d) The payoff and the two failure modes.</strong> Show that the unfolded spacing distribution follows the GOE law, with variance close to the large-<span class="math inline">\(D\)</span> GOE value <span class="math inline">\(0.286\)</span>; the surmise gives <span class="math inline">\(4/\pi-1\approx0.273\)</span>, and with about <span class="math inline">\(1700\)</span> levels the statistical uncertainty of the variance is about <span class="math inline">\(0.01\)</span>, so the two cannot be told apart. Then exhibit the two ways the fit can fail: a polynomial of degree <span class="math inline">\(2\)</span> that is too rigid, and a cubic spline with too little smoothing that chases the staircase. Explain why a low-order global polynomial sits safely between the two, and how over-fitting sets in as the degree of a global polynomial is raised.</p>
 </section>
 <section id="toolbox" class="level2">
 <h2 class="anchored" data-anchor-id="toolbox">Toolbox</h2>
 <p><strong>Building the Hamiltonian.</strong> With <span class="math inline">\(D=2^N=4096\)</span> the dense matrix is small enough to diagonalize directly. The <span class="math inline">\(\hat Z\hat Z\)</span> and <span class="math inline">\(\hat Z\)</span> terms are diagonal in the computational basis, and <span class="math inline">\(\hat X_i\)</span> flips bit <span class="math inline">\(i\)</span>, so each row has <span class="math inline">\(N\)</span> off-diagonal entries equal to <span class="math inline">\(h_x\)</span>.</p>
 <p><strong>Reflection sectors.</strong> The reflection <span class="math inline">\(\hat P\)</span> maps the basis state with bit string <span class="math inline">\(b_0b_1\cdots b_{N-1}\)</span> to the string read backwards. Pairs of distinct strings <span class="math inline">\(\{b,\hat Pb\}\)</span> give one symmetric and one antisymmetric combination; palindromic strings are symmetric on their own. The symmetric sector therefore has dimension <span class="math inline">\((2^N+2^{N/2})/2=2080\)</span> and the antisymmetric sector <span class="math inline">\(2016\)</span>.</p>
-<p><strong>Fitting the staircase.</strong> <code>numpy.polynomial.Chebyshev.fit</code> fits in an orthogonal basis on a rescaled domain and stays well conditioned up to very high degree, so it shows honestly how a global polynomial starts to over-fit as its degree grows; a monomial fit on the unscaled energy axis (<code>numpy.polyfit</code>) becomes ill conditioned beyond degree twenty or so, and from degree forty the solver truncates the smallest singular values, warns, and returns a curve of far lower effective degree than the nominal one. <code>scipy.interpolate.UnivariateSpline</code> with smoothing parameter <span class="math inline">\(s\)</span> is the flexible local fit whose over-fit is abrupt.</p>
+<p><strong>Fitting the staircase.</strong> <code>numpy.polynomial.Chebyshev.fit</code> fits in an orthogonal basis on a rescaled domain and stays well conditioned up to very high degree, so it shows honestly how a global polynomial starts to over-fit as its degree grows; a monomial fit on the unscaled energy axis (<code>numpy.polyfit</code>) becomes ill conditioned beyond degree twenty or so, and from degree forty the solver truncates the smallest singular values and returns a curve of far lower effective degree than the nominal one. <code>scipy.interpolate.UnivariateSpline</code> with smoothing parameter <span class="math inline">\(s\)</span> is the flexible local fit whose over-fit is abrupt.</p>
 </section>
 <section id="solution" class="level2">
 <h2 class="anchored" data-anchor-id="solution">Solution</h2>
 <section id="part-a-the-raw-spacings-measure-the-density-of-states-not-the-correlations" class="level3">
 <h3 class="anchored" data-anchor-id="part-a-the-raw-spacings-measure-the-density-of-states-not-the-correlations">Part (a): the raw spacings measure the density of states, not the correlations</h3>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:25:19.069101Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:25:19.068776Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:25:43.026474Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:25:43.023118Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:09:53.971226Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:09:53.970982Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:05.424933Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:05.424589Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -678,7 +683,7 @@ raw spacings: mean 0.0087, min 1.53e-06, max 2.920
 raw spacing variance / mean^2 = 35.8   (Wigner surmise: 0.273)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:25:43.031306Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:25:43.030840Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:25:44.687243Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:25:44.682805Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:05.426556Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:05.426209Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:06.162905Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:06.162413Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="fl">3.8</span>))</span>
@@ -701,7 +706,7 @@ raw spacing variance / mean^2 = 35.8   (Wigner surmise: 0.273)</code></pre>
 </section>
 <section id="part-b-resolve-the-reflection-symmetry-before-anything-else" class="level3">
 <h3 class="anchored" data-anchor-id="part-b-resolve-the-reflection-symmetry-before-anything-else">Part (b): resolve the reflection symmetry before anything else</h3>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:25:44.693295Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:25:44.692934Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:05.683575Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:05.682710Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:06.164777Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:06.164480Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:09.220814Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:09.220285Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gap_ratio(E):</span>
@@ -745,7 +750,7 @@ raw spacing variance / mean^2 = 35.8   (Wigner surmise: 0.273)</code></pre>
 </section>
 <section id="part-c-the-unfolding-map" class="level3">
 <h3 class="anchored" data-anchor-id="part-c-the-unfolding-map">Part (c): the unfolding map</h3>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:05.688210Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:05.687837Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:05.703143Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:05.702325Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:09.225105Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:09.224872Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:09.241719Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:09.241220Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> central(E, keep<span class="op">=</span><span class="fl">0.8</span>):</span>
@@ -770,7 +775,7 @@ mean unfolded spacing = 1.0012   (must be 1)
 variance of unfolded spacing = 0.2753   (Wigner surmise 4/pi - 1 = 0.2732, exact GOE 0.286)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:05.709370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:05.708959Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:06.294974Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:06.294234Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:09.243514Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:09.243263Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:09.494012Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:09.493550Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">3.8</span>))</span>
@@ -791,7 +796,7 @@ variance of unfolded spacing = 0.2753   (Wigner surmise 4/pi - 1 = 0.2732, exact
 </section>
 <section id="part-d-the-payoff-and-the-two-failure-modes" class="level3">
 <h3 class="anchored" data-anchor-id="part-d-the-payoff-and-the-two-failure-modes">Part (d): the payoff, and the two failure modes</h3>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:06.300361Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:06.299986Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:14.791222Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:14.788798Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:09.496067Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:09.495795Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:10.713121Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:10.712484Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> var_unit_mean(s):</span>
@@ -827,10 +832,8 @@ variance of unfolded spacing = 0.2753   (Wigner surmise 4/pi - 1 = 0.2732, exact
          2          0.358
          5          0.275
          9          0.275
-        15          0.275</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        30          0.277
+        15          0.275
+        30          0.277
         50          0.273</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -845,35 +848,31 @@ variance of unfolded spacing = 0.2753   (Wigner surmise 4/pi - 1 = 0.2732, exact
 nominal monomial degree (np.polyfit)   Var(s)   singular values kept by the solver
          9                            0.275        10 of 10
         30                            0.277        31 of 31
-        40                            0.273        37 of 41</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       100                            0.272        48 of 101</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       300                            0.271        54 of 301</code></pre>
+        40                            0.273        37 of 41
+       100                            0.272        48 of 101
+       300                            0.271        54 of 301</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:14.794947Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:14.794661Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:16.966437Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:16.965681Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:10.716440Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:10.716140Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:12.024940Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:12.024558Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the abrupt over-fit: a LOCAL fit (cubic smoothing spline) that follows the staircase step by step</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Ec, Nc <span class="op">=</span> central(E_plus, <span class="fl">0.8</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"spline smoothing s     Var(s)"</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sm <span class="kw">in</span> [<span class="fl">1e3</span>, <span class="fl">1e2</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>]:</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    spl <span class="op">=</span> UnivariateSpline(Ec, Nc, k<span class="op">=</span><span class="dv">3</span>, s<span class="op">=</span>sm)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"      </span><span class="sc">{</span>sm<span class="sc">:8.0f}</span><span class="ss">         </span><span class="sc">{</span>var_unit_mean(np.diff(spl(Ec)))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="fl">3.8</span>))</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, (label, e) <span class="kw">in</span> <span class="bu">zip</span>(ax, [(<span class="st">"degree 2 (under-fit)"</span>, unfold_poly(E_plus, <span class="dv">2</span>)[<span class="dv">0</span>]),</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                               (<span class="st">"degree 9 (good)"</span>, unfold_poly(E_plus, <span class="dv">9</span>)[<span class="dv">0</span>]),</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                               (<span class="st">"spline, s = 1 (over-fit)"</span>, UnivariateSpline(Ec, Nc, k<span class="op">=</span><span class="dv">3</span>, s<span class="op">=</span><span class="dv">1</span>)(Ec))]):</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.diff(e)<span class="op">;</span> s <span class="op">=</span> s<span class="op">/</span>s.mean()</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    a.hist(s, bins<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">50</span>), density<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">"steelblue"</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    a.plot(sg, np.pi<span class="op">/</span><span class="dv">2</span><span class="op">*</span>sg<span class="op">*</span>np.exp(<span class="op">-</span>np.pi<span class="op">*</span>sg<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">4</span>), <span class="st">"k-"</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    a.set_title(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">: Var = </span><span class="sc">{</span>s<span class="sc">.</span>var()<span class="sc">:.3f}</span><span class="ss">"</span>)<span class="op">;</span> a.set_xlabel(<span class="st">"$s$"</span>)</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"$P(s)$"</span>)</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the abrupt over-fit: a LOCAL fit (cubic smoothing spline) that follows the staircase step by step</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Ec, Nc <span class="op">=</span> central(E_plus, <span class="fl">0.8</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"spline smoothing s     Var(s)"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sm <span class="kw">in</span> [<span class="fl">1e3</span>, <span class="fl">1e2</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>]:</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    spl <span class="op">=</span> UnivariateSpline(Ec, Nc, k<span class="op">=</span><span class="dv">3</span>, s<span class="op">=</span>sm)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"      </span><span class="sc">{</span>sm<span class="sc">:8.0f}</span><span class="ss">         </span><span class="sc">{</span>var_unit_mean(np.diff(spl(Ec)))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="fl">3.8</span>))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, (label, e) <span class="kw">in</span> <span class="bu">zip</span>(ax, [(<span class="st">"degree 2 (under-fit)"</span>, unfold_poly(E_plus, <span class="dv">2</span>)[<span class="dv">0</span>]),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                               (<span class="st">"degree 9 (good)"</span>, unfold_poly(E_plus, <span class="dv">9</span>)[<span class="dv">0</span>]),</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                               (<span class="st">"spline, s = 1 (over-fit)"</span>, UnivariateSpline(Ec, Nc, k<span class="op">=</span><span class="dv">3</span>, s<span class="op">=</span><span class="dv">1</span>)(Ec))]):</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.diff(e)<span class="op">;</span> s <span class="op">=</span> s<span class="op">/</span>s.mean()</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    a.hist(s, bins<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">50</span>), density<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">"steelblue"</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    a.plot(sg, np.pi<span class="op">/</span><span class="dv">2</span><span class="op">*</span>sg<span class="op">*</span>np.exp(<span class="op">-</span>np.pi<span class="op">*</span>sg<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">4</span>), <span class="st">"k-"</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    a.set_title(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">: Var = </span><span class="sc">{</span>s<span class="sc">.</span>var()<span class="sc">:.3f}</span><span class="ss">"</span>)<span class="op">;</span> a.set_xlabel(<span class="st">"$s$"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"$P(s)$"</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>spline smoothing s     Var(s)
@@ -900,34 +899,34 @@ nominal monomial degree (np.polyfit)   Var(s)   singular values kept by the solv
 </section>
 <section id="adversarial-check-every-quoted-number-machine-verified" class="level2">
 <h2 class="anchored" data-anchor-id="adversarial-check-every-quoted-number-machine-verified">Adversarial check — every quoted number, machine-verified</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:26:16.970015Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:26:16.969470Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:26:24.812694Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:26:24.812055Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:10:12.026795Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:10:12.026562Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:10:15.053750Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:10:15.053212Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>checks <span class="op">=</span> []</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>r_full, r_plus, r_minus <span class="op">=</span> gap_ratio(E_full), gap_ratio(E_plus), gap_ratio(E_minus)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="st">"sector dimensions 2080 / 2016"</span>, (<span class="bu">len</span>(E_plus), <span class="bu">len</span>(E_minus)) <span class="op">==</span> (<span class="dv">2080</span>, <span class="dv">2016</span>)))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"full-spectrum &lt;r&gt; = </span><span class="sc">{</span>r_full<span class="sc">:.3f}</span><span class="ss"> is close to 0.42"</span>, <span class="bu">abs</span>(r_full <span class="op">-</span> <span class="fl">0.42</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"+1 sector &lt;r&gt; = </span><span class="sc">{</span>r_plus<span class="sc">:.3f}</span><span class="ss"> is close to 0.54"</span>, <span class="bu">abs</span>(r_plus <span class="op">-</span> <span class="fl">0.54</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"-1 sector &lt;r&gt; = </span><span class="sc">{</span>r_minus<span class="sc">:.3f}</span><span class="ss"> is close to 0.52"</span>, <span class="bu">abs</span>(r_minus <span class="op">-</span> <span class="fl">0.52</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>e9, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">9</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-9 unfolding: mean spacing = </span><span class="sc">{</span>np<span class="sc">.</span>diff(e9)<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss"> (unity)"</span>, <span class="bu">abs</span>(np.diff(e9).mean() <span class="op">-</span> <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">5e-3</span>))</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-9 unfolding: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e9))<span class="sc">:.3f}</span><span class="ss"> (0.275)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e9)) <span class="op">-</span> <span class="fl">0.275</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>e2, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">2</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-2 under-fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e2))<span class="sc">:.3f}</span><span class="ss"> (0.36)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e2)) <span class="op">-</span> <span class="fl">0.36</span>) <span class="op">&lt;</span> <span class="fl">0.02</span>))</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>e300, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">300</span>)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-300 Chebyshev fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e300))<span class="sc">:.3f}</span><span class="ss"> (0.250, gradual over-fit)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e300)) <span class="op">-</span> <span class="fl">0.250</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>e800, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">800</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-800 Chebyshev fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e800))<span class="sc">:.3f}</span><span class="ss"> (0.18)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e800)) <span class="op">-</span> <span class="fl">0.18</span>) <span class="op">&lt;</span> <span class="fl">0.02</span>))</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>c300, _, rank300, _, _ <span class="op">=</span> np.polyfit(Ec, Nc, <span class="dv">300</span>, full<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"nominal degree-300 monomial fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(np.polyval(c300, Ec)))<span class="sc">:.3f}</span><span class="ss">, solver keeps </span><span class="sc">{</span>rank300<span class="sc">}</span><span class="ss"> of 301 singular values (truncated fit)"</span>, rank300 <span class="op">&lt;</span> <span class="dv">100</span>))</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>spl <span class="op">=</span> UnivariateSpline(Ec, Nc, k<span class="op">=</span><span class="dv">3</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"spline s=1 over-fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(spl(Ec)))<span class="sc">:.4f}</span><span class="ss"> (0.002)"</span>, var_unit_mean(np.diff(spl(Ec))) <span class="op">&lt;</span> <span class="fl">0.005</span>))</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"levels in the central 80% of the +1 sector = </span><span class="sc">{</span><span class="bu">len</span>(Ec)<span class="sc">}</span><span class="ss"> (1664)"</span>, <span class="bu">len</span>(Ec) <span class="op">==</span> <span class="dv">1664</span>))</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"Wigner-surmise variance 4/pi - 1 = </span><span class="sc">{</span><span class="dv">4</span><span class="op">/</span>np<span class="sc">.</span>pi<span class="op">-</span><span class="dv">1</span><span class="sc">:.4f}</span><span class="ss">"</span>, <span class="bu">abs</span>(<span class="dv">4</span><span class="op">/</span>np.pi <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> <span class="fl">0.2732</span>) <span class="op">&lt;</span> <span class="fl">1e-3</span>))</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, ok <span class="kw">in</span> checks:</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>((<span class="st">"PASS "</span> <span class="cf">if</span> ok <span class="cf">else</span> <span class="st">"FAIL "</span>) <span class="op">+</span> name)</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">all</span>(ok <span class="cf">for</span> _, ok <span class="kw">in</span> checks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>checks <span class="op">=</span> []</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>r_full, r_plus, r_minus <span class="op">=</span> gap_ratio(E_full), gap_ratio(E_plus), gap_ratio(E_minus)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="st">"sector dimensions 2080 / 2016"</span>, (<span class="bu">len</span>(E_plus), <span class="bu">len</span>(E_minus)) <span class="op">==</span> (<span class="dv">2080</span>, <span class="dv">2016</span>)))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"full-spectrum &lt;r&gt; = </span><span class="sc">{</span>r_full<span class="sc">:.3f}</span><span class="ss"> is close to 0.42"</span>, <span class="bu">abs</span>(r_full <span class="op">-</span> <span class="fl">0.42</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"+1 sector &lt;r&gt; = </span><span class="sc">{</span>r_plus<span class="sc">:.3f}</span><span class="ss"> is close to 0.54"</span>, <span class="bu">abs</span>(r_plus <span class="op">-</span> <span class="fl">0.54</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"-1 sector &lt;r&gt; = </span><span class="sc">{</span>r_minus<span class="sc">:.3f}</span><span class="ss"> is close to 0.52"</span>, <span class="bu">abs</span>(r_minus <span class="op">-</span> <span class="fl">0.52</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>e9, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">9</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-9 unfolding: mean spacing = </span><span class="sc">{</span>np<span class="sc">.</span>diff(e9)<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss"> (unity)"</span>, <span class="bu">abs</span>(np.diff(e9).mean() <span class="op">-</span> <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">5e-3</span>))</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-9 unfolding: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e9))<span class="sc">:.3f}</span><span class="ss"> (0.275)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e9)) <span class="op">-</span> <span class="fl">0.275</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>e2, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">2</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-2 under-fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e2))<span class="sc">:.3f}</span><span class="ss"> (0.36)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e2)) <span class="op">-</span> <span class="fl">0.36</span>) <span class="op">&lt;</span> <span class="fl">0.02</span>))</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>e300, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">300</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-300 Chebyshev fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e300))<span class="sc">:.3f}</span><span class="ss"> (0.250, gradual over-fit)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e300)) <span class="op">-</span> <span class="fl">0.250</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>))</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>e800, <span class="op">*</span>_ <span class="op">=</span> unfold_poly(E_plus, <span class="dv">800</span>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"degree-800 Chebyshev fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(e800))<span class="sc">:.3f}</span><span class="ss"> (0.18)"</span>, <span class="bu">abs</span>(var_unit_mean(np.diff(e800)) <span class="op">-</span> <span class="fl">0.18</span>) <span class="op">&lt;</span> <span class="fl">0.02</span>))</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>c300, _, rank300, _, _ <span class="op">=</span> np.polyfit(Ec, Nc, <span class="dv">300</span>, full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"nominal degree-300 monomial fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(np.polyval(c300, Ec)))<span class="sc">:.3f}</span><span class="ss">, solver keeps </span><span class="sc">{</span>rank300<span class="sc">}</span><span class="ss"> of 301 singular values (truncated fit)"</span>, rank300 <span class="op">&lt;</span> <span class="dv">100</span>))</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>spl <span class="op">=</span> UnivariateSpline(Ec, Nc, k<span class="op">=</span><span class="dv">3</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"spline s=1 over-fit: Var(s) = </span><span class="sc">{</span>var_unit_mean(np.diff(spl(Ec)))<span class="sc">:.4f}</span><span class="ss"> (0.002)"</span>, var_unit_mean(np.diff(spl(Ec))) <span class="op">&lt;</span> <span class="fl">0.005</span>))</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"levels in the central 80% of the +1 sector = </span><span class="sc">{</span><span class="bu">len</span>(Ec)<span class="sc">}</span><span class="ss"> (1664)"</span>, <span class="bu">len</span>(Ec) <span class="op">==</span> <span class="dv">1664</span>))</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>checks.append((<span class="ss">f"Wigner-surmise variance 4/pi - 1 = </span><span class="sc">{</span><span class="dv">4</span><span class="op">/</span>np<span class="sc">.</span>pi<span class="op">-</span><span class="dv">1</span><span class="sc">:.4f}</span><span class="ss">"</span>, <span class="bu">abs</span>(<span class="dv">4</span><span class="op">/</span>np.pi <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> <span class="fl">0.2732</span>) <span class="op">&lt;</span> <span class="fl">1e-3</span>))</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, ok <span class="kw">in</span> checks:</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>((<span class="st">"PASS "</span> <span class="cf">if</span> ok <span class="cf">else</span> <span class="st">"FAIL "</span>) <span class="op">+</span> name)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">all</span>(ok <span class="cf">for</span> _, ok <span class="kw">in</span> checks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>PASS sector dimensions 2080 / 2016
@@ -1278,8 +1277,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/03-haar-weingarten.html" class="pagination-link">
-        <span class="nav-page-text">3 · Haar Measure &amp; Weingarten Calculus</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="pagination-link">
+        <span class="nav-page-text">Time Reversal for Two Spins and in a Field</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

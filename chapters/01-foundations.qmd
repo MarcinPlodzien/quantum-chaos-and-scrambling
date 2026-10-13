@@ -51,9 +51,9 @@ Kraus operators, complete positivity, and entanglement fidelity.
 :::
 
 ::: {.nb-item}
-[Dynamical Lie algebra closure](../notebooks/ch1/solution_ch1_dla_closure.ipynb)
+[Dynamical Lie algebra of a three-qubit Ising chain](../notebooks/ch1/solution_ch1_dla_closure.ipynb)
 
-Building an algebra by repeated commutators, and what makes a gate set universal.
+Building an algebra by repeated commutators, and why parity alone does not explain its fifteen dimensions.
 :::
 
 ::: {.nb-item}
@@ -69,9 +69,9 @@ Channels as states via Choi-Jamiołkowski.
 :::
 
 ::: {.nb-item}
-[Dimension of $\mathfrak{u}(D)$ and $\mathfrak{su}(D)$](../notebooks/ch1/solution_ch1_dim_lie_algebra.ipynb)
+[Unitaries that commute with a Hamiltonian](../notebooks/ch1/solution_ch1_dim_lie_algebra.ipynb)
 
-Counting generators.
+Counting the commutant: a torus for a non-degenerate spectrum, $\sum_k d_k^2$ dimensions with degeneracies.
 :::
 
 ::: {.nb-item}
@@ -93,9 +93,9 @@ How fast a state can change.
 :::
 
 ::: {.nb-item}
-[Sectional curvature of $SU(2)$](../notebooks/ch1/solution_ch1_sectional_curvature.ipynb)
+[Sectional curvature on $SU(3)$](../notebooks/ch1/solution_ch1_sectional_curvature.ipynb)
 
-Why nearby evolutions reconverge.
+Planes of curvature $0$, $\tfrac12$ and $\tfrac18$, and which nearby evolutions reconverge fastest.
 :::
 
 ::: {.nb-item}

@@ -88,7 +88,7 @@ Speak the language of channels, Lie algebras, state geometry and measure theory.
 
 Diagnose chaos from a spectrum.
 
-<span class="nbcount">4 notebooks</span>
+<span class="nbcount">5 notebooks</span>
 :::
 ::: {.chapter-card}
 [![](assets/thumbs/ch03.png){fig-alt="Haar Measure & Weingarten Calculus"}](chapters/03-haar-weingarten.qmd)

@@ -8,7 +8,7 @@
 
 <meta name="description" content="Mathematical Foundations, numerical solution.">
 
-<title>Quantum Chaos &amp; Scrambling - Sectional Curvature of SU(2)</title>
+<title>Quantum Chaos &amp; Scrambling - Sectional Curvature on SU(3)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -215,7 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Sectional Curvature of SU(2)</h1>
+      <h1 class="quarto-secondary-nav-title">Sectional Curvature on SU(3)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">Dynamical Lie Algebra of a Three-Qubit Ising Chain</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Unitaries That Commute with a Hamiltonian</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link active">Sectional Curvature of SU(2)</a>
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link active">Sectional Curvature on SU(3)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -349,6 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="sidebar-item-text sidebar-link">Time Reversal for Two Spins and in a Field</a>
   </div>
 </li>
       </ul>
@@ -562,23 +567,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sectional-curvature-of-su2" id="toc-sectional-curvature-of-su2" class="nav-link active" data-scroll-target="#sectional-curvature-of-su2">Sectional Curvature of SU(2)</a>
+  <li><a href="#sectional-curvature-on-su3" id="toc-sectional-curvature-on-su3" class="nav-link active" data-scroll-target="#sectional-curvature-on-su3">Sectional Curvature on SU(3)</a>
   <ul class="collapse">
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#preliminaries-toolbox" id="toc-preliminaries-toolbox" class="nav-link" data-scroll-target="#preliminaries-toolbox">Preliminaries / Toolbox</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
-  <ul class="collapse">
-  <li><a href="#part-a-orthonormality" id="toc-part-a-orthonormality" class="nav-link" data-scroll-target="#part-a-orthonormality">Part (a): Orthonormality</a></li>
-  <li><a href="#part-b-evaluating-the-curvature-formula" id="toc-part-b-evaluating-the-curvature-formula" class="nav-link" data-scroll-target="#part-b-evaluating-the-curvature-formula">Part (b): Evaluating the curvature formula</a></li>
-  <li><a href="#part-c-geometric-interpretation" id="toc-part-c-geometric-interpretation" class="nav-link" data-scroll-target="#part-c-geometric-interpretation">Part (c): Geometric interpretation</a></li>
-  </ul></li>
-  <li><a href="#symbolic-verification-sympy" id="toc-symbolic-verification-sympy" class="nav-link" data-scroll-target="#symbolic-verification-sympy">Symbolic Verification (SymPy)</a></li>
-  <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical Verification</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical verification</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch1/solution_ch1_sectional_curvature.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -588,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Sectional Curvature of SU(2)</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Sectional Curvature on SU(3)</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 <div>
@@ -608,231 +602,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="sectional-curvature-of-su2" class="level1">
-<h1>Sectional Curvature of SU(2)</h1>
+<section id="sectional-curvature-on-su3" class="level1">
+<h1>Sectional Curvature on SU(3)</h1>
 <hr>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Curvature measures how a space bends, and the sectional curvature makes this local by examining one two-dimensional slice at a time. Pick a point and a plane of directions through it, then follow the geodesics that leave in those directions and watch whether they spread apart faster or slower than they would on a flat plane. Positive sectional curvature means nearby geodesics bend back toward each other, the way great circles on a sphere reconverge, while negative curvature means they fly apart.</p>
-<p>The unitary group is more than a manifold, since it is also a group, and it carries a metric that looks the same from every point and is unchanged by multiplication from either side. For such a bi-invariant metric the curvature is fixed entirely by the algebra of generators through the commutator. The sectional curvature of the plane spanned by two orthonormal generators <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is <span class="math inline">\(K(X,Y) = \tfrac14\|[X,Y]\|^2\)</span>, which can never be negative. Generators that fail to commute curve the space, and generators that commute leave it flat.</p>
-<p>For <span class="math inline">\(SU(2)\)</span> the three generators are built from the Pauli matrices and stand on equal footing, so every plane returns the same curvature and the group is geometrically a round three-sphere. Working out the commutator of two orthonormal generators pins down the constant and identifies the radius as <span class="math inline">\(\sqrt{2}\)</span>. The non-negative curvature carries a physical message, since it means geodesics generated by nearby Hamiltonians can separate at most linearly in time, which limits how quickly single-unitary dynamics alone can drive two trajectories apart.</p>
-<p>The notebook evaluates the commutator of the orthonormal Pauli generators and reads off the constant sectional curvature.</p>
-</section>
-<section id="mathematical-background" class="level2">
-<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
-<p>The radius can be read off from the induced metric in explicit coordinates. Parametrizing <span class="math inline">\(SU(2)\)</span> by Euler angles,</p>
-<p><span class="math display">\[
-V(\beta,\gamma,\delta) = \begin{pmatrix} e^{i\beta}\cos\gamma &amp; e^{i\delta}\sin\gamma \\ -e^{-i\delta}\sin\gamma &amp; e^{-i\beta}\cos\gamma \end{pmatrix},
-\]</span></p>
-<p>the line element <span class="math inline">\(ds^2 = \mathrm{Tr}(dV^\dagger dV)\)</span> is diagonal, with <span class="math inline">\(g_{\gamma\gamma} = 2\)</span>, <span class="math inline">\(g_{\beta\beta} = 2\cos^2\gamma\)</span>, and <span class="math inline">\(g_{\delta\delta} = 2\sin^2\gamma\)</span>. The cross terms vanish because the tangent directions are generated by the orthogonal Pauli matrices, <span class="math inline">\(\mathrm{Tr}(\sigma_i\sigma_j) = 2\delta_{ij}\)</span>. Collecting the coefficients,</p>
-<p><span class="math display">\[
-ds^2 = 2\big(d\gamma^2 + \cos^2\gamma\, d\beta^2 + \sin^2\gamma\, d\delta^2\big),
-\]</span></p>
-<p>which is twice the round metric on a unit three-sphere. The overall factor of two carried by the Hilbert-Schmidt metric is what makes the sphere have radius <span class="math inline">\(\sqrt{2}\)</span> rather than one, consistent with the constant curvature <span class="math inline">\(K = 1/R^2 = 1/2\)</span> found from the commutator. The geometry of <span class="math inline">\(SU(2)\)</span> is therefore exactly <span class="math inline">\(S^3\)</span>, and evolution under a fixed Hamiltonian moves along its great circles.</p>
-</section>
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>Unitary groups form <strong>curved</strong> Riemannian manifolds. The geometry of geodesics on these manifolds governs how physical systems evolve under random or structured Hamiltonian dynamics. A key descriptor of this geometry is the <strong>sectional curvature</strong>, which describes how much geodesics (time-evolution trajectories) tend to deviate from one another.</p>
-<p>For Lie groups equipped with a bi-invariant metric (like the Hilbert-Schmidt metric), the sectional curvature is everywhere non-negative. This implies that nearby trajectories generated by slightly different Hamiltonians will slowly drift apart (or oscillate), but they do not exhibit the exponentially fast divergence characteristic of negative curvature. This sets a fundamental continuous-time bound on quantum chaos before many-body effects are considered.</p>
-</section>
-<section id="preliminaries-toolbox" class="level2">
-<h2 class="anchored" data-anchor-id="preliminaries-toolbox">Preliminaries / Toolbox</h2>
-<p><strong>1. The Lie Algebra <span class="math inline">\(\mathfrak{u}(D)\)</span>:</strong> The tangent space at the identity consists of skew-Hermitian matrices <span class="math inline">\(X^\dagger = -X\)</span>.</p>
-<p><strong>2. The Hilbert-Schmidt Metric:</strong> A natural bi-invariant inner product on the Lie algebra: <span class="math display">\[
-g(A, B) = -\mathrm{Tr}(A B).
-\]</span> The minus sign ensures positivity because for skew-Hermitian matrices, <span class="math inline">\(BA\)</span> and <span class="math inline">\(AB\)</span> have negative eigenvalues, so <span class="math inline">\(-\mathrm{Tr}(A^2) = \mathrm{Tr}(A^\dagger A) \geq 0\)</span>.</p>
-<p><strong>3. Sectional Curvature:</strong> For a plane spanned by two orthonormal tangent vectors <span class="math inline">\(X, Y \in \mathfrak{u}(D)\)</span> (such that <span class="math inline">\(g(X,X)=1\)</span>, <span class="math inline">\(g(Y,Y)=1\)</span>, and <span class="math inline">\(g(X,Y)=0\)</span>), the sectional curvature of the bi-invariant metric is: <span class="math display">\[
-K(X, Y) = \frac{1}{4} \| [X, Y] \|^2_{HS}
-\]</span> where <span class="math inline">\(\| Z \|^2_{HS} = g(Z, Z) = -\mathrm{Tr}(Z^2)\)</span>.</p>
-<p><strong>4. Spherical Geometry:</strong> The <span class="math inline">\(n\)</span>-dimensional sphere <span class="math inline">\(S^n(R)\)</span> of radius <span class="math inline">\(R\)</span> has constant sectional curvature <span class="math inline">\(K = 1/R^2\)</span> everywhere.</p>
-</section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>The group <span class="math inline">\(\mathrm{SU}(2)\)</span> is diffeomorphic to the 3-sphere <span class="math inline">\(S^3\)</span>.</p>
-<p><strong>(a)</strong> Verify that <span class="math inline">\(X = -i\sigma_x / \sqrt{2}\)</span> and <span class="math inline">\(Y = -i\sigma_y / \sqrt{2}\)</span> are orthonormal in the Hilbert-Schmidt metric.</p>
-<p><strong>(b)</strong> Compute the commutator <span class="math inline">\([X,Y]\)</span>, its norm-squared <span class="math inline">\(\|[X,Y]\|^2_{HS}\)</span>, and the resulting sectional curvature <span class="math inline">\(K(X,Y)\)</span>.</p>
-<p><strong>(c)</strong> Verify that this matches the expected curvature <span class="math inline">\(K = 1/R^2\)</span> of <span class="math inline">\(S^3\)</span> with radius <span class="math inline">\(R = \sqrt{2}\)</span>.</p>
+<p>The sectional curvature of the bi-invariant metric is <span class="math inline">\(K(X,Y)=\tfrac14\|[X,Y]\|^2\)</span>, with <span class="math inline">\(g(A,B)=-\mathrm{Tr}(AB)\)</span> for skew-Hermitian <span class="math inline">\(A,B\)</span>. With <span class="math inline">\(E_{jk}=|j\rangle\langle k|\)</span> on <span class="math inline">\(\mathbb{C}^3\)</span>: <span class="math inline">\(X_1=\tfrac{-i}{\sqrt2}\mathrm{diag}(1,-1,0)\)</span>, <span class="math inline">\(Y_1=\tfrac{-i}{\sqrt6}\mathrm{diag}(1,1,-2)\)</span>, <span class="math inline">\(X_2=\tfrac{-i}{\sqrt2}(E_{12}+E_{21})\)</span>, <span class="math inline">\(Y_2=\tfrac{1}{\sqrt2}(E_{21}-E_{12})\)</span>, <span class="math inline">\(Y_3=\tfrac{-i}{\sqrt2}(E_{23}+E_{32})\)</span>.</p>
+<p><strong>(a)</strong> Show each generator is in <span class="math inline">\(\mathfrak{su}(3)\)</span> and that <span class="math inline">\((X_1,Y_1)\)</span>, <span class="math inline">\((X_2,Y_2)\)</span>, <span class="math inline">\((X_2,Y_3)\)</span> are orthonormal pairs. <strong>(b)</strong> Compute <span class="math inline">\([X,Y]\)</span> and <span class="math inline">\(K(X,Y)\)</span> for the three pairs. <strong>(c)</strong> For which pair do two evolutions leaving the identity along <span class="math inline">\(X\)</span> and <span class="math inline">\(X+\epsilon Y\)</span> stay parallel, and for which do they reconverge fastest?</p>
 </section>
 <section id="solution" class="level2">
 <h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<section id="part-a-orthonormality" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-orthonormality">Part (a): Orthonormality</h3>
-<p>Check the norm of <span class="math inline">\(X\)</span>: <span class="math display">\[
-\| X \|^2 = -\mathrm{Tr}(X^2) = -\mathrm{Tr}\left(\left(-i\frac{\sigma_x}{\sqrt{2}}\right)^2\right) = -\mathrm{Tr}\left(-\frac{\sigma_x^2}{2}\right) = \frac{\mathrm{Tr}(I_2)}{2} = \frac{2}{2} = 1. \quad \checkmark
-\]</span></p>
-<p>Check the norm of <span class="math inline">\(Y\)</span>: <span class="math display">\[
-\| Y \|^2 = -\mathrm{Tr}(Y^2) = -\mathrm{Tr}\left(-\frac{\sigma_y^2}{2}\right) = \frac{\mathrm{Tr}(I_2)}{2} = 1. \quad \checkmark
-\]</span></p>
-<p>Check orthogonality: <span class="math display">\[
-g(X, Y) = -\mathrm{Tr}(XY) = -\mathrm{Tr}\left(\left(-i\frac{\sigma_x}{\sqrt{2}}\right)\left(-i\frac{\sigma_y}{\sqrt{2}}\right)\right) = \frac{1}{2}\mathrm{Tr}(\sigma_x \sigma_y) = \frac{1}{2}\mathrm{Tr}(i\sigma_z) = 0. \quad \checkmark
-\]</span></p>
-</section>
-<section id="part-b-evaluating-the-curvature-formula" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-evaluating-the-curvature-formula">Part (b): Evaluating the curvature formula</h3>
-<p>Compute the commutator: <span class="math display">\[
-[X, Y] = \left[ -i\frac{\sigma_x}{\sqrt{2}}, -i\frac{\sigma_y}{\sqrt{2}} \right] = -\frac{1}{2} [\sigma_x, \sigma_y] = -\frac{1}{2} (2i\sigma_z) = -i\sigma_z.
-\]</span></p>
-<p>Compute its norm-squared: <span class="math display">\[
-\| [X,Y] \|^2 = -\mathrm{Tr}\left((-i\sigma_z)^2\right) = -\mathrm{Tr}(-\sigma_z^2) = \mathrm{Tr}(I_2) = 2.
-\]</span></p>
-<p>The sectional curvature is therefore: <span class="math display">\[
-\boxed{K(X,Y) = \frac{1}{4} \| [X, Y] \|^2 = \frac{1}{4} \times 2 = \frac{1}{2}.}
-\]</span></p>
-</section>
-<section id="part-c-geometric-interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="part-c-geometric-interpretation">Part (c): Geometric interpretation</h3>
-<p>Because the Lie algebra <span class="math inline">\(\mathfrak{su}(2)\)</span> is 3-dimensional and isotropic under the adjoint action, the sectional curvature is constant for all planes. This implies <span class="math inline">\(\mathrm{SU}(2)\)</span> with the bi-invariant Hilbert-Schmidt metric is isometric to a 3-sphere.</p>
-<p>For a sphere of radius <span class="math inline">\(R\)</span>, the curvature is <span class="math inline">\(K = 1/R^2\)</span>. <span class="math display">\[
-K = \frac{1}{2} \implies R^2 = 2 \implies R = \sqrt{2}.
-\]</span></p>
-<p>Why <span class="math inline">\(\sqrt{2}\)</span>? The standard parametrization <span class="math inline">\(U = x_0 I + i x_1 \sigma_x + i x_2 \sigma_y + i x_3 \sigma_z\)</span> with <span class="math inline">\(\sum x_i^2 = 1\)</span> puts <span class="math inline">\(\mathrm{SU}(2)\)</span> on the unit sphere <span class="math inline">\(S^3(R=1)\)</span> in <span class="math inline">\(\mathbb{R}^4\)</span>. The Hilbert-Schmidt metric <span class="math inline">\(g(X,Y) = -\mathrm{Tr}(XY)\)</span> carries an extra factor <span class="math inline">\(\mathrm{Tr}(I_2) = 2\)</span> relative to that flat metric, which rescales every length by <span class="math inline">\(\sqrt{2}\)</span>. The sphere therefore has radius <span class="math inline">\(R = \sqrt{2}\)</span> and curvature <span class="math inline">\(K = 1/R^2 = 1/2\)</span>, matching part (b).</p>
-<hr>
-</section>
-</section>
-<section id="symbolic-verification-sympy" class="level2">
-<h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:21:24.521090Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:21:24.520765Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:21:25.017428Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:21:25.016781Z&quot;}" data-execution_count="1">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Pauli matrices as symbolic 2x2</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sx <span class="op">=</span> sp.Matrix([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]])</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sy <span class="op">=</span> sp.Matrix([[<span class="dv">0</span>, <span class="op">-</span>sp.I], [sp.I, <span class="dv">0</span>]])</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sz <span class="op">=</span> sp.Matrix([[<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]])</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Lie algebra elements X = -i*sx/sqrt(2), Y = -i*sy/sqrt(2)</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="op">-</span>sp.I <span class="op">*</span> sx <span class="op">/</span> sp.sqrt(<span class="dv">2</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="op">-</span>sp.I <span class="op">*</span> sy <span class="op">/</span> sp.sqrt(<span class="dv">2</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Check orthonormality: g(A,B) = -Tr(AB)</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>norm_X2 <span class="op">=</span> <span class="op">-</span>sp.trace(X <span class="op">*</span> X)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>norm_Y2 <span class="op">=</span> <span class="op">-</span>sp.trace(Y <span class="op">*</span> Y)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>inner_XY <span class="op">=</span> <span class="op">-</span>sp.trace(X <span class="op">*</span> Y)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'||X||^2 = </span><span class="sc">{</span>norm_X2<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'||Y||^2 = </span><span class="sc">{</span>norm_Y2<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'g(X,Y) = </span><span class="sc">{</span>inner_XY<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Commutator and curvature</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>comm <span class="op">=</span> X <span class="op">*</span> Y <span class="op">-</span> Y <span class="op">*</span> X</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>norm_comm2 <span class="op">=</span> <span class="op">-</span>sp.trace(comm <span class="op">*</span> comm)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> sp.Rational(<span class="dv">1</span>, <span class="dv">4</span>) <span class="op">*</span> norm_comm2</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'[X,Y] = </span><span class="sc">{</span>comm<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'||[X,Y]||^2 = </span><span class="sc">{</span>norm_comm2<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'K(X,Y) = </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> K <span class="op">==</span> sp.Rational(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Verified: K = 1/2 = 1/R^2 with R = sqrt(2)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>||X||^2 = 1
-||Y||^2 = 1
-g(X,Y) = 0
-[X,Y] = Matrix([[-I, 0], [0, I]])
-||[X,Y]||^2 = 2
-K(X,Y) = 1/2
-Verified: K = 1/2 = 1/R^2 with R = sqrt(2)</code></pre>
-</div>
-</div>
+<p><strong>(a)</strong> All five are skew-Hermitian and traceless; the norms are 1, and the cross terms vanish (<span class="math inline">\(\mathrm{Tr}(X_1Y_1)\propto 1-1=0\)</span>, <span class="math inline">\(X_2Y_2=-\tfrac{i}{2}(E_{11}-E_{22})\)</span> is traceless, <span class="math inline">\(X_2Y_3=-\tfrac12E_{13}\)</span> has no diagonal).</p>
+<p><strong>(b)</strong> <span class="math inline">\([X_1,Y_1]=0\)</span>, <span class="math inline">\(K=0\)</span>. <span class="math inline">\([X_2,Y_2]=-i\,\mathrm{diag}(1,-1,0)\)</span>, <span class="math inline">\(\|[X_2,Y_2]\|^2=2\)</span>, <span class="math inline">\(K=\tfrac12\)</span> (an <span class="math inline">\(\mathfrak{su}(2)\)</span> block, as for <span class="math inline">\(SU(2)\)</span>). <span class="math inline">\([X_2,Y_3]=\tfrac12(E_{31}-E_{13})\)</span>, <span class="math inline">\(\|[X_2,Y_3]\|^2=\tfrac12\)</span>, <span class="math inline">\(K=\tfrac18\)</span>.</p>
+<p><strong>(c)</strong> The diagonal pair commutes: a flat torus, parallel geodesics. The same-block pair reconverges fastest. The pair sharing one state has a quarter of that curvature.</p>
 <hr>
 </section>
 <section id="numerical-verification" class="level2">
-<h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
+<h2 class="anchored" data-anchor-id="numerical-verification">Numerical verification</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:08:42.635393Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:08:42.635120Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:08:42.867169Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:08:42.865420Z&quot;}" data-execution_count="1">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="kw">lambda</span> A, B: np.real(np.trace(A.conj().T <span class="op">@</span> B))   <span class="co"># Hilbert-Schmidt metric, = -Tr(AB) on skew-Hermitian</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>comm <span class="op">=</span> <span class="kw">lambda</span> A, B: A <span class="op">@</span> B <span class="op">-</span> B <span class="op">@</span> A</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="kw">lambda</span> i, j: np.outer(np.eye(<span class="dv">3</span>)[i], np.eye(<span class="dv">3</span>)[j])</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>np.diag([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>])<span class="op">/</span>np.sqrt(<span class="dv">2</span>)<span class="op">;</span>  Y1 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>np.diag([<span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>])<span class="op">/</span>np.sqrt(<span class="dv">6</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>(E(<span class="dv">0</span>,<span class="dv">1</span>) <span class="op">+</span> E(<span class="dv">1</span>,<span class="dv">0</span>))<span class="op">/</span>np.sqrt(<span class="dv">2</span>)<span class="op">;</span>    Y2 <span class="op">=</span> (E(<span class="dv">1</span>,<span class="dv">0</span>) <span class="op">-</span> E(<span class="dv">0</span>,<span class="dv">1</span>))<span class="op">/</span>np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Y3 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>(E(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">+</span> E(<span class="dv">2</span>,<span class="dv">1</span>))<span class="op">/</span>np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, (X, Y) <span class="kw">in</span> {<span class="st">"(X1,Y1)"</span>: (X1, Y1), <span class="st">"(X2,Y2)"</span>: (X2, Y2), <span class="st">"(X2,Y3)"</span>: (X2, Y3)}.items():</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.allclose(X.conj().T, <span class="op">-</span>X) <span class="kw">and</span> np.allclose(Y.conj().T, <span class="op">-</span>Y)          <span class="co"># skew-Hermitian</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(np.trace(X), <span class="dv">0</span>) <span class="kw">and</span> np.isclose(np.trace(Y), <span class="dv">0</span>)            <span class="co"># traceless</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(g(X, X), <span class="dv">1</span>) <span class="kw">and</span> np.isclose(g(Y, Y), <span class="dv">1</span>) <span class="kw">and</span> np.isclose(g(X, Y), <span class="dv">0</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> comm(X, Y)<span class="op">;</span> K <span class="op">=</span> g(C, C)<span class="op">/</span><span class="dv">4</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: |[X,Y]|^2 = </span><span class="sc">{</span>g(C,C)<span class="sc">:.4f}</span><span class="ss">,  K = </span><span class="sc">{</span>K<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(g(comm(X1,Y1), comm(X1,Y1))<span class="op">/</span><span class="dv">4</span>, <span class="dv">0</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(g(comm(X2,Y2), comm(X2,Y2))<span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(g(comm(X2,Y3), comm(X2,Y3))<span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"K = 0, 1/2, 1/8 VERIFIED"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(X1,Y1): |[X,Y]|^2 = 0.0000,  K = 0.0000
+(X2,Y2): |[X,Y]|^2 = 2.0000,  K = 0.5000
+(X2,Y3): |[X,Y]|^2 = 0.5000,  K = 0.1250
+K = 0, 1/2, 1/8 VERIFIED</code></pre>
+</div>
+</div>
 </section>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
-<p>The bi-invariant curvature formula <span class="math inline">\(K(X,Y)=\tfrac14\|[X,Y]\|^2\)</span> gives <span class="math inline">\(K=1/2\)</span> for every plane in <span class="math inline">\(\mathfrak{su}(2)\)</span>, identifying <span class="math inline">\(SU(2)\)</span> with a 3-sphere of radius <span class="math inline">\(\sqrt{2}\)</span>. Non-negative curvature means geodesics generated by nearby Hamiltonians separate at most linearly rather than exponentially.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:21:25.022454Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:21:25.021885Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:21:25.317573Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:21:25.316528Z&quot;}" data-execution_count="2">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> expm</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sx <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sy <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="op">-</span><span class="ot">1j</span>], [<span class="ot">1j</span>, <span class="dv">0</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sz <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> sx <span class="op">/</span> np.sqrt(<span class="dv">2</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> sy <span class="op">/</span> np.sqrt(<span class="dv">2</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hs_inner(A, B):</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.trace(A <span class="op">@</span> B).real</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>norm_X2 <span class="op">=</span> hs_inner(X, X)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>norm_Y2 <span class="op">=</span> hs_inner(Y, Y)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>inner_XY <span class="op">=</span> hs_inner(X, Y)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lie algebra orthonormality:"</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ‖X‖²   = </span><span class="sc">{</span>norm_X2<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ‖Y‖²   = </span><span class="sc">{</span>norm_Y2<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  g(X,Y) = </span><span class="sc">{</span>inner_XY<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>comm <span class="op">=</span> X <span class="op">@</span> Y <span class="op">-</span> Y <span class="op">@</span> X</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>norm_comm2 <span class="op">=</span> hs_inner(comm, comm)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>K_val <span class="op">=</span> <span class="fl">0.25</span> <span class="op">*</span> norm_comm2</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Sectional curvature:"</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  [X,Y]    = </span><span class="ch">\n</span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(comm, <span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ‖[X,Y]‖² = </span><span class="sc">{</span>norm_comm2<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  K(X,Y)   = </span><span class="sc">{</span>K_val<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(K_val, <span class="fl">0.5</span>), <span class="st">"Curvature should be 1/2"</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Constant sectional curvature K = 1/2 of SU(2) confirmed."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Lie algebra orthonormality:
-  ‖X‖²   = 1.00
-  ‖Y‖²   = 1.00
-  g(X,Y) = -0.00
-
-Sectional curvature:
-  [X,Y]    = 
-[[0.-1.j 0.+0.j]
- [0.+0.j 0.+1.j]]
-  ‖[X,Y]‖² = 2.00
-  K(X,Y)   = 0.50
-
-Constant sectional curvature K = 1/2 of SU(2) confirmed.</code></pre>
-</div>
-</div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:21:25.322114Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:21:25.321472Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:21:26.769287Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:21:26.768330Z&quot;}" data-execution_count="3">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Visualization: positive curvature =&gt; nearby Hamiltonians separate at most linearly ---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> expm</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)     <span class="co"># base Hamiltonian (sigma_z)</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)      <span class="co"># perturbation (sigma_x)</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> <span class="fl">0.15</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">400</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>sep <span class="op">=</span> np.array([np.linalg.norm(expm(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> H <span class="op">*</span> t) <span class="op">-</span> expm(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> (H <span class="op">+</span> eps <span class="op">*</span> V) <span class="op">*</span> t)) <span class="cf">for</span> t <span class="kw">in</span> ts])</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.6</span>, <span class="dv">4</span>))</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax.plot(ts, sep, color<span class="op">=</span><span class="st">"C0"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="vs">r"$\|U_1(t)-U_2(t)\|$ on $SU(2)$"</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>ax.plot(ts, eps <span class="op">*</span> ts, <span class="st">"k--"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r"linear envelope $\varepsilon\,t$"</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>ax.plot(ts, <span class="fl">0.2</span> <span class="op">*</span> np.exp(<span class="fl">0.15</span> <span class="op">*</span> ts), ls<span class="op">=</span><span class="st">":"</span>, color<span class="op">=</span><span class="st">"C3"</span>, lw<span class="op">=</span><span class="fl">1.4</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">"what negative curvature would give"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"time $t$"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"trajectory separation"</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r"$K=\frac</span><span class="sc">{1}{2}</span><span class="vs">&gt;0$: bounded separation (no exponential blow-up)"</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">3</span>)<span class="op">;</span> ax.set_xlim(<span class="dv">0</span>, <span class="dv">20</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<p><img src="solution_ch1_sectional_curvature_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
-</div>
-</div>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li>Milnor, <em>Curvatures of left invariant metrics on Lie groups</em>, Advances in Mathematics (1976).</li>
-<li>Nielsen, <em>A geometric approach to quantum circuit lower bounds</em>, Quantum Information and Computation (2006). <a href="https://arxiv.org/abs/quant-ph/0502070">link</a></li>
-<li>Bengtsson and Zyczkowski, <em>Geometry of Quantum States: An Introduction to Quantum Entanglement</em>, Cambridge University Press (2017).</li>
-<li>Płodzień, <em>Information Scrambling, Quantum Chaos, and Haar-Random States</em>, lecture notes (2025). <a href="https://arxiv.org/abs/2511.14397">arXiv:2511.14397</a></li>
-</ul>
+<p>The curvature of a plane in <span class="math inline">\(\mathfrak{su}(3)\)</span> measures how much the two generators overlap in the states they couple: <span class="math inline">\(K=0\)</span> for commuting generators, <span class="math inline">\(\tfrac12\)</span> within one <span class="math inline">\(\mathfrak{su}(2)\)</span> block, <span class="math inline">\(\tfrac18\)</span> for blocks sharing one state.</p>
 
 
 </section>

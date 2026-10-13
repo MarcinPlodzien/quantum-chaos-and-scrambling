@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">Dynamical Lie Algebra of a Three-Qubit Ising Chain</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Unitaries That Commute with a Hamiltonian</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature on SU(3)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -349,6 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="sidebar-item-text sidebar-link">Time Reversal for Two Spins and in a Field</a>
   </div>
 </li>
       </ul>
@@ -696,7 +701,7 @@ d_{\mathrm{FS}}(|\psi\rangle, |\phi\rangle) = \arccos|\langle\psi|\phi\rangle|.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:39.943432Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:39.943084Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:40.620275Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:40.619534Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:08:10.359631Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:08:10.359354Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:08:10.630012Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:08:10.629540Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -729,7 +734,7 @@ d_FS(|0⟩, |+⟩) = pi/4 = pi/4</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:40.626528Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:40.626091Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:40.768845Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:40.768236Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:08:10.631802Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:08:10.631589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:08:10.748907Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:08:10.747850Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -761,7 +766,7 @@ d_FS(|0⟩, |0⟩) = 0.0000 (expected 0.0000)
 All assertions passed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T13:20:40.774308Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T13:20:40.773048Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T13:20:42.368491Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T13:20:42.364820Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:08:10.751303Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:08:10.750974Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:08:11.453944Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:08:11.453318Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Visualization: the Fubini-Study geodesic on the qubit sphere ---</span></span>

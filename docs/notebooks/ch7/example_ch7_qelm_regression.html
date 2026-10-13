@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">The Adjoint Representation and DLA Closure</a>
+  <a href="../../notebooks/ch1/solution_ch1_dla_closure.html" class="sidebar-item-text sidebar-link">Dynamical Lie Algebra of a Three-Qubit Ising Chain</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Dimension of the Lie Algebras and</a>
+  <a href="../../notebooks/ch1/solution_ch1_dim_lie_algebra.html" class="sidebar-item-text sidebar-link">Unitaries That Commute with a Hamiltonian</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature of SU(2)</a>
+  <a href="../../notebooks/ch1/solution_ch1_sectional_curvature.html" class="sidebar-item-text sidebar-link">Sectional Curvature on SU(3)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -349,6 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/ch2/solution_ch2_unfolding.html" class="sidebar-item-text sidebar-link">Unfolding a Many-Body Spectrum</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ch2/solution_ch2_kramers.html" class="sidebar-item-text sidebar-link">Time Reversal for Two Spins and in a Field</a>
   </div>
 </li>
       </ul>
@@ -634,7 +639,7 @@ f(x) \;=\; \sin(3x) \;+\; \tfrac{1}{2}\sin(7x), \qquad x \in [0, 2\pi],
 <li>Read a fixed bank of low-weight Pauli expectation values as <span class="math inline">\(\boldsymbol{f}(x)\)</span>.</li>
 </ol>
 <p>Only the ridge-regression readout <span class="math inline">\(\boldsymbol{w}\)</span> is trained. We report the held-out <span class="math inline">\(R^2\)</span> and mean squared error, and we show that the number of re-uploads <span class="math inline">\(L\)</span> controls which Fourier frequencies the reservoir can represent.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:36.912738Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:36.912423Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:37.825257Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:37.821862Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:03.719463Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:03.719069Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:04.165454Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:04.165083Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -668,7 +673,7 @@ f(x) \;=\; \sin(3x) \;+\; \tfrac{1}{2}\sin(7x), \qquad x \in [0, 2\pi],
         \;+\; h_z \sum_i \hat Z_i .
 \]</span></p>
 <p>The transverse field <span class="math inline">\(h_x\)</span> alone would leave the model Jordan-Wigner integrable; the longitudinal field <span class="math inline">\(h_z\)</span> breaks integrability, so the dynamics genuinely scramble and mix low-weight operators into high-weight ones. This is what supplies a rich, nonlinear feature basis. The unitary <span class="math inline">\(\hat U = e^{-i\hat H t}\)</span> is computed <strong>once</strong> and never trained.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:37.830088Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:37.829687Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:37.898684Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:37.897907Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:04.167378Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:04.167124Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:04.185674Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:04.185304Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mixed_field_ising(N, J, hx, hz):</span>
@@ -700,7 +705,7 @@ U is unitary: True</code></pre>
 <h2 class="anchored" data-anchor-id="encoding-and-the-fourier-picture">Encoding and the Fourier picture</h2>
 <p>The input is written in by the diagonal encoding layer <span class="math inline">\(\hat S(x) = \prod_i e^{-i x \hat Z_i / 2}\)</span>. Acting on a statevector it multiplies each computational-basis amplitude <span class="math inline">\(b\)</span> by a phase <span class="math inline">\(e^{-i x g_b}\)</span>, where <span class="math inline">\(g_b = \tfrac12\sum_i (1 - 2\,b_i)\)</span> is the total <span class="math inline">\(\hat Z/2\)</span> eigenvalue of that basis state.</p>
 <p>Every measured feature is therefore a <strong>finite Fourier series</strong> in <span class="math inline">\(x\)</span>. The accessible frequencies are the differences of the encoding generator’s eigenvalues, and with <span class="math inline">\(L\)</span> re-uploads these differences add up: the reachable frequencies extend to <span class="math inline">\(L\cdot N\)</span>. This is the Schuld-Sweke-Meyer picture. With <span class="math inline">\(N=5\)</span> a single upload reaches frequency <span class="math inline">\(5\)</span>, which cannot represent the <span class="math inline">\(\sin(7x)\)</span> component of the target; two uploads reach frequency <span class="math inline">\(10\)</span> and can. Re-uploads, not extra training, buy the expressivity.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:37.902562Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:37.902215Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:37.915588Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:37.914872Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:04.187244Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:04.186963Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:04.190466Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:04.190085Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> encoding_phases(N):</span>
@@ -728,7 +733,7 @@ max reachable frequency at L uploads = L * N =  L * 5</code></pre>
 = \mathrm{Re}\sum_b \overline{\psi_b}\, W_b\, \psi_{b\oplus x},
 \]</span></p>
 <p>an <span class="math inline">\(\mathcal{O}(2^N)\)</span> contraction that avoids building the full matrix. We verify it against the brute-force expectation below.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:37.918827Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:37.918548Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:37.965114Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:37.964488Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:04.191937Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:04.191647Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:04.215300Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:04.214779Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>_POP <span class="op">=</span> np.array([<span class="bu">bin</span>(i).count(<span class="st">"1"</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">16</span>)])</span>
@@ -781,7 +786,7 @@ check &lt;Z0Z1&gt;: True</code></pre>
 <section id="the-qelm-feature-map" class="level2">
 <h2 class="anchored" data-anchor-id="the-qelm-feature-map">The QELM feature map</h2>
 <p>Now assemble the single-shot map <span class="math inline">\(x \mapsto \boldsymbol{f}(x)\)</span>. Nothing here is trained: the reservoir unitary <span class="math inline">\(\hat U\)</span>, the encoding, and the readout are all fixed. The only nonlinearity the readout ever sees is manufactured by this quantum pipeline.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:37.968121Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:37.967867Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:37.973937Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:37.973408Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:04.217057Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:04.216760Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:04.220662Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:04.220205Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> qelm_features(xs, N, U, g, COLS, W, L):</span>
@@ -805,7 +810,7 @@ check &lt;Z0Z1&gt;: True</code></pre>
 <section id="visualising-the-feature-bank" class="level3">
 <h3 class="anchored" data-anchor-id="visualising-the-feature-bank">Visualising the feature bank</h3>
 <p>A single scalar <span class="math inline">\(x\)</span> is turned into a family of nonlinear, multi-frequency curves. These are the columns of the feature matrix, plotted against <span class="math inline">\(x\)</span>. The linear readout will fit the target as a weighted sum of exactly these curves.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:37.976569Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:37.976315Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:38.686313Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:38.685641Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:04.222187Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:04.221923Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:04.634341Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:04.633878Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x_dense <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi, <span class="dv">400</span>)</span>
@@ -828,7 +833,7 @@ check &lt;Z0Z1&gt;: True</code></pre>
 <section id="training-the-linear-readout" class="level2">
 <h2 class="anchored" data-anchor-id="training-the-linear-readout">Training the linear readout</h2>
 <p>We standardise the features on the training split, append a bias term, and solve the ridge-regression normal equations. This is the <strong>only</strong> fit in the whole pipeline, a single convex linear-algebra step with no variational loop.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:38.690089Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:38.689686Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:38.737522Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:38.735068Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:04.635853Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:04.635689Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:04.653471Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:04.652963Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ridge_fit(F_tr, y_tr, lam):</span>
@@ -867,7 +872,7 @@ check &lt;Z0Z1&gt;: True</code></pre>
 held-out MSE = 1.773e-06</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:38.741582Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:38.740730Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:39.020032Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:39.019404Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:04.655029Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:04.654862Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:04.788528Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:04.788174Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
@@ -890,7 +895,7 @@ held-out MSE = 1.773e-06</code></pre>
 <section id="expressivity-grows-with-re-uploads" class="level2">
 <h2 class="anchored" data-anchor-id="expressivity-grows-with-re-uploads">Expressivity grows with re-uploads</h2>
 <p>The pedagogical payoff. Sweep the number of re-uploads <span class="math inline">\(L\)</span> at a weak and a strong per-layer scrambling time. With one upload the reachable frequencies stop at <span class="math inline">\(N=5\)</span>, so the readout can only fit the <span class="math inline">\(\sin(3x)\)</span> part and <span class="math inline">\(R^2\)</span> is capped near <span class="math inline">\(0.80\)</span>, exactly the variance fraction of that component. Adding a second upload lifts the frequency ceiling past <span class="math inline">\(7\)</span> and the fit becomes essentially exact, provided the scrambling is strong enough; a weakly scrambling reservoir needs an extra upload to build up the same high-frequency amplitude. Pushing <span class="math inline">\(L\)</span> higher eventually over-scrambles and the feature signal degrades.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-09-10T14:18:39.023973Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-09-10T14:18:39.023640Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-09-10T14:18:39.539606Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-09-10T14:18:39.538751Z&quot;}" data-execution_count="9">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:04.790258Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:04.790068Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:05.044260Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:05.043816Z&quot;}" data-execution_count="9">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>L_sweep <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
