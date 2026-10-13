@@ -1,0 +1,27 @@
+---
+title: "About"
+toc: false
+code-tools: false
+---
+
+## The author
+
+[![](assets/qusml_logo.svg){width=320px fig-alt="QuSML: Quantum Systems and Machine Learning"}](https://chaos.if.uj.edu.pl/marcinplodzien/)
+
+### [Marcin Płodzień](https://chaos.if.uj.edu.pl/marcinplodzien/)
+
+[Marcin Płodzień](https://chaos.if.uj.edu.pl/marcinplodzien/) is an Assistant Professor at the Institute of Theoretical Physics, Jagiellonian University in Kraków, working at the intersection of many-body quantum systems, quantum simulation, quantum metrology, quantum computing and machine learning.
+
+[www](https://chaos.if.uj.edu.pl/marcinplodzien/) · [Google Scholar](https://scholar.google.com/citations?user=eC9nCmgAAAAJ&hl=en) · [arXiv](https://arxiv.org/search/?searchtype=author&query=P%C5%82odzie%C5%84%2C+M) · [ORCID](https://orcid.org/0000-0002-0835-1644) · [ResearcherID](https://publons.com/researcher/K-7326-2017/) · [GitHub](https://github.com/MarcinPlodzien) · [LinkedIn](https://www.linkedin.com/in/marcin-plodzien/)
+
+## The tutorial
+
+*From Haar Random States to Quantum Machine Learning* is a hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems. It is written for graduate students and researchers in quantum information, condensed matter, and quantum machine learning, and for anyone comfortable with linear algebra and Python who wants to compute with these ideas. The notebooks accompany the lecture notes [*Information Scrambling, Quantum Chaos, and Haar-Random States*](https://arxiv.org/abs/2511.14397) (arXiv:2511.14397).
+
+## Related course
+
+[*Quantum Many-Body Simulation: from a single spin to quantum machine learning*](https://marcinplodzien.github.io/quantum-many-body-simulation/), hands-on lectures on simulating quantum systems in JAX, from scratch.
+
+## License and feedback
+
+Code and tutorial material are released under the MIT License. Corrections and suggestions are welcome as [issues on GitHub](https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues).

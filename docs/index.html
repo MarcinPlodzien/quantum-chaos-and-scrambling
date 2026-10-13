@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Quantum Chaos &amp; Scrambling - From Haar Random States to Quantum Machine Learning</title>
+<title>Quantum Chaos &amp; Scrambling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -186,10 +186,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="./exercises.html">
  <span class="menu-text">Exercises (PDF)</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://chaos.if.uj.edu.pl/marcinplodzien/"><i class="bi bi-house" role="img" aria-label="Homepage">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -203,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">From Haar Random States to Quantum Machine Learning</h1>
+      <h1 class="quarto-secondary-nav-title"></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -214,6 +223,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/qusml_logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -544,24 +558,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">From Haar Random States to Quantum Machine Learning</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-<p class="subtitle lead">A hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems</p>
+
+
+<div class="hero">
+<div class="hero-text">
+<h1 class="hero-title">
+From Haar Random States to Quantum Machine Learning
+</h1>
+<p class="hero-tagline">
+A hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems
+</p>
+<p class="hero-sub">
+Haar averaging, the Weingarten calculus and a modest amount of representation theory, developed once and applied to quantum chaos, scrambling, benchmarking protocols and the trainability of quantum machine learning, with every step checked numerically.
+</p>
+<p class="hero-author">
+<a href="https://chaos.if.uj.edu.pl/marcinplodzien/"><b>Marcin Płodzień</b></a> · Institute of Theoretical Physics, Jagiellonian University in Kraków
+</p>
+<p><a href="./chapters/01-foundations.html" class="btn btn-primary">Start with Part 1</a> <a href="#parts" class="btn btn-outline-primary">Browse the parts</a> <a href="./exercises.html" class="btn btn-outline-primary">Exercises &amp; Solutions (PDF)</a></p>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
+<div class="hero-image">
+<p><img src="assets/hero.png" class="img-fluid" alt="Level repulsion in the GOE, the spectral form factor of the GUE, convergence of a classical-shadow estimate, and the barren-plateau decay of the gradient variance"></p>
+</div>
+</div>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>A recurring lesson in quantum many-body physics and quantum information is that the typical behaviour of a complex quantum system is sharply constrained, even when its microscopic details are not. Averages over the unitary group, known as the Haar measure, together with the concentration of measure that accompanies them, turn this observation into quantitative predictions. The same low-order Haar moments then reappear in settings that look, at first, unrelated.</p>
@@ -580,55 +598,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>explain barren plateaus</strong> and the expressivity-trainability tension in quantum machine learning, from first principles.</li>
 </ul>
 </section>
-<section id="how-the-tutorial-is-organized" class="level2">
-<h2 class="anchored" data-anchor-id="how-the-tutorial-is-organized">How the tutorial is organized</h2>
+<section id="parts" class="level2">
+<h2 class="anchored" data-anchor-id="parts">How the tutorial is organized</h2>
 <p>Seven short parts, each a <em>concept page</em> followed by <em>runnable notebooks</em>:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Part</th>
-<th>You’ll be able to…</th>
-<th>Notebooks</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="./chapters/01-foundations.html">1 · Mathematical Foundations</a></td>
-<td>Speak the language of channels, Lie algebras, state geometry and measure theory</td>
-<td>14</td>
-</tr>
-<tr class="even">
-<td><a href="./chapters/02-random-matrix-theory.html">2 · Random Matrix Theory</a></td>
-<td>Diagnose chaos from a spectrum</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td><a href="./chapters/03-haar-weingarten.html">3 · Haar Measure &amp; Weingarten Calculus</a></td>
-<td>Average over random unitaries and derive the Page formula</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td><a href="./chapters/04-dynamics.html">4 · Quantum Dynamics &amp; Chaos</a></td>
-<td>Measure scrambling in real time</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td><a href="./chapters/05-designs.html">5 · Designs &amp; Clifford Ensembles</a></td>
-<td>Replace Haar randomness with something efficient</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td><a href="./chapters/06-applications.html">6 · Applications of Scrambling</a></td>
-<td>Turn randomness into protocols</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td><a href="./chapters/07-qml.html">7 · Quantum Machine Learning</a></td>
-<td>Understand trainability through the same lens, then five worked examples</td>
-<td>12</td>
-</tr>
-</tbody>
-</table>
+<div class="chapter-grid">
+<div class="chapter-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./chapters/01-foundations.html"><img src="assets/thumbs/ch01.png" class="img-fluid figure-img" alt="Mathematical Foundations"></a></p>
+</figure>
+</div>
+<p><a href="./chapters/01-foundations.html">1 · Mathematical Foundations</a></p>
+<p>Speak the language of channels, Lie algebras, state geometry and measure theory.</p>
+<p><span class="nbcount">14 notebooks</span></p>
+</div>
+<div class="chapter-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./chapters/02-random-matrix-theory.html"><img src="assets/thumbs/ch02.png" class="img-fluid figure-img" alt="Random Matrix Theory"></a></p>
+</figure>
+</div>
+<p><a href="./chapters/02-random-matrix-theory.html">2 · Random Matrix Theory</a></p>
+<p>Diagnose chaos from a spectrum.</p>
+<p><span class="nbcount">4 notebooks</span></p>
+</div>
+<div class="chapter-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./chapters/03-haar-weingarten.html"><img src="assets/thumbs/ch03.png" class="img-fluid figure-img" alt="Haar Measure &amp; Weingarten Calculus"></a></p>
+</figure>
+</div>
+<p><a href="./chapters/03-haar-weingarten.html">3 · Haar Measure &amp; Weingarten Calculus</a></p>
+<p>Average over random unitaries and derive the Page formula.</p>
+<p><span class="nbcount">7 notebooks</span></p>
+</div>
+<div class="chapter-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./chapters/04-dynamics.html"><img src="assets/thumbs/ch04.png" class="img-fluid figure-img" alt="Quantum Dynamics &amp; Chaos"></a></p>
+</figure>
+</div>
+<p><a href="./chapters/04-dynamics.html">4 · Quantum Dynamics &amp; Chaos</a></p>
+<p>Measure scrambling in real time.</p>
+<p><span class="nbcount">3 notebooks</span></p>
+</div>
+<div class="chapter-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./chapters/05-designs.html"><img src="assets/thumbs/ch05.png" class="img-fluid figure-img" alt="Designs &amp; Clifford Ensembles"></a></p>
+</figure>
+</div>
+<p><a href="./chapters/05-designs.html">5 · Designs &amp; Clifford Ensembles</a></p>
+<p>Replace Haar randomness with something efficient.</p>
+<p><span class="nbcount">2 notebooks</span></p>
+</div>
+<div class="chapter-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./chapters/06-applications.html"><img src="assets/thumbs/ch06.png" class="img-fluid figure-img" alt="Applications of Scrambling"></a></p>
+</figure>
+</div>
+<p><a href="./chapters/06-applications.html">6 · Applications of Scrambling</a></p>
+<p>Turn randomness into protocols.</p>
+<p><span class="nbcount">5 notebooks</span></p>
+</div>
+<div class="chapter-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./chapters/07-qml.html"><img src="assets/thumbs/ch07.png" class="img-fluid figure-img" alt="Quantum Machine Learning"></a></p>
+</figure>
+</div>
+<p><a href="./chapters/07-qml.html">7 · Quantum Machine Learning</a></p>
+<p>Understand trainability through the same lens, then five worked examples.</p>
+<p><span class="nbcount">12 notebooks</span></p>
+</div>
+</div>
 <p>The parts are largely independent and each notebook stands on its own, so you can read in order or jump to what you need. The second-moment twirl worked out in Part 3 recurs in the Page formula, the classical-shadows channel, the randomized-benchmarking decay and the barren-plateau gradient variance; where a notebook reuses an earlier result, a short Connections note at its end points back to it. A companion <strong><a href="./exercises.html">Exercises &amp; Solutions PDF</a></strong> collects analytical problems and worked solutions for every part.</p>
 </section>
 <section id="getting-started" class="level2">
@@ -643,8 +687,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="who-this-is-for">Who this is for</h2>
 <p>Graduate students and researchers in quantum information, condensed matter, and quantum machine learning, and anyone comfortable with linear algebra and Python who wants to <em>compute</em> with these ideas rather than only read about them. It is meant in particular for people learning these scattered topics on their own, where hands-on, runnable material is hard to find. The mathematical prerequisites are light and built up as needed in Part 1.</p>
 
-
-<!-- -->
 
 </section>
 
@@ -829,57 +871,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -956,104 +947,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text">1 · Mathematical Foundations</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "From Haar Random States to Quantum Machine Learning"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "A hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> false</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Background</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>A recurring lesson in quantum many-body physics and quantum information is that the</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>typical behaviour of a complex quantum system is sharply constrained, even when its</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>microscopic details are not. Averages over the unitary group, known as the Haar measure,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>together with the concentration of measure that accompanies them, turn this observation</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>into quantitative predictions. The same low-order Haar moments then reappear in settings</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>that look, at first, unrelated.</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>The apparent thermality of a small subsystem follows from the entanglement of typical</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>states. The recovery of information from an evaporating black hole is governed by the</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>same Page-curve estimate of subsystem entropy. The protocols that certify quantum</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>hardware, including randomized benchmarking, cross-entropy benchmarking and classical</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>shadows, rest on second moments of the Haar measure. The trainability of variational</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>quantum circuits, through the barren-plateau phenomenon, is fixed by the same</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>concentration that renders typical states featureless.</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>The resemblance is not superficial. In each of these cases the underlying object is the</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>same low-order average over the unitary group, evaluated in a different physical context.</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>The technical core is correspondingly compact, consisting of Haar averaging, the</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>Weingarten calculus and a modest amount of representation theory. This tutorial develops</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>it once and applies it across each setting, with every step carried out explicitly and</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>checked numerically.</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>Readers who want the mathematics in more depth can consult the companion lecture notes,</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">*Information Scrambling, Quantum Chaos, and Haar-Random States*</span><span class="co">](https://arxiv.org/abs/2511.14397)</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>(arXiv:2511.14397), which these notebooks accompany.</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you'll learn</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>By the end you will be able to:</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**average over random unitaries by hand** using the Weingarten calculus, and</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  predict second- and fourth-moment quantities (purity, frame potentials,</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  gradient variances);</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**read the fingerprints of quantum chaos** in a spectrum: level repulsion,</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  the spectral form factor, the random-matrix universality classes;</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**quantify scrambling** with out-of-time-ordered correlators, Krylov</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  complexity, and tripartite mutual information;</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**use randomness as a tool**: classical shadows, randomized benchmarking, and</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  the Hayden-Preskill recovery protocol;</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**explain barren plateaus** and the expressivity-trainability tension in</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  quantum machine learning, from first principles.</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the tutorial is organized</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>Seven short parts, each a *concept page* followed by *runnable notebooks*:</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>| Part | You'll be able to… | Notebooks |</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>|---|---|---|</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">1 · Mathematical Foundations</span><span class="co">](chapters/01-foundations.qmd)</span> | Speak the language of channels, Lie algebras, state geometry and measure theory | 14 |</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">2 · Random Matrix Theory</span><span class="co">](chapters/02-random-matrix-theory.qmd)</span> | Diagnose chaos from a spectrum | 3 |</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">3 · Haar Measure &amp; Weingarten Calculus</span><span class="co">](chapters/03-haar-weingarten.qmd)</span> | Average over random unitaries and derive the Page formula | 7 |</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">4 · Quantum Dynamics &amp; Chaos</span><span class="co">](chapters/04-dynamics.qmd)</span> | Measure scrambling in real time | 3 |</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">5 · Designs &amp; Clifford Ensembles</span><span class="co">](chapters/05-designs.qmd)</span> | Replace Haar randomness with something efficient | 2 |</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">6 · Applications of Scrambling</span><span class="co">](chapters/06-applications.qmd)</span> | Turn randomness into protocols | 5 |</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">7 · Quantum Machine Learning</span><span class="co">](chapters/07-qml.qmd)</span> | Understand trainability through the same lens, then five worked examples | 12 |</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>The parts are largely independent and each notebook stands on its own, so you can read in</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>order or jump to what you need. The second-moment twirl worked out in Part 3 recurs in the</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>Page formula, the classical-shadows channel, the randomized-benchmarking decay and the</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>barren-plateau gradient variance; where a notebook reuses an earlier result, a short</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>Connections note at its end points back to it. A companion</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>**[Exercises &amp; Solutions PDF](exercises.qmd)** collects analytical problems and worked</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>solutions for every part.</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting started</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quantum-chaos-and-scrambling</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab <span class="co"># open any notebook under source_notebooks/</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>Everything runs on a laptop with a standard scientific-Python stack</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>(<span class="in">`numpy`</span>, <span class="in">`scipy`</span>, <span class="in">`matplotlib`</span>). No quantum hardware, no GPUs, no special libraries.</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Who this is for</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>Graduate students and researchers in quantum information, condensed matter, and quantum</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>machine learning, and anyone comfortable with linear algebra and Python who wants to</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>*compute* with these ideas rather than only read about them. It is meant in particular for</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>people learning these scattered topics on their own, where hands-on, runnable material is</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>hard to find. The mathematical prerequisites are light and built up as needed in Part 1.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2026 Marcin Płodzień · MIT License</div>   
-    <div class="nav-footer-right"><a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
+    <div class="nav-footer-left">© 2026 Marcin Płodzień, PhD · MIT License</div>   
+    <div class="nav-footer-right"><a href="https://chaos.if.uj.edu.pl/marcinplodzien/">Homepage</a> · <a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
   </div>
 </footer>
 

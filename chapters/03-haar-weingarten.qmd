@@ -1,6 +1,9 @@
 ---
 title: "3 · Haar Measure & Weingarten Calculus"
+code-tools: false
 ---
+
+![](../assets/thumbs/ch03.png){width=60% fig-align=center fig-alt="Haar Measure & Weingarten Calculus"}
 
 Most of the quantitative statements in this subject are averages over the unitary
 group. One asks for the mean of a polynomial in the entries of a random unitary, the
@@ -31,13 +34,47 @@ from this part to quantum machine learning.
 
 ## Notebooks in this part
 
-- [The first Haar moment (twirling)](../notebooks/ch3/solution_ch3_weingarten_first_moment.ipynb), averaging an operator to its normalized trace times the identity.
-- [The SWAP trick](../notebooks/ch3/solution_ch3_swap_trick.ipynb), turning purity into a two-copy expectation value.
-- [Overlaps of random states](../notebooks/ch3/solution_ch3_haar_overlap.ipynb), the distribution of $|\langle\psi|\phi\rangle|^2$ and its moments.
-- [Fourth moment of the trace](../notebooks/ch3/solution_ch3_fourth_moment_trace.ipynb), a warm-up: $\mathbb{E}|\mathrm{Tr}\,U|^4 = 2$.
-- [Weingarten calculus as tensor networks](../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.ipynb), diagrammatic contractions, including the third trace moment.
-- [The Page formula](../notebooks/ch3/solution_ch3_page_formula.ipynb), average entanglement of a random state, via Marchenko-Pastur.
-- [Concentration of purity](../notebooks/ch3/solution_ch3_purity_concentration.ipynb), why a random subsystem is almost exactly maximally mixed.
+::: {.nb-item}
+[The first Haar moment (twirling)](../notebooks/ch3/solution_ch3_weingarten_first_moment.ipynb)
+
+Averaging an operator to its normalized trace times the identity.
+:::
+
+::: {.nb-item}
+[The SWAP trick](../notebooks/ch3/solution_ch3_swap_trick.ipynb)
+
+Turning purity into a two-copy expectation value.
+:::
+
+::: {.nb-item}
+[Overlaps of random states](../notebooks/ch3/solution_ch3_haar_overlap.ipynb)
+
+The distribution of $|\langle\psi|\phi\rangle|^2$ and its moments.
+:::
+
+::: {.nb-item}
+[Fourth moment of the trace](../notebooks/ch3/solution_ch3_fourth_moment_trace.ipynb)
+
+A warm-up: $\mathbb{E}|\mathrm{Tr}\,U|^4 = 2$.
+:::
+
+::: {.nb-item}
+[Weingarten calculus as tensor networks](../notebooks/ch3/solution_ch3_tensor_weingarten_calculus.ipynb)
+
+Diagrammatic contractions, including the third trace moment.
+:::
+
+::: {.nb-item}
+[The Page formula](../notebooks/ch3/solution_ch3_page_formula.ipynb)
+
+Average entanglement of a random state, via Marchenko-Pastur.
+:::
+
+::: {.nb-item}
+[Concentration of purity](../notebooks/ch3/solution_ch3_purity_concentration.ipynb)
+
+Why a random subsystem is almost exactly maximally mixed.
+:::
 
 ::: {.callout-important appearance="simple"}
 The single most reused result in this tutorial is the **second-moment twirl**

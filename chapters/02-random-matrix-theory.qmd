@@ -1,6 +1,9 @@
 ---
 title: "2 · Random Matrix Theory"
+code-tools: false
 ---
+
+![](../assets/thumbs/ch02.png){width=60% fig-align=center fig-alt="Random Matrix Theory"}
 
 A quantum system with no integrable structure has energy levels that look
 erratic, yet their fine-grained statistics are reproducible. Across nuclei,
@@ -27,7 +30,26 @@ the local mean level density, is often preferred in practice.
 
 ## Notebooks in this part
 
-- [Level repulsion in the GOE](../notebooks/ch2/solution_ch2_goe_spacing.ipynb), deriving the Wigner surmise for nearest-neighbour spacings.
-- [Moments of the Wigner semicircle](../notebooks/ch2/solution_ch2_semicircle_moments.ipynb), the Catalan-number combinatorics behind the density.
-- [Eigenphase repulsion in the CUE](../notebooks/ch2/solution_ch2_cue_eigenphase.ipynb), the same physics for unitaries on the circle.
-- [Unfolding a many-body spectrum](../notebooks/ch2/solution_ch2_unfolding.ipynb), the mixed-field Ising chain end to end: symmetry sectors, the unfolding map, and the two ways the fit can fail.
+::: {.nb-item}
+[Level repulsion in the GOE](../notebooks/ch2/solution_ch2_goe_spacing.ipynb)
+
+Deriving the Wigner surmise for nearest-neighbour spacings.
+:::
+
+::: {.nb-item}
+[Moments of the Wigner semicircle](../notebooks/ch2/solution_ch2_semicircle_moments.ipynb)
+
+The Catalan-number combinatorics behind the density.
+:::
+
+::: {.nb-item}
+[Eigenphase repulsion in the CUE](../notebooks/ch2/solution_ch2_cue_eigenphase.ipynb)
+
+The same physics for unitaries on the circle.
+:::
+
+::: {.nb-item}
+[Unfolding a many-body spectrum](../notebooks/ch2/solution_ch2_unfolding.ipynb)
+
+The mixed-field Ising chain end to end: symmetry sectors, the unfolding map, and the two ways the fit can fail.
+:::

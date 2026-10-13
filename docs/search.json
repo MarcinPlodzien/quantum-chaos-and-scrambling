@@ -1,5 +1,33 @@
 [
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Marcin Płodzień is an Assistant Professor at the Institute of Theoretical Physics, Jagiellonian University in Kraków, working at the intersection of many-body quantum systems, quantum simulation, quantum metrology, quantum computing and machine learning.\nwww · Google Scholar · arXiv · ORCID · ResearcherID · GitHub · LinkedIn"
+  },
+  {
+    "objectID": "about.html#the-tutorial",
+    "href": "about.html#the-tutorial",
+    "title": "About",
+    "section": "The tutorial",
+    "text": "The tutorial\nFrom Haar Random States to Quantum Machine Learning is a hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems. It is written for graduate students and researchers in quantum information, condensed matter, and quantum machine learning, and for anyone comfortable with linear algebra and Python who wants to compute with these ideas. The notebooks accompany the lecture notes Information Scrambling, Quantum Chaos, and Haar-Random States (arXiv:2511.14397)."
+  },
+  {
+    "objectID": "about.html#related-course",
+    "href": "about.html#related-course",
+    "title": "About",
+    "section": "Related course",
+    "text": "Related course\nQuantum Many-Body Simulation: from a single spin to quantum machine learning, hands-on lectures on simulating quantum systems in JAX, from scratch."
+  },
+  {
+    "objectID": "about.html#license-and-feedback",
+    "href": "about.html#license-and-feedback",
+    "title": "About",
+    "section": "License and feedback",
+    "text": "License and feedback\nCode and tutorial material are released under the MIT License. Corrections and suggestions are welcome as issues on GitHub."
+  },
+  {
     "objectID": "chapters/01-foundations.html",
     "href": "chapters/01-foundations.html",
     "title": "1 · Mathematical Foundations",
@@ -11,7 +39,7 @@
     "href": "chapters/01-foundations.html#notebooks-in-this-part",
     "title": "1 · Mathematical Foundations",
     "section": "Notebooks in this part",
-    "text": "Notebooks in this part\n\nBloch-sphere geodesics & the Fubini-Study metric, the natural distance between pure states.\nEntanglement of a parametric two-qubit state, how entanglement tracks a tunable coupling.\nThe depolarizing channel, Kraus operators, complete positivity, and entanglement fidelity.\nDynamical Lie algebra closure, building an algebra by repeated commutators, and what makes a gate set universal.\nSchur-Weyl duality for \\(k=2\\), the symmetric/antisymmetric split and the SWAP operator.\nChoi matrix of amplitude damping, channels as states via Choi-Jamiołkowski.\nDimension of \\(\\mathfrak{u}(D)\\) and \\(\\mathfrak{su}(D)\\), counting generators.\nSurjectivity of the exponential map, why every unitary is an exponential.\nHaar invariance on \\(U(1)\\), what “uniformly random unitary” means, in the simplest case.\nGeodesic length & the quantum speed limit, how fast a state can change.\nSectional curvature of \\(SU(2)\\), why nearby evolutions reconverge.\nDifferential geometry of state space, the quantum geometric tensor, Berry curvature, and the Fubini-Study metric together.\nMeasure-theory basics, Lebesgue vs counting measure and \\(\\sigma\\)-additivity.\nBorel \\(\\sigma\\)-algebras & measurability on \\(U(D)\\), making “random” rigorous.\n\n\n\n\n\n\n\nWhere to start. If you only want the tools used later, do Schur-Weyl duality, Haar invariance, and the depolarizing channel first, everything in Part 3 builds directly on them."
+    "text": "Notebooks in this part\n\nBloch-sphere geodesics & the Fubini-Study metric\nThe natural distance between pure states.\n\n\nEntanglement of a parametric two-qubit state\nHow entanglement tracks a tunable coupling.\n\n\nThe depolarizing channel\nKraus operators, complete positivity, and entanglement fidelity.\n\n\nDynamical Lie algebra closure\nBuilding an algebra by repeated commutators, and what makes a gate set universal.\n\n\nSchur-Weyl duality for \\(k=2\\)\nThe symmetric/antisymmetric split and the SWAP operator.\n\n\nChoi matrix of amplitude damping\nChannels as states via Choi-Jamiołkowski.\n\n\nDimension of \\(\\mathfrak{u}(D)\\) and \\(\\mathfrak{su}(D)\\)\nCounting generators.\n\n\nSurjectivity of the exponential map\nWhy every unitary is an exponential.\n\n\nHaar invariance on \\(U(1)\\)\nWhat “uniformly random unitary” means, in the simplest case.\n\n\nGeodesic length & the quantum speed limit\nHow fast a state can change.\n\n\nSectional curvature of \\(SU(2)\\)\nWhy nearby evolutions reconverge.\n\n\nDifferential geometry of state space\nThe quantum geometric tensor, Berry curvature, and the Fubini-Study metric together.\n\n\nMeasure-theory basics\nLebesgue vs counting measure and \\(\\sigma\\)-additivity.\n\n\nBorel \\(\\sigma\\)-algebras & measurability on \\(U(D)\\)\nMaking “random” rigorous.\n\n\n\n\n\n\n\nWhere to start. If you only want the tools used later, do Schur-Weyl duality, Haar invariance, and the depolarizing channel first, everything in Part 3 builds directly on them."
   },
   {
     "objectID": "chapters/02-random-matrix-theory.html",
@@ -25,7 +53,7 @@
     "href": "chapters/02-random-matrix-theory.html#notebooks-in-this-part",
     "title": "2 · Random Matrix Theory",
     "section": "Notebooks in this part",
-    "text": "Notebooks in this part\n\nLevel repulsion in the GOE, deriving the Wigner surmise for nearest-neighbour spacings.\nMoments of the Wigner semicircle, the Catalan-number combinatorics behind the density.\nEigenphase repulsion in the CUE, the same physics for unitaries on the circle.\nUnfolding a many-body spectrum, the mixed-field Ising chain end to end: symmetry sectors, the unfolding map, and the two ways the fit can fail."
+    "text": "Notebooks in this part\n\nLevel repulsion in the GOE\nDeriving the Wigner surmise for nearest-neighbour spacings.\n\n\nMoments of the Wigner semicircle\nThe Catalan-number combinatorics behind the density.\n\n\nEigenphase repulsion in the CUE\nThe same physics for unitaries on the circle.\n\n\nUnfolding a many-body spectrum\nThe mixed-field Ising chain end to end: symmetry sectors, the unfolding map, and the two ways the fit can fail."
   },
   {
     "objectID": "chapters/03-haar-weingarten.html",
@@ -39,7 +67,7 @@
     "href": "chapters/03-haar-weingarten.html#notebooks-in-this-part",
     "title": "3 · Haar Measure & Weingarten Calculus",
     "section": "Notebooks in this part",
-    "text": "Notebooks in this part\n\nThe first Haar moment (twirling), averaging an operator to its normalized trace times the identity.\nThe SWAP trick, turning purity into a two-copy expectation value.\nOverlaps of random states, the distribution of \\(|\\langle\\psi|\\phi\\rangle|^2\\) and its moments.\nFourth moment of the trace, a warm-up: \\(\\mathbb{E}|\\mathrm{Tr}\\,U|^4 = 2\\).\nWeingarten calculus as tensor networks, diagrammatic contractions, including the third trace moment.\nThe Page formula, average entanglement of a random state, via Marchenko-Pastur.\nConcentration of purity, why a random subsystem is almost exactly maximally mixed.\n\n\n\n\n\n\n\nThe single most reused result in this tutorial is the second-moment twirl \\(\\mathbb{E}_U[U^{\\otimes 2}\\,X\\,U^{\\dagger\\otimes 2}] = c_{\\mathbb{I}}\\,\\mathbb{I} + c_{\\mathbb{F}}\\,\\mathbb{F}\\). If you internalize one calculation, make it this one."
+    "text": "Notebooks in this part\n\nThe first Haar moment (twirling)\nAveraging an operator to its normalized trace times the identity.\n\n\nThe SWAP trick\nTurning purity into a two-copy expectation value.\n\n\nOverlaps of random states\nThe distribution of \\(|\\langle\\psi|\\phi\\rangle|^2\\) and its moments.\n\n\nFourth moment of the trace\nA warm-up: \\(\\mathbb{E}|\\mathrm{Tr}\\,U|^4 = 2\\).\n\n\nWeingarten calculus as tensor networks\nDiagrammatic contractions, including the third trace moment.\n\n\nThe Page formula\nAverage entanglement of a random state, via Marchenko-Pastur.\n\n\nConcentration of purity\nWhy a random subsystem is almost exactly maximally mixed.\n\n\n\n\n\n\n\nThe single most reused result in this tutorial is the second-moment twirl \\(\\mathbb{E}_U[U^{\\otimes 2}\\,X\\,U^{\\dagger\\otimes 2}] = c_{\\mathbb{I}}\\,\\mathbb{I} + c_{\\mathbb{F}}\\,\\mathbb{F}\\). If you internalize one calculation, make it this one."
   },
   {
     "objectID": "chapters/04-dynamics.html",
@@ -53,7 +81,7 @@
     "href": "chapters/04-dynamics.html#notebooks-in-this-part",
     "title": "4 · Quantum Dynamics & Chaos",
     "section": "Notebooks in this part",
-    "text": "Notebooks in this part\n\nThe \\(C\\)-\\(F\\) identity, linking the squared commutator to an OTOC fidelity.\nThe spectral form factor, dip, ramp, and the plateau at \\(K = D\\).\nKrylov complexity, operator growth as a tight-binding chain, with \\(\\mathcal{C}_K(t) = \\sinh^2(\\alpha t)\\)."
+    "text": "Notebooks in this part\n\nThe \\(C\\)-\\(F\\) identity\nLinking the squared commutator to an OTOC fidelity.\n\n\nThe spectral form factor\nDip, ramp, and the plateau at \\(K = D\\).\n\n\nKrylov complexity\nOperator growth as a tight-binding chain, with \\(\\mathcal{C}_K(t) = \\sinh^2(\\alpha t)\\)."
   },
   {
     "objectID": "chapters/05-designs.html",
@@ -67,7 +95,7 @@
     "href": "chapters/05-designs.html#notebooks-in-this-part",
     "title": "5 · Designs & Clifford Ensembles",
     "section": "Notebooks in this part",
-    "text": "Notebooks in this part\n\nClifford OTOCs, why Clifford circuits scramble but have no Lyapunov exponent (the OTOC is \\(0\\) or \\(4\\)).\nStabilizer Rényi entropy, measuring “magic,” the resource beyond entanglement."
+    "text": "Notebooks in this part\n\nClifford OTOCs\nWhy Clifford circuits scramble but have no Lyapunov exponent (the OTOC is \\(0\\) or \\(4\\)).\n\n\nStabilizer Rényi entropy\nMeasuring “magic,” the resource beyond entanglement."
   },
   {
     "objectID": "chapters/06-applications.html",
@@ -81,7 +109,7 @@
     "href": "chapters/06-applications.html#notebooks-in-this-part",
     "title": "6 · Applications of Scrambling",
     "section": "Notebooks in this part",
-    "text": "Notebooks in this part\n\nThe shadow channel, inverting the measurement channel, the heart of classical shadows.\nClassical shadows in action, estimating observables from random measurements.\nRandomized benchmarking, extracting gate fidelity from an exponential decay.\nTripartite mutual information, a quantitative diagnostic of scrambling.\nFragility of GHZ metrology, Heisenberg-scaling sensitivity destroyed by a single lost qubit."
+    "text": "Notebooks in this part\n\nThe shadow channel\nInverting the measurement channel, the heart of classical shadows.\n\n\nClassical shadows in action\nEstimating observables from random measurements.\n\n\nRandomized benchmarking\nExtracting gate fidelity from an exponential decay.\n\n\nTripartite mutual information\nA quantitative diagnostic of scrambling.\n\n\nFragility of GHZ metrology\nHeisenberg-scaling sensitivity destroyed by a single lost qubit."
   },
   {
     "objectID": "chapters/07-qml.html",
@@ -95,14 +123,14 @@
     "href": "chapters/07-qml.html#notebooks-in-this-part",
     "title": "7 · Quantum Machine Learning",
     "section": "Notebooks in this part",
-    "text": "Notebooks in this part\n\nBarren plateaus, gradient variance vanishing exponentially with qubit number.\nLocal vs global cost functions, how observable locality rescues trainability.\nBarren plateaus via quantum Fisher information, the metrology view of the same collapse.\nQuantum kernel concentration, why over-expressive kernels become uninformative.\nBorn-machine expressivity, concentration of a generative model’s output distribution.\nQELM feature concentration, feature collapse in quantum extreme learning machines.\nQuantum reservoir computing, injection contractivity and restarting overhead."
+    "text": "Notebooks in this part\n\nBarren plateaus\nGradient variance vanishing exponentially with qubit number.\n\n\nLocal vs global cost functions\nHow observable locality rescues trainability.\n\n\nBarren plateaus via quantum Fisher information\nThe metrology view of the same collapse.\n\n\nQuantum kernel concentration\nWhy over-expressive kernels become uninformative.\n\n\nBorn-machine expressivity\nConcentration of a generative model’s output distribution.\n\n\nQELM feature concentration\nFeature collapse in quantum extreme learning machines.\n\n\nQuantum reservoir computing\nInjection contractivity and restarting overhead."
   },
   {
     "objectID": "chapters/07-qml.html#worked-examples",
     "href": "chapters/07-qml.html#worked-examples",
     "title": "7 · Quantum Machine Learning",
     "section": "Worked examples",
-    "text": "Worked examples\nFive end-to-end examples where a fixed scrambling feature map extracts the features and only a linear readout is trained. Each one states where it works and where it breaks.\n\nQuantum-kernel classification of concentric rings, a fidelity kernel and a soft-margin classifier, with the onset of kernel concentration.\nQELM nonlinear regression, a trained linear readout on a fixed reservoir, the data re-uploading Fourier ceiling and the over-scrambling downturn.\nQELM XOR, the minimal nonlinear-separation task and its ablation.\nQELM phase classification, ordinary transverse-field Ising order, where local observables already suffice.\nQELM for a symmetry-protected phase, discovering the nonlocal string order that distinguishes an SPT phase, where scrambling is essential.\n\n\n\n\n\n\n\nFull circle. The exponential that obstructs training here is the same \\(1/D\\) from the Page formula in Part 3, typicality, viewed from the other side."
+    "text": "Worked examples\nFive end-to-end examples where a fixed scrambling feature map extracts the features and only a linear readout is trained. Each one states where it works and where it breaks.\n\nQuantum-kernel classification of concentric rings\nA fidelity kernel and a soft-margin classifier, with the onset of kernel concentration.\n\n\nQELM nonlinear regression\nA trained linear readout on a fixed reservoir, the data re-uploading Fourier ceiling and the over-scrambling downturn.\n\n\nQELM XOR\nThe minimal nonlinear-separation task and its ablation.\n\n\nQELM phase classification\nOrdinary transverse-field Ising order, where local observables already suffice.\n\n\nQELM for a symmetry-protected phase\nDiscovering the nonlocal string order that distinguishes an SPT phase, where scrambling is essential.\n\n\n\n\n\n\n\nFull circle. The exponential that obstructs training here is the same \\(1/D\\) from the Page formula in Part 3, typicality, viewed from the other side."
   },
   {
     "objectID": "exercises.html",
@@ -114,35 +142,42 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "From Haar Random States to Quantum Machine Learning",
+    "title": "Quantum Chaos & Scrambling",
     "section": "",
-    "text": "A recurring lesson in quantum many-body physics and quantum information is that the typical behaviour of a complex quantum system is sharply constrained, even when its microscopic details are not. Averages over the unitary group, known as the Haar measure, together with the concentration of measure that accompanies them, turn this observation into quantitative predictions. The same low-order Haar moments then reappear in settings that look, at first, unrelated.\nThe apparent thermality of a small subsystem follows from the entanglement of typical states. The recovery of information from an evaporating black hole is governed by the same Page-curve estimate of subsystem entropy. The protocols that certify quantum hardware, including randomized benchmarking, cross-entropy benchmarking and classical shadows, rest on second moments of the Haar measure. The trainability of variational quantum circuits, through the barren-plateau phenomenon, is fixed by the same concentration that renders typical states featureless.\nThe resemblance is not superficial. In each of these cases the underlying object is the same low-order average over the unitary group, evaluated in a different physical context. The technical core is correspondingly compact, consisting of Haar averaging, the Weingarten calculus and a modest amount of representation theory. This tutorial develops it once and applies it across each setting, with every step carried out explicitly and checked numerically.\nReaders who want the mathematics in more depth can consult the companion lecture notes, Information Scrambling, Quantum Chaos, and Haar-Random States (arXiv:2511.14397), which these notebooks accompany."
+    "text": "A hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems\n\n\nHaar averaging, the Weingarten calculus and a modest amount of representation theory, developed once and applied to quantum chaos, scrambling, benchmarking protocols and the trainability of quantum machine learning, with every step checked numerically.\n\n\nMarcin Płodzień · Institute of Theoretical Physics, Jagiellonian University in Kraków\n\nStart with Part 1 Browse the parts Exercises & Solutions (PDF)"
+  },
+  {
+    "objectID": "index.html#background",
+    "href": "index.html#background",
+    "title": "Quantum Chaos & Scrambling",
+    "section": "Background",
+    "text": "Background\nA recurring lesson in quantum many-body physics and quantum information is that the typical behaviour of a complex quantum system is sharply constrained, even when its microscopic details are not. Averages over the unitary group, known as the Haar measure, together with the concentration of measure that accompanies them, turn this observation into quantitative predictions. The same low-order Haar moments then reappear in settings that look, at first, unrelated.\nThe apparent thermality of a small subsystem follows from the entanglement of typical states. The recovery of information from an evaporating black hole is governed by the same Page-curve estimate of subsystem entropy. The protocols that certify quantum hardware, including randomized benchmarking, cross-entropy benchmarking and classical shadows, rest on second moments of the Haar measure. The trainability of variational quantum circuits, through the barren-plateau phenomenon, is fixed by the same concentration that renders typical states featureless.\nThe resemblance is not superficial. In each of these cases the underlying object is the same low-order average over the unitary group, evaluated in a different physical context. The technical core is correspondingly compact, consisting of Haar averaging, the Weingarten calculus and a modest amount of representation theory. This tutorial develops it once and applies it across each setting, with every step carried out explicitly and checked numerically.\nReaders who want the mathematics in more depth can consult the companion lecture notes, Information Scrambling, Quantum Chaos, and Haar-Random States (arXiv:2511.14397), which these notebooks accompany."
   },
   {
     "objectID": "index.html#what-youll-learn",
     "href": "index.html#what-youll-learn",
-    "title": "From Haar Random States to Quantum Machine Learning",
+    "title": "Quantum Chaos & Scrambling",
     "section": "What you’ll learn",
     "text": "What you’ll learn\nBy the end you will be able to:\n\naverage over random unitaries by hand using the Weingarten calculus, and predict second- and fourth-moment quantities (purity, frame potentials, gradient variances);\nread the fingerprints of quantum chaos in a spectrum: level repulsion, the spectral form factor, the random-matrix universality classes;\nquantify scrambling with out-of-time-ordered correlators, Krylov complexity, and tripartite mutual information;\nuse randomness as a tool: classical shadows, randomized benchmarking, and the Hayden-Preskill recovery protocol;\nexplain barren plateaus and the expressivity-trainability tension in quantum machine learning, from first principles."
   },
   {
-    "objectID": "index.html#how-the-tutorial-is-organized",
-    "href": "index.html#how-the-tutorial-is-organized",
-    "title": "From Haar Random States to Quantum Machine Learning",
+    "objectID": "index.html#parts",
+    "href": "index.html#parts",
+    "title": "Quantum Chaos & Scrambling",
     "section": "How the tutorial is organized",
-    "text": "How the tutorial is organized\nSeven short parts, each a concept page followed by runnable notebooks:\n\n\n\nPart\nYou’ll be able to…\nNotebooks\n\n\n\n\n1 · Mathematical Foundations\nSpeak the language of channels, Lie algebras, state geometry and measure theory\n14\n\n\n2 · Random Matrix Theory\nDiagnose chaos from a spectrum\n3\n\n\n3 · Haar Measure & Weingarten Calculus\nAverage over random unitaries and derive the Page formula\n7\n\n\n4 · Quantum Dynamics & Chaos\nMeasure scrambling in real time\n3\n\n\n5 · Designs & Clifford Ensembles\nReplace Haar randomness with something efficient\n2\n\n\n6 · Applications of Scrambling\nTurn randomness into protocols\n5\n\n\n7 · Quantum Machine Learning\nUnderstand trainability through the same lens, then five worked examples\n12\n\n\n\nThe parts are largely independent and each notebook stands on its own, so you can read in order or jump to what you need. The second-moment twirl worked out in Part 3 recurs in the Page formula, the classical-shadows channel, the randomized-benchmarking decay and the barren-plateau gradient variance; where a notebook reuses an earlier result, a short Connections note at its end points back to it. A companion Exercises & Solutions PDF collects analytical problems and worked solutions for every part."
+    "text": "How the tutorial is organized\nSeven short parts, each a concept page followed by runnable notebooks:\n\n\n\n\n\n\n\n1 · Mathematical Foundations\nSpeak the language of channels, Lie algebras, state geometry and measure theory.\n14 notebooks\n\n\n\n\n\n\n\n2 · Random Matrix Theory\nDiagnose chaos from a spectrum.\n4 notebooks\n\n\n\n\n\n\n\n3 · Haar Measure & Weingarten Calculus\nAverage over random unitaries and derive the Page formula.\n7 notebooks\n\n\n\n\n\n\n\n4 · Quantum Dynamics & Chaos\nMeasure scrambling in real time.\n3 notebooks\n\n\n\n\n\n\n\n5 · Designs & Clifford Ensembles\nReplace Haar randomness with something efficient.\n2 notebooks\n\n\n\n\n\n\n\n6 · Applications of Scrambling\nTurn randomness into protocols.\n5 notebooks\n\n\n\n\n\n\n\n7 · Quantum Machine Learning\nUnderstand trainability through the same lens, then five worked examples.\n12 notebooks\n\n\nThe parts are largely independent and each notebook stands on its own, so you can read in order or jump to what you need. The second-moment twirl worked out in Part 3 recurs in the Page formula, the classical-shadows channel, the randomized-benchmarking decay and the barren-plateau gradient variance; where a notebook reuses an earlier result, a short Connections note at its end points back to it. A companion Exercises & Solutions PDF collects analytical problems and worked solutions for every part."
   },
   {
     "objectID": "index.html#getting-started",
     "href": "index.html#getting-started",
-    "title": "From Haar Random States to Quantum Machine Learning",
+    "title": "Quantum Chaos & Scrambling",
     "section": "Getting started",
     "text": "Getting started\ngit clone https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling\ncd quantum-chaos-and-scrambling\npip install -r requirements.txt\njupyter lab # open any notebook under source_notebooks/\nEverything runs on a laptop with a standard scientific-Python stack (numpy, scipy, matplotlib). No quantum hardware, no GPUs, no special libraries."
   },
   {
     "objectID": "index.html#who-this-is-for",
     "href": "index.html#who-this-is-for",
-    "title": "From Haar Random States to Quantum Machine Learning",
+    "title": "Quantum Chaos & Scrambling",
     "section": "Who this is for",
     "text": "Who this is for\nGraduate students and researchers in quantum information, condensed matter, and quantum machine learning, and anyone comfortable with linear algebra and Python who wants to compute with these ideas rather than only read about them. It is meant in particular for people learning these scattered topics on their own, where hands-on, runnable material is hard to find. The mathematical prerequisites are light and built up as needed in Part 1."
   },

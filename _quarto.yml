@@ -42,11 +42,17 @@ website:
             href: chapters/07-qml.qmd
       - text: "Exercises (PDF)"
         href: exercises.qmd
+      - text: "About"
+        href: about.qmd
     right:
       - icon: github
         href: "https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"
         aria-label: GitHub
+      - icon: house
+        href: "https://chaos.if.uj.edu.pl/marcinplodzien/"
+        aria-label: Homepage
   sidebar:
+    logo: assets/qusml_logo.svg
     style: floating
     search: true
     collapse-level: 1
@@ -125,8 +131,9 @@ website:
         href: exercises.qmd
   page-footer:
     border: true
-    left: "© 2026 Marcin Płodzień · MIT License"
+    left: "© 2026 Marcin Płodzień, PhD · MIT License"
     right: >-
+      [Homepage](https://chaos.if.uj.edu.pl/marcinplodzien/) ·
       [Email](mailto:mplodzien@gmail.com) ·
       [ORCID](https://orcid.org/0000-0002-0835-1644) ·
       [Scholar](https://scholar.google.com/citations?user=eC9nCmgAAAAJ&hl=en) ·
@@ -137,13 +144,14 @@ website:
 format:
   html:
     theme:
-      light: cosmo
-      dark: darkly
+      light: [cosmo, assets/qusml.scss]
+      dark: [darkly, assets/qusml-dark.scss]
     toc: true
     toc-depth: 3
     code-fold: show
     code-tools: true
     code-copy: true
+    code-overflow: wrap
     highlight-style: github
     html-math-method: mathjax
     grid:

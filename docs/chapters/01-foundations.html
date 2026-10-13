@@ -20,69 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -188,10 +125,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="../exercises.html">
  <span class="menu-text">Exercises (PDF)</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://chaos.if.uj.edu.pl/marcinplodzien/"><i class="bi bi-house" role="img" aria-label="Homepage">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -216,6 +162,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/qusml_logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -556,7 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">1 · Mathematical Foundations</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title d-none d-lg-block">1 · Mathematical Foundations</h1>
 </div>
 
 
@@ -571,27 +522,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/thumbs/ch01.png" class="img-fluid figure-img" style="width:60.0%" alt="Mathematical Foundations"></p>
+</figure>
+</div>
 <p>Every later part averages some function of a random unitary, and to state what is being averaged one needs density matrices for the states, completely positive maps for the noisy evolutions, and a precise meaning for the word random. This part assembles that vocabulary from elementary pieces. The Lie algebras <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span> are built from commutators and the matrix exponential, the geometry of pure states from the Fubini-Study metric, and the notion of a uniform distribution on <span class="math inline">\(U(D)\)</span> from enough measure theory to make <span class="math inline">\(\sigma\)</span>-additivity and measurability concrete. No prior exposure to Lie groups is assumed.</p>
 <p>Two constructions do most of the later work. The Choi-Jamiołkowski isomorphism turns a quantum channel into a state on a doubled Hilbert space, converting questions about maps into questions about matrices. Schur-Weyl duality identifies the operators that commute with <span class="math inline">\(U^{\otimes k}\)</span> for every <span class="math inline">\(U\)</span> with the algebra generated by permutations of the <span class="math inline">\(k\)</span> copies, which is why Haar averages over many entries collapse onto a small number of permutation terms. The notebooks work the <span class="math inline">\(k=2\)</span> case in full, where the only operators in play are the identity and the SWAP.</p>
 <p>One point deserves early emphasis. Closing a set of generators under repeated commutators produces the dynamical Lie algebra, and whether that algebra fills out all of <span class="math inline">\(\mathfrak{su}(D)\)</span> or stays inside a subalgebra decides both whether a gate set is universal and how fast an operator can grow under the dynamics of later chapters.</p>
 <section id="notebooks-in-this-part" class="level2">
 <h2 class="anchored" data-anchor-id="notebooks-in-this-part">Notebooks in this part</h2>
-<ul>
-<li><a href="../notebooks/ch1/solution_ch1_fubini_study.html">Bloch-sphere geodesics &amp; the Fubini-Study metric</a>, the natural distance between pure states.</li>
-<li><a href="../notebooks/ch1/solution_ch1_entanglement_parametric.html">Entanglement of a parametric two-qubit state</a>, how entanglement tracks a tunable coupling.</li>
-<li><a href="../notebooks/ch1/solution_ch1_depolarizing_channel.html">The depolarizing channel</a>, Kraus operators, complete positivity, and entanglement fidelity.</li>
-<li><a href="../notebooks/ch1/solution_ch1_dla_closure.html">Dynamical Lie algebra closure</a>, building an algebra by repeated commutators, and what makes a gate set universal.</li>
-<li><a href="../notebooks/ch1/solution_ch1_schur_weyl.html">Schur-Weyl duality for <span class="math inline">\(k=2\)</span></a>, the symmetric/antisymmetric split and the SWAP operator.</li>
-<li><a href="../notebooks/ch1/solution_ch1_choi_amplitude_damping.html">Choi matrix of amplitude damping</a>, channels as states via Choi-Jamiołkowski.</li>
-<li><a href="../notebooks/ch1/solution_ch1_dim_lie_algebra.html">Dimension of <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span></a>, counting generators.</li>
-<li><a href="../notebooks/ch1/solution_ch1_exp_surjectivity.html">Surjectivity of the exponential map</a>, why every unitary is an exponential.</li>
-<li><a href="../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.html">Haar invariance on <span class="math inline">\(U(1)\)</span></a>, what “uniformly random unitary” means, in the simplest case.</li>
-<li><a href="../notebooks/ch1/solution_ch1_quantum_speed_limit.html">Geodesic length &amp; the quantum speed limit</a>, how fast a state can change.</li>
-<li><a href="../notebooks/ch1/solution_ch1_sectional_curvature.html">Sectional curvature of <span class="math inline">\(SU(2)\)</span></a>, why nearby evolutions reconverge.</li>
-<li><a href="../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html">Differential geometry of state space</a>, the quantum geometric tensor, Berry curvature, and the Fubini-Study metric together.</li>
-<li><a href="../notebooks/ch1/solution_ch1_measure_theory_basics.html">Measure-theory basics</a>, Lebesgue vs counting measure and <span class="math inline">\(\sigma\)</span>-additivity.</li>
-<li><a href="../notebooks/ch1/solution_ch1_borel_measurability.html">Borel <span class="math inline">\(\sigma\)</span>-algebras &amp; measurability on <span class="math inline">\(U(D)\)</span></a>, making “random” rigorous.</li>
-</ul>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_fubini_study.html">Bloch-sphere geodesics &amp; the Fubini-Study metric</a></p>
+<p>The natural distance between pure states.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_entanglement_parametric.html">Entanglement of a parametric two-qubit state</a></p>
+<p>How entanglement tracks a tunable coupling.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_depolarizing_channel.html">The depolarizing channel</a></p>
+<p>Kraus operators, complete positivity, and entanglement fidelity.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_dla_closure.html">Dynamical Lie algebra closure</a></p>
+<p>Building an algebra by repeated commutators, and what makes a gate set universal.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_schur_weyl.html">Schur-Weyl duality for <span class="math inline">\(k=2\)</span></a></p>
+<p>The symmetric/antisymmetric split and the SWAP operator.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_choi_amplitude_damping.html">Choi matrix of amplitude damping</a></p>
+<p>Channels as states via Choi-Jamiołkowski.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_dim_lie_algebra.html">Dimension of <span class="math inline">\(\mathfrak{u}(D)\)</span> and <span class="math inline">\(\mathfrak{su}(D)\)</span></a></p>
+<p>Counting generators.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_exp_surjectivity.html">Surjectivity of the exponential map</a></p>
+<p>Why every unitary is an exponential.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.html">Haar invariance on <span class="math inline">\(U(1)\)</span></a></p>
+<p>What “uniformly random unitary” means, in the simplest case.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_quantum_speed_limit.html">Geodesic length &amp; the quantum speed limit</a></p>
+<p>How fast a state can change.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_sectional_curvature.html">Sectional curvature of <span class="math inline">\(SU(2)\)</span></a></p>
+<p>Why nearby evolutions reconverge.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.html">Differential geometry of state space</a></p>
+<p>The quantum geometric tensor, Berry curvature, and the Fubini-Study metric together.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_measure_theory_basics.html">Measure-theory basics</a></p>
+<p>Lebesgue vs counting measure and <span class="math inline">\(\sigma\)</span>-additivity.</p>
+</div>
+<div class="nb-item">
+<p><a href="../notebooks/ch1/solution_ch1_borel_measurability.html">Borel <span class="math inline">\(\sigma\)</span>-algebras &amp; measurability on <span class="math inline">\(U(D)\)</span></a></p>
+<p>Making “random” rigorous.</p>
+</div>
 <div class="callout-tip callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -603,8 +599,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 
-
-<!-- -->
 
 </section>
 
@@ -789,57 +783,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -919,64 +862,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text">Bloch Sphere Geodesics and the Fubini-Study Metric</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "1 · Mathematical Foundations"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Every later part averages some function of a random unitary, and to state</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>what is being averaged one needs density matrices for the states, completely</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>positive maps for the noisy evolutions, and a precise meaning for the word</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>random. This part assembles that vocabulary from elementary pieces. The Lie</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>algebras $\mathfrak{u}(D)$ and $\mathfrak{su}(D)$ are built from commutators and</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>the matrix exponential, the geometry of pure states from the Fubini-Study</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>metric, and the notion of a uniform distribution on $U(D)$ from enough measure</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>theory to make $\sigma$-additivity and measurability concrete. No prior exposure</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>to Lie groups is assumed.</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Two constructions do most of the later work. The Choi-Jamiołkowski isomorphism</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>turns a quantum channel into a state on a doubled Hilbert space, converting</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>questions about maps into questions about matrices. Schur-Weyl duality</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>identifies the operators that commute with $U^{\otimes k}$ for every $U$ with the</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>algebra generated by permutations of the $k$ copies, which is why Haar averages</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>over many entries collapse onto a small number of permutation terms. The</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>notebooks work the $k=2$ case in full, where the only operators in play are the</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>identity and the SWAP.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>One point deserves early emphasis. Closing a set of generators under repeated</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>commutators produces the dynamical Lie algebra, and whether that algebra fills</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>out all of $\mathfrak{su}(D)$ or stays inside a subalgebra decides both whether a</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>gate set is universal and how fast an operator can grow under the dynamics of</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>later chapters.</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebooks in this part</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Bloch-sphere geodesics &amp; the Fubini-Study metric</span><span class="co">](../notebooks/ch1/solution_ch1_fubini_study.ipynb)</span>, the natural distance between pure states.</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Entanglement of a parametric two-qubit state</span><span class="co">](../notebooks/ch1/solution_ch1_entanglement_parametric.ipynb)</span>, how entanglement tracks a tunable coupling.</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">The depolarizing channel</span><span class="co">](../notebooks/ch1/solution_ch1_depolarizing_channel.ipynb)</span>, Kraus operators, complete positivity, and entanglement fidelity.</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Dynamical Lie algebra closure</span><span class="co">](../notebooks/ch1/solution_ch1_dla_closure.ipynb)</span>, building an algebra by repeated commutators, and what makes a gate set universal.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Schur-Weyl duality for $k=2$</span><span class="co">](../notebooks/ch1/solution_ch1_schur_weyl.ipynb)</span>, the symmetric/antisymmetric split and the SWAP operator.</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Choi matrix of amplitude damping</span><span class="co">](../notebooks/ch1/solution_ch1_choi_amplitude_damping.ipynb)</span>, channels as states via Choi-Jamiołkowski.</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Dimension of $\mathfrak{u}(D)$ and $\mathfrak{su}(D)$</span><span class="co">](../notebooks/ch1/solution_ch1_dim_lie_algebra.ipynb)</span>, counting generators.</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Surjectivity of the exponential map</span><span class="co">](../notebooks/ch1/solution_ch1_exp_surjectivity.ipynb)</span>, why every unitary is an exponential.</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Haar invariance on $U(1)$</span><span class="co">](../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.ipynb)</span>, what "uniformly random unitary" means, in the simplest case.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Geodesic length &amp; the quantum speed limit</span><span class="co">](../notebooks/ch1/solution_ch1_quantum_speed_limit.ipynb)</span>, how fast a state can change.</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Sectional curvature of $SU(2)$</span><span class="co">](../notebooks/ch1/solution_ch1_sectional_curvature.ipynb)</span>, why nearby evolutions reconverge.</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Differential geometry of state space</span><span class="co">](../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.ipynb)</span>, the quantum geometric tensor, Berry curvature, and the Fubini-Study metric together.</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Measure-theory basics</span><span class="co">](../notebooks/ch1/solution_ch1_measure_theory_basics.ipynb)</span>, Lebesgue vs counting measure and $\sigma$-additivity.</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Borel $\sigma$-algebras &amp; measurability on $U(D)$</span><span class="co">](../notebooks/ch1/solution_ch1_borel_measurability.ipynb)</span>, making "random" rigorous.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="simple"}</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>**Where to start.** If you only want the tools used later, do *Schur-Weyl</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>duality*, *Haar invariance*, and *the depolarizing channel* first, everything in</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>Part 3 builds directly on them.</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2026 Marcin Płodzień · MIT License</div>   
-    <div class="nav-footer-right"><a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
+    <div class="nav-footer-left">© 2026 Marcin Płodzień, PhD · MIT License</div>   
+    <div class="nav-footer-right"><a href="https://chaos.if.uj.edu.pl/marcinplodzien/">Homepage</a> · <a href="mailto:mplodzien@gmail.com">Email</a> · <a href="https://orcid.org/0000-0002-0835-1644">ORCID</a> · <a href="https://scholar.google.com/citations?user=eC9nCmgAAAAJ&amp;hl=en">Scholar</a> · <a href="https://github.com/MarcinPlodzien">GitHub</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=55031869100">Scopus</a> · <a href="https://www.webofscience.com/wos/author/record/K-7326-2017">WoS</a></div>
   </div>
 </footer>
 

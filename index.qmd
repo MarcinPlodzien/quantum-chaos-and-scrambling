@@ -1,8 +1,27 @@
 ---
-title: "From Haar Random States to Quantum Machine Learning"
-subtitle: "A hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems"
+pagetitle: "Quantum Chaos & Scrambling"
 toc: false
+code-tools: false
+code-fold: false
 ---
+
+::: {.hero}
+::: {.hero-text}
+<h1 class="hero-title">From Haar Random States to Quantum Machine Learning</h1>
+
+<p class="hero-tagline">A hands-on numerical tutorial on randomness, scrambling, and learning in quantum systems</p>
+
+<p class="hero-sub">Haar averaging, the Weingarten calculus and a modest amount of representation theory, developed once and applied to quantum chaos, scrambling, benchmarking protocols and the trainability of quantum machine learning, with every step checked numerically.</p>
+
+<p class="hero-author"><a href="https://chaos.if.uj.edu.pl/marcinplodzien/"><b>Marcin Płodzień</b></a> · Institute of Theoretical Physics, Jagiellonian University in Kraków</p>
+
+[Start with Part 1](chapters/01-foundations.qmd){.btn .btn-primary} [Browse the parts](#parts){.btn .btn-outline-primary} [Exercises & Solutions (PDF)](exercises.qmd){.btn .btn-outline-primary}
+:::
+
+::: {.hero-image}
+![](assets/hero.png){fig-alt="Level repulsion in the GOE, the spectral form factor of the GUE, convergence of a classical-shadow estimate, and the barren-plateau decay of the gradient variance"}
+:::
+:::
 
 ## Background
 
@@ -48,19 +67,75 @@ By the end you will be able to:
 - **explain barren plateaus** and the expressivity-trainability tension in
   quantum machine learning, from first principles.
 
-## How the tutorial is organized
+## How the tutorial is organized {#parts}
 
 Seven short parts, each a *concept page* followed by *runnable notebooks*:
 
-| Part | You'll be able to… | Notebooks |
-|---|---|---|
-| [1 · Mathematical Foundations](chapters/01-foundations.qmd) | Speak the language of channels, Lie algebras, state geometry and measure theory | 14 |
-| [2 · Random Matrix Theory](chapters/02-random-matrix-theory.qmd) | Diagnose chaos from a spectrum | 3 |
-| [3 · Haar Measure & Weingarten Calculus](chapters/03-haar-weingarten.qmd) | Average over random unitaries and derive the Page formula | 7 |
-| [4 · Quantum Dynamics & Chaos](chapters/04-dynamics.qmd) | Measure scrambling in real time | 3 |
-| [5 · Designs & Clifford Ensembles](chapters/05-designs.qmd) | Replace Haar randomness with something efficient | 2 |
-| [6 · Applications of Scrambling](chapters/06-applications.qmd) | Turn randomness into protocols | 5 |
-| [7 · Quantum Machine Learning](chapters/07-qml.qmd) | Understand trainability through the same lens, then five worked examples | 12 |
+::: {.chapter-grid}
+::: {.chapter-card}
+[![](assets/thumbs/ch01.png){fig-alt="Mathematical Foundations"}](chapters/01-foundations.qmd)
+
+[1 · Mathematical Foundations](chapters/01-foundations.qmd)
+
+Speak the language of channels, Lie algebras, state geometry and measure theory.
+
+<span class="nbcount">14 notebooks</span>
+:::
+::: {.chapter-card}
+[![](assets/thumbs/ch02.png){fig-alt="Random Matrix Theory"}](chapters/02-random-matrix-theory.qmd)
+
+[2 · Random Matrix Theory](chapters/02-random-matrix-theory.qmd)
+
+Diagnose chaos from a spectrum.
+
+<span class="nbcount">4 notebooks</span>
+:::
+::: {.chapter-card}
+[![](assets/thumbs/ch03.png){fig-alt="Haar Measure & Weingarten Calculus"}](chapters/03-haar-weingarten.qmd)
+
+[3 · Haar Measure & Weingarten Calculus](chapters/03-haar-weingarten.qmd)
+
+Average over random unitaries and derive the Page formula.
+
+<span class="nbcount">7 notebooks</span>
+:::
+::: {.chapter-card}
+[![](assets/thumbs/ch04.png){fig-alt="Quantum Dynamics & Chaos"}](chapters/04-dynamics.qmd)
+
+[4 · Quantum Dynamics & Chaos](chapters/04-dynamics.qmd)
+
+Measure scrambling in real time.
+
+<span class="nbcount">3 notebooks</span>
+:::
+::: {.chapter-card}
+[![](assets/thumbs/ch05.png){fig-alt="Designs & Clifford Ensembles"}](chapters/05-designs.qmd)
+
+[5 · Designs & Clifford Ensembles](chapters/05-designs.qmd)
+
+Replace Haar randomness with something efficient.
+
+<span class="nbcount">2 notebooks</span>
+:::
+::: {.chapter-card}
+[![](assets/thumbs/ch06.png){fig-alt="Applications of Scrambling"}](chapters/06-applications.qmd)
+
+[6 · Applications of Scrambling](chapters/06-applications.qmd)
+
+Turn randomness into protocols.
+
+<span class="nbcount">5 notebooks</span>
+:::
+::: {.chapter-card}
+[![](assets/thumbs/ch07.png){fig-alt="Quantum Machine Learning"}](chapters/07-qml.qmd)
+
+[7 · Quantum Machine Learning](chapters/07-qml.qmd)
+
+Understand trainability through the same lens, then five worked examples.
+
+<span class="nbcount">12 notebooks</span>
+:::
+:::
 
 The parts are largely independent and each notebook stands on its own, so you can read in
 order or jump to what you need. The second-moment twirl worked out in Part 3 recurs in the

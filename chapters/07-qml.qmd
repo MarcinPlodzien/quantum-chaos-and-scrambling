@@ -1,6 +1,9 @@
 ---
 title: "7 · Quantum Machine Learning"
+code-tools: false
 ---
+
+![](../assets/thumbs/ch07.png){width=60% fig-align=center fig-alt="Quantum Machine Learning"}
 
 A variational quantum circuit is trained by following the gradient of a cost
 function, which works only when that gradient is large enough to estimate from a
@@ -28,13 +31,47 @@ Haar randomness.
 
 ## Notebooks in this part
 
-- [Barren plateaus](../notebooks/ch7/solution_ch7_barren_plateau.ipynb), gradient variance vanishing exponentially with qubit number.
-- [Local vs global cost functions](../notebooks/ch7/solution_ch7_local_vs_global_cost.ipynb), how observable locality rescues trainability.
-- [Barren plateaus via quantum Fisher information](../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.ipynb), the metrology view of the same collapse.
-- [Quantum kernel concentration](../notebooks/ch7/solution_ch7_quantum_kernel_concentration.ipynb), why over-expressive kernels become uninformative.
-- [Born-machine expressivity](../notebooks/ch7/solution_ch7_born_machine.ipynb), concentration of a generative model's output distribution.
-- [QELM feature concentration](../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.ipynb), feature collapse in quantum extreme learning machines.
-- [Quantum reservoir computing](../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.ipynb), injection contractivity and restarting overhead.
+::: {.nb-item}
+[Barren plateaus](../notebooks/ch7/solution_ch7_barren_plateau.ipynb)
+
+Gradient variance vanishing exponentially with qubit number.
+:::
+
+::: {.nb-item}
+[Local vs global cost functions](../notebooks/ch7/solution_ch7_local_vs_global_cost.ipynb)
+
+How observable locality rescues trainability.
+:::
+
+::: {.nb-item}
+[Barren plateaus via quantum Fisher information](../notebooks/ch7/solution_ch7_barren_plateau_quantum_fisher_information.ipynb)
+
+The metrology view of the same collapse.
+:::
+
+::: {.nb-item}
+[Quantum kernel concentration](../notebooks/ch7/solution_ch7_quantum_kernel_concentration.ipynb)
+
+Why over-expressive kernels become uninformative.
+:::
+
+::: {.nb-item}
+[Born-machine expressivity](../notebooks/ch7/solution_ch7_born_machine.ipynb)
+
+Concentration of a generative model's output distribution.
+:::
+
+::: {.nb-item}
+[QELM feature concentration](../notebooks/ch7/solution_ch7_quantum_extreme_learning_machine_concentration.ipynb)
+
+Feature collapse in quantum extreme learning machines.
+:::
+
+::: {.nb-item}
+[Quantum reservoir computing](../notebooks/ch7/solution_ch7_quantum_reservoir_computing_injection.ipynb)
+
+Injection contractivity and restarting overhead.
+:::
 
 ## Worked examples
 
@@ -42,11 +79,35 @@ Five end-to-end examples where a fixed scrambling feature map extracts the
 features and only a linear readout is trained. Each one states where it works and
 where it breaks.
 
-- [Quantum-kernel classification of concentric rings](../notebooks/ch7/example_ch7_quantum_kernel_rings.ipynb), a fidelity kernel and a soft-margin classifier, with the onset of kernel concentration.
-- [QELM nonlinear regression](../notebooks/ch7/example_ch7_qelm_regression.ipynb), a trained linear readout on a fixed reservoir, the data re-uploading Fourier ceiling and the over-scrambling downturn.
-- [QELM XOR](../notebooks/ch7/example_ch7_qelm_xor.ipynb), the minimal nonlinear-separation task and its ablation.
-- [QELM phase classification](../notebooks/ch7/example_ch7_qelm_phase_classification.ipynb), ordinary transverse-field Ising order, where local observables already suffice.
-- [QELM for a symmetry-protected phase](../notebooks/ch7/example_ch7_qelm_spt_phase.ipynb), discovering the nonlocal string order that distinguishes an SPT phase, where scrambling is essential.
+::: {.nb-item}
+[Quantum-kernel classification of concentric rings](../notebooks/ch7/example_ch7_quantum_kernel_rings.ipynb)
+
+A fidelity kernel and a soft-margin classifier, with the onset of kernel concentration.
+:::
+
+::: {.nb-item}
+[QELM nonlinear regression](../notebooks/ch7/example_ch7_qelm_regression.ipynb)
+
+A trained linear readout on a fixed reservoir, the data re-uploading Fourier ceiling and the over-scrambling downturn.
+:::
+
+::: {.nb-item}
+[QELM XOR](../notebooks/ch7/example_ch7_qelm_xor.ipynb)
+
+The minimal nonlinear-separation task and its ablation.
+:::
+
+::: {.nb-item}
+[QELM phase classification](../notebooks/ch7/example_ch7_qelm_phase_classification.ipynb)
+
+Ordinary transverse-field Ising order, where local observables already suffice.
+:::
+
+::: {.nb-item}
+[QELM for a symmetry-protected phase](../notebooks/ch7/example_ch7_qelm_spt_phase.ipynb)
+
+Discovering the nonlocal string order that distinguishes an SPT phase, where scrambling is essential.
+:::
 
 ::: {.callout-note appearance="simple"}
 **Full circle.** The exponential that obstructs training here is the same

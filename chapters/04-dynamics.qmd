@@ -1,6 +1,9 @@
 ---
 title: "4 · Quantum Dynamics & Chaos"
+code-tools: false
 ---
+
+![](../assets/thumbs/ch04.png){width=60% fig-align=center fig-alt="Quantum Dynamics & Chaos"}
 
 Random matrix theory characterizes a chaotic spectrum but says nothing about how
 information moves in time. This part follows an operator that starts local and
@@ -26,6 +29,20 @@ form factor depends on the spectrum alone and is blind to the choice of operator
 
 ## Notebooks in this part
 
-- [The $C$-$F$ identity](../notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb), linking the squared commutator to an OTOC fidelity.
-- [The spectral form factor](../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.ipynb), dip, ramp, and the plateau at $K = D$.
-- [Krylov complexity](../notebooks/ch4/solution_ch4_krylov_complexity.ipynb), operator growth as a tight-binding chain, with $\mathcal{C}_K(t) = \sinh^2(\alpha t)$.
+::: {.nb-item}
+[The $C$-$F$ identity](../notebooks/ch4/solution_ch4_commutator_fidelity_identity.ipynb)
+
+Linking the squared commutator to an OTOC fidelity.
+:::
+
+::: {.nb-item}
+[The spectral form factor](../notebooks/ch4/solution_ch4_spectral_form_factor_plateau.ipynb)
+
+Dip, ramp, and the plateau at $K = D$.
+:::
+
+::: {.nb-item}
+[Krylov complexity](../notebooks/ch4/solution_ch4_krylov_complexity.ipynb)
+
+Operator growth as a tight-binding chain, with $\mathcal{C}_K(t) = \sinh^2(\alpha t)$.
+:::

@@ -1,6 +1,9 @@
 ---
 title: "6 · Applications of Scrambling"
+code-tools: false
 ---
+
+![](../assets/thumbs/ch06.png){width=60% fig-align=center fig-alt="Applications of Scrambling"}
 
 In the earlier chapters randomness is something to characterize. Here it is
 deployed on purpose, because the same Haar second moment that fixes the Page
@@ -28,8 +31,32 @@ non-locally, where the loss of a single qubit erases a Heisenberg-scaling signal
 
 ## Notebooks in this part
 
-- [The shadow channel](../notebooks/ch6/solution_ch6_shadow_channel.ipynb), inverting the measurement channel, the heart of classical shadows.
-- [Classical shadows in action](../notebooks/ch6/solution_ch6_numerical_shadows.ipynb), estimating observables from random measurements.
-- [Randomized benchmarking](../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.ipynb), extracting gate fidelity from an exponential decay.
-- [Tripartite mutual information](../notebooks/ch6/solution_ch6_tripartite_mutual_information.ipynb), a quantitative diagnostic of scrambling.
-- [Fragility of GHZ metrology](../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.ipynb), Heisenberg-scaling sensitivity destroyed by a single lost qubit.
+::: {.nb-item}
+[The shadow channel](../notebooks/ch6/solution_ch6_shadow_channel.ipynb)
+
+Inverting the measurement channel, the heart of classical shadows.
+:::
+
+::: {.nb-item}
+[Classical shadows in action](../notebooks/ch6/solution_ch6_numerical_shadows.ipynb)
+
+Estimating observables from random measurements.
+:::
+
+::: {.nb-item}
+[Randomized benchmarking](../notebooks/ch6/solution_ch6_numerical_randomized_benchmarking.ipynb)
+
+Extracting gate fidelity from an exponential decay.
+:::
+
+::: {.nb-item}
+[Tripartite mutual information](../notebooks/ch6/solution_ch6_tripartite_mutual_information.ipynb)
+
+A quantitative diagnostic of scrambling.
+:::
+
+::: {.nb-item}
+[Fragility of GHZ metrology](../notebooks/ch6/solution_ch6_greenberger_horne_zeilinger_fragility.ipynb)
+
+Heisenberg-scaling sensitivity destroyed by a single lost qubit.
+:::

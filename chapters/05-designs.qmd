@@ -1,6 +1,9 @@
 ---
 title: "5 · Designs & Clifford Ensembles"
+code-tools: false
 ---
+
+![](../assets/thumbs/ch05.png){width=60% fig-align=center fig-alt="Designs & Clifford Ensembles"}
 
 A Haar-random unitary on $N$ qubits needs exponentially many real parameters to
 specify and cannot be sampled or stored efficiently. Most calculations, however,
@@ -26,5 +29,14 @@ randomness.
 
 ## Notebooks in this part
 
-- [Clifford OTOCs](../notebooks/ch5/solution_ch5_clifford_otoc.ipynb), why Clifford circuits scramble but have no Lyapunov exponent (the OTOC is $0$ or $4$).
-- [Stabilizer Rényi entropy](../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.ipynb), measuring "magic," the resource beyond entanglement.
+::: {.nb-item}
+[Clifford OTOCs](../notebooks/ch5/solution_ch5_clifford_otoc.ipynb)
+
+Why Clifford circuits scramble but have no Lyapunov exponent (the OTOC is $0$ or $4$).
+:::
+
+::: {.nb-item}
+[Stabilizer Rényi entropy](../notebooks/ch5/solution_ch5_stabilizer_renyi_entropy.ipynb)
+
+Measuring "magic," the resource beyond entanglement.
+:::

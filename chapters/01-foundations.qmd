@@ -1,6 +1,9 @@
 ---
 title: "1 · Mathematical Foundations"
+code-tools: false
 ---
+
+![](../assets/thumbs/ch01.png){width=60% fig-align=center fig-alt="Mathematical Foundations"}
 
 Every later part averages some function of a random unitary, and to state
 what is being averaged one needs density matrices for the states, completely
@@ -29,20 +32,89 @@ later chapters.
 
 ## Notebooks in this part
 
-- [Bloch-sphere geodesics & the Fubini-Study metric](../notebooks/ch1/solution_ch1_fubini_study.ipynb), the natural distance between pure states.
-- [Entanglement of a parametric two-qubit state](../notebooks/ch1/solution_ch1_entanglement_parametric.ipynb), how entanglement tracks a tunable coupling.
-- [The depolarizing channel](../notebooks/ch1/solution_ch1_depolarizing_channel.ipynb), Kraus operators, complete positivity, and entanglement fidelity.
-- [Dynamical Lie algebra closure](../notebooks/ch1/solution_ch1_dla_closure.ipynb), building an algebra by repeated commutators, and what makes a gate set universal.
-- [Schur-Weyl duality for $k=2$](../notebooks/ch1/solution_ch1_schur_weyl.ipynb), the symmetric/antisymmetric split and the SWAP operator.
-- [Choi matrix of amplitude damping](../notebooks/ch1/solution_ch1_choi_amplitude_damping.ipynb), channels as states via Choi-Jamiołkowski.
-- [Dimension of $\mathfrak{u}(D)$ and $\mathfrak{su}(D)$](../notebooks/ch1/solution_ch1_dim_lie_algebra.ipynb), counting generators.
-- [Surjectivity of the exponential map](../notebooks/ch1/solution_ch1_exp_surjectivity.ipynb), why every unitary is an exponential.
-- [Haar invariance on $U(1)$](../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.ipynb), what "uniformly random unitary" means, in the simplest case.
-- [Geodesic length & the quantum speed limit](../notebooks/ch1/solution_ch1_quantum_speed_limit.ipynb), how fast a state can change.
-- [Sectional curvature of $SU(2)$](../notebooks/ch1/solution_ch1_sectional_curvature.ipynb), why nearby evolutions reconverge.
-- [Differential geometry of state space](../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.ipynb), the quantum geometric tensor, Berry curvature, and the Fubini-Study metric together.
-- [Measure-theory basics](../notebooks/ch1/solution_ch1_measure_theory_basics.ipynb), Lebesgue vs counting measure and $\sigma$-additivity.
-- [Borel $\sigma$-algebras & measurability on $U(D)$](../notebooks/ch1/solution_ch1_borel_measurability.ipynb), making "random" rigorous.
+::: {.nb-item}
+[Bloch-sphere geodesics & the Fubini-Study metric](../notebooks/ch1/solution_ch1_fubini_study.ipynb)
+
+The natural distance between pure states.
+:::
+
+::: {.nb-item}
+[Entanglement of a parametric two-qubit state](../notebooks/ch1/solution_ch1_entanglement_parametric.ipynb)
+
+How entanglement tracks a tunable coupling.
+:::
+
+::: {.nb-item}
+[The depolarizing channel](../notebooks/ch1/solution_ch1_depolarizing_channel.ipynb)
+
+Kraus operators, complete positivity, and entanglement fidelity.
+:::
+
+::: {.nb-item}
+[Dynamical Lie algebra closure](../notebooks/ch1/solution_ch1_dla_closure.ipynb)
+
+Building an algebra by repeated commutators, and what makes a gate set universal.
+:::
+
+::: {.nb-item}
+[Schur-Weyl duality for $k=2$](../notebooks/ch1/solution_ch1_schur_weyl.ipynb)
+
+The symmetric/antisymmetric split and the SWAP operator.
+:::
+
+::: {.nb-item}
+[Choi matrix of amplitude damping](../notebooks/ch1/solution_ch1_choi_amplitude_damping.ipynb)
+
+Channels as states via Choi-Jamiołkowski.
+:::
+
+::: {.nb-item}
+[Dimension of $\mathfrak{u}(D)$ and $\mathfrak{su}(D)$](../notebooks/ch1/solution_ch1_dim_lie_algebra.ipynb)
+
+Counting generators.
+:::
+
+::: {.nb-item}
+[Surjectivity of the exponential map](../notebooks/ch1/solution_ch1_exp_surjectivity.ipynb)
+
+Why every unitary is an exponential.
+:::
+
+::: {.nb-item}
+[Haar invariance on $U(1)$](../notebooks/ch1/solution_ch1_haar_measure_unitary_group_rank_one.ipynb)
+
+What "uniformly random unitary" means, in the simplest case.
+:::
+
+::: {.nb-item}
+[Geodesic length & the quantum speed limit](../notebooks/ch1/solution_ch1_quantum_speed_limit.ipynb)
+
+How fast a state can change.
+:::
+
+::: {.nb-item}
+[Sectional curvature of $SU(2)$](../notebooks/ch1/solution_ch1_sectional_curvature.ipynb)
+
+Why nearby evolutions reconverge.
+:::
+
+::: {.nb-item}
+[Differential geometry of state space](../notebooks/ch1/solution_ch1_differential_geometry_hilbert_space.ipynb)
+
+The quantum geometric tensor, Berry curvature, and the Fubini-Study metric together.
+:::
+
+::: {.nb-item}
+[Measure-theory basics](../notebooks/ch1/solution_ch1_measure_theory_basics.ipynb)
+
+Lebesgue vs counting measure and $\sigma$-additivity.
+:::
+
+::: {.nb-item}
+[Borel $\sigma$-algebras & measurability on $U(D)$](../notebooks/ch1/solution_ch1_borel_measurability.ipynb)
+
+Making "random" rigorous.
+:::
 
 ::: {.callout-tip appearance="simple"}
 **Where to start.** If you only want the tools used later, do *Schur-Weyl
