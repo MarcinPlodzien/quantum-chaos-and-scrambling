@@ -64,6 +64,11 @@ def dla(generators):
                 changed = True
     return basis
 
+def check(label, ok):
+    """Print the result of a check and stop if it fails."""
+    print(label, bool(ok))
+    assert ok, label
+
 def ising_generators(N):
     """Open transverse-field Ising chain: Z_i and X_i X_{i+1}."""
     zs = ['I' * i + 'Z' + 'I' * (N - i - 1) for i in range(N)]
@@ -73,27 +78,31 @@ def ising_generators(N):
 # (b) three-qubit chain
 g = dla(ising_generators(3))
 print("dim DLA (N = 3):", len(g))
+assert len(g) == 15
 
 claimed = ['ZII', 'IZI', 'IIZ',
            'XXI', 'XYI', 'YXI', 'YYI',
            'IXX', 'IXY', 'IYX', 'IYY',
            'XZX', 'XZY', 'YZX', 'YZY']
 C = [-1j * string(s) for s in claimed]
-print("the 15 listed strings are independent:", rank(C) == 15)
-print("and span the DLA:", rank(C + g) == 15)
+check("the 15 listed strings are independent:", rank(C) == 15)
+check("and span the DLA:", rank(C + g) == 15)
 
 # first commutators quoted in the solution
 comm = lambda A, B: A @ B - B @ A
-print("[-iZ1, -iX1X2] = -2i Y1X2:", np.allclose(comm(-1j*string('ZII'), -1j*string('XXI')), -2j*string('YXI')))
-print("[X1X2, X2X3] = 0:", np.allclose(comm(string('XXI'), string('IXX')), 0))
-print("[-iX1Y2, -iX2X3] = 2i X1Z2X3:", np.allclose(comm(-1j*string('XYI'), -1j*string('IXX')), 2j*string('XZX')))
+check("[-iZ1, -iX1X2] = -2i Y1X2:", np.allclose(comm(-1j*string('ZII'), -1j*string('XXI')), -2j*string('YXI')))
+check("[X1X2, X2X3] = 0:", np.allclose(comm(string('XXI'), string('IXX')), 0))
+check("[-iX1Y2, -iX2X3] = 2i X1Z2X3:", np.allclose(comm(-1j*string('XYI'), -1j*string('IXX')), 2j*string('XZX')))
 
 # (c) parity
 P = string('ZZZ')
-print("Z1Z2Z3 commutes with every generator:", all(np.allclose(P @ H, H @ P) for H in ising_generators(3)))
-print("-i Z1Z2Z3 lies in the DLA:", rank(C + [-1j * P]) == 15)
+check("Z1Z2Z3 commutes with every generator:", all(np.allclose(P @ H, H @ P) for H in ising_generators(3)))
+in_dla = rank(C + [-1j * P]) == 15
+print("-i Z1Z2Z3 lies in the DLA:", in_dla)
+assert not in_dla   # the parity commutes with the DLA but is not generated
 print("parity-allowed dimension su(4)+su(4) = 30; dim su(8) = 63")
 
 # growth with N
 for N in (2, 3, 4):
+    assert len(dla(ising_generators(N))) == N*(2*N-1)
     print(f"N = {N}: dim DLA = {len(dla(ising_generators(N)))},  N(2N-1) = {N*(2*N-1)},  4^N - 1 = {4**N - 1}")
