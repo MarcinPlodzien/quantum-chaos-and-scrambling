@@ -29,14 +29,14 @@ statements). A few that sample large Haar-random unitaries
 | `solution_ch1_fubini_study.py` | Fubini–Study geodesic distance between qubit states |
 | `solution_ch1_entanglement_parametric.py` | Entanglement entropy of a parametric two-qubit state ($S_{\max}=\ln 2$) |
 | `solution_ch1_depolarizing_channel.py` | Depolarizing channel is CPTP; entanglement fidelity $F_e = 1-\tfrac{3p}{4}$ |
-| `solution_ch1_dla_closure.py` | A dynamical Lie algebra closes under commutators; its dimension |
+| `solution_ch1_dla_closure.py` | Dynamical Lie algebra of the open three-qubit Ising chain has dimension $15$; $N(2N-1)$ for $N=2,3,4$ |
 | `solution_ch1_schur_weyl.py` | Schur–Weyl ($k{=}2$) symmetric/antisymmetric subspace dimensions |
 | `solution_ch1_choi_amplitude_damping.py` | Choi matrix of amplitude damping; spectrum $\{2-\gamma,\gamma,0,0\}$ |
-| `solution_ch1_dim_lie_algebra.py` | $\dim\mathfrak{su}(2^N) = 4^N-1$ |
+| `solution_ch1_dim_lie_algebra.py` | Unitaries commuting with a Hamiltonian have dimension $\sum_k d_k^2$ |
 | `solution_ch1_exp_surjectivity.py` | Every $U(D)$ element is the exponential of a skew-Hermitian generator |
 | `solution_ch1_haar_u1.py` | Haar measure on $U(1)$ is uniform (KS test, vanishing Fourier modes) |
 | `solution_ch1_quantum_speed_limit.py` | Geodesic length saturates the Mandelstam–Tamm quantum speed limit |
-| `solution_ch1_sectional_curvature.py` | Sectional curvature of $SU(2)\cong S^3(\sqrt2)$ equals $\tfrac12$ |
+| `solution_ch1_sectional_curvature.py` | Sectional curvatures $0$, $\tfrac12$, $\tfrac18$ of three planes in $\mathfrak{su}(3)$ |
 
 ### Chapter 2 — Random Matrix Theory
 | Script | Verifies |
@@ -45,6 +45,7 @@ statements). A few that sample large Haar-random unitaries
 | `solution_ch2_semicircle_moments.py` | Even moments of the Wigner semicircle are Catalan numbers ($m_2{=}1,m_4{=}2,\dots$) |
 | `solution_ch2_cue_eigenphase.py` | $2\times2$ CUE eigenphase-spacing density peaks at $\pi$ with value $1/\pi$ |
 | `solution_ch2_unfolding.py` | Unfolding the mixed-field Ising spectrum: symmetry sectors, unit mean spacing, Wigner-surmise variance, under- and over-fitting |
+| `solution_ch2_kramers.py` | Time reversal for two spins ($\hat T^2=+1$, real basis), a field lifting Kramers degeneracy, and $\langle r\rangle=0$ with both Kramers partners kept |
 
 ### Chapter 3 — Haar Measure & Weingarten Calculus
 | Script | Verifies |

@@ -641,7 +641,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="why-it-is-a-plateau-and-why-locality-does-not-save-it">Why it is a plateau, and why locality does not save it</h3>
 <p>For any observable with <span class="math inline">\(\|\hat O\|\le1\)</span>, <span class="math inline">\(\mathrm{Tr}(\hat O^2)\le D\)</span>, so <span class="math inline">\(\mathrm{Var}[C]\le \tfrac{1}{D+1}=\mathcal{O}(2^{-N})\)</span>: the cost is exponentially concentrated. The gradient inherits the same scale, so its typical magnitude is <span class="math inline">\(\sim 2^{-N/2}\)</span> and vanishes into the sampling noise.</p>
 <p>The tempting rescue — “measure a <em>local</em> observable” — <strong>fails at the deep limit</strong>. A single Pauli string, local (<span class="math inline">\(\hat Z_1\)</span>) or global (<span class="math inline">\(\hat Z^{\otimes N}\)</span>), has <span class="math inline">\(\mathrm{Tr}(\hat O^2)=D\)</span> either way, so both give <span class="math inline">\(\mathrm{Var}[C]=1/(D+1)\)</span>. Locality helps only when the <em>ansatz</em> is shallow and built from local blocks that each form their own <span class="math inline">\(2\)</span>-design; then a local cost has variance polynomial in <span class="math inline">\(1/N\)</span> up to <span class="math inline">\(\mathcal{O}(\log N)\)</span> depth (Cerezo et al.&nbsp;2021). That is a different, ansatz-dependent calculation; at the Haar/deep limit studied here there is no escape.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:15:56.300387Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:15:56.300126Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:15:57.766433Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:15:57.765975Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:34:53.093612Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:34:53.093441Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:34:54.479699Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:34:54.479319Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -691,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="the-gradient-and-its-exponential-decay" class="level3">
 <h3 class="anchored" data-anchor-id="the-gradient-and-its-exponential-decay">The gradient, and its exponential decay</h3>
 <p>For a hardware-efficient ansatz the gradient <span class="math inline">\(\partial_\mu C\)</span> has zero mean and a variance set by the same concentration scale. We verify it directly with the parameter-shift rule <span class="math inline">\(\partial_\mu C=\tfrac12[C(\theta_\mu{+}\tfrac\pi2)-C(\theta_\mu{-}\tfrac\pi2)]\)</span> on random parameters, and watch <span class="math inline">\(\mathrm{Var}[\partial_\mu C]\)</span> fall like <span class="math inline">\(2^{-N}\)</span>.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:15:57.768444Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:15:57.768182Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:16:12.911858Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:16:12.911476Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:34:54.481555Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:34:54.481328Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:35:08.549668Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:35:08.549348Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> RY(t): <span class="cf">return</span> np.cos(t<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>I<span class="op">-</span><span class="ot">1j</span><span class="op">*</span>np.sin(t<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>Y</span>
@@ -740,7 +740,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="adversarial-check-every-identity-machine-verified" class="level3">
 <h3 class="anchored" data-anchor-id="adversarial-check-every-identity-machine-verified">Adversarial check — every identity, machine-verified</h3>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:16:12.913820Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:16:12.913334Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:16:15.156625Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:16:15.156125Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:35:08.551286Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:35:08.551051Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:35:10.649438Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:35:10.648985Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>checks<span class="op">=</span>[]</span>
@@ -785,7 +785,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="connections" class="level2">
 <h2 class="anchored" data-anchor-id="connections">Connections</h2>
 <ul>
-<li>Uses the same second moment as the <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html">Weingarten</a>, <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html">purity concentration</a> and <a href="solution_ch6_qfi_particle_loss_scrambling.ipynb">QFI-under-loss</a> notebooks — the last being its exact mirror.</li>
+<li>Uses the same second moment as the <a href="../../notebooks/ch3/solution_ch3_weingarten_first_moment.html">Weingarten</a>, <a href="../../notebooks/ch3/solution_ch3_purity_concentration.html">purity concentration</a> and <a href="../../notebooks/ch6/solution_ch6_qfi_particle_loss_scrambling.html">QFI-under-loss</a> notebooks — the last being its exact mirror.</li>
 <li>The quantum-kernel and generative-model failures of Chapter 7 are the same concentration in other clothing.</li>
 </ul>
 

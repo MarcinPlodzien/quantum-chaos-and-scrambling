@@ -706,7 +706,7 @@ U \xrightarrow{\text{(i)}} \hat{\rho} = U|00\rangle\!\langle 00|U^\dagger \xrigh
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">5. Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:07:42.835402Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:07:42.835233Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:07:43.024094Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:07:43.023594Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:27:21.180711Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:27:21.180593Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:27:21.356008Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:27:21.355685Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -729,7 +729,7 @@ U \xrightarrow{\text{(i)}} \hat{\rho} = U|00\rangle\!\langle 00|U^\dagger \xrigh
 This is the polynomial x² + y² → continuous → measurable </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:07:43.048207Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:07:43.047977Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:07:43.158266Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:07:43.157865Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:27:21.380239Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:27:21.380029Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:27:21.487812Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:27:21.487440Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (b): Symbolic chain for entanglement entropy ─────────────</span></span>
@@ -787,7 +787,7 @@ S(Bell) = log(2) = 0.693147
 Expected: log(2) = 0.693147 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:07:43.159769Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:07:43.159585Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:07:43.164137Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:07:43.163723Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:27:21.489217Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:27:21.489054Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:27:21.492961Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:27:21.492596Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (c): σ-algebra axioms ───────────────────────────────────</span></span>
@@ -821,7 +821,7 @@ N = 3:  |P_N| = 4^3 = 64,  |2^{P_N}| = 2^64 = 18,446,744,073,709,551,616
 </section>
 <section id="numerical-verification-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification-numpy">6. Numerical Verification (NumPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:07:43.165524Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:07:43.165298Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:07:43.604310Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:07:43.603967Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:27:21.494156Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:27:21.493994Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:27:21.894632Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:27:21.894148Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -884,7 +884,7 @@ Continuity: perturbation size vs function change
 δf → 0 as δU → 0: f(U) is continuous → Borel-measurable </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:07:43.605764Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:07:43.605534Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:07:43.611687Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:07:43.611413Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:27:21.896161Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:27:21.895919Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:27:21.902247Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:27:21.901945Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (b): Numerical continuity of S(U) on U(4) ───────────────</span></span>
@@ -955,7 +955,7 @@ Continuity of entanglement entropy S(U)
 δS → 0 as δU → 0: S(U) is continuous → Borel-measurable </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:07:43.612835Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:07:43.612668Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:07:43.647731Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:07:43.647338Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:27:21.903476Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:27:21.903229Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:27:21.940317Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:27:21.939946Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Bonus: Verify S has the correct range ────────────────────────</span></span>
@@ -996,7 +996,7 @@ Random Haar (500 samples):
   Consistent with Page formula </code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:07:43.649079Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:07:43.648906Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:07:43.653300Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:07:43.653001Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:27:21.941977Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:27:21.941786Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:27:21.946680Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:27:21.946366Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Part (c): Power-set σ-algebra of the Pauli group ─────────────</span></span>

@@ -99,10 +99,10 @@ touch docs/.nojekyll
 echo "==> [2/4] Selecting files to publish..."
 if [ "$MODE" = full ]; then
   git add -u -- .
-  git add -- docs assets chapters ./*.qmd source_notebooks
+  git add -- docs assets chapters ./*.qmd source_notebooks verify_exercises
 else
   git add -u -- . ':(exclude)source_notebooks'
-  git add -- docs assets chapters ./*.qmd
+  git add -- docs assets chapters ./*.qmd verify_exercises
 fi
 
 if git diff --cached --quiet; then

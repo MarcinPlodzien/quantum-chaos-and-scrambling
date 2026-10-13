@@ -696,7 +696,7 @@ C_0 = 1, \quad C_1 = 1, \quad C_2 = 2, \quad C_3 = 5, \quad C_4 = 14, \quad \ldo
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:09:12.817046Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:09:12.816850Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:09:27.243206Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:09:27.242703Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:28:19.332851Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:28:19.332710Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:28:30.787909Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:28:30.787556Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -732,7 +732,7 @@ m_3 = 0</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:09:27.245297Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:09:27.244971Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:09:42.389699Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:09:42.389000Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:28:30.789658Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:28:30.789406Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:28:32.571556Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:28:32.569269Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -786,11 +786,11 @@ m_3 = 0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-GUE Monte Carlo (N=200): m₂ = 0.9997, m₄ = 1.9978, m₄/m₂² = 1.9991
+GUE Monte Carlo (N=200): m₂ = 0.9998, m₄ = 2.0000, m₄/m₂² = 2.0009
 Catalan moments confirmed.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:09:42.395401Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:09:42.394921Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:09:50.713018Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:09:50.712475Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:28:32.576166Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:28:32.575854Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:28:34.239535Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:28:34.239156Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>

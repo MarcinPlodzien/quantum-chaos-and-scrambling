@@ -569,10 +569,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#unitaries-that-commute-with-a-hamiltonian" id="toc-unitaries-that-commute-with-a-hamiltonian" class="nav-link active" data-scroll-target="#unitaries-that-commute-with-a-hamiltonian">Unitaries That Commute with a Hamiltonian</a>
   <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
+  <ul class="collapse">
+  <li><a href="#part-a" id="toc-part-a" class="nav-link" data-scroll-target="#part-a">Part (a)</a></li>
+  <li><a href="#part-b" id="toc-part-b" class="nav-link" data-scroll-target="#part-b">Part (b)</a></li>
+  <li><a href="#part-c" id="toc-part-c" class="nav-link" data-scroll-target="#part-c">Part (c)</a></li>
+  </ul></li>
   <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical verification</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch1/solution_ch1_dim_lie_algebra.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -604,40 +611,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="unitaries-that-commute-with-a-hamiltonian" class="level1">
 <h1>Unitaries That Commute with a Hamiltonian</h1>
-<hr>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>The evolution <span class="math inline">\(e^{-i\hat{H}t}\)</span> commutes with <span class="math inline">\(\hat{H}\)</span> at all times, and it stays in a family of unitaries described by <span class="math inline">\(D\)</span> numbers. This exercise counts that family.</p>
+</section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p><strong>(a)</strong> If <span class="math inline">\(\hat H\)</span> has <span class="math inline">\(D\)</span> distinct eigenvalues, show that the unitaries commuting with <span class="math inline">\(\hat H\)</span> are those diagonal in its eigenbasis, a torus of dimension <span class="math inline">\(D\)</span>. <strong>(b)</strong> With degeneracies <span class="math inline">\(d_1,\dots,d_m\)</span>, show they form <span class="math inline">\(U(d_1)\times\cdots\times U(d_m)\)</span>, of dimension <span class="math inline">\(\sum_k d_k^2\)</span>. <strong>(c)</strong> For <span class="math inline">\(D=4\)</span> evaluate the patterns <span class="math inline">\((1,1,1,1),(2,1,1),(2,2),(3,1),(4)\)</span> and compare with <span class="math inline">\(\dim U(4)=16\)</span>. What fraction of <span class="math inline">\(U(2^N)\)</span> does the non-degenerate family fill?</p>
+<p><strong>(a)</strong> Let <span class="math inline">\(\hat{H}\)</span> have <span class="math inline">\(D\)</span> distinct eigenvalues. Show that a unitary commutes with <span class="math inline">\(\hat{H}\)</span> exactly when it is diagonal in the eigenbasis of <span class="math inline">\(\hat{H}\)</span>, so that these unitaries form a torus of real dimension <span class="math inline">\(D\)</span>.</p>
+<p><strong>(b)</strong> Let the eigenvalues have degeneracies <span class="math inline">\(d_1,\ldots,d_m\)</span> with <span class="math inline">\(\sum_k d_k = D\)</span>. Show that the unitaries commuting with <span class="math inline">\(\hat{H}\)</span> are block diagonal, <span class="math inline">\(U(d_1)\times\cdots\times U(d_m)\)</span>, of real dimension <span class="math inline">\(\sum_k d_k^2\)</span>.</p>
+<p><strong>(c)</strong> For <span class="math inline">\(D = 4\)</span>, evaluate the dimension for the degeneracy patterns <span class="math inline">\((1,1,1,1)\)</span>, <span class="math inline">\((2,1,1)\)</span>, <span class="math inline">\((2,2)\)</span>, <span class="math inline">\((3,1)\)</span> and <span class="math inline">\((4)\)</span>, and compare with <span class="math inline">\(\dim U(4) = 16\)</span>. For <span class="math inline">\(N\)</span> qubits with a non-degenerate spectrum, what fraction of the <span class="math inline">\(4^N\)</span> dimensions of <span class="math inline">\(U(2^N)\)</span> does the family fill?</p>
 </section>
 <section id="solution" class="level2">
 <h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<p><strong>(a)</strong> <span class="math inline">\([\hat U,\hat H]=0\)</span> means <span class="math inline">\(\hat U\)</span> maps each eigenspace into itself; a one-dimensional eigenspace only by a phase, so <span class="math inline">\(\hat U\)</span> is diagonal with <span class="math inline">\(D\)</span> free phases. <strong>(b)</strong> On a <span class="math inline">\(d_k\)</span>-dimensional eigenspace <span class="math inline">\(\hat U\)</span> may act as any element of <span class="math inline">\(U(d_k)\)</span>, of dimension <span class="math inline">\(d_k^2\)</span>. <strong>(c)</strong> <span class="math inline">\(4, 6, 8, 10, 16\)</span>. For <span class="math inline">\(N\)</span> qubits: <span class="math inline">\(2^N\)</span> of <span class="math inline">\(4^N\)</span>, a fraction <span class="math inline">\(2^{-N}\)</span>.</p>
+<section id="part-a" class="level3">
+<h3 class="anchored" data-anchor-id="part-a">Part (a)</h3>
+<p>If <span class="math inline">\([\hat U,\hat H] = 0\)</span> and <span class="math inline">\(\hat H|E_n\rangle = E_n|E_n\rangle\)</span>, then <span class="math inline">\(\hat H(\hat U|E_n\rangle) = E_n(\hat U|E_n\rangle)\)</span>, so <span class="math inline">\(\hat U\)</span> maps each eigenspace into itself. A one-dimensional eigenspace is mapped to itself only by a phase, <span class="math inline">\(\hat U|E_n\rangle = e^{i\phi_n}|E_n\rangle\)</span>, so <span class="math inline">\(\hat U\)</span> is diagonal and fixed by the <span class="math inline">\(D\)</span> phases <span class="math inline">\(\phi_n\)</span>. Conversely every such diagonal unitary commutes with <span class="math inline">\(\hat H\)</span>. The phases range over a product of <span class="math inline">\(D\)</span> circles, a torus of dimension <span class="math inline">\(D\)</span>.</p>
+</section>
+<section id="part-b" class="level3">
+<h3 class="anchored" data-anchor-id="part-b">Part (b)</h3>
+<p>The same argument shows that <span class="math inline">\(\hat U\)</span> maps each <span class="math inline">\(d_k\)</span>-dimensional eigenspace into itself, where it may act as any unitary, so <span class="math inline">\(\hat U\)</span> is block diagonal with blocks in <span class="math inline">\(U(d_k)\)</span>. Since <span class="math inline">\(\dim_{\mathbb{R}} U(d) = d^2\)</span>, each block contributes <span class="math inline">\(d_k^2\)</span> real dimensions, and the total is <span class="math inline">\(\sum_k d_k^2\)</span>.</p>
+</section>
+<section id="part-c" class="level3">
+<h3 class="anchored" data-anchor-id="part-c">Part (c)</h3>
+<p>The patterns give <span class="math inline">\(4\)</span>, <span class="math inline">\(6\)</span>, <span class="math inline">\(8\)</span>, <span class="math inline">\(10\)</span> and <span class="math inline">\(16\)</span>. Only the fully degenerate case, <span class="math inline">\(\hat H \propto \mathbb{I}\)</span>, fills <span class="math inline">\(U(4)\)</span>. For <span class="math inline">\(N\)</span> qubits with a non-degenerate spectrum the family has dimension <span class="math inline">\(2^N\)</span> out of <span class="math inline">\(4^N\)</span>, a fraction <span class="math inline">\(2^{-N}\)</span> that vanishes exponentially.</p>
 <hr>
+</section>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:07:57.646651Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:07:57.646447Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:07:57.691576Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:07:57.691213Z&quot;}" data-execution_count="1">
+<p>The real dimension of the skew-Hermitian matrices that commute with <span class="math inline">\(\hat H = \mathrm{diag}(E_1,\ldots,E_D)\)</span> is computed as the null-space dimension of <span class="math inline">\(X \mapsto [X,\hat H]\)</span> on a basis of <span class="math inline">\(\mathfrak{u}(D)\)</span>, and compared with <span class="math inline">\(\sum_k d_k^2\)</span>.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:27:35.066417Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:27:35.066250Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:27:35.112934Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:27:35.112575Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> commutant_dim(eigs):</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Real dimension of {X skew-Hermitian : [X, H] = 0} for H = diag(eigs)."""</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="bu">len</span>(eigs)<span class="op">;</span> H <span class="op">=</span> np.diag(eigs).astype(<span class="bu">complex</span>)<span class="op">;</span> basis <span class="op">=</span> []</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(D):</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.zeros((D, D), <span class="bu">complex</span>)<span class="op">;</span> A[i, i] <span class="op">=</span> <span class="ot">1j</span><span class="op">;</span> basis.append(A)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">+</span><span class="dv">1</span>, D):</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            A <span class="op">=</span> np.zeros((D, D), <span class="bu">complex</span>)<span class="op">;</span> A[i, j], A[j, i] <span class="op">=</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span><span class="op">;</span> basis.append(A)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            A <span class="op">=</span> np.zeros((D, D), <span class="bu">complex</span>)<span class="op">;</span> A[i, j], A[j, i] <span class="op">=</span> <span class="ot">1j</span>, <span class="ot">1j</span><span class="op">;</span> basis.append(A)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> np.array([(B <span class="op">@</span> H <span class="op">-</span> H <span class="op">@</span> B).ravel() <span class="cf">for</span> B <span class="kw">in</span> basis]).T</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(basis) <span class="op">-</span> np.linalg.matrix_rank(np.vstack([M.real, M.imag]))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pattern <span class="kw">in</span> [(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">3</span>,<span class="dv">1</span>), (<span class="dv">4</span>,)]:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    eigs <span class="op">=</span> <span class="bu">sum</span>([[k]<span class="op">*</span>m <span class="cf">for</span> k, m <span class="kw">in</span> <span class="bu">enumerate</span>(pattern)], [])</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> commutant_dim(np.array(eigs, <span class="bu">float</span>))</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pattern, <span class="st">"dim ="</span>, d, <span class="st">" sum d_k^2 ="</span>, <span class="bu">sum</span>(m<span class="op">*</span>m <span class="cf">for</span> m <span class="kw">in</span> pattern))</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> d <span class="op">==</span> <span class="bu">sum</span>(m<span class="op">*</span>m <span class="cf">for</span> m <span class="kw">in</span> pattern)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">: non-degenerate family dimension 2^N = </span><span class="sc">{</span><span class="dv">2</span><span class="op">**</span>N<span class="sc">}</span><span class="ss"> of 4^N = </span><span class="sc">{</span><span class="dv">4</span><span class="op">**</span>N<span class="sc">}</span><span class="ss">, fraction </span><span class="sc">{</span><span class="dv">2</span><span class="op">**</span>N<span class="op">/</span><span class="dv">4</span><span class="op">**</span>N<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sum d_k^2 VERIFIED"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> commutant_dim(eigs):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Real dimension of {X skew-Hermitian : [X, H] = 0} for H = diag(eigs)."""</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="bu">len</span>(eigs)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> np.diag(eigs).astype(<span class="bu">complex</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    basis <span class="op">=</span> []</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(D):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.zeros((D, D), <span class="bu">complex</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        A[i, i] <span class="op">=</span> <span class="ot">1j</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        basis.append(A)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">+</span><span class="dv">1</span>, D):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            A <span class="op">=</span> np.zeros((D, D), <span class="bu">complex</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            A[i, j], A[j, i] <span class="op">=</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            basis.append(A)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            A <span class="op">=</span> np.zeros((D, D), <span class="bu">complex</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            A[i, j], A[j, i] <span class="op">=</span> <span class="ot">1j</span>, <span class="ot">1j</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            basis.append(A)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> np.array([(B <span class="op">@</span> H <span class="op">-</span> H <span class="op">@</span> B).ravel() <span class="cf">for</span> B <span class="kw">in</span> basis]).T</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(basis) <span class="op">-</span> np.linalg.matrix_rank(np.vstack([M.real, M.imag]))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pattern <span class="kw">in</span> [(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">3</span>,<span class="dv">1</span>), (<span class="dv">4</span>,)]:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    eigs <span class="op">=</span> <span class="bu">sum</span>([[k]<span class="op">*</span>m <span class="cf">for</span> k, m <span class="kw">in</span> <span class="bu">enumerate</span>(pattern)], [])</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> commutant_dim(np.array(eigs, <span class="bu">float</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pattern, <span class="st">"dim ="</span>, d, <span class="st">" sum d_k^2 ="</span>, <span class="bu">sum</span>(m<span class="op">*</span>m <span class="cf">for</span> m <span class="kw">in</span> pattern))</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> d <span class="op">==</span> <span class="bu">sum</span>(m<span class="op">*</span>m <span class="cf">for</span> m <span class="kw">in</span> pattern)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">: non-degenerate family dimension 2^N = </span><span class="sc">{</span><span class="dv">2</span><span class="op">**</span>N<span class="sc">}</span><span class="ss"> of 4^N = </span><span class="sc">{</span><span class="dv">4</span><span class="op">**</span>N<span class="sc">}</span><span class="ss">, fraction </span><span class="sc">{</span><span class="dv">2</span><span class="op">**</span>N<span class="op">/</span><span class="dv">4</span><span class="op">**</span>N<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sum d_k^2 VERIFIED"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(1, 1, 1, 1) dim = 4  sum d_k^2 = 4
@@ -656,7 +691,13 @@ sum d_k^2 VERIFIED</code></pre>
 </section>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
-<p>A Hamiltonian evolution explores only the commutant of <span class="math inline">\(\hat H\)</span>, of dimension <span class="math inline">\(\sum_k d_k^2\)</span>, which for a non-degenerate spectrum is an exponentially small slice of <span class="math inline">\(U(2^N)\)</span>.</p>
+<p>The evolution <span class="math inline">\(e^{-i\hat{H}t}\)</span> stays inside the unitaries that commute with <span class="math inline">\(\hat H\)</span>, a family of dimension <span class="math inline">\(\sum_k d_k^2\)</span>. For a non-degenerate spectrum of <span class="math inline">\(N\)</span> qubits this is <span class="math inline">\(2^N\)</span> of the <span class="math inline">\(4^N\)</span> dimensions of <span class="math inline">\(U(2^N)\)</span>, a fraction <span class="math inline">\(2^{-N}\)</span> that vanishes exponentially.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>Płodzień, <em>Information Scrambling, Quantum Chaos, and Haar-Random States</em>, lecture notes (2025). <a href="https://arxiv.org/abs/2511.14397">arXiv:2511.14397</a></li>
+</ul>
 
 
 </section>

@@ -694,7 +694,7 @@ I_Q(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB}) = S(\rho_A) + S(\rho_A) - 0 = 2S
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:16:51.919546Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:16:51.919431Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:16:52.190750Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:16:52.190325Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:35:52.786672Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:35:52.786559Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:35:53.112917Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:35:53.112521Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -729,7 +729,7 @@ I(X_A:X_B) &lt;= I_Q(A:B) = 2*S(rho_A) for pure states</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:16:52.192536Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:16:52.192304Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:16:52.950795Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:16:52.950394Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:35:53.114797Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:35:53.114573Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:35:54.005848Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:35:54.005475Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -778,7 +778,7 @@ I(X_A:X_B) &lt;= I_Q(A:B) = 2*S(rho_A) for pure states</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>A product state has IPR between <span class="math inline">\(1/D\)</span> and <span class="math inline">\(1\)</span> set by its local magnetizations, while a Haar-random Born machine follows the Porter-Thomas law and undershoots the uniform entropy by <span class="math inline">\(1-\gamma_E\approx0.423\)</span> nats. Classical correlations between two subsystems are capped by <span class="math inline">\(2S(\rho_A)\)</span>, so a Born machine cannot reproduce long-range correlations without long-range entanglement.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:16:52.952627Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:16:52.952351Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:16:53.833084Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:16:53.832549Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:35:54.007687Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:35:54.007475Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:35:55.038449Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:35:55.037874Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>

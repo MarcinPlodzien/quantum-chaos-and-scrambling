@@ -612,7 +612,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>a trainable single-qubit <strong>post-rotation</strong> <span class="math inline">\(R_y\)</span> on every qubit.</li>
 </ol>
 <p><span class="math inline">\(N_A\)</span> ancilla qubits are traced out before measurement, giving a <em>mixed</em> output distribution over the remaining <span class="math inline">\(n=N_Q-N_A\)</span> qubits (mixedness is an extra expressivity resource). Only the rotation angles are trained; <span class="math inline">\(\hat U_S\)</span> is fixed. We use JAX so that the loss gradient comes from automatic differentiation.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:53.502534Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:53.502259Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:54.330252Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:54.329831Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:38:19.793377Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:38:19.793193Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:38:20.703269Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:38:20.702752Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -621,7 +621,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>jax.config.update(<span class="st">"jax_enable_x64"</span>, <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:54.332237Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:54.332001Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:55.045651Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:55.045294Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:38:20.705333Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:38:20.705051Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:38:21.457220Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:38:21.456792Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># System size and single-qubit gates (applied matrix-free on the state tensor)</span></span>
@@ -643,7 +643,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.moveaxis(jnp.tensordot(U, psi, axes<span class="op">=</span>([<span class="dv">1</span>], [q])), <span class="dv">0</span>, q)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:55.047339Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:55.047164Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:55.088551Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:55.085119Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:38:21.458822Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:38:21.458654Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:38:21.554445Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:38:21.553734Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The fixed scrambler: a Haar-random unitary (never trained).</span></span>
@@ -659,7 +659,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>U_S <span class="op">=</span> haar_unitary(D, seed<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:55.095260Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:55.094940Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:55.103563Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:55.101615Z&quot;}" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:38:21.563292Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:38:21.562985Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:38:21.569876Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:38:21.569346Z&quot;}" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forward pass: |0...0&gt; -&gt; L layers of [pre Rx,Rz | U_S | post Ry] -&gt; trace ancillas</span></span>
@@ -679,7 +679,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p_full.reshape(<span class="dv">2</span> <span class="op">**</span> N_SYS, <span class="dv">2</span> <span class="op">**</span> N_A).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)       <span class="co"># trace out the N_A ancillas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:55.108221Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:55.107998Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:55.134559Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:55.132155Z&quot;}" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:38:21.573374Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:38:21.572504Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:38:21.596316Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:38:21.595719Z&quot;}" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Target: a five-peak Gaussian mixture over the 2**N_SYS bins</span></span>
@@ -694,7 +694,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> jnp.array(target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:55.140379Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:55.140134Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:18:55.148168Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:18:55.147540Z&quot;}" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:38:21.599545Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:38:21.599284Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:38:21.607431Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:38:21.606900Z&quot;}" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss = negative log-likelihood; gradient by autodiff; trained with Adam.</span></span>
@@ -721,7 +721,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.<span class="bu">sum</span>(target <span class="op">*</span> np.log(np.clip(target, <span class="fl">1e-12</span>, <span class="va">None</span>) <span class="op">/</span> phat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:18:55.153439Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:18:55.153089Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:19:23.888646Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:19:23.888022Z&quot;}" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:38:21.610145Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:38:21.609914Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:38:54.273508Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:38:54.272850Z&quot;}" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sweep the number of trainable layers L (only single-qubit rotations are trained)</span></span>
@@ -749,7 +749,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>L=6:  KLD = 0.009</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:19:23.890892Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:19:23.890581Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:19:24.288650Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:19:24.288072Z&quot;}" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:38:54.276172Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:38:54.275616Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:38:54.764537Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:38:54.764065Z&quot;}" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">3.6</span>))</span>

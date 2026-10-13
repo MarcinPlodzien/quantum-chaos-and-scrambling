@@ -569,10 +569,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#sectional-curvature-on-su3" id="toc-sectional-curvature-on-su3" class="nav-link active" data-scroll-target="#sectional-curvature-on-su3">Sectional Curvature on SU(3)</a>
   <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
+  <ul class="collapse">
+  <li><a href="#part-a" id="toc-part-a" class="nav-link" data-scroll-target="#part-a">Part (a)</a></li>
+  <li><a href="#part-b" id="toc-part-b" class="nav-link" data-scroll-target="#part-b">Part (b)</a></li>
+  <li><a href="#part-c" id="toc-part-c" class="nav-link" data-scroll-target="#part-c">Part (c)</a></li>
+  </ul></li>
   <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification">Numerical verification</a></li>
   <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/blob/main/notebooks/ch1/solution_ch1_sectional_curvature.ipynb" class="toc-action">View source</a></p><p><a href="https://github.com/MarcinPlodzien/quantum-chaos-and-scrambling/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -604,41 +611,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="sectional-curvature-on-su3" class="level1">
 <h1>Sectional Curvature on SU(3)</h1>
-<hr>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>For the bi-invariant metric <span class="math inline">\(g(A,B) = -\mathrm{Tr}(AB)\)</span> on skew-Hermitian matrices, the sectional curvature of the plane of two orthonormal <span class="math inline">\(X, Y \in \mathfrak{u}(D)\)</span> takes the closed form (Milnor, 1976)</p>
+<p><span class="math display">\[
+K(X,Y) = \frac{1}{4}\|[X,Y]\|^2 \geq 0 .
+\]</span></p>
+<p>It vanishes for commuting generators and grows with the failure of the two directions to commute. On <span class="math inline">\(SU(2)\)</span> it equals <span class="math inline">\(\tfrac12\)</span> for every plane, the value <span class="math inline">\(1/R^2\)</span> of the three-sphere of radius <span class="math inline">\(\sqrt2\)</span>. This exercise compares planes of different curvature in <span class="math inline">\(SU(3)\)</span>.</p>
+</section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>The sectional curvature of the bi-invariant metric is <span class="math inline">\(K(X,Y)=\tfrac14\|[X,Y]\|^2\)</span>, with <span class="math inline">\(g(A,B)=-\mathrm{Tr}(AB)\)</span> for skew-Hermitian <span class="math inline">\(A,B\)</span>. With <span class="math inline">\(E_{jk}=|j\rangle\langle k|\)</span> on <span class="math inline">\(\mathbb{C}^3\)</span>: <span class="math inline">\(X_1=\tfrac{-i}{\sqrt2}\mathrm{diag}(1,-1,0)\)</span>, <span class="math inline">\(Y_1=\tfrac{-i}{\sqrt6}\mathrm{diag}(1,1,-2)\)</span>, <span class="math inline">\(X_2=\tfrac{-i}{\sqrt2}(E_{12}+E_{21})\)</span>, <span class="math inline">\(Y_2=\tfrac{1}{\sqrt2}(E_{21}-E_{12})\)</span>, <span class="math inline">\(Y_3=\tfrac{-i}{\sqrt2}(E_{23}+E_{32})\)</span>.</p>
-<p><strong>(a)</strong> Show each generator is in <span class="math inline">\(\mathfrak{su}(3)\)</span> and that <span class="math inline">\((X_1,Y_1)\)</span>, <span class="math inline">\((X_2,Y_2)\)</span>, <span class="math inline">\((X_2,Y_3)\)</span> are orthonormal pairs. <strong>(b)</strong> Compute <span class="math inline">\([X,Y]\)</span> and <span class="math inline">\(K(X,Y)\)</span> for the three pairs. <strong>(c)</strong> For which pair do two evolutions leaving the identity along <span class="math inline">\(X\)</span> and <span class="math inline">\(X+\epsilon Y\)</span> stay parallel, and for which do they reconverge fastest?</p>
+<p>With <span class="math inline">\(E_{jk} = |j\rangle\langle k|\)</span> on <span class="math inline">\(\mathbb{C}^3\)</span>, consider the generators</p>
+<p><span class="math display">\[
+X_1 = \tfrac{-i}{\sqrt2}\,\mathrm{diag}(1,-1,0), \quad
+Y_1 = \tfrac{-i}{\sqrt6}\,\mathrm{diag}(1,1,-2), \quad
+X_2 = \tfrac{-i}{\sqrt2}\,(E_{12}+E_{21}), \quad
+Y_2 = \tfrac{1}{\sqrt2}\,(E_{21}-E_{12}), \quad
+Y_3 = \tfrac{-i}{\sqrt2}\,(E_{23}+E_{32}).
+\]</span></p>
+<p><strong>(a)</strong> Show that each generator lies in <span class="math inline">\(\mathfrak{su}(3)\)</span> and that each of the pairs <span class="math inline">\((X_1,Y_1)\)</span>, <span class="math inline">\((X_2,Y_2)\)</span> and <span class="math inline">\((X_2,Y_3)\)</span> is orthonormal.</p>
+<p><strong>(b)</strong> Compute <span class="math inline">\([X,Y]\)</span> and <span class="math inline">\(K(X,Y)\)</span> for the three pairs.</p>
+<p><strong>(c)</strong> Two Hamiltonian evolutions leave the identity in the directions <span class="math inline">\(X\)</span> and <span class="math inline">\(X+\epsilon Y\)</span>. For which pair do they stay parallel, and for which do they reconverge fastest? Relate the answer to the basis states the two generators act on.</p>
 </section>
 <section id="solution" class="level2">
 <h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<p><strong>(a)</strong> All five are skew-Hermitian and traceless; the norms are 1, and the cross terms vanish (<span class="math inline">\(\mathrm{Tr}(X_1Y_1)\propto 1-1=0\)</span>, <span class="math inline">\(X_2Y_2=-\tfrac{i}{2}(E_{11}-E_{22})\)</span> is traceless, <span class="math inline">\(X_2Y_3=-\tfrac12E_{13}\)</span> has no diagonal).</p>
-<p><strong>(b)</strong> <span class="math inline">\([X_1,Y_1]=0\)</span>, <span class="math inline">\(K=0\)</span>. <span class="math inline">\([X_2,Y_2]=-i\,\mathrm{diag}(1,-1,0)\)</span>, <span class="math inline">\(\|[X_2,Y_2]\|^2=2\)</span>, <span class="math inline">\(K=\tfrac12\)</span> (an <span class="math inline">\(\mathfrak{su}(2)\)</span> block, as for <span class="math inline">\(SU(2)\)</span>). <span class="math inline">\([X_2,Y_3]=\tfrac12(E_{31}-E_{13})\)</span>, <span class="math inline">\(\|[X_2,Y_3]\|^2=\tfrac12\)</span>, <span class="math inline">\(K=\tfrac18\)</span>.</p>
-<p><strong>(c)</strong> The diagonal pair commutes: a flat torus, parallel geodesics. The same-block pair reconverges fastest. The pair sharing one state has a quarter of that curvature.</p>
+<section id="part-a" class="level3">
+<h3 class="anchored" data-anchor-id="part-a">Part (a)</h3>
+<p>All five matrices are skew-Hermitian and traceless. For the norms, <span class="math inline">\(g(X_1,X_1) = \tfrac12\mathrm{Tr}\,\mathrm{diag}(1,1,0) = 1\)</span>, <span class="math inline">\(g(Y_1,Y_1) = \tfrac16(1+1+4) = 1\)</span>, and <span class="math inline">\(g(X_2,X_2) = g(Y_2,Y_2) = g(Y_3,Y_3) = \tfrac12\cdot 2 = 1\)</span>. The cross terms vanish, since <span class="math inline">\(\mathrm{Tr}(X_1Y_1) \propto 1\cdot1 + (-1)\cdot1 = 0\)</span>, <span class="math inline">\(X_2Y_2 = -\tfrac{i}{2}(E_{11}-E_{22})\)</span> is traceless, and <span class="math inline">\(X_2Y_3 = -\tfrac12 E_{13}\)</span> has no diagonal entries.</p>
+</section>
+<section id="part-b" class="level3">
+<h3 class="anchored" data-anchor-id="part-b">Part (b)</h3>
+<p>Diagonal matrices commute, so <span class="math inline">\([X_1,Y_1] = 0\)</span> and <span class="math inline">\(K = 0\)</span>. For the second pair <span class="math inline">\([X_2,Y_2] = -i\,\mathrm{diag}(1,-1,0)\)</span>, so <span class="math inline">\(\|[X_2,Y_2]\|^2 = 2\)</span> and <span class="math inline">\(K = \tfrac12\)</span>, the value of <span class="math inline">\(SU(2)\)</span>, since <span class="math inline">\(X_2\)</span> and <span class="math inline">\(Y_2\)</span> generate an <span class="math inline">\(\mathfrak{su}(2)\)</span> acting on <span class="math inline">\(|1\rangle, |2\rangle\)</span> only. For the third pair <span class="math inline">\([X_2,Y_3] = \tfrac12(E_{31}-E_{13})\)</span>, so <span class="math inline">\(\|[X_2,Y_3]\|^2 = \tfrac12\)</span> and <span class="math inline">\(K = \tfrac18\)</span>.</p>
+</section>
+<section id="part-c" class="level3">
+<h3 class="anchored" data-anchor-id="part-c">Part (c)</h3>
+<p>The diagonal pair commutes, the two evolutions generate a flat torus of diagonal unitaries, and the geodesics stay parallel. The pair acting on the same two states, <span class="math inline">\(|1\rangle\)</span> and <span class="math inline">\(|2\rangle\)</span>, has the largest curvature and reconverges fastest. The pair <span class="math inline">\((X_2,Y_3)\)</span> shares only the state <span class="math inline">\(|2\rangle\)</span>, its commutator is smaller, and the curvature is a quarter of the same-block value.</p>
 <hr>
+</section>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:08:42.635393Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:08:42.635120Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:08:42.867169Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:08:42.865420Z&quot;}" data-execution_count="1">
+<p>Each pair is checked to be skew-Hermitian, traceless and orthonormal, and <span class="math inline">\(K = \tfrac14\|[X,Y]\|^2\)</span> is evaluated.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:28:04.114967Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:28:04.114774Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:28:04.174359Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:28:04.173973Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="kw">lambda</span> A, B: np.real(np.trace(A.conj().T <span class="op">@</span> B))   <span class="co"># Hilbert-Schmidt metric, = -Tr(AB) on skew-Hermitian</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>comm <span class="op">=</span> <span class="kw">lambda</span> A, B: A <span class="op">@</span> B <span class="op">-</span> B <span class="op">@</span> A</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="kw">lambda</span> i, j: np.outer(np.eye(<span class="dv">3</span>)[i], np.eye(<span class="dv">3</span>)[j])</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>np.diag([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>])<span class="op">/</span>np.sqrt(<span class="dv">2</span>)<span class="op">;</span>  Y1 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>np.diag([<span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>])<span class="op">/</span>np.sqrt(<span class="dv">6</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>(E(<span class="dv">0</span>,<span class="dv">1</span>) <span class="op">+</span> E(<span class="dv">1</span>,<span class="dv">0</span>))<span class="op">/</span>np.sqrt(<span class="dv">2</span>)<span class="op">;</span>    Y2 <span class="op">=</span> (E(<span class="dv">1</span>,<span class="dv">0</span>) <span class="op">-</span> E(<span class="dv">0</span>,<span class="dv">1</span>))<span class="op">/</span>np.sqrt(<span class="dv">2</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Y3 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>(E(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">+</span> E(<span class="dv">2</span>,<span class="dv">1</span>))<span class="op">/</span>np.sqrt(<span class="dv">2</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, (X, Y) <span class="kw">in</span> {<span class="st">"(X1,Y1)"</span>: (X1, Y1), <span class="st">"(X2,Y2)"</span>: (X2, Y2), <span class="st">"(X2,Y3)"</span>: (X2, Y3)}.items():</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.allclose(X.conj().T, <span class="op">-</span>X) <span class="kw">and</span> np.allclose(Y.conj().T, <span class="op">-</span>Y)          <span class="co"># skew-Hermitian</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(np.trace(X), <span class="dv">0</span>) <span class="kw">and</span> np.isclose(np.trace(Y), <span class="dv">0</span>)            <span class="co"># traceless</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(g(X, X), <span class="dv">1</span>) <span class="kw">and</span> np.isclose(g(Y, Y), <span class="dv">1</span>) <span class="kw">and</span> np.isclose(g(X, Y), <span class="dv">0</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> comm(X, Y)<span class="op">;</span> K <span class="op">=</span> g(C, C)<span class="op">/</span><span class="dv">4</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: |[X,Y]|^2 = </span><span class="sc">{</span>g(C,C)<span class="sc">:.4f}</span><span class="ss">,  K = </span><span class="sc">{</span>K<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(g(comm(X1,Y1), comm(X1,Y1))<span class="op">/</span><span class="dv">4</span>, <span class="dv">0</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(g(comm(X2,Y2), comm(X2,Y2))<span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(g(comm(X2,Y3), comm(X2,Y3))<span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"K = 0, 1/2, 1/8 VERIFIED"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="kw">lambda</span> A, B: np.real(np.trace(A.conj().T <span class="op">@</span> B))   <span class="co"># Hilbert-Schmidt metric, = -Tr(AB) on skew-Hermitian</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>comm <span class="op">=</span> <span class="kw">lambda</span> A, B: A <span class="op">@</span> B <span class="op">-</span> B <span class="op">@</span> A</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="kw">lambda</span> i, j: np.outer(np.eye(<span class="dv">3</span>)[i], np.eye(<span class="dv">3</span>)[j])</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>np.diag([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>])<span class="op">/</span>np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Y1 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>np.diag([<span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>])<span class="op">/</span>np.sqrt(<span class="dv">6</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>(E(<span class="dv">0</span>,<span class="dv">1</span>) <span class="op">+</span> E(<span class="dv">1</span>,<span class="dv">0</span>))<span class="op">/</span>np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Y2 <span class="op">=</span> (E(<span class="dv">1</span>,<span class="dv">0</span>) <span class="op">-</span> E(<span class="dv">0</span>,<span class="dv">1</span>))<span class="op">/</span>np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Y3 <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span><span class="op">*</span>(E(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">+</span> E(<span class="dv">2</span>,<span class="dv">1</span>))<span class="op">/</span>np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, (X, Y) <span class="kw">in</span> {<span class="st">"(X1,Y1)"</span>: (X1, Y1), <span class="st">"(X2,Y2)"</span>: (X2, Y2), <span class="st">"(X2,Y3)"</span>: (X2, Y3)}.items():</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.allclose(X.conj().T, <span class="op">-</span>X) <span class="kw">and</span> np.allclose(Y.conj().T, <span class="op">-</span>Y)          <span class="co"># skew-Hermitian</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(np.trace(X), <span class="dv">0</span>) <span class="kw">and</span> np.isclose(np.trace(Y), <span class="dv">0</span>)            <span class="co"># traceless</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(g(X, X), <span class="dv">1</span>) <span class="kw">and</span> np.isclose(g(Y, Y), <span class="dv">1</span>) <span class="kw">and</span> np.isclose(g(X, Y), <span class="dv">0</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> comm(X, Y)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> g(C, C)<span class="op">/</span><span class="dv">4</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: |[X,Y]|^2 = </span><span class="sc">{</span>g(C,C)<span class="sc">:.4f}</span><span class="ss">,  K = </span><span class="sc">{</span>K<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(g(comm(X1,Y1), comm(X1,Y1))<span class="op">/</span><span class="dv">4</span>, <span class="dv">0</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(g(comm(X2,Y2), comm(X2,Y2))<span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(g(comm(X2,Y3), comm(X2,Y3))<span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"K = 0, 1/2, 1/8 VERIFIED"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(X1,Y1): |[X,Y]|^2 = 0.0000,  K = 0.0000
@@ -651,6 +691,13 @@ K = 0, 1/2, 1/8 VERIFIED</code></pre>
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The curvature of a plane in <span class="math inline">\(\mathfrak{su}(3)\)</span> measures how much the two generators overlap in the states they couple: <span class="math inline">\(K=0\)</span> for commuting generators, <span class="math inline">\(\tfrac12\)</span> within one <span class="math inline">\(\mathfrak{su}(2)\)</span> block, <span class="math inline">\(\tfrac18\)</span> for blocks sharing one state.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>Milnor, <em>Curvatures of left invariant metrics on Lie groups</em>, Advances in Mathematics <strong>21</strong>, 293–329 (1976). <a href="https://doi.org/10.1016/S0001-8708(76)80002-3">doi:10.1016/S0001-8708(76)80002-3</a></li>
+<li>Płodzień, <em>Information Scrambling, Quantum Chaos, and Haar-Random States</em>, lecture notes (2025). <a href="https://arxiv.org/abs/2511.14397">arXiv:2511.14397</a></li>
+</ul>
 
 
 </section>

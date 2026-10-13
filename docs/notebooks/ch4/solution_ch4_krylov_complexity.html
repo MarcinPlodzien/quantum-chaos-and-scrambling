@@ -700,7 +700,7 @@ C_K = \tanh^2(\alpha t) \cdot \cosh^2(\alpha t) = \sinh^2(\alpha t).
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:13:55.585048Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:13:55.584857Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:13:55.905927Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:13:55.905621Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:32:31.528658Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:32:31.528446Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:32:31.886297Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:32:31.885736Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -735,7 +735,7 @@ Verified: C_K(t) = sinh^2(alpha*t)</code></pre>
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:13:55.907465Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:13:55.907294Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:13:55.993001Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:13:55.992384Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:32:31.888937Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:32:31.888574Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:32:31.983651Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:32:31.983222Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -782,7 +782,7 @@ Krylov complexity = sinh²(αt) confirmed.</code></pre>
 </section>
 <section id="visual-pedagogical-proof" class="level2">
 <h2 class="anchored" data-anchor-id="visual-pedagogical-proof">Visual Pedagogical Proof</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:13:55.997278Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:13:55.996981Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:13:56.982790Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:13:56.982441Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:32:31.987165Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:32:31.986873Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:32:33.144266Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:32:33.143791Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

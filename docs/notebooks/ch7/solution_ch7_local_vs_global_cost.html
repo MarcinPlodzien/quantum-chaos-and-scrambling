@@ -712,7 +712,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:16:56.567276Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:16:56.567065Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:16:56.726738Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:16:56.726113Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:35:58.030064Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:35:58.029894Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:35:58.202145Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:35:58.201784Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -752,7 +752,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 </section>
 <section id="numerical-verification" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-verification">Numerical Verification</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:16:56.728285Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:16:56.728112Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:16:57.503841Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:16:57.503514Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:35:58.203892Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:35:58.203618Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:35:59.132888Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:35:59.132336Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -783,7 +783,7 @@ O_L^2 = \frac{1}{N^2} \sum_{j,k} Z_j Z_k.
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The global cost decays as <span class="math inline">\(2^{-2N}\)</span> and the local cost as <span class="math inline">\(2^{-N}\)</span>, a separation of order <span class="math inline">\(2^N/N\)</span> that comes entirely from <span class="math inline">\(\mathrm{Tr}(O^2)\sim D/N\)</span> for the local observable against <span class="math inline">\(O(1)\)</span> for the global one. Locality halves the exponent of the plateau, so cost-function design sets the boundary between trainable and untrainable circuits at fixed depth.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:16:57.505448Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:16:57.505235Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:17:10.211157Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:17:10.210327Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:35:59.134835Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:35:59.134591Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:36:14.279883Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:36:14.279288Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>

@@ -703,7 +703,7 @@ c \equiv \mathrm{Wg}(e) + \mathrm{Wg}(\text{swap}) = \frac{1}{D^2-1}\Big(1 - \fr
 </section>
 <section id="symbolic-verification-sympy" class="level2">
 <h2 class="anchored" data-anchor-id="symbolic-verification-sympy">Symbolic Verification (SymPy)</h2>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:15:45.488634Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:15:45.488377Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:15:45.801323Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:15:45.800672Z&quot;}" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:34:39.098296Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:34:39.097936Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:34:39.430977Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:34:39.430557Z&quot;}" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -748,7 +748,7 @@ Inversion map: M^(-1)(tau) = (D+1)*tau - Tr(tau)*I
 <section id="takeaway" class="level2">
 <h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
 <p>The shadow channel scales the traceless part of a state by <span class="math inline">\(1/(D+1)\)</span> and leaves the identity fixed, so it inverts to <span class="math inline">\(\mathcal{M}^{-1}(\tau)=(D+1)\tau-\mathrm{Tr}(\tau)\,I\)</span> and turns each snapshot into an unbiased estimator of <span class="math inline">\(\rho\)</span>. The factor <span class="math inline">\(D+1\)</span> is the dimension of the symmetric subspace appearing in the <span class="math inline">\(k=2\)</span> Weingarten formula.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:15:45.803472Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:15:45.803214Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:15:45.857725Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:15:45.857344Z&quot;}" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:34:39.432997Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:34:39.432772Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:34:39.489519Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:34:39.489085Z&quot;}" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -778,7 +778,7 @@ D=4: M⁻¹(M(σ)) = σ verified for 5 random matrices.
 Shadow channel inversion confirmed for all D.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T12:15:45.860874Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T12:15:45.860615Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T12:15:46.518021Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T12:15:46.517466Z&quot;}" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-10-13T13:34:39.491875Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T13:34:39.491620Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T13:34:40.164337Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T13:34:40.163863Z&quot;}" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Visualization: the shadow channel shrinks the state, its inverse re-amplifies ---</span></span>
