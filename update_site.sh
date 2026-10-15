@@ -88,6 +88,7 @@ else
   # output-free sources and the published pages would lose their figures.
   [ -f notebooks/.build_ok ] \
     || die "no complete full build found (notebooks/.build_ok is missing); run without --text-only once."
+  python3 colab_badge.py > /dev/null || die "adding the Colab badges failed."   # idempotent, text only
   quarto render || die "quarto render failed. Nothing was committed or pushed."
 fi
 
@@ -99,10 +100,10 @@ touch docs/.nojekyll
 echo "==> [2/4] Selecting files to publish..."
 if [ "$MODE" = full ]; then
   git add -u -- .
-  git add -- docs assets chapters ./*.qmd source_notebooks verify_exercises
+  git add -- docs assets chapters ./*.qmd source_notebooks verify_exercises colab_badge.py
 else
   git add -u -- . ':(exclude)source_notebooks'
-  git add -- docs assets chapters ./*.qmd verify_exercises
+  git add -- docs assets chapters ./*.qmd verify_exercises colab_badge.py
 fi
 
 if git diff --cached --quiet; then

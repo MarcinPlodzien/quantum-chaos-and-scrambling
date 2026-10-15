@@ -6,6 +6,7 @@ cd "$(dirname "$0")"
 
 echo "[1/3] Preparing notebook copies..."
 python3 prep_notebooks.py
+python3 colab_badge.py      # "Open in Colab" badge on every notebook page
 
 echo "[2/3] Executing notebooks (this can take 15-30 minutes)..."
 EXEC_TIMEOUT="${EXEC_TIMEOUT:-600}"
